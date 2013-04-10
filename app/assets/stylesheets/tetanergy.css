@@ -27,11 +27,36 @@
 	background: #e3e3e3 url("/assets/static.png");
 	width: 100%;
 	color: black;
+	padding: 20px;
+}
+
+#header h1 {
+	float: left;
+	margin: -2px 0px 0px 0px;
 }
 
 #header a {
 	color: #355;
 	text-decoration: none;
+	padding: 10px;
+	font-size: 18px;
+}
+
+#nav {
+	border: 0px solid red;
+	margin: 0 auto 0px 0px;
+}
+
+#nav ul {
+	margin: 0 auto 0px 0px;
+}
+
+#nav ul li {
+	display: inline;
+}
+
+#header a:hover {
+	color: #D55;
 	padding: 10px;
 	font-size: 18px;
 }
@@ -123,11 +148,16 @@
 
 footer {
 	margin-top: -50px;
+	top: 100%;
 	border: 1px solid #222;
 	background: #222;
 	height: 75px;
 	text-align: center;
 	bottom: 0;
+}
+
+.push {
+	clear: both;
 }
 
 #footer_logo {
@@ -150,6 +180,11 @@ footer {
 }
 
 #footer_list li {
+	color: white;
+	display: inline-block;
+}
+
+#footer_list li a {
 	color: white;
 	display: inline-block;
 }
@@ -178,7 +213,6 @@ footer {
 	margin-top: 20px;
 	margin-right: 50px;
 	color: white;
-	box-shadow: 5px 5px 5px #333;
 }
 
 
@@ -215,8 +249,8 @@ footer {
 	border-collapse: collapse;
 	float: left;
 /*	display: none;*/
-	background: #a1f1f5;
-	border-radius: 5px;
+	background: #F5F5F5;
+	
 }
 
 #index_of_workout_tables th {
@@ -269,8 +303,9 @@ footer {
 	display: none;
 	padding: 20px;
 	border-radius: 5px;
-	background: #bbb;
+	background: #eee;
 	color: black;
+	margin-bottom: 100px;
 	-webkit-transition: background 1s;
 	-moz-transition: background 1s;
 	-o-transition: background 1s;
@@ -287,9 +322,13 @@ footer {
 #training_tabs {
 	border: 0px solid red;
 	float: left;
+	color: white;
 	margin: 0px 0px 50px 0px;
-	background: #d1d1d1;
-	border-radius: 5px;
+	background: #515151;
+}
+
+#training_tabs a {
+	color: white;
 }
 
 #training_tabs li {
@@ -335,14 +374,15 @@ footer {
 
 #login {
 	background: #355 url("/assets/noise.png");
-	margin: 0 auto;
+	margin: 0 auto 100px;
 	padding: 20px;
 	width: 300px;
+	color: white;
 }
 
 #register {
 	background: #999;
-	margin: 0 auto;
+	margin: 0 auto 100px;
 	padding: 20px;
 	width: 300px;
 }
@@ -353,6 +393,10 @@ footer {
 * WRAPPERS
 *
 ********************************************/
+
+#application_wrapper {
+
+}
 
 #content_wrapper {
 	margin: 50px auto;
@@ -371,7 +415,10 @@ footer {
 	overflow:hidden;
   padding:20px;
 	margin: auto;
+	background: #D5D5D5;
 	border: 0px solid red;
+	margin-bottom: 100px;
+	border-radius: 5px;
 }
 
 #workout_form .field {
@@ -393,4 +440,9 @@ footer {
   padding: 4px;
   font-size: 16px;
   color: #333;
+}
+
+.form_div {
+	border: 1px solid red;
+	height: auto;
 }

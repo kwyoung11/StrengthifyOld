@@ -50,7 +50,7 @@ class WorkoutsController < ApplicationController
     
     respond_to do |format|
       if @workout.update(workout_params)
-        format.html { redirect_to user_workout_path(@user.id, @workout.id), notice: 'Workout was successfully updated.' }
+        format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

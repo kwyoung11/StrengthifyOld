@@ -15,11 +15,12 @@
 	  <% end %>
 
 	  <div class="field">
+			<%= f.label :name %>
 		  <%= f.text_field :name, :placeholder => "workout name" %>
 		</div>
 		<div class="field">
-			<%= f.label :created_at %>
-			<%= f.text_field :created_at, class: "jquery-ui-date" %>
+			<%= f.label :created_at, 'Date' %>
+			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
 		</div>
 		<div class="field">
 			<%= f.fields_for :exercises do |builder| %>
