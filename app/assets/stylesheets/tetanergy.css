@@ -1,0 +1,396 @@
+/********************************************************************************************************************
+*
+* 	TABLE OF CONTENTS:
+* 		1. HEADER
+* 		2. LANDING PAGE
+* 		3. FOOTER
+*			4. FRONT PAGE
+*			5. PROFILE PAGES
+*			6. TRAINING
+* 		7. USER AUTHENTICATION/MANAGEMENT
+*			8. WORKOUTS
+*			9. WRAPPERS (APPLICATION/CONTENT)
+*
+**********************************************************************************************************************/
+
+
+/*******************************************
+*
+* HEADER
+*
+********************************************/
+
+#header {
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid #e3e3e3;
+	background: #e3e3e3 url("/assets/static.png");
+	width: 100%;
+	color: black;
+}
+
+#header a {
+	color: #355;
+	text-decoration: none;
+	padding: 10px;
+	font-size: 18px;
+}
+
+
+/********************************************
+*
+* LANDING PAGE
+*
+********************************************/
+.landing_even {
+	background: #355 url("/assets/noise.png");
+	height: auto;
+	margin: -18px 0px 0px 0px;
+	padding: 100px;
+	color: #000;
+}
+
+.landing_odd {
+	background: #e3e3e3 url("/assets/static.png");
+	height: auto;
+	opacity: 0.99;
+}
+
+.landing_odd:before {
+	content: "";
+	width: 0; 
+	height: 0;
+	margin: 0px 0px 0px -25px;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fffcf5;
+}
+
+.info {
+	border: 0px solid red;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 18px;
+}
+
+.landing_even:after {
+	content: "";
+	width: 0; 
+	height: 0;
+	margin: 100px 0px 0px -25px;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #355;
+}
+
+#first_value_statement {
+	border: 0px solid red;
+	padding-bottom: 10px;
+	margin-top: 0px;
+	text-align: center;
+	color: white;
+	font-size: 28px;
+}
+
+#second_value_statement {
+	border-top: 1px grey dotted;
+	border-bottom: 1px grey dotted;
+	padding: 40px;
+	font-size: 22px;
+	font-style: bold;
+}
+
+#second_value_statement a {
+	background: #D00;
+	color: white;
+	padding: 12px;
+	border-radius: 3px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+#second_value_statement a:hover {
+	background: #F00;
+}
+
+/******************************************
+*
+* FOOTER
+*
+*******************************************/
+
+footer {
+	margin-top: -50px;
+	border: 1px solid #222;
+	background: #222;
+	height: 75px;
+	text-align: center;
+	bottom: 0;
+}
+
+#footer_logo {
+	float: left;
+	color: white;
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 28px;
+	margin: 0px 0px 0px 10px;
+}
+
+#footer_list {
+	margin: 0px auto;
+	height: 0px;
+	border: 0px solid red;
+	list-style: none;
+	float: right;
+	padding-right: 10px;
+	padding-top: 10px;
+}
+
+#footer_list li {
+	color: white;
+	display: inline-block;
+}
+
+
+/*****************************************
+*
+* FRONT PAGE
+*
+******************************************/
+
+#front_page {
+	border: 0px solid red;
+	height: auto;
+}
+
+#screencast {
+	float: left;
+	margin-left: 50px;
+	border: 0px solid red;
+	box-shadow: 5px 5px 5px #333;
+}
+
+#front_pageLogin {
+	float: right;
+	margin-top: 20px;
+	margin-right: 50px;
+	color: white;
+	box-shadow: 5px 5px 5px #333;
+}
+
+
+/*****************************************
+*
+* PROFILE PAGES
+*
+******************************************/
+
+#user_profile_nav {
+	text-align: center;
+	margin-bottom: 100px;
+}
+
+#user_profile_nav ul li {
+	display: inline;
+	list-style: none;
+}
+
+/*****************************************
+*
+* TRAINING
+*
+******************************************/
+
+/**** 
+* Styling for list of workouts on training page.
+****/
+#index_of_workout_tables {
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 100px;
+	margin-bottom: 100px;
+	border-collapse: collapse;
+	float: left;
+/*	display: none;*/
+	background: #a1f1f5;
+	border-radius: 5px;
+}
+
+#index_of_workout_tables th {
+	padding: 30px;
+	border-bottom: 2px solid blue;
+}
+
+#index_of_workout_tables tr, td {
+	border-bottom: 1px solid blue;
+	padding: 30px;
+	text-align: center;
+	font-size: 18px;
+}
+
+
+/***
+* Styling for actual workout table. 
+****/
+#show_workout_table {
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 100px;
+	margin-bottom: 100px;
+	border-collapse: collapse;
+	float: left;
+/*	display: none;*/
+}
+
+#show_workout_table th {
+	padding: 30px;
+	border-bottom: 2px solid blue;
+}
+
+#show_workout_table tr, td {
+	border-bottom: 1px solid blue;
+	padding: 30px;
+	text-align: center;
+	font-size: 18px;
+}
+
+/*** 
+* This is the rendering div for the workouts#show 
+* table (requested via ajax).
+* Toggled via jQuery code in show.js.erb.
+**/
+
+#workout_data {
+	border: 0px solid red;
+	float: left;
+	display: none;
+	padding: 20px;
+	border-radius: 5px;
+	background: #bbb;
+	color: black;
+	-webkit-transition: background 1s;
+	-moz-transition: background 1s;
+	-o-transition: background 1s;
+	transition: background 1s
+}
+
+/***
+* Tabs to show different training metrics, including:
+* 1. Analytics
+* 2. Workouts List
+* 3. 
+***/
+
+#training_tabs {
+	border: 0px solid red;
+	float: left;
+	margin: 0px 0px 50px 0px;
+	background: #d1d1d1;
+	border-radius: 5px;
+}
+
+#training_tabs li {
+	list-style: none;
+	text-align: left;
+	padding: 5px;
+}
+
+.link_tab.active {
+	background: blue;
+}
+
+.link_tab.active:after {
+	content: "";
+	position: absolute;
+	display: block;
+	margin: -23px 0px 0px 89px;
+	border: 14px solid;
+	border-color: transparent transparent transparent blue;
+	z-index: 50;
+}
+
+.row_for_workout.active {
+		background: blue;
+}
+
+.row_for_workout.active:after {
+	content: "";
+	position: absolute;
+	display: block;
+	margin: 0px 0px 0px 0px;
+	border: 40px solid;
+	border-color: transparent transparent transparent blue;
+	z-index: 50;
+}
+
+
+/*****************************************
+*
+* USER AUTHENTICATION/MANAGEMENT
+*
+******************************************/
+
+#login {
+	background: #355 url("/assets/noise.png");
+	margin: 0 auto;
+	padding: 20px;
+	width: 300px;
+}
+
+#register {
+	background: #999;
+	margin: 0 auto;
+	padding: 20px;
+	width: 300px;
+}
+
+
+/********************************************
+*
+* WRAPPERS
+*
+********************************************/
+
+#content_wrapper {
+	margin: 50px auto;
+	text-align: center;
+}
+
+
+/********************************************
+*
+* WORKOUTS
+*
+********************************************/
+
+#workout_form {
+	width: 800px;
+	overflow:hidden;
+  padding:20px;
+	margin: auto;
+	border: 0px solid red;
+}
+
+#workout_form .field {
+	float:left;
+	margin: 1em;
+}
+
+#workout_form .actions {
+	float:left;
+	margin-top: 51px;
+}
+
+#workout_form label {
+	display: block;
+	font-size: 16px;
+}
+
+#workout_form input {
+  padding: 4px;
+  font-size: 16px;
+  color: #333;
+}

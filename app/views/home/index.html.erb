@@ -1,0 +1,31 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p> 
+<% end %>
+
+<div id="front_page">
+
+	<div id="screencast">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/PuAV-FJdZOg" frameborder="0" allowfullscreen></iframe>
+	</div>
+
+	<div id="front_pageLogin">
+		<%= render 'sessions/new' %>
+	</div>
+</div>
+<div style="clear: both;"></div>
+
+<% (1...3).each do |i| %>
+<div class="<%= cycle('landing_odd', 'landing_even') %>">
+	<% if i == 1 %> 
+		<p class="info"> Thews is a social platform to track physical activity and measure progress towards your fitness goals. </p>
+		<p class="display_graph"> <%= image_tag("GraphSS_final.jpg") %> </p>
+		<p class="info"> Join the Thews community and have fun improving your fitness! </p> 
+	<% end %>
+	<% if i == 2 %> 
+		<div id="first_value_statement"> Strength Training Doesn't Have To Be A Hassle. </div>
+		<p id="second_value_statement"> Experience the best way to record your workouts. <%= link_to 'Get Started', signup_path  %> </p>
+	<% end %>
+
+</div>
+<% end %>
+
