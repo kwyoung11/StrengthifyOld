@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1> <%= @workout.name %> on <%= @workout.created_at.strftime('%m/%d/%Y') %></h1> <td><%= link_to 'Edit', edit_user_workout_path(@user.id, @workout) %></td>
+  <td><%= link_to 'Delete', user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+<table id="show_workout_table">
+	<th> Exercise </th>
+	<th> Weight </th>
+	<th> Reps </th>
+	<% @workout.exercises.each do |e| %>
+	<tr>
+		<td> <%= e.name %> </td>
+		<td> <%= e.weight %> </td>
+		<td> <%= e.reps %> </td>
+	</tr>
+	<% end %>
+</table>
+
+ 
+
+
