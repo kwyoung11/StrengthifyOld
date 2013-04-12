@@ -30,9 +30,9 @@
 	padding: 20px;
 }
 
-#header h1 {
-	float: left;
-	margin: -2px 0px 0px 0px;
+#header p a {
+	margin: -15px 0px 0px 0px;
+	font-size: 48px;
 }
 
 #header a {
@@ -44,11 +44,12 @@
 
 #nav {
 	border: 0px solid red;
-	margin: 0 auto 0px 0px;
+	margin: 0 auto 0px -50px;
 }
 
 #nav ul {
-	margin: 0 auto 0px 0px;
+	margin: -10 auto 0px 0px;
+	list-style: none;
 }
 
 #nav ul li {
@@ -57,8 +58,6 @@
 
 #header a:hover {
 	color: #D55;
-	padding: 10px;
-	font-size: 18px;
 }
 
 
@@ -208,12 +207,59 @@ footer {
 	box-shadow: 5px 5px 5px #333;
 }
 
-#front_pageLogin {
+#login_area {
+	border: 0px solid green;
 	float: right;
-	margin-top: 20px;
-	margin-right: 50px;
+}
+
+#front_pageLogin {
+	color: white;
+	float: left;
+	margin: 0px 200px 0px 0px;
+	background: #355 url("/assets/noise.png");
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 300px;
 	color: white;
 }
+
+#login_options {
+	position: absolute;
+	margin: 60px 0px 0px 380px;
+}
+
+#fitbit_signup {
+	border: 0px solid red;
+	background: #333;
+	padding: 10px;
+	clear: left;
+	float: right;
+	margin: -130px 0px 0px 0px;
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+}
+
+#fitbit_signup li {
+	display: inline;
+}
+
+#fitbit_signup img {
+	margin: 0px 0px 0px 0px;
+	float: right;
+}
+
+#fitbit_text {
+	float: left;
+	padding-right: 10px;
+	margin: 7px 0px 0px 0px;
+	color: white;
+}
+
+#fitbit_signup:hover {
+	background: #444;
+}
+
 
 
 /*****************************************

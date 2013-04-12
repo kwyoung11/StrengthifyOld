@@ -9,7 +9,7 @@
 <body>
 <div id="application_wrapper">	
 	<div id="header">
-		<h1><%= link_to 'Thews.io', root_url %></h1>
+		<p><%= link_to 'Thews.io', root_url %></p>
 			<div id="nav">
 				<% if current_user %>
 				<ul>
@@ -18,7 +18,10 @@
 					<li><%= link_to 'Add Workout', new_user_workout_path(current_user.id) %></li>
 					<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
 				<% else %>
-					<p> <%= link_to 'Sign Up', signup_path %> or <%= link_to 'Log In', login_path %> </p>
+				<ul>
+					<li> <%= link_to 'Sign Up', signup_path %> </li>
+					<li> <%= link_to 'Log In', login_path %> </li>
+				</ul>
 				<% end %>
 			</div>
 	</div>

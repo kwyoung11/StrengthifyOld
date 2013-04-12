@@ -17,6 +17,14 @@ class SessionsController < ApplicationController
       render "new"
     end
   end
+  
+  def create_with_fitbit
+    user = User.from_omniauth(request.env['omniauth.auth'])
+    if user
+      cookies[:auth_token] = user.auth_token
+    end
+    redirect_to user_path(user.id), notice: "Signed in!"
+  end
 
   def destroy
     cookies.delete(:auth_token)

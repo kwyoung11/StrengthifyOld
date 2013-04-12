@@ -34,7 +34,8 @@ end
 
 
 gem 'jquery-rails'
-
+gem 'omniauth-fitbit'
+gem 'fitgem', :git => 'https://github.com/whazzmaster/fitgem.git'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

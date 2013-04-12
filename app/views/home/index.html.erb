@@ -3,14 +3,23 @@
 <% end %>
 
 <div id="front_page">
-
 	<div id="screencast">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/lcZb6Wcghu0" frameborder="0" allowfullscreen></iframe>
 	</div>
-
-	<div id="front_pageLogin">
+	<div id="login_area">
 		<%= render 'sessions/new' %>
+		<h1 id="login_options"> OR  </h1>
+		
+		<%= link_to "/auth/fitbit" do %>
+			<ul id="fitbit_signup">
+				<li id="fitbit_text">Sign in with Fitbit </li>
+				<li> <%= image_tag('fitbit-32-blk-onwhite.jpg') %> </li>
+			</ul>
+		<% end %>
+		
 	</div>
+	
+
 </div>
 <div style="clear: both;"></div>
 
