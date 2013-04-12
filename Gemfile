@@ -20,8 +20,20 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'jquery-rails'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
 
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+end
+
+
+gem 'jquery-rails'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

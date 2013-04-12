@@ -3,7 +3,7 @@
 	<% if params[:action] = "edit" %>
 	<%= f.label :name %>
 	<% end %>
-	<%= f.text_field :name, :placeholder => "exercise" %>
+	<%= f.text_field :name, :placeholder => "exercise", data: { autocomplete_source: exercises_path} %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
@@ -20,6 +20,4 @@
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Exercise", '#', class: "remove_fields" %>
 </fieldset>
-
-
 

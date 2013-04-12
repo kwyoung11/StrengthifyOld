@@ -6,7 +6,7 @@ Cs50xFinalProject::Application.routes.draw do
   end
   resources :password_resets 
   resources :sessions
-  
+  resources :exercises
   
   controller :users do
      get 'signup' => :new
