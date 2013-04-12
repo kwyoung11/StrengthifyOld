@@ -7,3 +7,5 @@ jQuery ->
     $(this).closest('fieldset').hide()
     event.preventDefault()
 
+    $('#workout_exercise_name').autocomplete
+      source: $('#workout_exercise_name').data('autocomplete_source') 
