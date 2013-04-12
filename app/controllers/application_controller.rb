@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Sign up or login" if current_user.nil?
   end
   
+  def current_user=(user)
+    @current_user = user
+    cookies[:auth_token] = user.auth_token
+  end
+  
 end
