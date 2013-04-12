@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+
+<% if current_user.linked_to_fitbit? %>
+	<%= current_user.fitbit_data.user_info['user']['fullName'] %>
+<% end %>
 <p>
   <%= @user.name %>
 </p>

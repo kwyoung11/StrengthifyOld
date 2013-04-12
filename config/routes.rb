@@ -17,6 +17,9 @@ Cs50xFinalProject::Application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+  
+  get 'auth/:provider/callback', to: 'sessions#create_with_fitbit'
+  get 'auth/failure', to: redirect('/')
 
   root to: 'home#index'
 

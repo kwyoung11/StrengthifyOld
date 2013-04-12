@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
   
   def authorize
-     redirect_to login_url, alert: "Sign up or login" if current_user.nil?
+    redirect_to login_url, alert: "Sign up or login" if current_user.nil?
   end
   
 end
