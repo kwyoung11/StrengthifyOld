@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Sign up or login" if current_user.nil?
   end
   
+  def admin?
+    if !current_user.nil?
+      redirect_to root_url, alert: "You are not authorized to view that page." if !current_user.admin?
+    end
+  end
+  
   def current_user=(user)
     @current_user = user
     cookies[:auth_token] = user.auth_token

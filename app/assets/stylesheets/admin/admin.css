@@ -1,0 +1,65 @@
+/********************************************************************************************************************
+*
+* 	TABLE OF CONTENTS:
+* 		1. ADMIN HOME TAB
+* 		2. ADMIN WORKOUTS TAB
+* 	
+*
+**********************************************************************************************************************/
+/* ADMIN HOME TAB */
+
+#admin_nav {
+	margin: 0px auto;
+	text-align: center;
+}
+
+#admin_nav ul {
+	border-radius: 10px;
+}
+
+#admin_nav li {
+	display: inline;
+	font-size: 20px;
+	background: #aaa;
+	padding: 5px;
+	
+}
+
+#admin_nav li a {
+	text-decoration: none;
+	color: white;
+}
+
+#admin_nav li a:hover {
+	color: red;
+}
+
+/* ADMIN WORKOUTS TAB */
+
+#workouts {
+	margin: 0px 0px 100px 0px;
+	list-style: none;
+	border: 0px solid red;
+}
+
+#workouts li {
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+
+#exercises {
+	list-style: none;
+}
+
+#exercises li {
+	display: inline;
+	padding-right: 10px;
+}
+
+.edit_exercise {
+	display: inline;
+}
+
+
+
+
