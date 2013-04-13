@@ -457,7 +457,7 @@ footer {
 ********************************************/
 
 #workout_form {
-	width: 800px;
+	width: 900px;
 	overflow:hidden;
   padding:20px;
 	margin: auto;
@@ -491,4 +491,8 @@ footer {
 .form_div {
 	border: 1px solid red;
 	height: auto;
+}
+
+#add_fields {
+	border: 0px solid red;
 }

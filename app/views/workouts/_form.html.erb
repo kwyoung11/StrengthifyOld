@@ -13,17 +13,30 @@
 
 	
 		<div class="field">
+			<strong><%= f.label "name" %></strong>
     	<%= f.text_field :name, :placeholder => "workout name" %>
 		</div>
+		
 		<div class="field">
-			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+			<strong><%= f.label "time" %></strong>
+			<%= f.text_field :hours, size: "5", :placeholder => "hr" %>
+			<%= f.text_field :minutes, size: "5", :placeholder => "min" %>
+			<%= f.text_field :seconds, size: "5", :placeholder => "sec" %>
 		</div>
 		<div class="field">
 			<%= f.fields_for :exercise do |builder| %>
 				<%= render 'exercise_fields', f: builder, :locals => {:edit => true} %>
+				<span id="add_fields">
+				<%= link_to_add_fields "+ Add Exercise", f, :exercises %>
+				</span> <!-- helper method in application_helper.rb-->
 			<% end %>
-			<%= link_to_add_fields "+ Add Exercise", f, :exercises %>
 		</div>
+	
+		<div class="field">
+			<%= link_to 'Today (change date)', '#', class: "workout_created_at_link" %>
+			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+		</div>
+		
 		<div class="field">
 			<%= f.submit %>
 		</div>
@@ -32,8 +45,16 @@
 
 <div id="empty_div"></div>
 
-
 <script>
+$("#workout_name").focus();
+
+$('.jquery-ui-date').hide();
+$('.workout_created_at_link').on('click', function() {
+	$('.workout_created_at_link').hide();
+	$('.jquery-ui-date').show();
+	return false;
+});
+
 /*****
 * Adds form input fields belonging to attributes on the Exercise model. The
 * data attributes are passed via the link_to_add_fields helper function (in application_helper.rb)
@@ -45,7 +66,9 @@ $('form').on('click', '.add_fields', function(event) {
 	var regexp = new RegExp($(this).data('id'), 'g');
 	$(this).before($(this).data('fields').replace(regexp, i));
 	event.preventDefault();
+	$("#workout_exercises_attributes_" + i + "_name").focus();
 	i++;
+	
 });
 </script>
 
