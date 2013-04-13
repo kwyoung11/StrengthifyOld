@@ -1,0 +1,61 @@
+<%= form_for [@user, @workout] do |f| %>
+  <% if @workout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+
+      <ul>
+      <% @workout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	
+		<div class="field">
+    	<%= f.text_field :name, :placeholder => "workout name" %>
+		</div>
+		<div class="field">
+			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+		</div>
+		<div class="field">
+			<%= f.fields_for :exercise do |builder| %>
+				<%= render 'exercise_fields', f: builder, :locals => {:edit => true} %>
+			<% end %>
+			<%= link_to_add_fields "+ Add Exercise", f, :exercises %>
+		</div>
+		<div class="field">
+			<%= f.submit %>
+		</div>
+
+<% end %>
+
+<div id="empty_div"></div>
+
+
+<script>
+/*****
+* Adds form input fields belonging to attributes on the Exercise model. The
+* data attributes are passed via the link_to_add_fields helper function (in application_helper.rb)
+* When the link_to_add_fields is clicked, a RegEx searches the data hash for the id, inserts the form fields
+before the link, and replaces regexp with the index variables i (initialized to 0).
+*****/
+$('form').on('click', '.add_fields', function(event) {
+	var i = $('#new_workout fieldset').size() - 1;
+	var regexp = new RegExp($(this).data('id'), 'g');
+	$(this).before($(this).data('fields').replace(regexp, i));
+	event.preventDefault();
+	i++;
+});
+</script>
+
+<script>
+$(".jquery-ui-date").datepicker({ dateFormat: 'yy-mm-dd' });
+</script>
+
+
+
+
+ 
+
+

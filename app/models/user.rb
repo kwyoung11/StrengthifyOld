@@ -1,14 +1,16 @@
 class User < ActiveRecord::Base
    attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider
-   
-   
+
+
+
    # Database Relations 
    has_many :workouts, :dependent => :destroy
    
    # Validations 
+   # has_secure_password set to false to allow omniauth login
    validates :name, presence: true
    validates :email, presence: true, uniqueness: true
-   has_secure_password(validations: false)
+   has_secure_password(validations: false) 
    validates_presence_of :password, :on => :create, :on => :update
    validates_confirmation_of :password
    
@@ -52,6 +54,7 @@ class User < ActiveRecord::Base
   ###
   # Creates a user from the values in the auth hash schema.
   # See sessions#create_with_fitbit
+  # On save, validate false to allow blank password/email fields
   # @param hash. See User.find_from_hash.
   # @user user. The current user (assigned nil as default)
   ###

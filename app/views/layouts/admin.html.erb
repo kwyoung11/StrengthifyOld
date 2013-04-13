@@ -27,7 +27,6 @@
 					<li><%= link_to 'Training', user_workouts_path(current_user.id) %></li>
 					<li><%= link_to 'Add Workout', new_user_workout_path(current_user.id) %></li>
 					<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
-					<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
 				<% else %>
 				<ul>
 					<li> <%= link_to 'Sign Up', signup_path %> </li>
@@ -35,6 +34,13 @@
 				</ul>
 				<% end %>
 			</div>
+	</div>
+	<div id="admin_nav">
+		<ul>
+			<li> <strong>Admin: </strong> </li>
+			<li> <%= link_to 'Users', admin_users_path %> </li>
+			<li> <%= link_to 'Workouts', admin_workouts_path %> </li>
+		</ul>
 	</div>
 	
 	<div id="content_wrapper">

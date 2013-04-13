@@ -1,5 +1,5 @@
 class Exercise < ActiveRecord::Base
-  attr_accessible :name, :weight, :reps
+  attr_accessible :name, :weight, :reps, :usable
   
   belongs_to :workout
   

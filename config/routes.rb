@@ -1,27 +1,44 @@
 Cs50xFinalProject::Application.routes.draw do
   
+  # Root URL
+  root to: 'home#index'
   
+  # Administration routes
+  get "/admin", to: 'admin/home#index' 
+  namespace :admin do
+    resources :users, :home
+    resources :workouts do
+      resources :exercises
+    end
+  end
+  
+  controller :home do 
+    get 'admin' => :index
+  end
+  
+  # Workouts nested under users
   resources :users do 
     resources :workouts
   end
-  resources :password_resets 
-  resources :sessions
-  resources :exercises
   
+  resources :password_resets, :sessions, :exercises
+  
+  # Signup path
   controller :users do
      get 'signup' => :new
   end
   
+  # Login and logout path
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
   
+  # Routes for omniauth callback URL and on omniauth failure
   get 'auth/:provider/callback', to: 'sessions#create_with_fitbit'
   get 'auth/failure', to: redirect('/')
 
-  root to: 'home#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

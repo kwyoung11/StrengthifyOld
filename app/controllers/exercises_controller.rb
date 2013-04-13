@@ -4,4 +4,10 @@ class ExercisesController < ApplicationController
     render json: @exercises.map(&:name)
     
   end
+  
+  
+  def update
+    
+  end
+  
 end
