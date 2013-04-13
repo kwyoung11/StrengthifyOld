@@ -1,9 +1,10 @@
 <fieldset>
+	<legend><strong>Exercises</strong></legend>
 	<div class="field">
 	<% if params[:action] = "edit" %>
 	<%= f.label :name %>
 	<% end %>
-	<%= f.text_field :name, :placeholder => "exercise", data: { autocomplete_source: exercises_path} %>
+	<%= f.text_field :name, :placeholder => "exercise" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
@@ -16,8 +17,26 @@
 	<%= f.label :reps %>
 	<% end %>
 	<%= f.text_field :reps, :placeholder => "reps" %>
-	</div>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Exercise", '#', class: "remove_fields" %>
-</fieldset>
+	</div>
+</fieldset>	
 
+<script>
+function monkeyPatchAutocomplete() {
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+        var keywords = $.trim(this.term).split(' ').join('|');
+        var output = item.label.replace(new RegExp("(" + keywords + ")", "gi"), '<span style="font-weight:bold;color:Blue;">$1</span>');
+        return $("<li>")
+            .append($("<a>").html(output))
+            .appendTo(ul);
+    };
+}
+// Autocomplete for exercise names
+$(function() {
+		monkeyPatchAutocomplete();
+    $('#workout_exercise_name').autocomplete({ 
+			source: '<%= exercises_path %>'
+	 	});
+});
+</script>
