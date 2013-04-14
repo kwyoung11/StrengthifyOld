@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
   before_action :set_user
-  before_filter :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_filter :authorize
 
   # GET /workouts
   # GET /workouts.json
