@@ -69,6 +69,12 @@ class WorkoutsController < ApplicationController
     end
   end
   
+  # GET /workouts/analyze
+  # GET /workouts/analyze.json
+  def analyze
+
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

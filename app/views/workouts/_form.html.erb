@@ -67,6 +67,7 @@ $('form').on('click', '.add_fields', function(event) {
 	$(this).before($(this).data('fields').replace(regexp, i));
 	event.preventDefault();
 	$("#workout_exercises_attributes_" + i + "_name").focus();
+	$('#new_workout fieldset legend strong').last().text("Exercise # " + (i + 2));
 	i++;
 	
 });

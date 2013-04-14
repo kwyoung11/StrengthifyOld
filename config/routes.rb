@@ -16,9 +16,12 @@ Cs50xFinalProject::Application.routes.draw do
     get 'admin' => :index
   end
   
-  # Workouts nested under users
+  # Users, workouts (nested resource), analytics as a member
+  # route of workouts
   resources :users do 
-    resources :workouts
+    resources :workouts do 
+        get 'analyze', :on => :collection
+    end
   end
   
   resources :password_resets, :sessions, :exercises
