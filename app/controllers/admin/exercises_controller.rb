@@ -1,4 +1,7 @@
 class Admin::ExercisesController < ApplicationController
+  before_filter :admin?
+  before_filter :authorize
+  layout 'admin'
   
   # Updates exercise to use in public-facing database
   def update
