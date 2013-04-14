@@ -97,6 +97,7 @@ GEM
     minitest (4.7.1)
     multi_json (1.7.2)
     multi_xml (0.5.3)
+    newrelic_rpm (3.6.0.83)
     nokogiri (1.5.9)
     oauth (0.4.7)
     omniauth (1.1.4)
@@ -198,6 +199,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  newrelic_rpm
   omniauth-fitbit
   pg
   protected_attributes

@@ -32,7 +32,7 @@ group :test do
   gem 'launchy'
 end
 
-
+gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'omniauth-fitbit'
 gem 'fitgem', :git => 'https://github.com/whazzmaster/fitgem.git'
