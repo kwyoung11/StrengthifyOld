@@ -1,20 +1,20 @@
 <fieldset>
-	<legend><strong>Exercises</strong></legend>
+		<legend id="exercise_number"><strong>Exercise # 1 </strong></legend>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<%= f.label :name %>
+	<strong><%= f.label :name %></strong>
 	<% end %>
 	<%= f.text_field :name, :placeholder => "exercise" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<%= f.label :weight %>
+	<strong><%= f.label :weight %></strong>
 	<% end %>
 	<%= f.text_field :weight, :placeholder => "weight" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<%= f.label :reps %>
+	<strong><%= f.label :reps %></strong>
 	<% end %>
 	<%= f.text_field :reps, :placeholder => "reps" %>
 	<%= f.hidden_field :_destroy %>

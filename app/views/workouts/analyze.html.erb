@@ -1,0 +1,41 @@
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<svg width="500" height="700"> 
+	<g id="barchart" class="barchart"> </g>
+</svg>
+
+
+<script type="text/javascript">
+
+var data = [{"label":"1990", "value":16},
+						{"label":"1991","value":56},
+						{"label":"1992","value":7},
+						{"label":"1993","value":77},
+						{"label":"1994","value":22},
+						{"label":"1995","value":16},
+];
+
+var data_max = 80,
+
+num_ticks = 5
+
+left_margin = 60,
+right_margin = 60,
+top_margin = 30,
+bottom_margin = 0;
+
+var w = 500, // width
+		h = 700, // height
+		color = function(id) { return '#00b3dc' };
+		
+var x = d3.scale.linear()
+.domain{[0, data_max]}
+.range([0, w - ( left_margin + right_margin )]),
+y = d3.scale.ordinal()
+.domain(d3.range(data.length))
+.rangeBands([bottom_margin, h - top_margin], .5);
+		
+		var vis = d3.select("body")
+		.append("svg:svg")
+
+</script>
