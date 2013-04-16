@@ -22,9 +22,37 @@
 *
 ********************************************/
 
+#workout_analytics {
+	height: auto;
+	width: auto;
+	display: block;
+	border: 0px solid red;
+}
 
+svg {
+	clear: both;
+	margin: -140px auto;
+	border: 0px solid green;
+	display: block;
+}
 
+svg g {
+	clear: left;
+	border: 0px solid green;
+	display: block;
+}
 
+path {
+	stroke: steelblue; 
+	stroke-width: 2; 
+	fill: none;
+}
+.axis path, .axis line {
+	fill: none;
+	stroke: grey;
+	stroke-width: 1; 
+	shape-rendering: crispEdges;
+}
 
 /*******************************************
 *
@@ -159,16 +187,10 @@
 
 footer {
 	margin-top: -50px;
-	top: 100%;
 	border: 1px solid #222;
 	background: #222;
 	height: 75px;
 	text-align: center;
-	bottom: 0;
-}
-
-.push {
-	clear: both;
 }
 
 #footer_logo {
@@ -209,7 +231,8 @@ footer {
 
 #front_page {
 	border: 0px solid red;
-	height: auto;
+	margin: 0 auto;
+	width: 500px;
 }
 
 #screencast {
@@ -221,7 +244,8 @@ footer {
 
 #login_area {
 	border: 0px solid green;
-	float: right;
+	margin: 0 auto 100px 0px;
+	padding-bottom: 230px;
 }
 
 #front_pageLogin {
@@ -229,6 +253,7 @@ footer {
 	float: left;
 	margin: 0px 200px 0px 0px;
 	background: #355 url("/assets/noise.png");
+	border: 0px solid red;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 300px;
@@ -306,18 +331,24 @@ footer {
 	margin-bottom: 100px;
 	border-collapse: collapse;
 	float: left;
-/*	display: none;*/
-	background: #F5F5F5;
+	background: #fff;
 	
 }
 
 #index_of_workout_tables th {
 	padding: 30px;
-	border-bottom: 2px solid blue;
+	border-bottom: 1px solid #777;
 }
 
-#index_of_workout_tables tr, td {
-	border-bottom: 1px solid blue;
+#index_of_workout_tables tr {
+	border-bottom: 1px solid #777;
+	padding: 30px;
+	text-align: center;
+	font-size: 18px;
+}
+
+#index_of_workout_tables td {
+	border-bottom: 1px solid #777;
 	padding: 30px;
 	text-align: center;
 	font-size: 18px;
@@ -328,13 +359,14 @@ footer {
 * Styling for actual workout table. 
 ****/
 #show_workout_table {
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
+	display: block;
 	padding-bottom: 100px;
 	margin-bottom: 100px;
 	border-collapse: collapse;
-	float: left;
-/*	display: none;*/
+	text-align: center;
+	background: #eef;
+	border-radius: 3px;
 }
 
 #show_workout_table th {
@@ -361,13 +393,17 @@ footer {
 	display: none;
 	padding: 20px;
 	border-radius: 5px;
-	background: #eee;
+	background: #fff;
 	color: black;
 	margin-bottom: 100px;
 	-webkit-transition: background 1s;
 	-moz-transition: background 1s;
 	-o-transition: background 1s;
 	transition: background 1s
+}
+
+#workout_data a {
+	color: red;
 }
 
 /***
@@ -380,13 +416,14 @@ footer {
 #training_tabs {
 	border: 0px solid red;
 	float: left;
-	color: white;
+	color: black;
 	margin: 0px 0px 50px 0px;
-	background: #515151;
 }
 
 #training_tabs a {
-	color: white;
+	color: black;
+	border-bottom: 1px dotted black;
+	text-decoration: none;
 }
 
 #training_tabs li {
@@ -396,7 +433,8 @@ footer {
 }
 
 .link_tab.active {
-	background: blue;
+	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+	border-radius: 2px;
 }
 
 .link_tab.active:after {
@@ -405,12 +443,15 @@ footer {
 	display: block;
 	margin: -23px 0px 0px 89px;
 	border: 14px solid;
-	border-color: transparent transparent transparent blue;
+	border-radius: 2px;
+	border-color: transparent transparent transparent #444;
+	opacity: 0.7;
 	z-index: 50;
 }
 
 .row_for_workout.active {
-		background: blue;
+		background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
+		border-radius: 2px;
 }
 
 .row_for_workout.active:after {
@@ -419,8 +460,19 @@ footer {
 	display: block;
 	margin: 0px 0px 0px 0px;
 	border: 40px solid;
-	border-color: transparent transparent transparent blue;
+	border-radius: 2px;
+	border-color: transparent transparent transparent #444;
+	opacity: 0.7;
 	z-index: 50;
+}
+
+.row_for_workout a {
+	text-decoration: underline;
+}
+
+.row_for_workout tr {
+	border-bottom: 1px solid red;
+	border-top: 1px solid red;
 }
 
 
@@ -459,6 +511,7 @@ footer {
 #content_wrapper {
 	margin: 50px auto;
 	text-align: center;
+	border: 0px solid red;
 }
 
 

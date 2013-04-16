@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Thews</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -36,20 +37,12 @@
 				<% end %>
 			</div>
 	</div>
-	<div id="admin_nav">
-		<ul>
-			<li> <strong>Admin: </strong> </li>
-			<li> <%= link_to 'Users', admin_users_path %> </li>
-			<li> <%= link_to 'Workouts', admin_workouts_path %> </li>
-		</ul>
-	</div>
 	
 	<div id="content_wrapper">
 		<%= yield %>
-		<div class="push"></div>
 	</div>
 </div>
-<!-- <footer>
+<footer>
 	<div id="footer">
 		<div id="footer_logo"> Thews.io </div>
 	<p>
@@ -61,6 +54,6 @@
 		</ul>
 	</p>
 	</div>
-</footer> -->
+</footer>
 </body>
 </html>
