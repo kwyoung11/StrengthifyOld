@@ -2,9 +2,9 @@
 
 <ul id="training_tabs">
 	<li class="link_tab"><%= link_to 'Workout List', user_workouts_path(@user.id), id: "workout_index", class: "choose_training_view" %></li>
-	<li class="link_tab"><%= link_to 'Analytics', analyze_user_workouts_path(@user.id), id: "analytics_index", class: "choose_training_view" %></li>
+	<li class="link_tab"><%= link_to 'Analytics', analyze_user_workouts_path(@user.id), id: "analytics_index", class: "choose_training_view", remote: :true %></li>
 </ul>
-
+<div id="workout_analytics">
 <table id="index_of_workout_tables">
   <thead>
     <tr>
@@ -24,6 +24,7 @@
 </table>
 
 <div id="workout_data"></div>
+</div>
 <div style="clear: both"> </div>
 
 <script>
@@ -52,4 +53,9 @@ $(document).ready(function() {
 	
 	
 });
+</script>
+
+<script>
+$(".row_for_workout td:last-child").css('border-left', '1px solid #777');
+$("#index_of_workout_tables th:last-child").css('border-left', '1px solid #777');
 </script>

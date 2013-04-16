@@ -72,7 +72,14 @@ class WorkoutsController < ApplicationController
   # GET /workouts/analyze
   # GET /workouts/analyze.json
   def analyze
-
+    @workouts = Workout.all
+    @progress = @user.workouts
+    
+    respond_to do |format|
+      format.html { render action: 'analyze', layout: false }
+      format.js
+      format.json { render json: @progress.map { |e| { date: e.created_at.strftime('%e-%b-%y'), load_volume: e.load_volume } } }     
+    end
   end
   
 

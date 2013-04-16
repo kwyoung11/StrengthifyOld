@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Thews</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -39,21 +40,7 @@
 	
 	<div id="content_wrapper">
 		<%= yield %>
-		<div class="push"></div>
 	</div>
 </div>
-<footer>
-	<div id="footer">
-		<div id="footer_logo"> Thews.io </div>
-	<p>
-		<ul id="footer_list">
-			<li> <%= link_to 'About', root_url %> </li>
-			<li> <%= link_to 'Contact', root_url %> </li>
-			<li> <%= link_to 'Terms of Service', root_url %> </li>
-			<li> <%= link_to 'Blog', root_url %> </li>
-		</ul>
-	</p>
-	</div>
-</footer>
 </body>
 </html>

@@ -4,6 +4,8 @@
   <td><%= link_to 'Delete', user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
 
+<%= @workout.load_volume %>
+
 <table id="show_workout_table">
 	<th> Exercise </th>
 	<th> Weight </th>

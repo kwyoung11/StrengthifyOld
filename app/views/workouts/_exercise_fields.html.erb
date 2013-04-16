@@ -4,7 +4,7 @@
 	<% if params[:action] = "edit" %>
 	<strong><%= f.label :name %></strong>
 	<% end %>
-	<%= f.text_field :name, :placeholder => "exercise" %>
+	<%= f.text_field :name, :placeholder => "exercise", class: "exercise_name ui-autocomplete-input" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
@@ -35,7 +35,7 @@ function monkeyPatchAutocomplete() {
 // Autocomplete for exercise names
 $(function() {
 		monkeyPatchAutocomplete();
-    $('#workout_exercise_name').autocomplete({ 
+    $('.exercise_name').autocomplete({ 
 			source: '<%= exercises_path %>'
 	 	});
 });

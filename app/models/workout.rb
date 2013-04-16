@@ -8,4 +8,12 @@ class Workout < ActiveRecord::Base
   validates :name, presence: true
   
   
+ def load_volume
+   load_volume = 0;
+   self.exercises.each do |e|
+     load_volume += e.weight * e.reps
+   end
+  return load_volume
+ end
+  
 end

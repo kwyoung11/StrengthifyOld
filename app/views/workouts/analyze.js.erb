@@ -1,5 +1,12 @@
 /* Toggles and animates div#workout_data on the workouts#index page */
 
 $(document).ready(function() {
-	$('#workout_data').html('<%= j render("analyze") %>');
+	$('#workout_analytics').html("<%= escape_javascript render("analyze") %>");
+		$("#analytics_index").click(function() {
+				$('#workout_analytics').show(); 
+		});
+		
+			$('#workout_index').on('click', function() {
+				$('#workout_analytics').hide();
+			});
 });
