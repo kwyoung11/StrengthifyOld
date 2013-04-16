@@ -231,7 +231,8 @@ footer {
 
 #front_page {
 	border: 0px solid red;
-	margin: 0 auto;
+	margin: 95px 0px 0px 0px;
+	float: right;
 	width: 500px;
 }
 
@@ -239,7 +240,10 @@ footer {
 	float: left;
 	margin-left: 50px;
 	border: 0px solid red;
-	box-shadow: 5px 5px 5px #333;
+}
+
+#screencast a {
+	color: blue;
 }
 
 #login_area {
