@@ -18,8 +18,9 @@
 </script>
 </head>
 <body>
-<div id="application_wrapper">	
 	<div id="header">
+		<div id="header_content">
+			<%= image_tag("HiRes.jpg", size: "40x40") %>
 		<p><%= link_to 'Thews.io', root_url %></p>
 			<div id="nav">
 				<% if current_user %>
@@ -36,12 +37,16 @@
 				</ul>
 				<% end %>
 			</div>
+		</div>
 	</div>
 	
+<div id="application_wrapper">	
+	
+	</div>
 	<div id="content_wrapper">
 		<%= yield %>
 	</div>
-</div>
+
 <footer>
 	<div id="footer">
 		<div id="footer_logo"> Thews.io </div>

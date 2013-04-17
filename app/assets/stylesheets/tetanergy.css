@@ -61,22 +61,34 @@ path {
 ********************************************/
 
 #header {
-	margin: 0 auto;
-	text-align: center;
-	border: 1px solid #e3e3e3;
-	background: #e3e3e3 url("/assets/static.png");
+	position: fixed;
+	border: 0px solid #e3e3e3;
+	background: #26b3cc url("/assets/static.png");
 	width: 100%;
 	color: black;
-	padding: 20px;
+	z-index: 100;
+	padding: 10px;
+}
+
+#header_content {
+	border: 0px solid red;
+	width: 1150px;
+	margin: 0 auto;
+	padding-top: 8px;
+}
+
+#header_content img {
+	float: left;
 }
 
 #header p a {
-	margin: -15px 0px 0px 0px;
-	font-size: 48px;
+	margin: -12px 0px 0px 0px;
+	font-size: 36px;
+	float: left;
 }
 
 #header a {
-	color: #355;
+	color: #333;
 	text-decoration: none;
 	padding: 10px;
 	font-size: 18px;
@@ -84,7 +96,8 @@ path {
 
 #nav {
 	border: 0px solid red;
-	margin: 0 auto 0px -50px;
+	margin: -12px auto 0px 0px;
+	float: right;
 }
 
 #nav ul {
@@ -186,7 +199,7 @@ path {
 *******************************************/
 
 footer {
-	margin-top: -50px;
+	margin-top: -100px;
 	border: 1px solid #222;
 	background: #222;
 	height: 75px;
@@ -231,14 +244,15 @@ footer {
 
 #front_page {
 	border: 0px solid red;
-	margin: 95px 0px 0px 0px;
+	margin: 70px 50px 0px 0px;
 	float: right;
-	width: 500px;
+	width: auto;
 }
 
 #screencast {
+	padding: 10px;
 	float: left;
-	margin-left: 50px;
+	margin-left: 0px;
 	border: 0px solid red;
 }
 
@@ -248,34 +262,51 @@ footer {
 
 #login_area {
 	border: 0px solid green;
-	margin: 0 auto 100px 0px;
-	padding-bottom: 230px;
+	margin: 0px auto 0px 0px;
 }
 
 #front_pageLogin {
-	color: white;
-	float: left;
-	margin: 0px 200px 0px 0px;
-	background: #355 url("/assets/noise.png");
-	border: 0px solid red;
+	color: #26b3cc;
+	margin: 0 auto 10px;
+	background: #333 url("/assets/noise.png");
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 300px;
+	border-radius: 2px;
+}
+
+#front_pageLogin a {
 	color: white;
 }
 
-#login_options {
-	position: absolute;
-	margin: 60px 0px 0px 380px;
+#front_pageLogin a:hover {
+	color: #D55;
 }
+
+#front_pageLogin input[type=text], input[type=password] {
+	width: 160px;
+	height: 24px;
+	border-radius: 5px;
+}
+
+#login_area h2 {
+	color: #26b3cc;
+	border: 0px solid blue;
+	margin: 0px 0px 10px 0px;
+}
+
+div#fitbit_button {
+	margin: 0 auto;
+	width: 190px;
+	border: 0px solid red;
+} 
 
 #fitbit_signup {
 	border: 0px solid red;
 	background: #333;
 	padding: 10px;
-	clear: left;
-	float: right;
-	margin: -130px 0px 0px 0px;
+	float: left;
+	margin: 0px auto 0px 10px;
 	text-decoration: none;
 	color: white;
 	border-radius: 5px;
@@ -301,7 +332,15 @@ footer {
 	background: #444;
 }
 
-
+#first_section {
+	border: 0px solid blue;
+	margin: 0 auto;
+	margin-top: 100px;
+	padding-bottom: 50px;
+	overflow: hidden;
+	width: 1150px;
+	
+}
 
 /*****************************************
 *
@@ -486,19 +525,22 @@ footer {
 *
 ******************************************/
 
-#login {
-	background: #355 url("/assets/noise.png");
+#register {
+	color: #26b3cc;
+	background: #333 url("/assets/noise.png");
 	margin: 0 auto 100px;
 	padding: 20px;
 	width: 300px;
-	color: white;
 }
 
-#register {
-	background: #999;
-	margin: 0 auto 100px;
-	padding: 20px;
-	width: 300px;
+#register input[type=text] {
+	width: 160px;
+	height: 24px;
+	border-radius: 5px;
+}
+
+#register a {
+	color: white;
 }
 
 
@@ -509,13 +551,21 @@ footer {
 ********************************************/
 
 #application_wrapper {
-
+	border: 1px solid transparent;
+	width: 1150px;
+	margin: 0 auto;
 }
 
 #content_wrapper {
-	margin: 50px auto;
+	margin: 100px auto;
 	text-align: center;
 	border: 0px solid red;
+}
+
+/* For landing page */
+.section_wrapper {
+	width: 1150px;
+	margin: 0 auto;
 }
 
 
