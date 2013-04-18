@@ -348,15 +348,85 @@ div#fitbit_button {
 *
 ******************************************/
 
-#user_profile_nav {
-	text-align: center;
-	margin-bottom: 100px;
+#profile_container {
+	border: 0px solid red;
+	overflow: hidden;
 }
 
-#user_profile_nav ul li {
-	display: inline;
-	list-style: none;
+#profile_right {
+	border: 0px solid black;
+	overflow: hidden;
+	width: 650px;
+	float: right;
 }
+
+#profile_left {
+	border: 0px solid black;
+	margin: 50px 0px 0px 0px;
+	overflow: hidden;
+	width: 350px;
+	float: left;
+}
+
+#profile_workout_container {
+	border: 1px solid #444;
+	width: 600px;
+	min-height: 600px;
+	margin: 0 auto;
+}
+
+#profile_workout_list {
+	list-style: none;
+	border-bottom: 1px solid #777;
+	text-align: left;
+}
+
+#profile_workout_list ul {
+	float: left;
+}
+
+#profile_workout_list li:last-child {
+	float: right;
+	margin: -20px 0px 0px 0px;
+}
+
+.no_workouts_yet {
+	position: relative;
+	border: 0px solid red;
+	padding: 50px;
+	border-radius: 30px/10px;
+	width: 500px;
+	margin: 40px auto;
+	box-shadow: 0 0 20px #444;
+	background: #fffefc;
+}
+
+.no_workouts_yet p {
+	font-size: 36px;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;;
+}
+
+.no_workouts_yet a {
+	width: 100px;
+	border: 0px solid red;
+	background: #08D;
+	font-style: bolder;
+	font-size: 18px;
+	padding: 10px;
+	text-decoration: none;
+	color: #ddd;
+	border-radius: 5px;
+	box-shadow: #444 5px 5px 5px;
+}
+
+.no_workouts_yet a:hover {
+		background: #0AF;
+		color: #fff;
+		margin-left: 2px;
+		margin-top: 2px;
+		box-shadow: #444 3px 3px 3px;
+}
+
 
 /*****************************************
 *
