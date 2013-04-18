@@ -1,17 +1,33 @@
 <p id="notice"><%= notice %></p>
-
+<div id="profile_container">
 <% if current_user %>
 <% if current_user.linked_to_fitbit? %>
 	<%= current_user.fitbit_data.user_info['user']['fullName'] %>
 <% end %>
 <% end %>
-<p>
-  <%= @user.name %>
-</p>
 
-<div id="user_profile_nav">
-	<ul>
-		
-	</ul>
+<div id="profile_left">
+	<h2> <%= @user.name %> </h2>
 </div>
 
+<div id="profile_right">
+<div class="no_workouts_yet">
+	<% if @user.workouts.count < 1 %>
+		<p> Start Your Training </p>
+		<p> <%= link_to 'Post A Workout', new_user_workout_path(@user.id) %>  </p>
+	<% end %>
+</div>
+<div id="profile_workout_container">
+	<% @user.workouts.each do |w| %>
+	<ul id="profile_workout_list">
+		<li> <%= w.load_volume %> LV / <%= w.hours %>:<%= w.minutes %> / <%= w.exercises.count %> exercises </li>
+		<li> <%= time_ago_in_words(w.created_at) %> ago / <%= w.name %></li>
+		<li> <%= link_to 'Add details', edit_user_workout_path(@user.id, w.id) %></li>
+	</ul>
+	<% end %>
+</div>
+
+</div>
+
+
+</div>
