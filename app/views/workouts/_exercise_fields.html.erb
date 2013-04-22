@@ -1,28 +1,46 @@
-<fieldset>
-		<legend id="exercise_number"><strong>Exercise # 1 </strong></legend>
+<li>
+	<div class="ex_fields">
+	<div class="ex_counter">1</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<strong><%= f.label :name %></strong>
+	<%= f.label :name, 'Exercise' %>
 	<% end %>
-	<%= f.text_field :name, :placeholder => "exercise", class: "exercise_name ui-autocomplete-input" %>
+	<%= f.text_field :name, :placeholder => " exercise", class: "exercise_name ui-autocomplete-input" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<strong><%= f.label :weight %></strong>
+	<%= f.label :weight %>
 	<% end %>
-	<%= f.text_field :weight, :placeholder => "weight" %>
+	<%= f.text_field :weight, size: "5", :placeholder => " weight" %>
 	</div>
 	<div class="field">
 	<% if params[:action] = "edit" %>
-	<strong><%= f.label :reps %></strong>
+	<%= f.label :reps %>
 	<% end %>
-	<%= f.text_field :reps, :placeholder => "reps" %>
+	<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Exercise", '#', class: "remove_fields" %>
 	</div>
-</fieldset>	
-
+	</div>
+</li>
 <script>
+/*  Remove exercise link in workout form */
+$(function() {
+  return $('form').on('click', '.remove_fields', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('.ex_fields').hide();
+    return event.preventDefault();
+  });
+});
+
+
+/****  
+* Autocomplete for exercises in the workout form. 
+* Source (for autocomplete): all exercises marked as 'usable' in ibid table
+* Includes "Monkey patch" that allows for 
+* syntax highlighting of matched terms. 
+*
+****/
 function monkeyPatchAutocomplete() {
     $.ui.autocomplete.prototype._renderItem = function (ul, item) {
         var keywords = $.trim(this.term).split(' ').join('|');
@@ -32,7 +50,7 @@ function monkeyPatchAutocomplete() {
             .appendTo(ul);
     };
 }
-// Autocomplete for exercise names
+
 $(function() {
 		monkeyPatchAutocomplete();
     $('.exercise_name').autocomplete({ 

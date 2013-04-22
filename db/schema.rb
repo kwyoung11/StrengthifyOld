@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130413223422) do
+ActiveRecord::Schema.define(version: 20130422193518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20130413223422) do
     t.datetime "updated_at"
     t.integer  "workout_id"
     t.boolean  "usable"
+    t.text     "preparation"
+    t.text     "execution"
+    t.string   "body_part"
   end
 
   add_index "exercises", ["workout_id"], name: "index_exercises_on_workout_id"
@@ -52,6 +55,8 @@ ActiveRecord::Schema.define(version: 20130413223422) do
     t.integer  "hours"
     t.integer  "minutes"
     t.integer  "seconds"
+    t.integer  "sets"
+    t.string   "category"
   end
 
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id"

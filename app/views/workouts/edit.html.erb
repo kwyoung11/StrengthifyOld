@@ -18,6 +18,18 @@
 			<%= f.label :name %>
 		  <%= f.text_field :name, :placeholder => "workout name" %>
 		</div>
+		
+		<div class="field">
+			<strong><%= f.label "time" %></strong>
+			<%= f.text_field :hours, size: "5", :placeholder => "hr" %>
+			<%= f.text_field :minutes, size: "5", :placeholder => "min" %>
+			<%= f.text_field :seconds, size: "5", :placeholder => "sec" %>
+		</div>
+		<div class="field">
+			<strong><%= f.label "sets" %></strong>
+			<%= f.text_field :sets, size: "5", :placeholder => " sets" %>
+		</div>
+		
 		<div class="field">
 			<%= f.label :created_at, 'Date' %>
 			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>

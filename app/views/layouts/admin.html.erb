@@ -17,7 +17,7 @@
 </script>
 </head>
 <body>
-<div id="application_wrapper">	
+		
 	<div id="header">
 		<p><%= link_to 'Thews.io', root_url %></p>
 			<div id="nav">
@@ -36,31 +36,20 @@
 				<% end %>
 			</div>
 	</div>
-	<div id="admin_nav">
-		<ul>
-			<li> <strong>Admin: </strong> </li>
-			<li> <%= link_to 'Users', admin_users_path %> </li>
-			<li> <%= link_to 'Workouts', admin_workouts_path %> </li>
-		</ul>
-	</div>
 	
+	<div id="application_wrapper">
+		<div id="admin_nav">
+			<ul>
+				<li> <strong>Admin: </strong> </li>
+				<li> <%= link_to 'Users', admin_users_path %> </li>
+				<li> <%= link_to 'Workouts', admin_exercises_path %> </li>
+			</ul>
+		</div>
 	<div id="content_wrapper">
 		<%= yield %>
 		<div class="push"></div>
 	</div>
 </div>
-<!-- <footer>
-	<div id="footer">
-		<div id="footer_logo"> Thews.io </div>
-	<p>
-		<ul id="footer_list">
-			<li> <%= link_to 'About', root_url %> </li>
-			<li> <%= link_to 'Contact', root_url %> </li>
-			<li> <%= link_to 'Terms of Service', root_url %> </li>
-			<li> <%= link_to 'Blog', root_url %> </li>
-		</ul>
-	</p>
-	</div>
-</footer> -->
+
 </body>
 </html>

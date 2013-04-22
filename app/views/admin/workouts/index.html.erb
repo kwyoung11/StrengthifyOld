@@ -1,22 +1,23 @@
+<p id="notice"> <%= notice %> </p>
 <h1> Exercises </h1>
 
-<% @workouts.each do |workout| %>
-
-	<% workout.exercises.each do |e| %>
-	<ul id="exercises">
-		<% if e.usable != true %>
-		<li> <%= e.name  %> </li> 
-	 <li> <%= form_for [:admin, workout, e] do |f| %>
+<% @exercises.each do |e| %>
+<ul id="exercises">
+	<li><%= e.name %></li>
+	<li> <%= form_for [:admin, e], :url => admin_workouts_path do |f| %>
 				<%= fields_for :exercise do |e| %>
 					<%= e.check_box :usable %> 
 				 <%= e.submit "Update" %> 
 				 <%= e.label :usable %> 
 			<% end %>
 			<% end %>
-			<% end %>
 	</li>
-	</ul>
-	<% end %>
-
+</ul>
 <% end %>
+
+
+
+
+
+
 
