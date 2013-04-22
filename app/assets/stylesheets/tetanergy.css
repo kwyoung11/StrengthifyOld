@@ -14,6 +14,41 @@
 *
 **********************************************************************************************************************/
 
+/********************************************
+*
+* ADMIN
+*
+********************************************/
+
+#admin_nav {
+	margin-top: 80px;
+}
+
+#exercises {
+	
+}
+
+#new_exercises {
+	float: left;
+	border: 1px solid red;
+	margin: 0px 0px 0px 100px;
+	background: #fefefe;
+	padding: 10px;
+	box-shadow: -5px 5px 5px;
+}
+
+#exercise_db {
+	float: right;
+	margin: 0px 100px 100px 0px;
+	border: 1px solid red;
+	background: #fefefe;
+	padding: 10px;
+	box-shadow: -5px 5px 5px;
+}
+
+#exercises_db li {
+	text-align: left;
+}
 
 
 /********************************************
@@ -335,7 +370,7 @@ div#fitbit_button {
 #first_section {
 	border: 0px solid blue;
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 20px;
 	padding-bottom: 50px;
 	overflow: hidden;
 	width: 1150px;
@@ -449,22 +484,22 @@ div#fitbit_button {
 }
 
 #index_of_workout_tables th {
-	padding: 30px;
-	border-bottom: 1px solid #777;
+	padding: 5px;
+	border: 1px solid #777;
 }
 
 #index_of_workout_tables tr {
-	border-bottom: 1px solid #777;
-	padding: 30px;
+	border: 1px solid #777;
+	padding: 5px;
 	text-align: center;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 #index_of_workout_tables td {
-	border-bottom: 1px solid #777;
-	padding: 30px;
+	border: 1px solid #777;
+	padding: 5px;
 	text-align: center;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 
@@ -630,6 +665,7 @@ div#fitbit_button {
 	margin: 100px auto;
 	text-align: center;
 	border: 0px solid red;
+	overflow: hidden;
 }
 
 /* For landing page */
@@ -646,14 +682,15 @@ div#fitbit_button {
 ********************************************/
 
 #workout_form {
-	width: 900px;
-	overflow:hidden;
+	width: 650px;
+	overflow: hidden;
   padding:20px;
 	margin: auto;
-	background: #D5D5D5;
-	border: 0px solid red;
+	border: 2px solid #777;
 	margin-bottom: 100px;
-	border-radius: 5px;
+	border-radius: 10px/150px;
+	box-shadow: 0 0 20px #444;
+	background: #fffefc;
 }
 
 #workout_form .field {
@@ -669,20 +706,105 @@ div#fitbit_button {
 #workout_form label {
 	display: block;
 	text-align: left;
-	font-size: 16px;
+	font-size: 14px;
+	color: #555;
 }
 
 #workout_form input {
   padding: 4px;
   font-size: 16px;
-  color: #333;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	box-shadow: inset 0px 2px 2px #ccc;
+}
+
+#workout_form input[type=submit] {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #BFFFB5), color-stop(1, #1AAD03));	cursor: pointer;
+	border: 1px solid #444;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#workout_form #submit {
+		float: right;
+}
+
+#workout_form input[type=submit]:hover {
+	background: rgba(34, 170, 5, 0.7);
+	cursor: pointer;
+	border: 1px solid #111;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 .form_div {
-	border: 1px solid red;
+	border: 0px solid red;
 	height: auto;
 }
 
 #add_fields {
 	border: 0px solid red;
 }
+
+#workout_form ol {
+	overflow: hidden;
+	margin-left: -30px;
+}
+
+#workout_form ol li {
+	overflow: hidden;
+	list-style-position: inside;
+	list-style: none;
+}	
+
+/* Div for exercise fields. Vertically aligned with OL number */
+#workout_form .ex_fields {
+	vertical-align: middle;
+	display: inline-block;
+	border: 1px solid #dadada;
+	border-radius: 0px;
+	overflow: hidden;
+	padding-left: 10px;
+}
+	
+.field fieldset {
+	border-radius: 5px;
+	border: 1px solid #666;
+}
+
+#sets {
+	border: 0px solid red;
+	display: inline-block;
+  vertical-align: middle;
+  width: auto;
+	color: black;
+}
+
+#num_sets {
+	text-decoration: underline;
+	color: #999;
+	font-size: 22px;
+	display: block;
+}
+
+#num_sets:first-letter {
+	font-size: 48px;
+	font-style: bolder;
+}
+
+.ex_counter {
+	position: absolute;
+	border: 1px solid red;
+	width: 20px;
+	height: 20px;
+	margin: 27px 0px 0px -30px;
+	background: #fd4042;
+	border-radius: 30px/10px;
+	padding: 10px;
+	color: #222;
+	font-size: 18px;
+	
+}
+

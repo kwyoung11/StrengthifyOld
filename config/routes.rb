@@ -3,10 +3,11 @@ Cs50xFinalProject::Application.routes.draw do
   # Root URL
   root to: 'home#index'
   
+  patch '/admin/exercises', to: 'admin/exercises#add_exercise_to_db'
   # Administration routes
   get "/admin", to: 'admin/home#index' 
   namespace :admin do
-    resources :users, :home
+    resources :users, :home, :exercises
     resources :workouts do
       resources :exercises
     end

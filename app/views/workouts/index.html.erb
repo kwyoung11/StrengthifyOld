@@ -9,7 +9,9 @@
   <thead>
     <tr>
 			<th>Date</th>
-      <th>Workout</th>
+      <th>Category</th>
+			<th>Title</th>
+			<th>Duration</th>
     </tr>
   </thead>
 
@@ -17,7 +19,9 @@
     <% @user.workouts.each do |workout| %>
     <tr class="row_for_workout">
 			<td><%= workout.created_at.strftime("%m/%d/%Y") %></td>
+			<td> <%= workout.category %></td>
       <td><%= link_to "#{workout.name}", user_workout_path(@user.id, workout.id), id: "#{workout.id}", class: "show_workout", remote: :true %></td>
+			<td> <%= workout.hours %><%= workout.minutes %><%= workout.seconds %> </td>
     </tr>
     <% end %>
   </tbody>

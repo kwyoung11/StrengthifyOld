@@ -1,0 +1,42 @@
+<p id="notice"> <%= notice %> </p>
+<h1> Exercises </h1>
+
+
+<!-- Current Exercise Database -->
+<div id="exercise_db">
+	<h2> Exercise DB </h2>
+	<ol id="exercises_db">
+		<% @exercises_db.each do |ex| %>
+			<li><%= ex.name %> <%= link_to 'Edit', edit_admin_exercise_path(ex.id) %> </li>
+		<% end %>
+	</ol>
+</div>
+
+<!-- Manage new exercises-->
+<div id="new_exercises">
+	<h2> New Exercises </h2>
+	<% if @exercises.empty? %>
+		<p> No new exercises at this time </p>
+	<% end %>
+	<% @exercises.each do |exercise| %>
+	<ol id="exercises">
+		<li><%= exercise.name %></li>
+		<li><%= form_for [:admin, exercise], :url => admin_exercises_path do |f| %>
+			<%= f.hidden_field :id, :value => exercise.id %>
+					<%= fields_for :exercise do |e| %>
+						<%= e.check_box :usable %>
+				 		<%= e.label :usable %>
+				 		<%= e.submit "Update" %>
+					<% end %>
+				<% end %>
+		</li>
+	</ol>
+	<% end %>
+</div>
+
+
+
+
+
+
+

@@ -5,6 +5,12 @@ class Admin::WorkoutsController < ApplicationController
   
   def index
     @workouts = Workout.all
+    usable_names = []
+    @usable_exercises = Exercise.select("DISTINCT name").where(:usable => true)
+     @usable_exercises.each do |ue|
+       usable_names << ue.name
+     end
+    @exercises = Exercise.select('DISTINCT name, id').where(:usable => nil).where("name not in (?)", usable_names)
   end
   
   def show
