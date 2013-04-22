@@ -1,5 +1,5 @@
 class Workout < ActiveRecord::Base
-  attr_accessible :name, :exercises_attributes, :created_at, :hours, :minutes, :seconds, :category
+  attr_accessible :name, :exercises_attributes, :created_at, :hours, :minutes, :seconds, :sets, :category
   
   has_many :exercises
   belongs_to :user
