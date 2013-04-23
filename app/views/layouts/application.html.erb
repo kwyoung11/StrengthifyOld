@@ -48,3 +48,8 @@
 </div>
 </body>
 </html>
+<script>
+$(function() {
+  $('#nav ul li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
+});
+</script>

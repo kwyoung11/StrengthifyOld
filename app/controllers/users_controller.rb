@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
       UserMailer.welcome_email(@user).deliver
-      session[:user_id] = @user.id
+      cookies[:auth_token] = @user.auth_token
         format.html { redirect_to @user, notice: "Welcome #{@user.name}! Now, get out there and pump some iron!" }
         format.json { render action: 'show', status: :created, location: @user }
       else

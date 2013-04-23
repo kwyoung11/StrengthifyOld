@@ -144,9 +144,14 @@ path {
 	display: inline;
 }
 
+#nav ul li.current a {
+	color: #D55;
+}
+
 #header a:hover {
 	color: #D55;
 }
+
 
 
 /********************************************

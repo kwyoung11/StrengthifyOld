@@ -40,7 +40,7 @@ $(document).ready(function() {
 	$(function() {		
 	   var links = $('a.choose_training_view').click(function() {
 	       links.parents('li').removeClass('active');
-	       $(this).parents('li').addClass('active');
+	       return $(this).parents('li').addClass('active');
 	   });
 	});
 	
