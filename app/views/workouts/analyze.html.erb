@@ -1,86 +1,88 @@
 <!DOCTYPE html>
 <meta charset="utf-8"> 
 <style>
-body { font: 16px Arial;}
-path {
-	stroke: steelblue; 
-	stroke-width: 2; 
-	fill: none;
-}
-.axis path, .axis line {
-	fill: none;
-	stroke: grey;
-	stroke-width: 1; 
-	shape-rendering: crispEdges;
-}
+
+  .chart {
+      border: 1px solid black;
+      width: auto;
+  }
+
+    .chart rect {
+        stroke: white;
+        fill: steelblue;
+        color: white;
+
+    }
+
+    .chart text.bar {
+        fill: white;
+        font-size: 12px;
+    }
+
+
+        .rule {
+
+        }
+
 </style>
 <body>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
-function generateGraph() {
-	var margin = {top: 30, right: 30, bottom: 40, left: 80}, 
-			width = 600 - margin.left - margin.right,
-			height = 270 - margin.top - margin.bottom;
-
-	var parseDate = d3.time.format("%d-%b-%y").parse; 
-
-	var x = d3.time.scale().range([0, width]);
-	var y = d3.scale.linear().range([height, 0]); 
-
-	var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5); 
-
-	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
-
-	var valueline = d3.svg.line().interpolate("basis").x(function(d) { return x(d.date); }).y(function(d) { return y(d.load_volume); });
-
-	var svg = d3.select("body").append("svg")
-				.attr("width", width + margin.left + margin.right)
-	        	.attr("height", height + margin.top + margin.bottom)
-	    		.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-				// X Axis label
-				svg.append("text")
-					.attr("x", width / 2 )
-					.attr("y", height + margin.bottom )
-					.style("text-anchor", "middle")
-					.text("Workout Date");
-					
-				// Y Axis label	
-				svg.append("text")
-					.attr("transform", "rotate(-90)")
-					.attr("x", 0 - height / 2)
-					.attr("y", 0 - margin.left )
-					.attr("dy", "1em")
-					.style("text-anchor", "middle")
-					.text("Load-Volume");
-					
-				// Title
-				svg.append("text")
-					.attr("x", width/2)
-					.attr("y", 0)
-					.style("text-anchor", "middle")
-					.style("font-size", "16px")
-					.style("text-decoration", "underline")
-					.text("Load-Volume vs. Time")
-
-	d3.json("<%= user_workouts_path %>" + "/analyze.json", function(error, data) {
-	data.forEach( function (d) {
-	   d.date = parseDate(d.date);
-	   d.load_volume = +d.load_volume;
-	});
-		// Scale the range of the data
-		x.domain(d3.extent(data, function(d) { return d.date; }));
-		y.domain([0, d3.max(data, function(d) { return d.load_volume; })]);
-
-		svg.append("path").attr("d", valueline(data)); 												// Add the valueline path
-		svg.append("g").attr("transform", "translate(0," + height + ")") .call(xAxis); 	// Add the X Axis .attr("class", "x axis")
-		svg.append("g").attr("class", "y axis").call(yAxis); 										// Add the Y Axis
-
-	});
-};
-
-generateGraph();
+//    // ******* DATA ******** //
+//    d3.json("<%= user_workouts_path %>" + "/analyze.json", function(error, json) {
+//        data = json;
+//
+//        // Define graph area and margin areas.
+//        var margin = {top: 20, right: 10, bottom: 20, left: 10},
+//            graphHeight = 400 - margin.top - margin.bottom,
+//            barWidth = 80,
+//            graphWidth = ((barWidth + 10) * data.length);
+//
+//        // Create the SVG graph.
+//        var svg = d3.select("body").append("svg")
+//                .attr("class", "chart")
+//                .attr("width", graphWidth + margin.left + margin.right)
+//                .attr("height", graphHeight + margin.top + margin.bottom)
+//                .append("g")
+//                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//
+//    // ***** SCALES ***** //
+//
+//  // Set the Y scale.
+//  var y = d3.scale.linear()
+//          .domain([0, d3.max(data, function(d) { return d.load_volume; })])
+//          .range([0, graphHeight]);
+//
+//  // Set the X scale.
+//  var x = d3.scale.linear().domain([0, data.length]).range([0, graphWidth]);
+//
+//  // Draw the bars.
+//  svg.selectAll("rect")
+//          .data(data).enter().append("rect").sort(function(d) { return d3.ascending(d.date); })
+//          .attr("x", function(d, i) { return x(i); })
+//          .attr("y", function(d) { return graphHeight - y(d.load_volume); })
+//          .attr("height", function(d) { return y(d.load_volume); })
+//          .attr("width", barWidth)
+//          .attr("fill", "#2d578b");
+//
+//  // Draw the text.
+//  svg.selectAll("text").data(data)
+//          .enter().append("text")
+//          .attr("x", function(d, i) { return x(i) + barWidth/2; })
+//          .attr("y", graphHeight)
+//          .attr("dy", function(d) { return -y(d.load_volume) + 20; })
+//          .attr("text-anchor", "middle")
+//          .text(function(d) { return d.load_volume; });
+//
+//    // Y axis labels.
+//    svg.append("g").selectAll("text").data(data).enter().append("text")
+//            .attr("x", function(d, i) { return x(i) + (barWidth / 2) - 15; })
+//            .attr("y", graphHeight)
+//            .attr("transform", "translate(0,15)")
+//            .text(function(d) { return d.date; });
+//    });
 
 </script>
 </body>

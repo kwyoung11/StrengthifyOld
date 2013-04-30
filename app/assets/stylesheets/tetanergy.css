@@ -2,54 +2,16 @@
 *
 * 	TABLE OF CONTENTS:
 * 		0. ANALYTICS
-*			1. HEADER
+*	    1. HEADER
 * 		2. LANDING PAGE
 * 		3. FOOTER
 *			4. FRONT PAGE
 *			5. PROFILE PAGES
-*			6. TRAINING
-* 		7. USER AUTHENTICATION/MANAGEMENT
-*			8. WORKOUTS
-*			9. WRAPPERS (APPLICATION/CONTENT)
+* 		6. USER AUTHENTICATION/MANAGEMENT
+*			7. WORKOUTS
+*			8. WRAPPERS (APPLICATION/CONTENT)
 *
 **********************************************************************************************************************/
-
-/********************************************
-*
-* ADMIN
-*
-********************************************/
-
-#admin_nav {
-	margin-top: 80px;
-}
-
-#exercises {
-	
-}
-
-#new_exercises {
-	float: left;
-	border: 1px solid red;
-	margin: 0px 0px 0px 100px;
-	background: #fefefe;
-	padding: 10px;
-	box-shadow: -5px 5px 5px;
-}
-
-#exercise_db {
-	float: right;
-	margin: 0px 100px 100px 0px;
-	border: 1px solid red;
-	background: #fefefe;
-	padding: 10px;
-	box-shadow: -5px 5px 5px;
-}
-
-#exercises_db li {
-	text-align: left;
-}
-
 
 /********************************************
 *
@@ -64,30 +26,88 @@
 	border: 0px solid red;
 }
 
-svg {
-	clear: both;
-	margin: -140px auto;
-	border: 0px solid green;
+#graphContainer {
+    border: 0px solid red;
+    margin: 0 auto;
+    width: auto;
+    overflow: hidden;
+}
+
+.chart {
+    border: 0px solid black;
+    width: auto;
+    margin: 0 auto;
+    height: auto;
+}
+
+.chart rect {
+    stroke: white;
+    fill: steelblue;
+    color: white;
+}
+
+.chart text.bar {
+    fill: white;
+    font-size: 12px;
+}
+
+#chart_select {
+	border: 0px solid red;
+	overflow: hidden;
+}
+
+#chart_select ul {
+	list-style-type: none;
+}
+
+#chart_select li {
+	float: left;
+	padding-right: 5px;
+}
+
+#chart_select select {
+	width: 120px;
+	height: 30px;
+}
+
+.selection_label {
+	font-weight: bolder;
 	display: block;
 }
 
-svg g {
-	clear: left;
-	border: 0px solid green;
+#training_stats {
+	border: 1px solid #444;
 	display: block;
+	width: 606px;
+	height: ;
+	margin: 20px auto;
+	overflow: hidden;
 }
 
-path {
-	stroke: steelblue; 
-	stroke-width: 2; 
-	fill: none;
+#workout_stats {
+	position: relative;
+	border: 1px solid #bbb;
+	width: 200px;
+	float: left;
+	margin: 0px 0px 0px 0px;
 }
-.axis path, .axis line {
-	fill: none;
-	stroke: grey;
-	stroke-width: 1; 
-	shape-rendering: crispEdges;
+
+#load_volume_stats {
+	position: relative;
+	border: 1px solid #bbb;
+	width: 200px;
+	float: left;
+	margin: 0px 0px 0px 0px;
 }
+
+#time_stats {
+	position: relative;
+	border: 1px solid #bbb;
+	width: 200px;
+	float: left;
+	margin: 0px 0px 0px 0px;
+}
+
 
 /*******************************************
 *
@@ -465,167 +485,6 @@ div#fitbit_button {
 		margin-left: 2px;
 		margin-top: 2px;
 		box-shadow: #444 3px 3px 3px;
-}
-
-
-/*****************************************
-*
-* TRAINING
-*
-******************************************/
-
-/**** 
-* Styling for list of workouts on training page.
-****/
-#index_of_workout_tables {
-	margin-left: auto;
-	margin-right: auto;
-	padding-bottom: 100px;
-	margin-bottom: 100px;
-	border-collapse: collapse;
-	float: left;
-	background: #fff;
-	
-}
-
-#index_of_workout_tables th {
-	padding: 5px;
-	border: 1px solid #777;
-}
-
-#index_of_workout_tables tr {
-	border: 1px solid #777;
-	padding: 5px;
-	text-align: center;
-	font-size: 14px;
-}
-
-#index_of_workout_tables td {
-	border: 1px solid #777;
-	padding: 5px;
-	text-align: center;
-	font-size: 14px;
-}
-
-
-/***
-* Styling for actual workout table. 
-****/
-#show_workout_table {
-	margin: 0 auto;
-	display: block;
-	padding-bottom: 100px;
-	margin-bottom: 100px;
-	border-collapse: collapse;
-	text-align: center;
-	background: #eef;
-	border-radius: 3px;
-}
-
-#show_workout_table th {
-	padding: 30px;
-	border-bottom: 2px solid blue;
-}
-
-#show_workout_table tr, td {
-	border-bottom: 1px solid blue;
-	padding: 30px;
-	text-align: center;
-	font-size: 18px;
-}
-
-/*** 
-* This is the rendering div for the workouts#show 
-* table (requested via ajax).
-* Toggled via jQuery code in show.js.erb.
-**/
-
-#workout_data {
-	border: 0px solid red;
-	float: left;
-	display: none;
-	padding: 20px;
-	border-radius: 5px;
-	background: #fff;
-	color: black;
-	margin-bottom: 100px;
-	-webkit-transition: background 1s;
-	-moz-transition: background 1s;
-	-o-transition: background 1s;
-	transition: background 1s
-}
-
-#workout_data a {
-	color: red;
-}
-
-/***
-* Tabs to show different training metrics, including:
-* 1. Analytics
-* 2. Workouts List
-* 3. 
-***/
-
-#training_tabs {
-	border: 0px solid red;
-	float: left;
-	color: black;
-	margin: 0px 0px 50px 0px;
-}
-
-#training_tabs a {
-	color: black;
-	border-bottom: 1px dotted black;
-	text-decoration: none;
-}
-
-#training_tabs li {
-	list-style: none;
-	text-align: left;
-	padding: 5px;
-}
-
-.link_tab.active {
-	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
-	border-radius: 2px;
-}
-
-.link_tab.active:after {
-	content: "";
-	position: absolute;
-	display: block;
-	margin: -23px 0px 0px 89px;
-	border: 14px solid;
-	border-radius: 2px;
-	border-color: transparent transparent transparent #444;
-	opacity: 0.7;
-	z-index: 50;
-}
-
-.row_for_workout.active {
-		background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #00A3EF 100%);
-		border-radius: 2px;
-}
-
-.row_for_workout.active:after {
-	content: "";
-	position: absolute;
-	display: block;
-	margin: 0px 0px 0px 0px;
-	border: 40px solid;
-	border-radius: 2px;
-	border-color: transparent transparent transparent #444;
-	opacity: 0.7;
-	z-index: 50;
-}
-
-.row_for_workout a {
-	text-decoration: underline;
-}
-
-.row_for_workout tr {
-	border-bottom: 1px solid red;
-	border-top: 1px solid red;
 }
 
 

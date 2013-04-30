@@ -1,0 +1,45 @@
+<div class="scrollingArea">
+<table id="index_of_workout_tables">
+  <thead>
+    <tr>
+			<th class="date">Date</th>
+      <th class="category">Category</th>
+			<th class="sets">Sets</th>
+			<th class="name">Name</th>
+			<th class="duration">Duration</th>
+			<th class="loadVolume">Load Volume</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.workouts.each do |w| %>
+		<tr class="row_for_workout" data-workout_id="<%= w.id %>">
+			<td class="date"><%= w.created_at.strftime("%m/%d/%y") %><%= "-" if w.created_at.blank? %></a></td>
+			<td class="category"><%= w.category %><%= "-" if w.category.blank? %></a></td>
+			<td class="sets"><%= w.sets %><%= "-" if w.sets.blank? %></a></td>
+      <td class="name"><%= w.name %><%= "-" if w.name.blank? %></a></td>
+			<td class="duration"><%= Time.at(w.duration).utc.strftime("%H:%M:%S") if !w.duration.blank? %> <%= "-" if w.duration.blank? %></a></td>
+			<td class="loadVolume"><%= w.load_volume %><%= "-" if w.load_volume.blank? %></a></td>
+    </tr>                    
+	
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<script>
+/* Highlight table row when clicked */
+$(function() {
+   var tr = $('tr').click(function() {
+       tr.removeClass('active');
+       $(this).addClass('active');
+   });
+});
+
+// When row is clicked, request "show" partial via ajax
+$("tr").click(function () {
+	var workout_id = $(this).attr("data-workout_id")
+	$.get("/users/<%= @user.id %>/workouts/" + workout_id);
+});
+
+</script>

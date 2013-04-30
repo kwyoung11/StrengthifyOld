@@ -1,65 +1,28 @@
 <h1>Training</h1>
+<!-- data-user attribute passes user_id to training_graph.js in assets/javascripts -->
+<div id="tabContainer" data-user="<%= @user.id %>">
+    <div class="tabs">
+      <ul>
+        <li id="tabHeader_1">Analytics</li>
+        <li id="tabHeader_2">Workout List</li>
+        <li id="tabHeader_3">Leaderboard</li>
+      </ul>
+    </div>
 
-<ul id="training_tabs">
-	<li class="link_tab"><%= link_to 'Workout List', user_workouts_path(@user.id), id: "workout_index", class: "choose_training_view" %></li>
-	<li class="link_tab"><%= link_to 'Analytics', analyze_user_workouts_path(@user.id), id: "analytics_index", class: "choose_training_view", remote: :true %></li>
-</ul>
-<div id="workout_analytics">
-<table id="index_of_workout_tables">
-  <thead>
-    <tr>
-			<th>Date</th>
-      <th>Category</th>
-			<th>Title</th>
-			<th>Duration</th>
-    </tr>
-  </thead>
+    <div class="tabscontent">
+	
+      	<div class="tabpage" id="tabpage_1">
+					<%= render "analyze" %>
+				</div>			
+			
+      	<div class="tabpage" id="tabpage_2">
+ 					<%= render "index" %>
+      	</div>
 
-  <tbody>
-    <% @user.workouts.each do |workout| %>
-    <tr class="row_for_workout">
-			<td><%= workout.created_at.strftime("%m/%d/%Y") %></td>
-			<td> <%= workout.category %></td>
-      <td><%= link_to "#{workout.name}", user_workout_path(@user.id, workout.id), id: "#{workout.id}", class: "show_workout", remote: :true %></td>
-			<td> <%= workout.hours %><%= workout.minutes %><%= workout.seconds %> </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      	<div class="tabpage" id="tabpage_3">
+  
+      	</div>
 
-<div id="workout_data"></div>
+    </div>
 </div>
-<div style="clear: both"> </div>
 
-<script>
-$(document).ready(function() {		
-	$('#training_tabs li').first().addClass('active');
-
-	
-	/* Color tabbing for links inside of #training_tabs list */
-	$(function() {		
-	   var links = $('a.choose_training_view').click(function() {
-	       links.parents('li').removeClass('active');
-	       return $(this).parents('li').addClass('active');
-	   });
-	});
-	
-
-	
-	/* Color tabbing for links inside of #index_of_workouts_table */
-	$(function() {
-	   var links = $('a.show_workout').click(function() {
-	       links.parents('tr').removeClass('active');
-	       $(this).parents('tr').addClass('active');
-	   });
-	});
-	
-	
-	
-});
-</script>
-
-<script>
-$(".row_for_workout td:last-child").css('border-left', '1px solid #777');
-$("#index_of_workout_tables th:last-child").css('border-left', '1px solid #777');
-</script>

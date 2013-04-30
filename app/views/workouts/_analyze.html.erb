@@ -1,66 +1,123 @@
+<div id="graphContainer">
+		<div id="chart_select">
+			<ul>
+				<li><span class="selection_label"> Metric </span>
+					<select name="metric" id="metric_select">
+						<option value="Load Volume">Load Volume</option>
+						<option value="Time">Time</option>
+						<option value="Reps">Reps</option>
+						<option value="Weight">Weight</option>
+						<option value="Sets">Sets</option>
+					</select>
+						<li><span class="selection_label"> Category </span>	
+							<select name="category" id="category_select"> 
+								<option> All</option>
+								<option value="Load Volume">Full Body</option>
+								<option value="Time">Lower Body</option>
+								<option value="Reps">Upper Body</option>
+								<option value="Weight">Chest</option>
+								<option value="Legs">Legs</option>
+								<option value="Arms">Arms</option>
+								<option value="Back">Back</option>
+								<option value="Hips">Hips</option>
+								<option value="Shoulders">Shoulders</option>
+							</select>
+						</li>
+			</ul>
+			</div>
+		<div id="chart_select_category">
+  		
+		</div>
+	<div id="training_stats">
+		<!-- WORKOUT STATS-->
+  	<div id="workout_stats">
+   		<h3> Workouts </h3>
+      <p><%= @user.workouts.count %> Workouts</p>
+		</div>
+		<!-- LOAD VOLUME STATS -->
+		<div id="load_volume_stats">
+	 		<h3> Load Volume</h3>
+    	<p><%= @user.workouts.sum(:load_volume) %><p>
+		</div>	
+		<!-- TIME STATS-->
+		<div id="time_stats">
+			<h3> Time </h3>
+			<p> <%= @user.workouts.sum(:hours) %> hrs<p>
+		</div>
+	</div>
+</div>
+
 <script>
-function generateGraph() {
-	var margin = {top: 30, right: 30, bottom: 40, left: 80}, 
-			width = 600 - margin.left - margin.right,
-			height = 270 - margin.top - margin.bottom;
+$(document).ready(function () {
+	var metric = $("#metric_select option:selected").attr("value");
+			$("#metric_select").on('change', function () {
+				var metric = $("#metric_select option:selected").attr("value");
+					$.ajax({
+						url: "/users/<%= @user.id %>/workouts/analyze.json",
+						data: { metric: metric },
+						success: function(response) {
+						
+					 // ******* DATA ******** //
+					      data = response;
 
-	var parseDate = d3.time.format("%d-%b-%y").parse; 
+					      // Define graph area and margin areas.
+					      var margin = {top: 20, right: 10, bottom: 20, left: 10},
+					              graphHeight = 250 - margin.top - margin.bottom,
+					              barWidth = 80,
+					              graphWidth = ((barWidth + 10) * data.length);
 
-	var x = d3.time.scale().range([0, width]);
-	var y = d3.scale.linear().range([height, 0]); 
+					      // Create the SVG graph.
+					      var svg = d3.select("#graphContainer").insert("svg", "#training_stats")
+					              .attr("class", "chart")
+					              .attr("width", graphWidth + margin.left + margin.right)
+					              .attr("height", graphHeight + margin.top + margin.bottom)
+					              .append("g")
+					              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5); 
+					      // ***** SCALES ***** //
 
-	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
+					      // Set the Y scale.
+					      var y = d3.scale.linear()
+					              .domain([0, d3.max(data, function(d) { return d.load_volume; })])
+					              .range([0, graphHeight]);
 
-	var valueline = d3.svg.line().interpolate("basis").x(function(d) { return x(d.date); }).y(function(d) { return y(d.load_volume); });
+					      // Set the X scale.
+					      var x = d3.scale.linear().domain([0, data.length]).range([0, graphWidth]);
 
-	var svg = d3.select("body").append("svg")
-				.attr("width", width + margin.left + margin.right)
-	        	.attr("height", height + margin.top + margin.bottom)
-	    		.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					      // Draw the bars.
+					      svg.selectAll("rect")
+					              .data(data).enter().append("rect").sort(function(d) { return d3.ascending(d.date); })
+					              .attr("x", function(d, i) { return x(i); })
+					              .attr("y", function(d) { return graphHeight - y(d.load_volume); })
+					              .attr("height", function(d) { return y(d.load_volume); })
+					              .attr("width", barWidth)
+					              .attr("fill", "#2d578b");
 
-				// X Axis label
-				svg.append("text")
-					.attr("x", width / 2 )
-					.attr("y", height + margin.bottom )
-					.style("text-anchor", "middle")
-					.text("Workout Date");
+					      // Draw the text.
+					      svg.selectAll("text").data(data)
+					              .enter().append("text")
+					              .attr("x", function(d, i) { return x(i) + barWidth/2; })
+					              .attr("y", graphHeight)
+					              .attr("dy", function(d) { return -y(d.load_volume) + 20; })
+					              .attr("text-anchor", "middle")
+					              .attr("class", "bar")
+					              .text(function(d) { return d.load_volume; });
+
+					      // Y axis labels.
+					      svg.append("g").selectAll("text").data(data).enter().append("text")
+					              .attr("x", function(d, i) { return x(i) + (barWidth / 2) - 15; })
+					              .attr("y", graphHeight)
+					              .attr("transform", "translate(0,15)")
+					              .text(function(d) { return d.date; });
 					
-				// Y Axis label	
-				svg.append("text")
-					.attr("transform", "rotate(-90)")
-					.attr("x", 0 - height / 2)
-					.attr("y", 0 - margin.left )
-					.attr("dy", "1em")
-					.style("text-anchor", "middle")
-					.text("Load-Volume");
-					
-				// Title
-				svg.append("text")
-					.attr("x", width/2)
-					.attr("y", 0)
-					.style("text-anchor", "middle")
-					.style("font-size", "16px")
-					.style("text-decoration", "underline")
-					.text("Load-Volume vs. Time")
-
-	d3.json("<%= user_workouts_path %>" + "/analyze.json", function(error, data) {
-	data.forEach( function (d) {
-	   d.date = parseDate(d.date);
-	   d.load_volume = +d.load_volume;
-	});
-		// Scale the range of the data
-		x.domain(d3.extent(data, function(d) { return d.date; }));
-		y.domain([0, d3.max(data, function(d) { return d.load_volume; })]);
-
-		svg.append("path").attr("d", valueline(data)); 												// Add the valueline path
-		svg.append("g").attr("transform", "translate(0," + height + ")") .call(xAxis); 	// Add the X Axis .attr("class", "x axis")
-		svg.append("g").attr("class", "y axis").call(yAxis); 										// Add the Y Axis
-
-	});
-};
-
-generateGraph();
-
+						
+						
+								}
+								// end ajax
+					});
+			// end on select change
+			});
+	// end document ready			
+});
 </script>
+
