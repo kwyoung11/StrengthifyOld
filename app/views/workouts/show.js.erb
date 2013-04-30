@@ -1,14 +1,7 @@
 /* Toggles and animates div#workout_data on the workouts#index page */
 
 $(document).ready(function() {
-	$('#workout_data').show();
-	var id = <%= @workout.id %>
-	$('#workout_data').html('<%= j render("workout") %>');
-		$("#" + id).click(function() {
-				$('#workout_data').show(); 
-		});
-		
-			$('#workout_index').on('click', function() {
-				$('#workout_data').hide();
-			});   	 
+	var id = $(".tabs ul").attr("data-current")
+	$(".workout_details").hide();
+	$("#tabpage_" + id).append("<%= escape_javascript render("show") %>");
 });

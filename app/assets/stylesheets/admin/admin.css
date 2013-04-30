@@ -60,6 +60,34 @@
 	display: inline;
 }
 
+#admin_nav {
+	margin-top: 80px;
+}
 
+#exercises {
+	
+}
+
+#new_exercises {
+	float: left;
+	border: 1px solid red;
+	margin: 0px 0px 0px 100px;
+	background: #fefefe;
+	padding: 10px;
+	box-shadow: -5px 5px 5px;
+}
+
+#exercise_db {
+	float: right;
+	margin: 0px 100px 100px 0px;
+	border: 1px solid red;
+	background: #fefefe;
+	padding: 10px;
+	box-shadow: -5px 5px 5px;
+}
+
+#exercises_db li {
+	text-align: left;
+}
 
 

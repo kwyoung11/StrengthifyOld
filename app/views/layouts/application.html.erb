@@ -26,7 +26,7 @@
 				<% if current_user %>
 				<ul>
 					<li><%= link_to 'Profile', user_path(current_user.id) %></li>
-					<li><%= link_to 'Training', user_workouts_path(current_user.id) %></li>
+					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li><%= link_to 'Add Workout', new_user_workout_path(current_user.id) %></li>
 					<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
 					<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>

@@ -1,0 +1,25 @@
+<div class="workout_details">
+<p id="notice"><%= notice %></p>
+<%= link_to 'Delete', user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_user_workout_path(@user.id, @workout) %>
+<br />
+<h3> <%= @workout.name %> <%= "Untitled" if @workout.name.blank? %> on <%= @workout.created_at.strftime('%m/%d/%Y') %></h3> 
+
+<div class="show_workout_table">
+
+<table>
+	<th> Exercise </th>
+	<th> Weight </th>
+	<th> Reps </th>
+	<% @workout.exercises.each do |e| %>
+	<tr>
+		<td> <%= e.name %> </td>
+		<td> <%= e.weight %> </td>
+		<td> <%= e.reps %> </td>
+	</tr>
+	<% end %>
+</table>
+</div>
+</div>
+
+

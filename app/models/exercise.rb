@@ -9,4 +9,3 @@ class Exercise < ActiveRecord::Base
   validates :reps, presence: true
   
 end
-                                                                      6
