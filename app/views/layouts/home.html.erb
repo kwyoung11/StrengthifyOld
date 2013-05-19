@@ -20,23 +20,30 @@
 <body>
 	<div id="header">
 		<div id="header_content">
-			<%= image_tag("HiRes.jpg", size: "40x40") %>
-		<p><%= link_to 'Thews.io', root_url %></p>
-			<div id="nav">
+			<%= render '/layouts/logo' %>
+		<p><%= link_to 'Strengthify', root_url %></p>
+			<nav id="topNav">
 				<% if current_user %>
 				<ul>
+					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li><%= link_to 'Profile', user_path(current_user.id) %></li>
-					<li><%= link_to 'Training', user_workouts_path(current_user.id) %></li>
-					<li><%= link_to 'Add Workout', new_user_workout_path(current_user.id) %></li>
-					<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
-					<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
+					<li> <%= link_to 'Home', root_url %></li>
+					<li class="settings"> Settings
+						<ul>
+							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id) %></li>
+							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
+							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
+						</ul>
+					</li>
+				</ul>
+				
 				<% else %>
 				<ul>
 					<li> <%= link_to 'Sign Up', signup_path %> </li>
 					<li> <%= link_to 'Log In', login_path %> </li>
 				</ul>
 				<% end %>
-			</div>
+			</nav>
 		</div>
 	</div>
 	

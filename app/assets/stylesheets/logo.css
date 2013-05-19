@@ -1,0 +1,59 @@
+/******************************************
+*
+* LOGO
+*
+*******************************************/
+
+#snowflake {
+	border: 0px solid red;
+}
+
+#snowflake:hover {
+	cursor: pointer;
+}
+
+#snowflake path {
+	stroke: black;
+	stroke-width: 1;
+}
+
+#logo_list {
+	list-style-type: disc;
+	border: 0px solid blue;
+	margin: 0px 0px 0px 0px;
+	overflow: hidden;
+	float: left;
+}
+
+#logo_list li {
+	height: 50px;
+	display: inline-block;
+	display: inline;
+	padding: 5px;
+	float: left;
+	border: 0px solid black;
+}
+
+#logo_list li a {
+	text-decoration: none;
+}
+
+#name_logo {
+	margin: 0px 0px 0px 0px;
+	text-decoration: none;
+	font-size: 36px;
+	font-family: Arial Black;
+	line-height: 43px;
+	color: #333;
+	text-shadow: 0px 0px #d55;
+	background: #ddd url("/assets/static.png");
+}
+
+#koch_sf svg {
+	margin: 0px 0px 0px 0px;
+}
+
+#koch_sf svg line {
+	fill: blue;
+	stroke: black;
+}

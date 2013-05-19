@@ -1,0 +1,93 @@
+function draw() {
+	// Get the data in JSON format.
+	  var user_id = $("#tabContainer").data("user");
+	  d3.json("/users/" + user_id + "/workouts/analyze.json", function(error, response) {
+		data = response;
+	
+		var time = $("ul#time_scale li.current").text();
+		
+	    // Define graph area and margin areas.
+	    var margin = {top: 20, right: 40, bottom: 40, left: 00},
+	        w = 900,
+			h = 360 - margin.top - margin.bottom,
+	        barWidth = 25,
+			padding = 0;
+			
+		// Set the X and Y scales.		
+		var x = d3.time.scale().domain([d3.time.day.offset(new Date(), -22), d3.time.day.offset(new Date(), 1)])
+			.rangeRound([0, w - margin.left - margin.right]);
+	    var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.load_volume; })])
+	        .range([h - margin.top - margin.bottom, 0]);
+	
+		// Process Data.
+		deriveMissingDates(data); // Interpolate missing dates.
+		fillDomainBounds(data, time); // Fill to bounds.
+		
+		// Set the xAxis
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient('bottom')
+			.ticks(d3.time.days, 1)
+			.tickFormat(d3.time.format('%d'))
+			.tickSize(0)
+			.tickPadding(8);
+
+		// Create the SVG graph.
+		var svg = d3.select("#graphContainer").insert("svg", "#training_stats")
+		    .attr("class", "chart")
+		    .attr("width", w)
+		    .attr("height", h)
+			.append("g")
+		    .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")").attr("id", "graph");
+		
+		// Set up the tooltips.
+		var tooltip = d3.select("body").append("div")
+			.attr("class", "tooltip");
+		
+		// Date format for tooltip.	
+		var formatTime = d3.time.format("%A %b %e");	
+		
+	    // Draw the bars and make them interactive.
+	    var bar = svg.selectAll("rect")
+	        .data(data).enter().append("rect")
+	        .attr("x", function(d) { return x(d.date); })
+	        .attr("y", function(d) { return d.stub == true ? (h - margin.bottom - margin.top - margin.bottom + 30) : y(d.load_volume) })
+	        .attr("height", function(d) { return d.stub == true ? 10 : h - margin.top - margin.bottom - y(d.load_volume) })
+	        .attr("width", barWidth)
+			.attr("class", "bar")
+	        .style("fill", function(d) { return d.stub == true ? "#888" : "#00e0fe"})
+			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id) })
+			.on("mouseout", function (d, i) { return barMouseOut(d, i, bar, tooltip) });
+			
+			toolTipMouseOver(tooltip);
+
+	    // Draw the text.
+	    var text_label = svg.selectAll("text").data(data)
+	        .enter().append("text")
+			.attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
+	        .attr("y", function(d) { return y(d.load_volume) > (0.125 * (d3.max(data, function(d) { return d.load_volume; }))) ? y(d.load_volume) + 20 : y(d.load_volume) + 20; })
+			.attr("text-anchor", "middle")
+	        .text(function(d) { return d.stub == true ? null : format(d.load_volume) });
+
+		// Draw the xAxis
+		svg.append('g').attr('class', 'x axis')
+		   .attr('transform', 'translate(' + padding + ',' + (h - margin.bottom - margin.top) + ')')
+		   .call(xAxis)
+		   .selectAll("text").attr("dx", "0.5em");
+			
+		// On time scale change, send ajax request to update graph and xAxis.
+		$("ul#time_scale li").on('click', function () {
+			sendAjaxRequest(svg, x, y, xAxis, padding, margin, h, w, barWidth, tooltip, user_id, bar, time);
+		});
+        
+		// On Metric or Category change, send ajax request to update graph.
+		$("#metric_select, #category_select").on('change', function () {
+			sendAjaxRequest(svg, x, y, xAxis, padding, margin, h, w, barWidth, tooltip, user_id, bar. time);
+		});	
+							
+});  // end d3.json (original) data request
+} // end draw function
+
+	
+	
+	

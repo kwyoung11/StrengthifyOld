@@ -1,0 +1,116 @@
+<%= link_to "/" do %>
+<svg width="80" height="49" viewbox="0 0 350 365" id="snowflake" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	</svg>
+<% end %>
+
+<script>
+// First make it link to the homepage
+var link = d3.select("#koch_sf").append("svg:a").attr("xlink:href", "/");
+
+var svg = d3.select("#koch_sf").append("svg:svg").attr("width", "80").attr("height", "49").attr("viewbox", "0 0 350 365").attr("id", "snowflake").attr("xmlns", "http://www.w3.org/2000/svg").attr("version", "1.1");
+	
+
+	
+	var barBell = svg.append("svg:g");
+	barBell.append("path").attr("d", "M0 0 h70").attr("stroke-width", "1");
+	barBell.append("rect").attr("width", "2px").attr("height", "15px").attr("transform", "translate(0,-7)");
+	barBell.append("rect").attr("width", "2px").attr("height", "15px").attr("transform", "translate(68,-7)");
+	
+	barBell.attr("transform", "translate(4,14)");
+	
+	
+	var dumbellsContainer = svg.append("svg:g");
+	
+	var dumbellOne = dumbellsContainer.append("svg:g");
+	dumbellOne.append("svg:rect").attr("width", "20px").attr("height", "20px");
+	dumbellOne.append("svg:line").attr("x1", "0").attr("y1", "0").attr("x2", "50").attr("y2", "50").style("fill: blue");
+	dumbellOne.append("svg:rect").attr("width", "20px").attr("height", "20px").attr("transform", "translate(50,50)");
+	
+	var dumbellTwo = dumbellsContainer.append("svg:g");
+	dumbellTwo.append("svg:rect").attr("width", "20px").attr("height", "20px").attr("transform", "translate(50,50)");
+	dumbellTwo.append("svg:line").attr("x1", "0").attr("y1", "0").attr("x2", "50").attr("y2", "50").style("fill: blue");
+	dumbellTwo.append("svg:rect").attr("width", "20px").attr("height", "20px").attr("transform", "translate(0, 0)");
+	
+	
+	dumbellOne.attr("transform", "translate(20, 20) scale(0.333)");
+	dumbellTwo.attr("transform", "translate(60, 20) rotate(90) scale(0.333)");
+	
+	$("svg").on('click', function() {
+		window.location = "http://localhost:3000";
+	});
+
+</script>
+
+
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- <svg width="80" height="49" viewbox="0 0 350 365" id="snowflake">
+   <defs>
+     <path id="level_0" fill="none" stroke="black" d="M0 0h300" />
+
+     <g id="level_1">
+         <use xlink:href="#level_0" transform="scale(0.333)" />
+         <use xlink:href="#level_0" transform="translate(100 0) rotate(-60) scale(0.333)" />
+         <use xlink:href="#level_0" transform="translate(150 -86.6) rotate(60) scale(0.333)" />
+         <use xlink:href="#level_0" transform="translate(200 0) scale(0.333)" />
+     </g>
+     <g id="level_2">
+         <use xlink:href="#level_1" transform="scale(0.333)" />
+         <use xlink:href="#level_1" transform="translate(100 0) rotate(-60) scale(0.333)" />
+         <use xlink:href="#level_1" transform="translate(150 -86.6) rotate(60) scale(0.333)" />
+         <use xlink:href="#level_1" transform="translate(200 0) scale(0.333)" />
+     </g>
+     <g id="level_3">
+         <use xlink:href="#level_2" transform="scale(0.333)" />
+         <use xlink:href="#level_2" transform="translate(100 0) rotate(-60) scale(0.333)" />
+         <use xlink:href="#level_2" transform="translate(150 -86.6) rotate(60) scale(0.333)" />
+         <use xlink:href="#level_2" transform="translate(200 0) scale(0.333)" />
+     </g>
+     <g id="level_4">
+         <use xlink:href="#level_3" transform="scale(0.333)" />
+         <use xlink:href="#level_3" transform="translate(100 0) rotate(-60) scale(0.333)" />
+         <use xlink:href="#level_3" transform="translate(150 -86.6) rotate(60) scale(0.333)" />
+         <use xlink:href="#level_3" transform="translate(200 0) scale(0.333)" />
+     </g>
+     <g id="level_5">
+         <use xlink:href="#level_4" transform="scale(0.333)" />
+         <use xlink:href="#level_4" transform="translate(100 0) rotate(-60) scale(0.333)" />
+         <use xlink:href="#level_4" transform="translate(150 -86.6) rotate(60) scale(0.333)" />
+         <use xlink:href="#level_4" transform="translate(200 0) scale(0.333)" />
+     </g>
+
+   </defs>
+	 <use xlink:href="#level_4" stroke-width="543" transform="translate(20,100)" />
+	 <use xlink:href="#level_4" stroke-width="543" transform="translate(320,100) rotate(120)" />
+	 <use xlink:href="#level_4" stroke-width="543" transform="translate(170,360) rotate(-120)" />
+</svg> -->
+
+<script>
+// var defs = svg.append("svg:defs");
+// var initialLine = defs.append("svg:path").attr("fill", "none").attr("stroke", "black").attr("d", "M0 0h300").attr("id", "level_0");
+
+	// function draw_snowflake(order, stroke_width) {
+	// 		 	prepareSnowFlake(order);
+	// 		 	drawSnowFlake(order, stroke_width);
+	// 		 }
+	// 								
+	// 				function prepareSnowFlake(order) {
+	// 				 for (i = 0; i < order; i++) {
+	// 				 		var group = defs.append("g").attr("id", "level_" + (i+1));
+	// 				 		group.append("svg:use").attr("xlink:href", "#level_" + i).attr("transform", "scale(0.333)");
+	// 				 		group.append("svg:use").attr("xlink:href", "#level_" + i).attr("transform", "translate(100 0) rotate(-60) scale(0.333)");
+	// 				 		group.append("svg:use").attr("xlink:href", "#level_" + i).attr("transform", "translate(150 -86.6) rotate(60) scale(0.333)");
+	// 				 		group.append("svg:use").attr("xlink:href", "#level_" + i).attr("transform", "translate(200 0) scale(0.333)");
+	// 				 	}
+	// 				 }
+	// 				 
+	// 				function drawSnowFlake(order, stroke_width) {
+	// 				 	svg.append("svg:use").attr("xlink:href", "#level_" + order).attr("stroke-width", stroke_width).attr("transform", "scale(0.333)");
+	// 				 	svg.append("svg:use").attr("xlink:href", "#level_" + order).attr("stroke-width", stroke_width).attr("transform", "translate(320, 100) rotate(120)");
+	// 				 	svg.append("svg:use").attr("xlink:href", "#level_" + order).attr("stroke-width", stroke_width).attr("transform", "translate(170, 360) rotate(-120)");
+	// 				 }
+	// 					
+	// 		draw_snowflake(2, 43);
+</script>

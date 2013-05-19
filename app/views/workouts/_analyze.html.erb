@@ -1,33 +1,18 @@
-<div id="graphContainer">
 		<div id="chart_select">
-			<ul>
-				<li><span class="selection_label"> Metric </span>
-					<select name="metric" id="metric_select">
-						<option value="Load Volume">Load Volume</option>
-						<option value="Time">Time</option>
-						<option value="Reps">Reps</option>
-						<option value="Weight">Weight</option>
-						<option value="Sets">Sets</option>
-					</select>
-						<li><span class="selection_label"> Category </span>	
-							<select name="category" id="category_select"> 
-								<option> All</option>
-								<option value="Load Volume">Full Body</option>
-								<option value="Time">Lower Body</option>
-								<option value="Reps">Upper Body</option>
-								<option value="Weight">Chest</option>
-								<option value="Legs">Legs</option>
-								<option value="Arms">Arms</option>
-								<option value="Back">Back</option>
-								<option value="Hips">Hips</option>
-								<option value="Shoulders">Shoulders</option>
-							</select>
-						</li>
+				<p id="chart_title"> <span class="title_text"> Load Volume</span> <span class="arrow">></span> <span class="title_text">All</span> <span class="arrow">></span> <span class="title_text">Days</span> </p>
+			<ul id="metric_cat_select">
+				<li><%= select("metric", "select", %w[Load\ Volume Time Reps Weight Sets]) %></li>
+				<li><%= select("category", "select", %w[All Full\ Body Lower\ Body Upper\ Body Chest Legs Arms Back Hips Shoulders]) %></li>
+			</ul>
+			<ul id="time_scale">
+				<li>Months</li>
+				<li>Weeks</li>
+				<li>Days</li>
 			</ul>
 			</div>
-		<div id="chart_select_category">
-  		
-		</div>
+		<!-- Graph goes here -->	
+		<div id="graphContainer"></div>
+		
 	<div id="training_stats">
 		<!-- WORKOUT STATS-->
   	<div id="workout_stats">
@@ -45,79 +30,33 @@
 			<p> <%= @user.workouts.sum(:hours) %> hrs<p>
 		</div>
 	</div>
-</div>
+
 
 <script>
-$(document).ready(function () {
-	var metric = $("#metric_select option:selected").attr("value");
-			$("#metric_select").on('change', function () {
-				var metric = $("#metric_select option:selected").attr("value");
-					$.ajax({
-						url: "/users/<%= @user.id %>/workouts/analyze.json",
-						data: { metric: metric },
-						success: function(response) {
-						
-					 // ******* DATA ******** //
-					      data = response;
-
-					      // Define graph area and margin areas.
-					      var margin = {top: 20, right: 10, bottom: 20, left: 10},
-					              graphHeight = 250 - margin.top - margin.bottom,
-					              barWidth = 80,
-					              graphWidth = ((barWidth + 10) * data.length);
-
-					      // Create the SVG graph.
-					      var svg = d3.select("#graphContainer").insert("svg", "#training_stats")
-					              .attr("class", "chart")
-					              .attr("width", graphWidth + margin.left + margin.right)
-					              .attr("height", graphHeight + margin.top + margin.bottom)
-					              .append("g")
-					              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-					      // ***** SCALES ***** //
-
-					      // Set the Y scale.
-					      var y = d3.scale.linear()
-					              .domain([0, d3.max(data, function(d) { return d.load_volume; })])
-					              .range([0, graphHeight]);
-
-					      // Set the X scale.
-					      var x = d3.scale.linear().domain([0, data.length]).range([0, graphWidth]);
-
-					      // Draw the bars.
-					      svg.selectAll("rect")
-					              .data(data).enter().append("rect").sort(function(d) { return d3.ascending(d.date); })
-					              .attr("x", function(d, i) { return x(i); })
-					              .attr("y", function(d) { return graphHeight - y(d.load_volume); })
-					              .attr("height", function(d) { return y(d.load_volume); })
-					              .attr("width", barWidth)
-					              .attr("fill", "#2d578b");
-
-					      // Draw the text.
-					      svg.selectAll("text").data(data)
-					              .enter().append("text")
-					              .attr("x", function(d, i) { return x(i) + barWidth/2; })
-					              .attr("y", graphHeight)
-					              .attr("dy", function(d) { return -y(d.load_volume) + 20; })
-					              .attr("text-anchor", "middle")
-					              .attr("class", "bar")
-					              .text(function(d) { return d.load_volume; });
-
-					      // Y axis labels.
-					      svg.append("g").selectAll("text").data(data).enter().append("text")
-					              .attr("x", function(d, i) { return x(i) + (barWidth / 2) - 15; })
-					              .attr("y", graphHeight)
-					              .attr("transform", "translate(0,15)")
-					              .text(function(d) { return d.date; });
-					
-						
-						
-								}
-								// end ajax
-					});
-			// end on select change
-			});
-	// end document ready			
+$(document).ready(function() {
+	$("#time_scale li:last").addClass('current');
+	$("#time_scale li").on("click", function() {
+		$("#time_scale li").removeClass('current');
+		$(this).addClass('current');
+	});
 });
 </script>
 
+<script>
+$(document).ready(function() {
+
+$("ul#time_scale li, #metric_select, #category_select").on('click change', function () {
+	var category = $("#category_select option:selected").attr("value");
+	var metric = $("#metric_select option:selected").attr("value");
+	var time_scale = $("ul#time_scale li.current").text();
+	var pElem = $('#chart_title');
+	var children = pElem.children();
+
+	pElem.append(children);
+	var arrow = 
+		$("#chart_title span:nth-child(1)").text(" " + metric + " ");
+		$("#chart_title span:nth-child(3)").text(" " + category + " ");
+		$("#chart_title span:nth-child(5)").text(" " + time_scale + " ");
+});
+});
+</script>

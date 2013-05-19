@@ -18,10 +18,10 @@ class Workout < ActiveRecord::Base
   end
   
   def convert_time_to_seconds
-    seconds = 0;
-      seconds += self.hours * (60**2)
-      seconds += self.minutes * 60 
-      seconds += self.seconds 
+    seconds = 0
+      seconds += self.hours * (60**2) if !self[:hours].blank? 
+      seconds += self.minutes * 60 if !self[:minutes].blank?
+      seconds += self.seconds if !self[:seconds].blank?
     self[:duration] = seconds
   end
   

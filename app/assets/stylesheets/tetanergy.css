@@ -1,112 +1,17 @@
 /********************************************************************************************************************
 *
 * 	TABLE OF CONTENTS:
-* 		0. ANALYTICS
 *	    1. HEADER
 * 		2. LANDING PAGE
+*		3. LOGO
 * 		3. FOOTER
-*			4. FRONT PAGE
-*			5. PROFILE PAGES
+*		4. FRONT PAGE
+*		5. PROFILE PAGES
 * 		6. USER AUTHENTICATION/MANAGEMENT
-*			7. WORKOUTS
-*			8. WRAPPERS (APPLICATION/CONTENT)
+*		7. WORKOUTS
+*		8. WRAPPERS (APPLICATION/CONTENT)
 *
 **********************************************************************************************************************/
-
-/********************************************
-*
-* ANALYTICS
-*
-********************************************/
-
-#workout_analytics {
-	height: auto;
-	width: auto;
-	display: block;
-	border: 0px solid red;
-}
-
-#graphContainer {
-    border: 0px solid red;
-    margin: 0 auto;
-    width: auto;
-    overflow: hidden;
-}
-
-.chart {
-    border: 0px solid black;
-    width: auto;
-    margin: 0 auto;
-    height: auto;
-}
-
-.chart rect {
-    stroke: white;
-    fill: steelblue;
-    color: white;
-}
-
-.chart text.bar {
-    fill: white;
-    font-size: 12px;
-}
-
-#chart_select {
-	border: 0px solid red;
-	overflow: hidden;
-}
-
-#chart_select ul {
-	list-style-type: none;
-}
-
-#chart_select li {
-	float: left;
-	padding-right: 5px;
-}
-
-#chart_select select {
-	width: 120px;
-	height: 30px;
-}
-
-.selection_label {
-	font-weight: bolder;
-	display: block;
-}
-
-#training_stats {
-	border: 1px solid #444;
-	display: block;
-	width: 606px;
-	height: ;
-	margin: 20px auto;
-	overflow: hidden;
-}
-
-#workout_stats {
-	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	float: left;
-	margin: 0px 0px 0px 0px;
-}
-
-#load_volume_stats {
-	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	float: left;
-	margin: 0px 0px 0px 0px;
-}
-
-#time_stats {
-	position: relative;
-	border: 1px solid #bbb;
-	width: 200px;
-	float: left;
-	margin: 0px 0px 0px 0px;
-}
 
 
 /*******************************************
@@ -117,61 +22,91 @@
 
 #header {
 	position: fixed;
-	border: 0px solid #e3e3e3;
-	background: #26b3cc url("/assets/static.png");
+	border: 0px solid green;
+	background: #ddd url("/assets/static.png");
 	width: 100%;
 	color: black;
-	z-index: 100;
-	padding: 10px;
 }
 
 #header_content {
 	border: 0px solid red;
 	width: 1150px;
-	margin: 0 auto;
-	padding-top: 8px;
+	margin: 0px auto;
+	clear: both;
 }
 
-#header_content img {
-	float: left;
-}
-
-#header p a {
-	margin: -12px 0px 0px 0px;
-	font-size: 36px;
-	float: left;
-}
-
-#header a {
-	color: #333;
-	text-decoration: none;
-	padding: 10px;
-	font-size: 18px;
-}
-
-#nav {
-	border: 0px solid red;
-	margin: -12px auto 0px 0px;
+.right_align {
 	float: right;
 }
 
-#nav ul {
-	margin: -10 auto 0px 0px;
-	list-style: none;
+
+/* base nav styles */  
+nav { 
+	display: block;
+	float: right;
+	border: 1px solid #aaa; 
+	position: relative; 
+	font: 16px Tahoma, Sans-serif; 
+	margin: 10px 0px 0px 0px;
+}
+  
+nav ul { 
+	padding: 0; 
+	margin: 0; 
+}  
+nav li { 
+	position: relative; 
+	float: left; 
+	list-style-type: none; 
 }
 
-#nav ul li {
-	display: inline;
+nav li:hover, .settings:hover {
+	background: #eee;
+	cursor: pointer;
+}  
+
+nav li a, .settings { 
+	display: block; 
+	padding: 10px 20px; 
+	border-left: 1px solid #999; 
+	border-right: 1px solid #999; 
+	text-decoration: none; 
 }
 
-#nav ul li.current a {
-	color: #D55;
-}
 
-#header a:hover {
-	color: #D55;
-}
 
+nav li:first-child a { 
+	border-left: none; 
+} 
+
+nav ul li.current {
+	border: 1px solid red;
+}  
+
+nav ul ul { 
+	display: none;
+	width: 100%; 
+	position: absolute;
+	margin-top: 10px; 
+	left: 0;
+	background: #D55; 
+} 
+ 
+nav ul ul li { 
+	float: none;
+	width: auto; 
+}  
+
+nav ul ul a { 
+	padding: 0px; 
+	font-size: 10px; 
+	font-family: Tahoma;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+}  
+nav ul ul a:hover { 
+	background-color: #eee; 
+}
 
 
 /********************************************
@@ -251,6 +186,7 @@
 #second_value_statement a:hover {
 	background: #F00;
 }
+
 
 /******************************************
 *
