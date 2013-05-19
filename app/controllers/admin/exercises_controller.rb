@@ -1,7 +1,6 @@
 class Admin::ExercisesController < ApplicationController
   before_filter :admin?
   before_filter :authorize
-  layout 'admin'
   
   def index
     # Getting all exercises where usable == true

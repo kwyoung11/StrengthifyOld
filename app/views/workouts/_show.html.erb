@@ -1,4 +1,4 @@
-<div class="workout_details">
+<div class="workout_details" data-workout_id="<%= @workout.id %>">
 <p id="notice"><%= notice %></p>
 <%= link_to 'Delete', user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Edit', edit_user_workout_path(@user.id, @workout) %>
@@ -23,3 +23,6 @@
 </div>
 
 
+<script>
+
+</script>

@@ -2,6 +2,7 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_filter :authorize
+  include WorkoutsHelper
 
   # GET /workouts
   # GET /workouts.json
@@ -75,47 +76,20 @@ class WorkoutsController < ApplicationController
     end
   end
   
-  # GET /workouts/analyze
-  # GET /workouts/analyze.json
-  def analyze
-    if params[:metric] == "Time"
-      @total_load_volume = Workout.select("date(created_at), sum(duration) as total_duration").group("date(created_at)").where(:user_id => @user.id).order("date(created_at) ASC")  
-    elsif params[:metric] == "Reps"
-      @total_load_volume = Workout.select("date(created_at), sum(reps) as total_reps").group("date(created_at)").where(:user_id => @user.id).order("date(created_at) ASC") 
-    elsif params[:metric] == "Weight"
-      @total_load_volume = Workout.select("date(created_at), sum(weight) as total_weight").group("date(created_at)").where(:user_id => @user.id).order("date(created_at) ASC") 
-    elsif params[:metric] == "Sets"
-      @total_load_volume = Workout.select("date(created_at), sum(sets) as total_sets").group("date(created_at)").where(:user_id => @user.id).order("date(created_at) ASC") 
-    else
-      @total_load_volume = Workout.select("date(created_at), sum(load_volume) as total_load_volume").group("date(created_at)").where(:user_id => @user.id).order("date(created_at) ASC")
-    end
+  # GET /workouts/analayze.json 
+  # GET /workouts/analayze.json
+ def analyze
+    
     respond_to do |format|
       format.html { render action: 'analyze', layout: false }
       format.js
-      format.json { render json: @total_load_volume.map { |e| { date: e.date.strftime("%d"), load_volume: choose_metric(e, params[:metric])  } } }
+      format.json { render json: get_metric_data_with_category(params[:metric], params[:category], params[:time]) }
     end
   end
   
   
-  protected
-  
-  def choose_metric(ex, params)
-    if params == "Time"
-      ex.total_duration 
-    elsif params == "Reps"
-      ex.total_reps
-    elsif params == "Weight"
-      ex.total_weight
-    elsif params == "Sets"
-      ex.total_sets
-    else
-      ex.total_load_volume
-    end
-  end
-  
-  
-
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])

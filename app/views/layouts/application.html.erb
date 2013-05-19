@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:xlink="http://www.w3.org/1999/xlink">
 <head>
   <title>Thews</title>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -20,26 +20,36 @@
 <body>
 	<div id="header">
 		<div id="header_content">
-			<%= image_tag("HiRes.jpg", size: "40x40") %>
-		<p><%= link_to 'Thews.io', root_url %></p>
-			<div id="nav">
+			<ul id="logo_list" class="left_align">
+				<li id="koch_sf"><%= render '/layouts/logo' %></li>
+				<li id="name_logo"><%= link_to 'Strengthify', root_url %></li>
+			</ul>
+			<nav id="topNav" class="right_align">
 				<% if current_user %>
 				<ul>
-					<li><%= link_to 'Profile', user_path(current_user.id) %></li>
 					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
-					<li><%= link_to 'Add Workout', new_user_workout_path(current_user.id) %></li>
-					<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
-					<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
+					<li><%= link_to 'Profile', user_path(current_user.id), 'data-no-turbolink' => true %></li>
+					<li> <%= link_to 'Home', root_url %></li>
+					<li class="settings"> Settings
+						<ul>
+							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id), 'data-no-turbolink' => true %></li>
+							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
+							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
+						</ul>
+					</li>
+				</ul>
+				
 				<% else %>
 				<ul>
 					<li> <%= link_to 'Sign Up', signup_path %> </li>
 					<li> <%= link_to 'Log In', login_path %> </li>
 				</ul>
 				<% end %>
-			</div>
+			</nav>
+			<div style="clear: both;"></div>
 		</div>
 	</div>
-	
+
 <div id="application_wrapper">	
 	
 	<div id="content_wrapper">
@@ -50,6 +60,26 @@
 </html>
 <script>
 $(function() {
-  $('#nav ul li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
+  $('#topNav ul li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  var nav = $("#topNav");  
+ 		
+		// Clicking the settings li shows the list.	
+    	$("#topNav ul li:last-child").on('click', function(e) { 
+	 		if ($("nav ul ul").css('display') == 'none') {
+             $(this).find("ul").show();
+     			return false;
+			}
+         });  
+      
+    	// Clicking anywhere in browser window hides the list.
+     	window.onclick = hideSettings;
+		function hideSettings() {
+	  			$("#topNav ul ul").hide();	
+		}
 });
 </script>

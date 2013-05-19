@@ -11,11 +11,14 @@
 </div>
 
 <div id="profile_right">
-<div class="no_workouts_yet">
+<div class="no_workouts_yet" data-user_id="<%= @user.id %>">
 	<% if @user.workouts.count < 1 %>
 		<p> Start Your Training </p>
 		<p> <%= link_to 'Post A Workout', new_user_workout_path(@user.id) %>  </p>
 	<% end %>
+	<div id="graphContainer">
+	</div>
+	
 </div>
 <div id="profile_workout_container">
 	<% @user.workouts.each do |w| %>
@@ -28,6 +31,4 @@
 </div>
 
 </div>
-
-
 </div>

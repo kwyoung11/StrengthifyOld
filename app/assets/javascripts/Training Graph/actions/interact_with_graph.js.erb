@@ -1,0 +1,86 @@
+						
+/***************
+*
+* Interactivity functions go here.
+* TODO: Refactor duplicate code in derive_missing_dates to use these functions
+*
+**************/	
+
+// On bar mouseover, display tooltip.
+function barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id) {
+	var xy = $("#graph").offset();
+	d3.select(bar[0][i]).style("fill", "#00c0dc");
+	// Clear the timeout data-attribute.
+	clearTimeout($(".tooltip").attr("d"));
+	// Show, position and insert data into tooltip.
+	tooltip.style("display", "block");
+	tooltip.transition().duration(200).style("opacity", .9);      
+	tooltip.html(formatTime(new Date(d.date)) + "<br />")  
+	    .style("left", x(new Date(d.date)) + xy.left - 37 + "px")     
+	    .style("top", y(d.load_volume) - 60 + xy.top + "px");
+	$(".tooltip").append(toolTipContents(d, user_id));
+}
+
+// On bar mouseout, fade out tooltip.
+function barMouseOut(d, i, bar, tooltip) {
+	// Transition the fill and opacity back to original values.
+	d3.select(bar[0][i]).transition().duration(500).style("fill", "#00e0fe");
+	// Grab the tooltip and set a delay for its disappearance.
+	  var timeoutId = setTimeout(function() {
+	      tooltip.transition().duration(200).style("opacity", 0); 
+	  }, 350);
+	 // Set the timeoutId, allowing us to clear this trigger if the mouse comes back over
+	 tooltip.attr("d", timeoutId);
+}
+
+function toolTipMouseOver(tooltip) {
+	// Handle tooltip mouseover.
+		$(".tooltip").mouseenter(function() {
+		   clearTimeout($(".tooltip").attr("d"));
+		   tooltip.style("display", "block");
+		   tooltip.style("opacity", .9);
+		}).mouseleave(function() {
+			tooltip.transition().duration(200).style("opacity", 0);
+			setTimeout(function() { tooltip.style("display", "none") }, 200); 
+		});
+}
+
+function toolTipContents(d, user_id) {
+	var workout_ids = [];
+	workout_ids = d.workout_id;
+	var tooltip_contents = [];
+	for (i = 0; i < workout_ids.length; i++) {
+		tooltip_contents.push("LV: " + parseInt(+d.ind_load_volume[i]) + ' <span onclick="show_workout()" class="tooltip_show_workout" id="' + workout_ids[i] + '">Show</span><br/>');
+	}
+	return tooltip_contents;	
+}
+
+
+
+
+/*****
+* Grab workouts#show path on click
+*****/
+function show_workout() {
+  // When li item is clicked, get the id of the ul parent,
+  // remove the activeTab class from the previously active tab,
+  // and hide its contents.
+  var workout_id = $(".tooltip_show_workout").attr("id");
+  var user_id = $("#tabContainer").data("user");
+  var current = $(".tabs ul li").parent("ul").attr("data-current");
+  $("#tabHeader_" + current).removeClass("activeTab");
+  $("#tabpage_" + current).css("display", "none");
+  $("#tabHeader_2").attr("class","activeTab");
+  $("#tabpage_2").css("display", "block");
+  $(".tabs ul li").parent("ul").attr("data-current", 2);
+  // Show workout.
+  $(".workout_details").hide();
+  $("tr [data-workout_id=31]").addClass('active');
+  // Request workout.
+  $.get("/users/" + user_id + "/workouts/" + workout_id); 
+  // Highlight table row.
+  $(".row_for_workout").removeClass('active');
+  $('[data-workout_id="' + workout_id + '"]').addClass('active');
+}
+
+

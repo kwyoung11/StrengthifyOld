@@ -1,7 +1,6 @@
 class Admin::WorkoutsController < ApplicationController
   before_filter :admin?
   before_filter :authorize
-  layout 'admin'
   
   def index
     @workouts = Workout.all

@@ -1,7 +1,11 @@
 Cs50xFinalProject::Application.routes.draw do
+  require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
   
   # Root URL
+  root to: 'users#index', :constraints => LoggedInConstraint.new 
   root to: 'home#index'
+  
+  
   
   patch '/admin/exercises', to: 'admin/exercises#add_exercise_to_db'
   # Administration routes

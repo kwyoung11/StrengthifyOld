@@ -1,5 +1,6 @@
 // Manages tab functionality of training tabs on workouts#index page
 window.onload=function() {
+	if ($("#tabContainer").length == 1) { 
 	// Select the tab container and its first li element,
 	// get its id with split() and select the second element from resulting array.
 	// Add id to data-current attribute of parent ul and
@@ -31,5 +32,6 @@ window.onload=function() {
 	$("#tabpage_" + id).css("display", "block");
 	$(this).parent("ul").attr("data-current", id);
 	});
+}
 };
 		  

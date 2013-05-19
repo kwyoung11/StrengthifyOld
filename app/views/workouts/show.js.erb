@@ -2,6 +2,10 @@
 
 $(document).ready(function() {
 	var id = $(".tabs ul").attr("data-current")
-	$(".workout_details").hide();
+	$(".workout_details").remove(); 
 	$("#tabpage_" + id).append("<%= escape_javascript render("show") %>");
+	var wrkt = $(".workout_details");
+	wrkt.hide().show('highlight', 800);
+
+
 });

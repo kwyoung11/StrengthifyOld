@@ -1,6 +1,7 @@
-<h1>Training</h1>
+
 <!-- data-user attribute passes user_id to training_graph.js in assets/javascripts -->
 <div id="tabContainer" data-user="<%= @user.id %>">
+
     <div class="tabs">
       <ul>
         <li id="tabHeader_1">Analytics</li>
@@ -10,7 +11,7 @@
     </div>
 
     <div class="tabscontent">
-	
+				
       	<div class="tabpage" id="tabpage_1">
 					<%= render "analyze" %>
 				</div>			
