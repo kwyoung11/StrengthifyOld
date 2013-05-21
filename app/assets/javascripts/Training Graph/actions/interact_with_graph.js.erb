@@ -7,22 +7,34 @@
 **************/	
 
 // On bar mouseover, display tooltip.
-function barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id) {
+function barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id, time, metric) {
+	if (d.load_volume != 0) {
 	var xy = $("#graph").offset();
 	d3.select(bar[0][i]).style("fill", "#00c0dc");
 	// Clear the timeout data-attribute.
 	clearTimeout($(".tooltip").attr("d"));
 	// Show, position and insert data into tooltip.
 	tooltip.style("display", "block");
-	tooltip.transition().duration(200).style("opacity", .9);      
-	tooltip.html(formatTime(new Date(d.date)) + "<br />")  
-	    .style("left", x(new Date(d.date)) + xy.left - 37 + "px")     
-	    .style("top", y(d.load_volume) - 60 + xy.top + "px");
-	$(".tooltip").append(toolTipContents(d, user_id));
+	tooltip.transition().duration(200).style("opacity", .9);
+	if (time == "Weeks") {
+		tooltip.html(formatTime(new Date(d.date + 86400000)) + "-" + formatTime(new Date(d.date + (7 * 86400000))) + "<br />") 
+	} else {     
+		tooltip.html(formatTime(new Date(d.date + 86400000)) + "<br />")  
+	}
+	if (time == "Months") {
+	    tooltip.style("left", x(new Date(d.date)) + xy.left + 10 + "px")     
+	    tooltip.style("top", y(d.load_volume) - 60 + xy.top + "px");
+	} else {
+		tooltip.style("left", x(new Date(d.date)) + xy.left - 37 + "px")     
+	    tooltip.style("top", y(d.load_volume) - 60 + xy.top + "px");
+	}
+	$(".tooltip").append(toolTipContents(d, user_id, metric));
+	}
 }
 
 // On bar mouseout, fade out tooltip.
 function barMouseOut(d, i, bar, tooltip) {
+	if (d.load_volume != 0) {
 	// Transition the fill and opacity back to original values.
 	d3.select(bar[0][i]).transition().duration(500).style("fill", "#00e0fe");
 	// Grab the tooltip and set a delay for its disappearance.
@@ -31,6 +43,7 @@ function barMouseOut(d, i, bar, tooltip) {
 	  }, 350);
 	 // Set the timeoutId, allowing us to clear this trigger if the mouse comes back over
 	 tooltip.attr("d", timeoutId);
+	}
 }
 
 function toolTipMouseOver(tooltip) {
@@ -45,17 +58,25 @@ function toolTipMouseOver(tooltip) {
 		});
 }
 
-function toolTipContents(d, user_id) {
+function toolTipContents(d, user_id, metric) {
 	var workout_ids = [];
 	workout_ids = d.workout_id;
 	var tooltip_contents = [];
 	for (i = 0; i < workout_ids.length; i++) {
-		tooltip_contents.push("LV: " + parseInt(+d.ind_load_volume[i]) + ' <span onclick="show_workout()" class="tooltip_show_workout" id="' + workout_ids[i] + '">Show</span><br/>');
+		if (parseInt(+d.ind_load_volume[i]) > 0) {
+		tooltip_contents.push("LV: " + parseNumber(d.ind_load_volume, i, metric) + ' <span onclick="show_workout()" class="tooltip_show_workout" id="' + workout_ids[i] + '">Show</span><br/>');
+		}
 	}
 	return tooltip_contents;	
 }
 
-
+function parseNumber(num, i, metric) {
+  if (metric == "Time") {
+  	return (num[i]/3600).toFixed(1) + "h" 
+  } else {
+    return num[i]
+  }
+}
 
 
 /*****

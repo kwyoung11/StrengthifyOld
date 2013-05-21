@@ -26,6 +26,7 @@
 	background: #ddd url("/assets/static.png");
 	width: 100%;
 	color: black;
+	z-index: 100;
 }
 
 #header_content {
