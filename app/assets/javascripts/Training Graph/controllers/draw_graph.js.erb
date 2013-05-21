@@ -5,6 +5,7 @@ function draw() {
 		data = response;
 	
 		var time = $("ul#time_scale li.current").text();
+		var metric = $("#metric_select option:selected").attr("value");
 		
 	    // Define graph area and margin areas.
 	    var margin = {top: 20, right: 40, bottom: 40, left: 00},
@@ -14,14 +15,13 @@ function draw() {
 			padding = 0;
 			
 		// Set the X and Y scales.		
-		var x = d3.time.scale().domain([d3.time.day.offset(new Date(), -22), d3.time.day.offset(new Date(), 1)])
+		var x = d3.time.scale().domain([d3.time.day.offset(new Date(), -22), d3.time.day.offset(new Date(), 0)])
 			.rangeRound([0, w - margin.left - margin.right]);
 	    var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.load_volume; })])
 	        .range([h - margin.top - margin.bottom, 0]);
 	
 		// Process Data.
-		deriveMissingDates(data); // Interpolate missing dates.
-		fillDomainBounds(data, time); // Fill to bounds.
+		convertToMilliseconds(data); // Interpolate missing dates.
 		
 		// Set the xAxis
 		var xAxis = d3.svg.axis()
@@ -51,12 +51,12 @@ function draw() {
 	    var bar = svg.selectAll("rect")
 	        .data(data).enter().append("rect")
 	        .attr("x", function(d) { return x(d.date); })
-	        .attr("y", function(d) { return d.stub == true ? (h - margin.bottom - margin.top - margin.bottom + 30) : y(d.load_volume) })
-	        .attr("height", function(d) { return d.stub == true ? 10 : h - margin.top - margin.bottom - y(d.load_volume) })
+	        .attr("y", function(d) { return d.load_volume == 0 ? (h - margin.bottom - margin.top - margin.bottom + 30) : y(d.load_volume) })
+	        .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
 	        .attr("width", barWidth)
 			.attr("class", "bar")
-	        .style("fill", function(d) { return d.stub == true ? "#888" : "#00e0fe"})
-			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id) })
+	        .style("fill", function(d) { return d.load_volume == 0 ? "#888" : "#00e0fe"})
+			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id, time, metric) })
 			.on("mouseout", function (d, i) { return barMouseOut(d, i, bar, tooltip) });
 			
 			toolTipMouseOver(tooltip);
@@ -67,7 +67,7 @@ function draw() {
 			.attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
 	        .attr("y", function(d) { return y(d.load_volume) > (0.125 * (d3.max(data, function(d) { return d.load_volume; }))) ? y(d.load_volume) + 20 : y(d.load_volume) + 20; })
 			.attr("text-anchor", "middle")
-	        .text(function(d) { return d.stub == true ? null : format(d.load_volume) });
+	        .text(function(d) { return d.load_volume == 0 ? null : format(d.load_volume) });
 
 		// Draw the xAxis
 		svg.append('g').attr('class', 'x axis')

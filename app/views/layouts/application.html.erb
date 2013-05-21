@@ -3,6 +3,7 @@
 <head>
   <title>Thews</title>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -82,4 +83,9 @@ $(document).ready(function(){
 	  			$("#topNav ul ul").hide();	
 		}
 });
+</script>
+
+<script>
+var timezone = jstz.determine();
+document.cookie = 'time_zone='+timezone.name()+';';
 </script>
