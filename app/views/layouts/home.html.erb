@@ -20,17 +20,19 @@
 <body>
 	<div id="header">
 		<div id="header_content">
-			<%= render '/layouts/logo' %>
-		<p><%= link_to 'Strengthify', root_url %></p>
-			<nav id="topNav">
+			<ul id="logo_list" class="left_align">
+				<li id="koch_sf"><%= render 'layouts/logo' %></li>
+				<li id="name_logo"><%= link_to 'Strengthify', root_url %></li>
+			</ul>
+			<nav id="topNav" class="right_align">
 				<% if current_user %>
 				<ul>
 					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
-					<li><%= link_to 'Profile', user_path(current_user.id) %></li>
+					<li><%= link_to 'Profile', user_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li> <%= link_to 'Home', root_url %></li>
 					<li class="settings"> Settings
 						<ul>
-							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id) %></li>
+							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id), 'data-no-turbolink' => true %></li>
 							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
 							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
 						</ul>
@@ -44,8 +46,10 @@
 				</ul>
 				<% end %>
 			</nav>
+			<div style="clear: both;"></div>
 		</div>
 	</div>
+	
 	
 <div id="application_wrapper">	
 	
