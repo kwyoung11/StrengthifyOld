@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     @url  = "http://secret-ridge-1485.herokuapp.com/login"
-    mail :to => user.email, :subject => "Welcome to Thews.io"
+    mail :to => user.email, :subject => "I'm here to help you get the most out of Strengthify"
   end
   
   def password_reset(user)
