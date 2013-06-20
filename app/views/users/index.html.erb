@@ -1,8 +1,6 @@
-<h1>Activity Feed</h1>
 <% if notice %>
 	<p id="notice"><%= notice %></p> 
 <% end %>
 
-<br />
+<%= render '/activities/index' %>
 
-<%= link_to 'New User', new_user_path %>

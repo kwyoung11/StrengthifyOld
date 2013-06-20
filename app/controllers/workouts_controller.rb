@@ -40,6 +40,7 @@ class WorkoutsController < ApplicationController
     
     respond_to do |format|
       if @workout.save && @exercise.save
+        track_activity @workout
         
         format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
         format.json { render action: 'show', status: :created, location: @workout }

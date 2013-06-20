@@ -5,8 +5,9 @@
 *******************************************/
 
 
-#lifter {
+svg#lifter {
 	border: 0px solid red;
+	margin: -5px 0px 0px 0px;
 }
 
 #lifter:hover {
