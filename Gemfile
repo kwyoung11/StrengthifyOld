@@ -40,8 +40,6 @@ gem 'debugger'
 gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
-gem 'omniauth-fitbit'
-gem 'fitgem', :git => 'https://github.com/whazzmaster/fitgem.git'
 
 gem 'carrierwave'
 gem 'rmagick'
