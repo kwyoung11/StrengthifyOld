@@ -35,10 +35,17 @@ group :test do
   gem 'launchy'
 end
 
+gem 'htmlentities'
+gem 'debugger'
+gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'omniauth-fitbit'
 gem 'fitgem', :git => 'https://github.com/whazzmaster/fitgem.git'
+
+gem 'carrierwave'
+gem 'rmagick'
+gem 'mail_form'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

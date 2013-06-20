@@ -1,0 +1,2 @@
+module InviteFriendFormHelper
+end

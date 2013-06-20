@@ -1,0 +1,143 @@
+#photo img {
+	border: 3px solid white;
+	box-shadow: #444 0 0 10px;
+	overflow: visible;
+}
+
+.user_photo {
+	border: 0px solid red;
+	float: left;
+	padding-right: 5px;
+	max-height: 40px;
+	-webkit-transform: translateZ(0); /* webkit flicker fix */
+	-webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+
+.user_photo .user_tooltip {
+	background: #444;
+	padding: 2px 5px 2px 5px;
+	bottom: 100%;
+	color: #fff;
+	display: inline-block;
+	margin-bottom: 15px;
+	z-index: 300;
+	opacity: 0;
+	white-space: nowrap;
+	pointer-events: none;
+	position: absolute;
+	-webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+	   -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+	    -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+	     -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+	        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+.tooltip_triangle {
+	border-left: solid transparent 10px;
+	border-right: solid transparent 10px;
+	border-top: solid #444 10px;
+	bottom: -10px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	width: 0;
+}
+
+.user_photo:hover .user_tooltip {
+	opacity: 1;
+  	pointer-events: auto;
+  	-webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+/*****************************************
+*
+* PROFILE PAGES
+*
+******************************************/
+
+#profile_container {
+	border: 3px solid blue;
+	overflow: hidden;
+}
+
+#profile_top {
+	border: 3px solid black;
+	margin: 0px auto;
+	overflow: hidden;
+	width: 900px;
+}
+
+#info {
+	border: 1px solid red;
+	margin: 50px 0px 0px 0px;
+	width: auto;
+	float: left;
+}
+
+#profile_workout_container {
+	border: 1px solid #444;
+	width: 600px;
+	clear: both;
+	min-height: 600px;
+	padding-top: 20px;
+	margin: 20px auto;
+}
+
+#profile_workout_list {
+	list-style: none;
+	border-bottom: 1px solid #777;
+	text-align: left;
+}
+
+#profile_workout_list ul {
+	float: left;
+}
+
+#profile_workout_list li:last-child {
+	float: right;
+	margin: -20px 0px 0px 0px;
+}
+
+.workouts_graph {
+	position: relative;
+	border: 0px solid red;
+	padding: 50px;
+	border-radius: 30px/10px;
+	width: 500px;
+	float: right;
+	margin: 40px 10px 0px 0px;
+	box-shadow: 0 0 20px #444;
+	background: #fffefc;
+}
+
+.workouts_graph p {
+	font-size: 36px;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;;
+}
+
+.workouts_graph a {
+	width: 100px;
+	border: 0px solid red;
+	background: #08D;
+	font-style: bolder;
+	font-size: 18px;
+	padding: 10px;
+	text-decoration: none;
+	color: #ddd;
+	border-radius: 5px;
+	box-shadow: #444 5px 5px 5px;
+}
+
+.workouts_graph a:hover {
+		background: #0AF;
+		color: #fff;
+		margin-left: 2px;
+		margin-top: 2px;
+		box-shadow: #444 3px 3px 3px;
+}
+

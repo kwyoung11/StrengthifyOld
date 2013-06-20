@@ -4,17 +4,51 @@
 *
 *******************************************/
 
-#snowflake {
+
+#lifter {
 	border: 0px solid red;
 }
 
-#snowflake:hover {
+#lifter:hover {
 	cursor: pointer;
 }
 
-#snowflake path {
+#lifter path {
 	stroke: black;
 	stroke-width: 1;
+}
+
+#name_logo {
+	margin: 3px 0px 0px 0px;
+	text-decoration: none;
+	font-size: 26px;
+	font-family: baskerville;
+	font-weight: bolder;
+	text-shadow: 0px 0px #d55;
+	background: #ddd url("/assets/static.png");
+}
+
+#name_logo a {
+	color: #343434;
+}
+
+#name_logo a span {
+	color: #777;
+}
+
+#name_logo a i {
+	-webkit-transform: scale(0.7);
+	margin: 11px 0px 0px 5px;
+}
+
+#lift_logo svg {
+	margin: -5px 0px 0px 0px;
+	-webkit-transform: scale(0.6);
+}
+
+#lift_logo svg line {
+	fill: blue;
+	stroke: black;
 }
 
 #logo_list {
@@ -26,34 +60,11 @@
 }
 
 #logo_list li {
-	height: 50px;
-	display: inline-block;
+	height: auto;
 	display: inline;
-	padding: 5px;
 	float: left;
-	border: 0px solid black;
 }
 
 #logo_list li a {
 	text-decoration: none;
-}
-
-#name_logo {
-	margin: 0px 0px 0px 0px;
-	text-decoration: none;
-	font-size: 36px;
-	font-family: Arial Black;
-	line-height: 43px;
-	color: #333;
-	text-shadow: 0px 0px #d55;
-	background: #ddd url("/assets/static.png");
-}
-
-#koch_sf svg {
-	margin: 0px 0px 0px 0px;
-}
-
-#koch_sf svg line {
-	fill: blue;
-	stroke: black;
 }

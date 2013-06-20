@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
-   attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider
-
-
+  mount_uploader :photo, PhotoUploader
+  
+   has_many :friendships
+   has_many :friends, :through => :friendships
+   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+   
+   attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider, :photo
 
    # Database Relations 
    has_many :workouts, :dependent => :destroy
@@ -17,6 +22,17 @@ class User < ActiveRecord::Base
    # Creates identificiation cookie for new users
    before_create { generate_token(:auth_token) }
   
+
+  # Search users table in users#find action (for finding friends)
+  def self.search(search)
+    if search
+      search = search.capitalize
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   #### 
   # Sends email to user if valid email was provided in password_resets#create. 
   # Provides link with unique code that allows the user to update password,

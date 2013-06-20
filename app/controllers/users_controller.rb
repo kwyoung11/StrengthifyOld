@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   def index
     @users = User.order(:name)
   end
+  
+  def find
+    @users = User.search(params[:search]).order(:name).paginate(:per_page => 10, :page => params[:page])
+  end
 
   # GET /users/1
   # GET /users/1.json
@@ -72,6 +76,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo)
     end
 end

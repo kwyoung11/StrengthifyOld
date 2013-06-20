@@ -1,25 +1,38 @@
 <p id="notice"><%= notice %></p>
 <div id="profile_container">
-<% if current_user %>
-<% if current_user.linked_to_fitbit? %>
-	<%= current_user.fitbit_data.user_info['user']['fullName'] %>
-<% end %>
-<% end %>
-
-<div id="profile_left">
+<div id="profile_top">
 	<h2> <%= @user.name %> </h2>
+	<div id="info">
+		<div id="photo"> <%= image_tag @user.photo_url(:default).to_s %> </div>
+			<i class="icon-arrow-down"></i>
+			<i class="icon-user"></i>
+			<i class="icon-arrow-up"></i>
+			
+		<ul id="friends_list">
+			<% @user.friendships.each do |friendship| %>
+				<%= show_friend_photo_and_tooltip(friendship) %> 
+			<% end %>
+		</ul>
+	
+		<ul id="friend_finder">
+			<%= show_friend_finder_nav %>
+		</ul>
+	
+		<h2> Friend Requests </h2>
+		<ul id="friend_requests">
+			<% @user.friendships.each do |friendship| %>
+				<%= show_friendship_status(friendship) %> 
+			<% end %>
+		</ul>
+	</div>
+
+	<div class="workouts_graph" data-user_id="<%= @user.id %>">
+		<%= start_training(@user) %>
+		<div id="graphContainer"></div>
+	</div>
+
 </div>
 
-<div id="profile_right">
-<div class="no_workouts_yet" data-user_id="<%= @user.id %>">
-	<% if @user.workouts.count < 1 %>
-		<p> Start Your Training </p>
-		<p> <%= link_to 'Post A Workout', new_user_workout_path(@user.id) %>  </p>
-	<% end %>
-	<div id="graphContainer">
-	</div>
-	
-</div>
 <div id="profile_workout_container">
 	<% @user.workouts.each do |w| %>
 	<ul id="profile_workout_list">
@@ -29,6 +42,26 @@
 	</ul>
 	<% end %>
 </div>
+</div>
 
-</div>
-</div>
+
+
+
+<script>
+$(document).ready(function() {
+$(".user_photo").mouseover(function() {
+	$(this).find(".tooltip_triangle").css("opacity", "1");
+	var tooltip_width = $(this).find(".user_tooltip").width();
+	var photo_width = $(this).width();
+	$(".user_tooltip .tooltip_triangle").css("margin-left", "" + (tooltip_width/2 - 10) + "px");
+	$(".user_tooltip").css("margin-left", "-" + (photo_width/2 + tooltip_width/2) + "px");
+});
+
+$(".user_photo").mouseout(function(){
+	$(this).find(".tooltip_triangle").css("opacity", "0");
+});
+
+});
+
+</script>
+

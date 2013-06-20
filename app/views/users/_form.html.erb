@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => {:multipart => true}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -14,16 +14,24 @@
   <div class="field">
     <%= f.text_field :name, :size => "25", :placeholder => " name" %>
   </div>
- <div class="field">
+ 	
+	<div class="field">
     <%= f.text_field :email, :size => "25", :placeholder => " email" %>
   </div>
- 	<div class="field">
+	
+	<div class="field">
+	  <%= f.file_field :photo, :size => "25", :placeholder => " email" %>
+	</div>
+ 	
+	<div class="field">
     <%= f.password_field :password, :size => "25", :placeholder => " password"%>
   </div>
+	
 	<div class="field">
     <%= f.password_field :password_confirmation, :size => "25", :placeholder => " confirm password" %>
   </div>
-  <div class="actions">
+  
+	<div class="actions">
     <%= f.submit 'Register' %>
   </div>
 

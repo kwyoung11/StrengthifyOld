@@ -5,7 +5,12 @@ Cs50xFinalProject::Application.routes.draw do
   root to: 'users#index', :constraints => LoggedInConstraint.new 
   root to: 'home#index'
   
+  resources :friendships do 
+    get 'accept', on: :member
+    get 'reject', on: :member    
+  end
   
+  resources :invite_friends
   
   patch '/admin/exercises', to: 'admin/exercises#add_exercise_to_db'
   # Administration routes
@@ -21,9 +26,11 @@ Cs50xFinalProject::Application.routes.draw do
     get 'admin' => :index
   end
   
-  # Users, workouts (nested resource), analytics as a member
+  # Users, adds find route as part of user collection, 
+  # workouts (nested resource), analyze action as a member
   # route of workouts
   resources :users do 
+    get 'find', :on => :collection
     resources :workouts do 
         get 'analyze', :on => :collection
     end

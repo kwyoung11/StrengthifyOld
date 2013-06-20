@@ -1,0 +1,178 @@
+#friend_finder {
+	margin: 0px 10px 0px -15px;
+	border: 0px solid red;
+	
+}
+
+#find_friends_link {
+	border: 1px solid #444;
+	text-decoration: none;
+	color: white;
+	background-color: #555;
+	padding: 2px 20px 2px 5px;
+	box-shadow: #444 0 0 8px;
+}
+
+#find_friends_link:after {
+	border: 7px solid;
+	border-color: #fff transparent transparent transparent;
+	margin: -10px 0px 0px 83px;
+	content: "";
+	position: absolute;
+	display: block;
+	z-index: 50;
+}
+
+#find_friends_link:hover {
+	box-shadow: blue 0 0 8px;
+}
+
+#friend_finder_actions {
+	position: absolute;
+	float: right;
+	font-size: 11px;
+	text-decoration: none;
+	padding: 0;
+}
+
+#friend_finder_actions li {
+	border: 1px solid #ddd;
+	width: 96px;
+}
+
+#friend_finder_actions li:hover {
+	background-color: #555;
+}
+
+#friend_finder_actions li a {
+	text-decoration: none;
+}
+
+#invite_friend_container {
+	border: 0px solid black;
+	background-color: #fffdfd;
+	padding: 40px;
+	box-shadow: 0px 0px 10px #888;
+	width: 350px;
+	margin: 5px auto 5px;
+}
+
+#new_invite_friend .field {
+	margin: 0;
+}
+
+#new_invite_friend label {
+	width: 110px;
+	vertical-align: middle;
+	border: 0px solid red;
+	text-align: right;
+	float: left;
+	padding: 10px;
+	font-weight: bold;
+	font-family: rockwell;
+}
+
+#new_invite_friend input {
+	padding: 10px;
+	line-height: inherit;
+}
+
+#new_invite_friend {
+	border: 0px solid red;
+}
+
+#invite_friend_email {
+	width: 150px;
+}
+
+#invite_friend_subject {
+	height: 32px;
+}
+
+#invite_friend_message {
+	height: 80px;
+}
+
+textarea {
+	width: 152px;
+	padding-left: 10px;
+	padding-right: 10px;
+	resize: none;
+ 
+}
+
+#submit_link {
+	text-decoration: none;
+	color: #eee;
+	float: right;
+	padding: 5px;
+	background-color: #444;
+	width: 80px;
+}
+
+#submit_link:hover {
+	background-color: #555;
+}
+
+
+/* Placeholder styling */
+#new_invite_friend ::-webkit-input-placeholder {
+   font-family: rockwell;
+   font-size: 12px;
+   vertical-align: middle;
+   padding-top: 5px;
+   line-height: 15px;
+}
+
+#new_invite_friend :-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+#new_invite_friend ::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+#new_invite_friend :-ms-input-placeholder {  
+   color: red;  
+}
+
+
+/* These styles are for the textarea input */
+#invite_friend_message::-webkit-input-placeholder {
+   font-family: rockwell;
+   font-size: 12px;
+   vertical-align: middle;
+}
+
+#invite_friend_message:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+#invite_friend_message::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+#invite_friend_message:-ms-input-placeholder {  
+   color: red;  
+}
+
+
+/* Custom error handling */
+#invite_friend_error {
+  width: 177px;
+  border: 1px solid red;
+  background-color: #f0f0f0;
+  float: right;
+
+}
+
+#invite_friend_error ul {
+  list-style: none;
+  padding: 0;
+}
+
+#invite_friend_error li {
+  font-size: 11px;
+}
+
+

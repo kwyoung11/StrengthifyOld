@@ -1,0 +1,72 @@
+<div id="invite_friend_container">
+<%= form_for [@invite_friend] do |f| %>
+<% if @invite_friend.errors.any? %>
+   <div id="invite_friend_error">
+     <ul>
+     <% @invite_friend.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+ <% end %>
+	
+	<div class="field">
+		<%= f.label "Friend's Email" %>
+  	<%= f.text_field :email, :placeholder => " What's your friends email?" %>
+	</div>
+	
+	<div class="field">
+		<%= f.label "Subject" %>
+  	<%= f.text_area :subject, :placeholder => " Subject", :value => "#{current_user.name} has invited you to Strengthify" %>
+	</div>
+	
+	<div class="field">
+		<%= f.label "Message" %>
+  	<%= f.text_area :message, :placeholder => " Tell your friend about us", :value => "#{current_user.name} wants you to join Strengthify." %>
+	</div>
+	
+	<div class="field" id="submit">
+		<%= link_to_submit 'Send' %>
+	</div>
+	
+<% end %>
+
+<script>
+$('textarea').each(function() {
+    // Stores the default value for each textarea within each textarea
+    $.data(this, 'default', this.value);
+}).focus(function() {
+    // If the user has NOT edited the text clear it when they gain focus
+    if (!$.data(this, 'edited')) {
+        this.value = "";
+    }
+}).change(function() {
+    // Fires on blur if the content has been changed by the user
+    $.data(this, 'edited', this.value != "");
+}).blur(function() {
+    // Put the default text back in the textarea if its not been edited
+    if (!$.data(this, 'edited')) {
+        this.value = $.data(this, 'default');
+    }
+});
+</script>
+
+<script>
+$('input').each(function() {
+    // Stores the default value for each textarea within each textarea
+    $.data(this, 'default', this.value);
+}).focus(function() {
+    // If the user has NOT edited the text clear it when they gain focus
+    if (!$.data(this, 'edited')) {
+        this.value = "";
+    }
+}).change(function() {
+    // Fires on blur if the content has been changed by the user
+    $.data(this, 'edited', this.value != "");
+}).blur(function() {
+    // Put the default text back in the textarea if its not been edited
+    if (!$.data(this, 'edited')) {
+        this.value = $.data(this, 'default');
+    }
+});
+</script>

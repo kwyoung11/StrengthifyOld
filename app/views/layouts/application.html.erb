@@ -22,18 +22,19 @@
 	<div id="header">
 		<div id="header_content">
 			<ul id="logo_list" class="left_align">
-				<li id="koch_sf"><%= render '/layouts/logo' %></li>
-				<li id="name_logo"><%= link_to 'Strengthify', root_url %></li>
+				<li id="lift_logo"><%= render '/layouts/logo' %></li>
+				<li id="name_logo"><%= link_to name_and_notifications, root_url %></li>
 			</ul>
 			<nav id="topNav" class="right_align">
 				<% if current_user %>
-				<ul>
+				<ul id="main_nav">
+					<li><%= link_to "#{current_user.name}", user_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
-					<li><%= link_to 'Profile', user_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li> <%= link_to 'Home', root_url %></li>
 					<li class="settings"> Settings
 						<ul>
 							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id), 'data-no-turbolink' => true %></li>
+							<li> <%= link_to 'Edit Profile', edit_user_path(current_user.id) %>
 							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
 							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
 						</ul>
