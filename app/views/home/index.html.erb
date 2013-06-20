@@ -1,42 +1,25 @@
 <% if notice %>
 	<p id="notice"><%= notice %></p> 
 <% end %>
-<div id="first_section">
-<div id="screencast">
-	<p> <strong>This was a final project for <%= link_to 'CS50X', "https://www.edx.org/courses/HarvardX/CS50x/2012/info", :target => :blank %>. See what it's all about:</strong> </p>
-	<iframe width="600" height="380" src="http://www.youtube.com/embed/foFt9vVOZW8" frameborder="0" allowfullscreen></iframe>
-</div>
-<!-- Login area on front page -->
-<div id="front_page">
+
+<div id="top_section">
+	<div id="value_statement">
+		<h1> The easiest way to plan and log strength workouts. </h1>
+		<h4> Plan workouts with over 200 exercises, then log them and get feedback on your progress. </h4>
+	</div>
+
 	<div id="login_area">
 		<%= render 'sessions/new' %>
-		<h2> OR  </h2>
-		<%= link_to "/auth/fitbit" do %>
-		<div id="fitbit_button">
-			<ul id="fitbit_signup">
-				<li id="fitbit_text">Sign in with Fitbit </li>
-				<li> <%= image_tag('fitbit-32-blk-onwhite.jpg') %> </li>
-			</ul>
-		</div>
-		<% end %>
 	</div>
-</div>
 </div>
 <div style="clear: both;"></div>
 
-<% (1...3).each do |i| %>
-<div class="<%= cycle('landing_odd', 'landing_even') %>">
-	<div class="section_wrapper">
-	<% if i == 1 %> 
-		<p class="info"> Strengthify is a social platform to track physical activity and measure progress towards your fitness goals. </p>
-		<p class="display_graph"> <%= image_tag("GraphSS_final.jpg") %> </p>
-		<p class="info"> Join the Strengthify community and have fun improving your fitness! </p> 
-	<% end %>
-	<% if i == 2 %> 
-		<div id="first_value_statement"> Strength Training Doesn't Have To Be A Hassle. </div>
-		<p id="second_value_statement"> Experience the best way to record workouts. <%= link_to 'Get Started', signup_path  %> </p>
-	<% end %>
+
+<div id="first_value_statement"> 
+	Strength Training Doesn't Have To Be A Hassle. 
 </div>
-</div>
-<% end %>
+<p id="second_value_statement"> 
+	Experience the best way to record workouts. <%= link_to 'Get Started', signup_path  %> 
+</p>
+
 
