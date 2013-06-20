@@ -35,5 +35,9 @@ class ApplicationController < ActionController::Base
   def set_timezone
     Time.zone = cookies["time_zone"]
   end
+
+  def track_activity(trackable, action = params[:action])
+    current_user.activities.create! action: action, trackable: trackable
+  end
   
 end

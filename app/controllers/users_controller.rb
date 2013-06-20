@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.order(:name)
+    @activities = Activity.order("created_at desc")
+
   end
   
   def find
