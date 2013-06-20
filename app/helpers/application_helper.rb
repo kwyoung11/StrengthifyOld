@@ -15,4 +15,13 @@ module ApplicationHelper
      end
      link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
    end
+   
+   def link_to_submit(text)
+     link_to_function text, "$(this).closest('form').submit()", id: "submit_link"
+   end
+
+   def name_and_notifications
+    "Strength#{content_tag(:span, "ify")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe
+   end
+   
 end

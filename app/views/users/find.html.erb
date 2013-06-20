@@ -1,0 +1,35 @@
+<%= form_tag find_users_path, method: :get do %>
+	<%= label_tag "Search:" %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<div id="community">
+	<ul id="user_list">
+		<% @users.each do |u| %>
+		<% if current_user != u %>
+			<li class="user" data-user_name="<%= u.name %>"> 
+				<ul id="list_user">
+
+					<li> <%= image_tag u.photo_url(:mini_thumb).to_s, id: "user_image" %> </li>
+					<li><%= link_to "#{u.name}", u %></li>
+					<li id="friend_status"> <%= determine_status(u) %> </li>
+					
+				</ul>
+			</li>	
+			<% end %>
+			<% end %>
+	</ul>
+	<%= will_paginate @users %>
+	
+	
+<script>
+$("#add_friend").on('click', function() {
+	var user_name = $("#user_list li").data("user_name");
+	if (confirm("Please confirm that you would like to send a friend request to " + user_name + ".")) {
+		return true
+	} else {
+		return false
+	}
+});
+</script>

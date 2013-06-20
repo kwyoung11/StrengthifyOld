@@ -1,0 +1,135 @@
+#community {
+	border: 0px solid red;
+	width: 450px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#user_list {
+	list-style-type: none;
+	font-family: candara;
+	width: auto;
+}
+
+#user_list > li {
+	border-top: 1px solid #444;
+	border-left: 1px solid #444;
+	border-right: 1px solid #444;
+	width: auto;
+	height: 70px;
+	margin: 0px;
+	padding: 10px;
+	display: block;
+}
+
+#user_list > li:last-child {
+	border-bottom: 1px solid #444;
+}
+
+#list_user {
+	padding: 0;
+	list-style: none;
+	margin: 0;
+	white-space: nowrap;
+}
+
+#list_user li {
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+	border: 0px solid blue;
+}
+
+#user_image {
+	float: left;
+}
+
+#user_list li:hover {
+	background-color: #eee;
+}
+
+#user_list li#friend_status a {
+	color: red;
+	float: right;
+}
+
+#friends_list {
+	border: 1px solid black;
+	margin: 10px auto;
+	padding: 5px;
+	min-height: 100px;
+	list-style-type: none;
+	text-align: center;
+	display: table;
+}
+
+#friend_requests {
+	border: 0px solid red;
+	padding: 5px;
+	margin: 10px;
+	list-style-type: none;
+	text-align: center;
+}
+
+#friend_requests li {
+	border: 0px solid red;
+	padding: 5px;
+}
+
+#friend_requests li a {
+	
+}
+
+#list_user li#friend_status {
+	color: red;
+	float: right;
+	border: 0px solid blue;
+}
+
+#friend_finder {
+	list-style-type: none;
+	float: right;
+	margin: 5px 0px 0px 0px;
+}
+
+#friend_finder:after {
+	clear: both;
+}
+
+#profile_left h2 {
+	clear: both;
+	padding-top: 15px;
+}
+
+#friend_finder li {
+	display: block;
+}
+
+#friend_finder_actions li {
+	display: none;
+	border: 1px solid black;
+	padding: 5px;
+	z-index: 50;
+	color: #eee;
+	background: #444;
+}
+
+#find_friends_link {
+	margin: 5px 0px 0px 0px;
+	color: red;
+	text-decoration: underline;
+}
+
+#find_friends_link:hover {
+	cursor: pointer;
+}
+
+#invite_friends_link {
+	margin: 5px 0px 0px 0px;
+	color: red;
+}
+
+#search_community_link {
+	margin: 5px 0px 0px 0px;
+	color: red;
+}
