@@ -439,9 +439,6 @@ Profile page
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
-.glyphw {
-    background-image: url("/glyphicons-halflings.png");
-}
 
 .clearfix {
   *zoom: 1;
@@ -478,7 +475,7 @@ Profile page
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("/assets/glyphicons-halflings.png");
+  background: url(/assets/glyphicons-halflings-4e5b89324f1ac987ddf6835ef51f5fe9.png);
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px;
