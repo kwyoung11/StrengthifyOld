@@ -61,26 +61,26 @@
 ******************************************/
 
 #profile_container {
-	border: 3px solid blue;
+	border: 0px solid blue;
 	overflow: hidden;
 }
 
 #profile_top {
-	border: 3px solid black;
+	border: 0px solid black;
 	margin: 0px auto;
 	overflow: hidden;
 	width: 900px;
 }
 
 #info {
-	border: 1px solid red;
+	border: 0px solid red;
 	margin: 50px 0px 0px 0px;
 	width: auto;
 	float: left;
 }
 
 #profile_workout_container {
-	border: 1px solid #444;
+	border: 0px solid #444;
 	width: 600px;
 	clear: both;
 	min-height: 600px;
