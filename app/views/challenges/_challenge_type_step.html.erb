@@ -1,0 +1,26 @@
+<h3> Step 1: Choose your type of challenge </h3>
+<table id="challenge_types_table">
+	<tr>
+
+		<td id="challenge_type_1_cell">
+			<%= f.label :of_type, "<p id='rep_and_time_based_challenge'> 
+  		I challenge myself to do <span> X </span> reps of <span> X </span> exercise in <span> X </span> time (time is optional) <br />
+  		<b> Example: </b> I challenge myself to do 100 pushups in 2 minutes 
+			</p>".html_safe %>
+			<%= f.radio_button :of_type, "reps" %> 
+		</td>
+
+		<td id="challenge_proposition_cell"> 
+			<p id="or"> <b> OR </b> </p>
+		</td>
+
+		<td id="challenge_type_2_cell"> 
+			<%= f.label :of_type, "<p id='time_based_challenge'> 
+  		I challenge myself to do the <span> X </span> exercise for <span> hh:mm:ss </span> time <br />
+  		<b> Example: </b> I challenge myself to do the plank for 4 minutes
+			</p>".html_safe %>
+			<%= f.radio_button :of_type, "time" %>
+		</td>
+
+	</tr>
+</table>

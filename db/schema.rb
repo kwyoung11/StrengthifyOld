@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130620215159) do
+ActiveRecord::Schema.define(version: 20130622221233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(version: 20130620215159) do
   add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
   add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
+  create_table "baselines", force: true do |t|
+    t.integer  "challenge_id"
+    t.integer  "reps"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "challenges", force: true do |t|
+    t.integer  "reps"
+    t.string   "exercise"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "duration"
+    t.boolean  "completed"
+    t.string   "of_type"
+  end
+
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.integer  "weight"
@@ -39,6 +58,8 @@ ActiveRecord::Schema.define(version: 20130620215159) do
     t.text     "preparation"
     t.text     "execution"
     t.string   "body_part"
+    t.integer  "exerciseable_id"
+    t.string   "exerciseable_type"
   end
 
   add_index "exercises", ["workout_id"], name: "index_exercises_on_workout_id"

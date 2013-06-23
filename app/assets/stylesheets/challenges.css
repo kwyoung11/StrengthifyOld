@@ -1,0 +1,105 @@
+/*****************
+Challenges Wizard Form
+
+1. challenge_type_step
+2. exercises_step
+
+
+******************/
+
+/*************
+challenges#challenge_type_step
+**************/
+
+#challenge_types_table {
+	margin: 0 auto;
+	border: 0px solid black;
+}
+
+#challenge_types_table td {
+	font-family: baskerville;
+	font-size: 16px;
+	border: 0px solid red;
+}
+
+#challenge_types_table td:first-child {
+	width: 300px;
+}
+
+#challenge_types_table td:nth-child(2) {
+	width: 150px;
+}
+
+#challenge_types_table td:last-child {
+	width: 300px;
+}
+
+#time_based_challenge span {
+	color: #ccc;
+	font-weight: bolder;
+}
+
+#rep_and_time_based_challenge span {
+	color: #ccc;
+	font-weight: bolder;
+}
+
+#challenge_type_1_cell {
+	border: 0px solid red;
+		font-family: baskerville;
+	font-size: 16px;
+}
+
+#challenge_type_1_cell:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+#challenge_proposition_cell {
+	border: none;
+	padding: 10px;
+	margin: 10px;
+}
+
+#challenge_proposition_cell p {
+	color: #de2445;
+	font-size: 22px;
+}
+
+#challenge_type_2_cell {
+	border: 0px solid red;
+	padding-left: 20px;
+}
+
+#challenge_type_2_cell:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.step_buttons {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #BFFFB5), color-stop(1, #1AAD03));	cursor: pointer;
+	border: 1px solid #444;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.step_buttons:hover {
+	background: rgba(34, 170, 5, 0.7);
+	cursor: pointer;
+	border: 1px solid #111;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+
+/**************
+Challenges#exercises_step
+***************/
+
+#challenge_exercises input[type="text"] {
+	width: 200px;
+	height: 20px;
+}
+

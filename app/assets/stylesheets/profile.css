@@ -80,27 +80,37 @@
 }
 
 #profile_workout_container {
-	border: 0px solid #444;
-	width: 600px;
+	border: 1px solid #444;
+	width: 450px;
+	float: left;
 	clear: both;
 	min-height: 600px;
 	padding-top: 20px;
 	margin: 20px auto;
 }
 
-#profile_workout_list {
-	list-style: none;
-	border-bottom: 1px solid #777;
-	text-align: left;
+#workouts_header {
+	font-family: baskerville;
+	color: #444;
+	border-bottom: 1px solid #ccc;
 }
 
-#profile_workout_list ul {
-	float: left;
+#workouts_header span {
+	color: #777;
 }
 
-#profile_workout_list li:last-child {
+#challenges {
 	float: right;
-	margin: -20px 0px 0px 0px;
+	width: 500px;
+	border: 1px solid red;
+}
+
+#challenges h2 {
+	border-bottom: 1px solid #ccc;
+}
+
+#challenges h2 span {
+	color: #777;
 }
 
 .workouts_graph {

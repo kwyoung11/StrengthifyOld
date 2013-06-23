@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user_workouts = current_user.workouts.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
+    @user_challenges = current_user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
   end
 
   # GET /users/new

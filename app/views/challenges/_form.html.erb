@@ -1,0 +1,36 @@
+<%= form_for [@user, @challenge] do |f| %>
+  <% if @challenge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@challenge.errors.count, "error") %> prohibited this challenge from being saved:</h2>
+
+      <ul>
+      <% @challenge.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= render "#{@challenge.current_step}_step", f: f %>
+  <div class="actions">
+    <%= f.submit "Continue", class: "step_buttons" %>
+    <%= f.submit "Back", name: "back_button", class: "step_buttons" unless @challenge.first_step?%>
+  </div>
+
+<% end %>
+
+<script> 
+// $(document).ready(function(){
+//   $("#rep_and_time_based_challenge").on('click', function() {
+//     $("#show_form").slideDown();
+//     $("#show_form .field:first-child").show(); 
+//     $("#type_of_challenge input").attr("value", "reps");
+//   });
+
+//   $("#time_based_challenge").on('click', function(){
+//     $("#show_form").slideDown();
+//     $("#show_form .field:first-child").hide(); 
+//     $("#type_of_challenge input").attr("value", "noreps");
+//   });
+// });
+</script>

@@ -1,4 +1,18 @@
 Cs50xFinalProject::Application.routes.draw do
+
+# Users, adds find route as part of user collection, 
+  # Nested resources: workouts, challenges, baselines), analyze action as a member
+  # route of workouts
+  resources :users do 
+    get 'find', :on => :collection
+    resources :workouts do 
+        get 'analyze', :on => :collection
+    end
+    resources :challenges
+
+  end
+  
+  resources :baselines
   resources :activities
 
   require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
@@ -28,15 +42,7 @@ Cs50xFinalProject::Application.routes.draw do
     get 'admin' => :index
   end
   
-  # Users, adds find route as part of user collection, 
-  # workouts (nested resource), analyze action as a member
-  # route of workouts
-  resources :users do 
-    get 'find', :on => :collection
-    resources :workouts do 
-        get 'analyze', :on => :collection
-    end
-  end
+  
   
   resources :password_resets, :sessions, :exercises
   

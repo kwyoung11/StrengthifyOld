@@ -1,0 +1,34 @@
+  
+	<h2> Step 2: Choose the exercises for your challenge </h2>
+  <div class="field" id="challenge_exercises">
+    <%= f.label :exercise %><br />
+    <%= f.text_field :exercise, class: "exercise_name" %>
+  </div>
+  <%= link_to_add_fields "+ Add Exercise", f, :exercises %>
+
+  <script>
+/****  
+* Autocomplete for exercises in the workout form. 
+* Source (for autocomplete): all exercises marked as 'usable' in ibid table
+* Includes "Monkey patch" that allows for 
+* syntax highlighting of matched terms. 
+*
+****/
+function monkeyPatchAutocomplete() {
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+        var keywords = $.trim(this.term).split(' ').join('|');
+        var output = item.label.replace(new RegExp("(" + keywords + ")", "gi"), '<span style="font-weight:bold;color:Blue;">$1</span>');
+        return $("<li>")
+            .append($("<a>").html(output))
+            .appendTo(ul);
+    };
+}
+
+
+$(function() {
+	monkeyPatchAutocomplete();
+    $('.exercise_name').autocomplete({ 
+			source: '<%= exercises_path %>'
+	 	});
+});
+  </script>

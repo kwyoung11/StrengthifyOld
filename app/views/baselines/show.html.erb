@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Challenge:</strong>
+  <%= @baseline.challenge_id %>
+</p>
+
+<p>
+  <strong>Reps:</strong>
+  <%= @baseline.reps %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @baseline.duration %>
+</p>
+
+
+<%= link_to 'Edit', edit_baseline_path(@baseline) %> |
+<%= link_to 'Back', baselines_path %>

@@ -7,7 +7,7 @@
 		<td rowspan="2" id="activity_description"> 
 			<%= link_to(activity.user.name, activity.user) %>
 			strengthened his <%= workout.category %> 
-			in <%= format_duration(workout.duration) %>
+			in <%= format_duration_to_HMS(workout.duration) %>
 		</td>
 		<td id="activity_sets" class="sets_and_exercises"> 
 			<span id="act_sets_label">Sets</span><br />
