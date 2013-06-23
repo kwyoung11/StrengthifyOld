@@ -1,0 +1,31 @@
+<h1>Listing challenges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reps</th>
+      <th>Exercise</th>
+      <th>Duration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @challenges.each do |challenge| %>
+    <tr>
+      <td><%= challenge.reps %></td>
+      <td><%= challenge.exercise %></td>
+      <td><%= format_duration_to_HMS(challenge[:duration]) %></td>
+      <td><%= link_to 'Show', user_challenge_path(:id => current_user.id) %></td>
+      <td><%= link_to 'Edit', edit_user_challenge_path(user_id: current_user.id, id: challenge.id) %></td>
+      <td><%= link_to 'Destroy', user_challenge_path(:id => challenge.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Challenge', new_user_challenge_path(@user) %>

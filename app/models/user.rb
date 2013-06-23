@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider, :photo
 
   # Database Relations 
+  has_many :challenges
   has_many :activities
   has_many :workouts, :dependent => :destroy
   has_many :friendships

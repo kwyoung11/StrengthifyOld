@@ -1,0 +1,13 @@
+<p> <%= link_to(activity.user.name, activity.user) %> set a new challenge: 
+<% unless challenge.nil? %>
+<% if challenge.of_type == "noreps" %>
+	Do the <%= challenge.exercise %> for <%= format_duration_to_HMS(challenge.duration) %> 
+<% elsif challenge.of_type == "reps" %>
+	Do <%= challenge.reps %> <%= challenge.exercise %>s in <%= format_duration_to_HMS(challenge.duration) %> 
+<% else %>
+	Do <%= challenge.reps %> <%= challenge.exercise %>s in <%= format_duration_to_HMS(challenge.duration) %> 
+<% end %>
+
+</p>
+<%= link_to 'Comment', '#' %> - <%= time_ago_in_words(challenge.created_at) %> ago
+<% end %>

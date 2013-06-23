@@ -1,0 +1,31 @@
+<h1>Listing baselines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Challenge</th>
+      <th>Reps</th>
+      <th>Duration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @baselines.each do |baseline| %>
+    <tr>
+      <td><%= baseline.challenge_id %></td>
+      <td><%= baseline.reps %></td>
+      <td><%= baseline.duration %></td>
+      <td><%= link_to 'Show', baseline %></td>
+      <td><%= link_to 'Edit', edit_baseline_path(baseline) %></td>
+      <td><%= link_to 'Destroy', baseline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Baseline', new_user_baseline_path(current_user) %>

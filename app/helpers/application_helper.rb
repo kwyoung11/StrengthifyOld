@@ -24,7 +24,8 @@ module ApplicationHelper
     "Strength#{content_tag(:span, "ify")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe
    end
 
-   def format_duration(total_seconds)
+   def format_duration_to_HMS(total_seconds)
+    return if total_seconds.nil?
     seconds = total_seconds % 60
     minutes = (total_seconds / 60) % 60
     hours = total_seconds / (60 * 60)

@@ -34,14 +34,46 @@
 </div>
 
 <div id="profile_workout_container">
-	<% @user.workouts.each do |w| %>
-	<ul id="profile_workout_list">
-		<li> <%= w.load_volume %> LV / <%= w.hours %>:<%= w.minutes %> / <%= w.exercises.count %> exercises </li>
-		<li> <%= time_ago_in_words(w.created_at) %> ago / <%= w.name %></li>
-		<li> <%= link_to 'Add details', edit_user_workout_path(@user.id, w.id) %></li>
-	</ul>
+	<h2 id="workouts_header"> 
+		<span><%= @user.workouts.count %></span> Workouts
+	</h2>
+	<% @user_workouts.each do |workout| %>
+	<table>
+	<tr>
+		<td rowspan="2" id="lv_wrapper">
+			<span id="lv_label">Load V.</span><br />
+			<%= workout.load_volume %> 
+		</td>
+		<td rowspan="2" id="activity_description"> 
+			<%= link_to(@user.name, @user) %>
+			strengthened his <%= workout.category %> 
+			<%= format_duration_to_HMS(workout.duration) %>
+		</td>
+		<td id="activity_sets" class="sets_and_exercises"> 
+			<span id="act_sets_label">Sets</span><br />
+			<span id="act_sets_count"><%= workout.sets %></span>
+		</td>
+	</tr>
+	<tr>
+		<td id="activity_exercises" class="sets_and_exercises"> 
+			<span id="act_ex_label">Exercises</span><br />
+			<span id="act_ex_count"><%= workout.exercises.count %> </span>
+		</td>
+	</tr>
+</table>
+<%= link_to 'Comment', '#' %> - <%= time_ago_in_words(workout.created_at) %> ago
 	<% end %>
+	<br />
+	<%= will_paginate @user_workouts %>
 </div>
+
+
+<div id="challenges"> 
+	<h2> <span><%= @user.challenges.count %></span> Challenges </h2>
+	<%= render '/challenges/index' %>
+
+</div>
+
 </div>
 
 

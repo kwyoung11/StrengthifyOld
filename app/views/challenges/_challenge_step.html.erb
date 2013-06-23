@@ -1,0 +1,17 @@
+<div id="show_form">
+  <div class="field">
+    <%= f.label :reps %><br />
+    <%= f.number_field :reps %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hms_duration, 'Duration (H:M:S) ' %><br />
+    <%= f.text_field :hms_duration, value: "00:00:00" %>
+  </div>
+
+  <div id="type_of_challenge" class="field">
+    <%= f.hidden_field :of_type, value: "" %>
+  </div>
+
+
+</div>

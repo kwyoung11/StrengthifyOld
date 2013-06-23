@@ -1,0 +1,16 @@
+<h3> Cool! Right now, how many X could you do in a certain amount of time? </h3>
+<h3> Sweet! How long do you think you can do that exercise for? </h3>
+<div id="baseline_form">
+  <%= f.fields_for :baselines do |builder| %>
+    <div class="field">
+			<%= builder.label :reps %>
+			<%= builder.text_field :reps %>
+		</div>
+
+		<div class="field">
+			<%= builder.label :duration %>
+			<%= builder.text_field :duration, value: " 00:00:00" %>
+		</div>
+  <% end %>
+</div>
+
