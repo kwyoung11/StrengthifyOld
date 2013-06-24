@@ -1,0 +1,99 @@
+.exercises_db_table {
+	border: 1px solid red;
+	width: 500px;
+	background-color: white;
+}
+
+.exercises_db_table tr {
+	border: none;
+}
+
+.exercises_db_table td {
+	border: none;
+}
+
+.meta_info {
+
+}
+
+.meta_info td:first-child {
+	background-color: red;
+	color: #333;
+	font-weight: bolder;
+}
+
+.meta_info td:nth-child(2) {
+	background-color: white;
+}
+
+#eq_type {
+	font-weight: normal;
+	font-size: 10px;
+}
+
+.description {
+}
+
+.description td:first-child {
+	border: 0px solid #444;
+	max-height: 75px;
+	max-width: 75px;
+	box-shadow: #444 0 0 10px;
+	
+}
+
+.description td:nth-child(2) {
+	text-align: left;
+}
+
+.desc_label {
+	font-weight: bold;
+}
+
+.mg_label {
+	font-style: italic; 
+}
+
+.muscle_groups {
+
+}
+
+.muscle_groups td:first-child {
+	text-align: left;
+}
+
+.show_exercise {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #8aaaFF), color-stop(1, #4444FF));	
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+	padding: 7px;
+	margin-top: 3px;
+	background-color: #0000ff;
+}
+
+.show_exercise:hover {
+	color: white;
+}
+
+.add_exercise {
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #8aaaFF), color-stop(1, #4444FF));	
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+	padding: 7px;
+	margin-top: 3px;
+	background-color: #0000ff;
+}
+
+.show_exercise_container {
+	display: inline;
+	border: 1px solid red;
+	padding: 7px;
+}
+
+.add_exercise_container {
+	display: inline;
+	border: 1px solid red;
+	padding: 7px;
+}

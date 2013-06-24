@@ -1,0 +1,46 @@
+<% @exercises.each do |e| %>
+	<table class="exercises_db_table">
+	
+			<tr class="meta_info">
+				<td> 
+					<%= e.name %><span id="eq_type">[<%= e.equipment_type[0].upcase %>]</span>
+				</td>
+				<td> 
+					<%= e.category %> <%= e.body_part.to_s.gsub('"', '') %>
+
+					<div class="show_exercise_container">
+						<%= link_to "<i class='icon-search'> </i>".html_safe, e, class: "show_exercise" %>
+						<%= show_tooltip("Show Details") %>
+					</div>
+					<div class="add_exercise_container">
+						<%= link_to "+", '#', class: "add_exercise" %>
+						<%= show_tooltip("Add to Workout") %>
+					</div>
+				</td>
+			</tr>
+	
+			<tr class="description">
+				<td> [IMAGE] </td>
+				<td> 
+					<span class="desc_label">Preparation:</span> 
+					<%= e.preparation.split[0..10].join(" ") %>... <br /> <br />
+	
+					<span class="desc_label">Execution: </span>
+					<%= e.execution.split[0..10].join(" ") %>...
+				</td>
+			</tr>
+	
+			<tr class="muscle_groups">
+				<td colspan="2"> 
+					<span class="desc_label">Muscle Groups:</span> <br />
+
+					<span class="mg_label">Target:</span> 
+					<%= eval("#{e.muscle_groups}")["target"]%> <br />
+
+					<span class="mg_label">Synergists:</span> 
+					<%= eval("#{e.muscle_groups}")["synergists"] %> <br />
+				</td> 
+			</tr>
+	
+	</table>
+<% end %>

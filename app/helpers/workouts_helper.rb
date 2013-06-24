@@ -66,13 +66,13 @@ module WorkoutsHelper
             DISTINCT date_trunc(?, series.date)::date as date,
             array_agg(reps) OVER WIN as load_volumes,
             sum(COALESCE(reps, 0)) OVER WIN as total_reps,
-            array_agg(workout_id) OVER WIN as ids     
+            array_agg(exerciseable_id) OVER WIN as ids     
         FROM (
             select generate_series(?, 0) + current_date as date
         ) series 
         LEFT JOIN (
             exercises INNER JOIN (select * from workouts where user_id = ?) workouts 
-            ON exercises.workout_id = workouts.id AND 
+            ON exercises.exerciseable_id = workouts.id AND 
             workouts.category IN (?) AND 
             (workouts.created_at BETWEEN ? AND ?)
         ) 
@@ -89,13 +89,13 @@ module WorkoutsHelper
             DISTINCT date_trunc(?, series.date)::date as date,
             array_agg(weight) OVER WIN as load_volumes,
             sum(COALESCE(weight, 0)) OVER WIN as total_weight,
-            array_agg(workout_id) OVER WIN as ids     
+            array_agg(exerciseable_id) OVER WIN as ids     
         FROM (
             select generate_series(?, 0) + current_date as date
         ) series 
         LEFT JOIN (
             exercises INNER JOIN (select * from workouts where user_id = ?) workouts 
-            ON exercises.workout_id = workouts.id AND 
+            ON exercises.exerciseable_id = workouts.id AND 
             workouts.category IN (?) AND 
             (workouts.created_at BETWEEN ? AND ?)
         ) 

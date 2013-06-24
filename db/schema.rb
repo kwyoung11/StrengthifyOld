@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130622221233) do
+ActiveRecord::Schema.define(version: 20130624000746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -47,22 +48,29 @@ ActiveRecord::Schema.define(version: 20130622221233) do
     t.string   "of_type"
   end
 
+  create_table "db_of_exercises", force: true do |t|
+    t.text     "preparation"
+    t.text     "execution"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "body_part",      default: [], array: true
+    t.hstore   "muscle_groups"
+    t.string   "equipment_type", default: [], array: true
+  end
+
+  add_index "db_of_exercises", ["muscle_groups"], name: "db_of_exercises_muscle_groups"
+
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.integer  "weight"
     t.integer  "reps"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "workout_id"
-    t.boolean  "usable"
-    t.text     "preparation"
-    t.text     "execution"
-    t.string   "body_part"
     t.integer  "exerciseable_id"
     t.string   "exerciseable_type"
   end
-
-  add_index "exercises", ["workout_id"], name: "index_exercises_on_workout_id"
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"

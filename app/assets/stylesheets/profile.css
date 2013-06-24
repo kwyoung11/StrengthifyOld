@@ -13,8 +13,7 @@
 	-webkit-font-smoothing: antialiased; /* webkit text rendering fix */
 }
 
-
-.user_photo .user_tooltip {
+.helper_tooltip {
 	background: #444;
 	padding: 2px 5px 2px 5px;
 	bottom: 100%;
@@ -44,8 +43,28 @@
 	width: 0;
 }
 
-.user_photo:hover .user_tooltip {
+.user_photo:hover .helper_tooltip {
 	opacity: 1;
+  	pointer-events: auto;
+  	-webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.show_exercise_container:hover .helper_tooltip {
+		opacity: 1;
+  	pointer-events: auto;
+  	-webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.add_exercise_container:hover .helper_tooltip {
+		opacity: 1;
   	pointer-events: auto;
   	-webkit-transform: translateY(0px);
      -moz-transform: translateY(0px);

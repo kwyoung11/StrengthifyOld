@@ -4,17 +4,17 @@ module ApplicationHelper
   # object_id to generate a unique id. Calls fields_for to generate fields with
   # the association, the object, and an id.
   # Passes in data attributes of id and field to the link.
-  # @name param. The link text, ITC "Add Exercise"
-  # @f param. The form builder
-  # @association param. The name of the association
-  def link_to_add_fields(name, f, association)
+  # @name: The link text, ITC "Add Exercise"
+  # @f: The form builder
+  # @association: The name of the association
+  def link_to_add_fields(name, f, association, parent_model)
      new_object = f.object.send(association).klass.new
      id = new_object.object_id
      fields = f.fields_for(association, new_object, child_index: id) do |builder|
-       render(association.to_s.singularize + "_fields", f: builder)
+       render("/#{parent_model}/" + association.to_s.singularize + "_fields", f: builder)
      end
      link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
-   end
+  end
    
    def link_to_submit(text)
      link_to_function text, "$(this).closest('form').submit()", id: "submit_link"
@@ -30,6 +30,13 @@ module ApplicationHelper
     minutes = (total_seconds / 60) % 60
     hours = total_seconds / (60 * 60)
     hours.to_s + ":" + format("%02d", minutes.to_s) + ":" + format("%02d", seconds.to_s)
+   end
+
+   def show_tooltip(text)
+    content_tag :div, class: "helper_tooltip" do
+      content_tag(:div, "", class: "tooltip_triangle") +
+      text
+    end
    end
    
 end

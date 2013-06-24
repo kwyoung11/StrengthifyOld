@@ -24,14 +24,7 @@
 	</div>
 </li>
 <script>
-/*  Remove exercise link in workout form */
-$(function() {
-  return $('form').on('click', '.remove_fields', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('.ex_fields').hide();
-    return event.preventDefault();
-  });
-});
+
 
 
 /****  
