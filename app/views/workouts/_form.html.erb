@@ -41,9 +41,9 @@
 			</div>
 			<ol id="add_exercises">
 					<%= f.fields_for :exercise do |builder| %>
-						<%= render 'exercise_fields', f: builder, :locals => {:edit => true} %> 	
+						<%= render 'exercise_fields', f: builder, :locals => {:edit => true} %> 
 					<% end %>
-					<%= link_to_add_fields "+ Add Exercise", f, :exercises %>
+					<%= link_to_add_fields "+ Add Exercise", f, :exercises, "workouts" %>
 			</ol>
 		</div>
 		
@@ -74,28 +74,6 @@ $('.workout_created_at_link').on('click', function() {
 	$('.workout_created_at_link').hide();
 	$('.jquery-ui-date').show();
 	return false;
-});
-
-/*****
-* Adds form input fields belonging to attributes on the Exercise model. The
-* data attributes are passed via the link_to_add_fields helper function (in application_helper.rb)
-* When the link_to_add_fields is clicked, a RegEx searches the data hash for the id, inserts the form fields
-before the link, and replaces the regexp with the index variables i (initialized to 0).
-The index (i) replaces the contents of the .ex_counter div in the rendered partial. If the remove field link
-is clicked, a second index, k, decrements i to reflect the number of deleted exercises.
-*****/	
-var k = 0;
-$('form').on('click', '.remove_fields', function(event) {
-	k++;
-});
-$('form').on('click', '.add_fields', function(event) {
-	var i = $('#workout_form .ex_fields').size() - k;
-	var regexp = new RegExp($(this).data('id'), 'g');
-	$(this).before($(this).data('fields').replace(regexp, i));
-	event.preventDefault();
-	$("#workout_exercises_attributes_" + i + "_name").focus();
-	$("#workout_form .ex_fields .ex_counter").last().html("" + (i+1));
-	i++;
 });
 </script>
 

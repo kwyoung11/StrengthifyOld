@@ -1,0 +1,24 @@
+<table class="exercises_db_table">
+
+		<tr class="meta_info">
+			<td> <%= @exercise.name %><span id="eq_type">[<%= @exercise.equipment_type[0].upcase %>]</span></td>
+			<td> <%= @exercise.category %> <%= @exercise.body_part.to_s.gsub('"', '') %></td>
+		</tr>
+
+		<tr class="description">
+			<td> [IMAGE] </td>
+			<td> 
+				<span class="desc_label">Preparation:</span> <%= @exercise.preparation %> <br /> <br />
+				<span class="desc_label">Execution: </span><%= @exercise.execution %>
+			</td>
+		</tr>
+
+		<tr class="muscle_groups">
+			<td colspan="2"> 
+				<span class="desc_label">Muscle Groups:</span> <br />
+				<span class="mg_label">Target:</span> <%= eval("#{@exercise.muscle_groups}")["target"]%> <br />
+				<span class="mg_label">Synergists:</span> <%= eval("#{@exercise.muscle_groups}")["synergists"] %> <br />
+			</td> 
+		</tr>
+</table>
+<%= link_to "Back", db_of_exercises_path %>

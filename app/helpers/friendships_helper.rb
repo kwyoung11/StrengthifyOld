@@ -14,15 +14,11 @@ module FriendshipsHelper
 		end
 	end
 
-	def show_friend_photo_and_tooltip(friendship)
+	def show_friend_photo(friendship)
 		if friendship.status == "accepted"
-			return content_tag :li, class: "user_photo" do 
-				content = link_to(image_tag(friendship.friend.photo_url(:mini_thumb).to_s), user_path(friendship.friend))
-				content += content_tag :div, class: "user_tooltip" do
-					content_tag(:div, "", class: "tooltip_triangle") +
-					friendship.friend.name
-				end
-				content
+			content_tag :li, class: "user_photo" do 
+				link_to(image_tag(friendship.friend.photo_url(:mini_thumb).to_s), user_path(friendship.friend)) +
+				show_tooltip(friendship.friend.name)
 			end
 		end
 	end

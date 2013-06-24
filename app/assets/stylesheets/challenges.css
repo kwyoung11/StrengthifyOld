@@ -98,7 +98,7 @@ challenges#challenge_type_step
 Challenges#exercises_step
 ***************/
 
-#challenge_exercises input[type="text"] {
+.exercise_name {
 	width: 200px;
 	height: 20px;
 }

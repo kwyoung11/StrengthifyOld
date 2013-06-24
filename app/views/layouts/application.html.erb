@@ -34,6 +34,7 @@
 					<li class="settings"> Settings
 						<ul>
 							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id), 'data-no-turbolink' => true %></li>
+							<li> <%= link_to "Plan", db_of_exercises_path %></li>
 							<li> <%= link_to 'Edit Profile', edit_user_path(current_user.id) %>
 							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
 							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>

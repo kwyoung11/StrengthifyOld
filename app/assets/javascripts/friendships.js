@@ -1,9 +1,11 @@
+// ************** FRIENDSHIPS *************
+
 $(document).ready(function() {
+
 	$("#user_list a").on('click', function() {
 		var user_name = $("#user li").data("user_id");
 		alert("Please confirm that you would like to send a friend request to " + user_name + ".");
 	});
-
 
 
 	// Hide and show the Find Friends link
@@ -23,7 +25,3 @@ $(document).ready(function() {
 	});
 
 });
-
-
-
-

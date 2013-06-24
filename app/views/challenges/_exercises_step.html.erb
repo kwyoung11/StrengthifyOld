@@ -1,10 +1,14 @@
   
 	<h2> Step 2: Choose the exercises for your challenge </h2>
-  <div class="field" id="challenge_exercises">
-    <%= f.label :exercise %><br />
-    <%= f.text_field :exercise, class: "exercise_name" %>
-  </div>
-  <%= link_to_add_fields "+ Add Exercise", f, :exercises %>
+  
+    <%= f.fields_for :exercise do |builder| %>
+    <div class="field" id="challenge_exercises">
+     <%= render '/challenges/exercise_fields', f: builder %>
+    </div>
+    <%= link_to_add_fields "+ Add Exercise", f, :exercises, "challenges" %>
+    <% end %>
+  
+
 
   <script>
 /****  
