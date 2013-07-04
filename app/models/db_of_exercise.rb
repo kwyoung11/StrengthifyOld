@@ -25,6 +25,10 @@ class DbOfExercise < ActiveRecord::Base
     @all_skill_levels = %w[Beginner Intermediate Advanced]
   end
 
+  def self.forces
+    @all_forces = %w[Push Pull]
+  end
+
   
   def self.search(term)
   	/\A(?<name>\w+\s*{0,2})?\s*(?<eq_type>\[\w+\])?\s*(?:[cC]at:)?(?<category>\s*[ULT][B])?\s*(?:BP:)?(?<body_part>\w+)?\s*(?:MG:)?(?<muscle_groups>\w+\s*\w+)?\z/i =~ term

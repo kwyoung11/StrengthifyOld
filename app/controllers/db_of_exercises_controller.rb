@@ -12,11 +12,14 @@ class DbOfExercisesController < ApplicationController
     @all_lbps, @checked_lbps = DbOfExercise.lower_body_parts, nil
     @all_tbps, @checked_tbps = DbOfExercise.torso_body_parts, nil
     @all_skill_levels, @checked_skill_levels = DbOfExercise.skill_levels, nil
+    @all_forces, @checked_forces = DbOfExercise.forces, nil
 
     @checked_categories = params[:categories]
     @checked_ubps = params[:body_parts] unless params[:categories].nil?
     @checked_lbps = params[:body_parts] unless params[:categories].nil?
     @checked_tbps = params[:body_parts] unless params[:categories].nil?
+    @checked_skill_levels = params[:skill_levels]
+    @checked_forces = params[:forces]
 
     if params[:categories]
       if !params[:categories].has_key?("Upper Body")
@@ -31,8 +34,7 @@ class DbOfExercisesController < ApplicationController
         @checked_tbps = nil
       end
     end
-
-
+    
   end
 
   def show
