@@ -1,0 +1,9 @@
+
+	<% if cat == "Upper Body" %>
+		<%= render 'upper_body_selectors' %>
+	<% elsif cat == "Lower Body" %>
+		<%= render 'lower_body_selectors' %>
+	<% else %>
+		<%= render 'core_body_selectors' %>
+	<% end %>
+

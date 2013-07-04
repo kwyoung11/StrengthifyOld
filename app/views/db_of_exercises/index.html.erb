@@ -1,46 +1,142 @@
-<% @exercises.each do |e| %>
-	<table class="exercises_db_table">
-	
-			<tr class="meta_info">
-				<td> 
-					<%= e.name %><span id="eq_type">[<%= e.equipment_type[0].upcase %>]</span>
-				</td>
-				<td> 
-					<%= e.category %> <%= e.body_part.to_s.gsub('"', '') %>
+<div id="db_wrapper">
+	<div id="search_and_filter_nav">
+		<%= render 'selectors' %>
+	</div>
+	<p id="meta_query_info"> 
+		Page <%= @exercises.current_page %> of <%= @exercises.total_pages %> out of 
+		<span id="ex_count"> <%= @exercises.count %> </span>exercises 
+	</p>
+<div id="exercises_from_db">
 
-					<div class="show_exercise_container">
-						<%= link_to "<i class='icon-search'> </i>".html_safe, e, class: "show_exercise" %>
-						<%= show_tooltip("Show Details") %>
-					</div>
-					<div class="add_exercise_container">
-						<%= link_to "+", '#', class: "add_exercise" %>
+	<% @exercises.each do |e| %>
+	<div class="exercise_container">
+		<div class="exercises_db_table" data-ex_id="<%= e.id %>">
+			<div class="meta_info"> 
+				<div class="exercise_card_buttons">
+					<div class="add_exercise_wrapper">
+						<%= link_to "+", '#', class: "add_exercise_link" %>
 						<%= show_tooltip("Add to Workout") %>
 					</div>
-				</td>
-			</tr>
+				</div>
+				<span class="ex_name"><%= link_to "#{e.name}", e %></span>
+				<div class="icon_descriptors">
+					<%= image_tag "skill_level_#{e.skill_level.downcase unless e.skill_level.	nil?}.jpg" %>
+				<div id="circle_<%= e.category.delete(" ") %>"> </div>
+				</div>
+				<div class="meta_info_bottom_border"> </div>
+				<div style="clear: both"> </div>
+			</div>
 	
-			<tr class="description">
-				<td> [IMAGE] </td>
-				<td> 
+			<div class="description">
+				<p> 
 					<span class="desc_label">Preparation:</span> 
 					<%= e.preparation.split[0..10].join(" ") %>... <br /> <br />
 	
 					<span class="desc_label">Execution: </span>
-					<%= e.execution.split[0..10].join(" ") %>...
-				</td>
-			</tr>
-	
-			<tr class="muscle_groups">
-				<td colspan="2"> 
-					<span class="desc_label">Muscle Groups:</span> <br />
+					<%= e.execution.split[0..10].join(" ") %>... <br />
+					<span id="eq_type"><%= e.equipment_type[0].upcase %></span><span class='dot_separator'> .</span><span class="category_and_BP"><%= e.body_part.to_s.gsub('"', '').gsub(",", "<span class='dot_separator'> .</span>").gsub(/\[|\]/, "").html_safe %></span>
+					<span class="expandable_link"> Expand </span>		
+					<span class="triangle"> </span>
+				</p>
 
-					<span class="mg_label">Target:</span> 
-					<%= eval("#{e.muscle_groups}")["target"]%> <br />
+			</div>
 
-					<span class="mg_label">Synergists:</span> 
-					<%= eval("#{e.muscle_groups}")["synergists"] %> <br />
-				</td> 
-			</tr>
+				
+			<div class="expandable_content">
+				<div class="expandable_content_wrapper">
+					<p>
+						<span class="desc_label">Muscle Groups:</span> <br />
+						<span class="mg_label">Target:</span> 
+						<%= eval("#{e.muscle_groups}")["target"]%> <br />
+						<span class="mg_label">Synergists:</span> 
+						<%= eval("#{e.muscle_groups}")["synergists"] %>
+					</p>
+				</div>
+			</div>
+			<div class="push"></div>
+		</div>
+
+</div>
+
+	<% end %>
+
+			<% if @exercises.previous_page %>
+				<div class="previous_page_wrapper">
+  				<%= link_to "Prev", params.merge(page: @exercises.previous_page), class: "previous_page" %>
+  			</div>
+			<% end %>
 	
-	</table>
-<% end %>
+			<% if @exercises.next_page %>
+				<div class="next_page_wrapper">
+  				<%= link_to "Next", params.merge(page: @exercises.next_page), class: "next_page" %>
+  			</div>
+			<% end %>
+
+</div>
+</div>
+
+
+<script>
+
+$(document).ready(function(){
+	// expanding information on exercise card
+$(".expandable_link").on('click', function() {
+	var currentExerciseCard = $(this).parents(".exercise_container");
+	var expandableContent = $(this).parents(".exercise_container").find(".expandable_content");
+	var expandableContentHeight = expandableContent.height();
+	var currentExerciseCardHeight = currentExerciseCard.height();
+
+	if (expandableContent.css("display") == "none") {
+		currentExerciseCard.attr("original-height", currentExerciseCardHeight); 	// set height for posterity
+
+		if (currentExerciseCard.attr("siblingHeightDifference")) {
+			currentExerciseCard.animate({ height: currentExerciseCardHeight + expandableContentHeight - currentExerciseCard.attr("siblingHeightDifference")}, 300);
+		} else {
+			currentExerciseCard.animate({height: currentExerciseCardHeight + expandableContentHeight}, 300);
+		}
+		expandableContent.slideDown(300);
+		currentExerciseCard.find(".triangle").css("-webkit-transform", "rotate(180deg)");
+		currentExerciseCard.find(".expandable_link").text("Collapse ");
+	} else {
+		var originalExerciseCardHeight = currentExerciseCard.attr("original-height");
+		currentExerciseCard.animate({height: originalExerciseCardHeight}, 300);
+		expandableContent.slideUp(300);
+		currentExerciseCard.find(".triangle").css("-webkit-transform", "rotate(360deg)");
+		currentExerciseCard.find(".expandable_link").text("Expand");
+	}
+});
+
+
+// for pagination links
+
+// turn off turbolinks 
+$(".previous_page").attr("data-no-turbolink", "true");
+$(".next_page").attr("data-no-turbolink", "true");
+
+// get position of left and right edges of exercise cards window
+var positionLeft = $("#exercises_from_db").position().left;
+var positionRight = positionLeft + $("#exercises_from_db").width();
+
+// position pagination links
+$(".previous_page_wrapper").css("margin-left", positionLeft - 45);
+$(".next_page_wrapper").css("margin-left", positionRight - 15);
+
+$(window).resize(function(){
+	// get position of left and right edges of exercise cards window
+var positionLeft = $("#exercises_from_db").position().left;
+var positionRight = positionLeft + $("#exercises_from_db").width();
+
+// position pagination links
+$(".previous_page_wrapper").css("margin-left", positionLeft - 45);
+$(".next_page_wrapper").css("margin-left", positionRight - 15);
+});
+
+
+
+
+});
+
+
+
+
+</script>

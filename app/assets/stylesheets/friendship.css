@@ -63,6 +63,15 @@
 	display: table;
 }
 
+.user_photo {
+	border: 0px solid red;
+	float: left;
+	padding-right: 5px;
+	max-height: 40px;
+	-webkit-transform: translateZ(0); /* webkit flicker fix */
+	-webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
 #friend_requests {
 	border: 0px solid red;
 	padding: 5px;

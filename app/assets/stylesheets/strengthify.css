@@ -366,7 +366,7 @@ footer {
 	margin: 100px auto;
 	text-align: center;
 	border: 0px solid red;
-	overflow: hidden;
+	overflow: visible;
 }
 
 /* For landing page */

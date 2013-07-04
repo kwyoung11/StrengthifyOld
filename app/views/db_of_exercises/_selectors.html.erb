@@ -1,0 +1,124 @@
+<%= form_tag db_of_exercises_path, method: :get, id: "filter_exercises_by_category" do %>
+			<%= render 'search_form' %>
+	<ul id="selector_list">
+		<li id="skill_level_list_wrapper">
+			<div id="skill_level_selectors">
+				<p style="color: #bbb; font-weight: bold;"> Skill Level </p>
+				
+			</div>
+		</li>
+	
+	
+		<li id="category_list_wrapper">
+			<div id="category_selectors">
+				<p style="color: #bbb; font-weight: bold;"> Category </p>
+				
+			</div>
+		</li>
+
+
+		<li id="force_list_wrapper">
+			<div id="force_selectors">
+				<p style="color: #bbb; font-weight: bold;"> Force </p>
+					<ul id="force_list" class="force_selectors_list">
+
+
+					</ul>
+			</div>
+		</li>
+	</ul>
+
+	<div id="dropdown_container">
+
+		<ul id="skill_level_list" class="exercise_selectors_list"> 
+					<% @all_skill_levels.each do |sl| %>
+							
+						<label for="skill_level_<%= sl %>"> 
+							<li> 
+								<%= image_tag "skill_level_#{sl.downcase}.jpg", class: "skill_level_icons" %>
+								<%= check_box_tag "skill_level[#{sl}]", id: "skill_levels_#{sl}" %> 
+								<%= sl %> 
+								<span class="num_exercises">(<%= DbOfExercise.where(skill_level: sl).count %>)</span>
+							</li>
+						</label>
+							
+					<% end %>
+				</ul>
+
+
+				<ul id="category_list" class="exercise_selectors_list">
+					<% @all_categories.each do |cat| %>
+						
+							<label for="category_<%= cat %>">
+								<li> 
+									<div id="circle_<%= cat.delete(" ") %>"> </div>
+									 <%= check_box_tag "categories[#{cat}]", 1, (@checked_categories.include?(cat) unless @checked_categories.nil?), id: "categories_#{cat.gsub(" ", "_")}" %> <%= cat %>
+									<span class="num_exercises">(<%= DbOfExercise.where(:category => cat).count %>)</span>
+										<%= render 'body_part_selectors', cat: cat %>
+								</li>
+							</label>
+	
+					<% end %>
+				</ul>
+
+
+
+	</div>
+<% end %>
+
+
+
+
+<script>
+
+$(document).ready(function() {
+	$("#upper_body_selectors").hide();
+	$("#lower_body_selectors").hide();
+	$("#core_body_selectors").hide();
+
+	// show/hide body_part selectors if category is checked
+	if ($("#categories_Upper_Body").attr("checked") == "checked") {
+		$("#upper_body_selectors").show();
+	}
+
+	if ($("#categories_Lower_Body").attr("checked") == "checked") {
+		$("#lower_body_selectors").show();
+	}
+
+	if ($("#categories_Torso").attr("checked") == "checked") {
+		$("#core_body_selectors").show();
+	}
+
+
+	$("#filter_exercises_by_category input").on('click', function() {
+		$("#filter_exercises_by_category").submit();
+	});
+
+	// for navigation
+
+	$("#skill_level_list_wrapper").on('click', function() {
+		if ($("#skill_level_list").css("display") == "none") {
+			$("#skill_level_list").show();
+		} else {
+			$("#skill_level_list").hide();
+		}
+	});
+
+	$("#category_list_wrapper").on('click', function(){
+		if ($("#category_list").css("display") == "none") {
+			$("#category_list").show();
+		} else {
+			$("#category_list").hide();
+		}
+	});
+
+	$("#skill_level_list_wrapper, #category_list_wrapper").on('click', function() {
+		if ($("#dropdown_container").css("display") == "none") {
+			$("#dropdown_container").show();
+		}
+	});
+
+
+});
+
+</script>

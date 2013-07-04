@@ -27,7 +27,10 @@ Cs50xFinalProject::Application.routes.draw do
 
   end
 
-  resources :db_of_exercises
+  resources :db_of_exercises do
+    get 'search', on: :collection
+    get 'filter', on: :collection
+  end
   resources :baselines
   resources :activities 
   resources :invite_friends
