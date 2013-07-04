@@ -1,0 +1,13 @@
+<ul id="upper_body_selectors" class="exercise_selectors_list">
+	<% @all_ubps.each do |ubp| %>
+		
+		<label for="skill_level_<%= ubp %>"> 
+			<li>
+				<%= check_box_tag "body_parts[#{ubp}]", 1, (@checked_ubps.include?(ubp) unless @checked_ubps.nil?), id: "upper_body_parts_#{ubp}" %> 
+				<%= ubp %> 
+				<span class="num_exercises">(<%= DbOfExercise.where("ARRAY[?]::varchar[] && body_part", 	ubp	).count %>)</span>
+			</li>
+		</label>
+	<% end %>
+</ul>
+
