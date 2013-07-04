@@ -1,36 +1,16 @@
 <%= form_tag db_of_exercises_path, method: :get, id: "filter_exercises_by_category" do %>
-			<%= render 'search_form' %>
+		
 	<ul id="selector_list">
-		<li id="skill_level_list_wrapper">
-			<div id="skill_level_selectors">
-				<p style="color: #bbb; font-weight: bold;"> Skill Level </p>
-				
-			</div>
-		</li>
-	
-	
-		<li id="category_list_wrapper">
-			<div id="category_selectors">
-				<p style="color: #bbb; font-weight: bold;"> Category </p>
-				
-			</div>
-		</li>
 
-
-		<li id="force_list_wrapper">
-			<div id="force_selectors">
-				<p style="color: #bbb; font-weight: bold;"> Force </p>
-					<ul id="force_list" class="force_selectors_list">
-
-
-					</ul>
-			</div>
-		</li>
+	<ul id="filter_options">
+		<li showing="false"> Display All <span id="show_all_icon"><%= image_tag 'show_all_filters.svg', id: "show_all_filters" %> </span></li>
+		<li> Reset <span id="reset_icon"> <i class="icon-retweet"></i></span></li>
 	</ul>
 
-	<div id="dropdown_container">
-
-		<ul id="skill_level_list" class="exercise_selectors_list"> 
+		<li id="skill_level_list_wrapper">
+			<div id="skill_level_selectors">
+					<p class="filter_type_header"> Skill Level </p>
+					<ul id="skill_level_list" class="exercise_selectors_list"> 
 					<% @all_skill_levels.each do |sl| %>
 							
 						<label for="skill_level_<%= sl %>"> 
@@ -44,9 +24,14 @@
 							
 					<% end %>
 				</ul>
-
-
-				<ul id="category_list" class="exercise_selectors_list">
+			</div>
+		</li>
+	
+	
+		<li id="category_list_wrapper">
+			<div id="category_selectors">
+				<p class="filter_type_header"> Category </p>
+					<ul id="category_list" class="exercise_selectors_list">
 					<% @all_categories.each do |cat| %>
 						
 							<label for="category_<%= cat %>">
@@ -60,18 +45,41 @@
 	
 					<% end %>
 				</ul>
+			</div>
+		</li>
+
+
+		<li id="force_list_wrapper">
+			<div id="force_selectors">
+				<p class="filter_type_header"> Force </p>
+					<ul id="force_list" class="exercise_selectors_list">
+						<% @all_forces.each do |force| %>
+							<label for="force_<%= force %>">
+								<li>
+									<%= check_box_tag "forces[#{force}]", 1, (@checked_forces.include?(force) unless @checked_forces.nil?), id: "forces_#{force}" %> <%= force %>
+									<span class="num_exercises">(<%= DbOfExercise.where(:force => force).count %>)</span>
+								</li>
+							</label>
+						<% end %>
+					</ul>
+			</div>
+		</li>
+
+	</ul>
 
 
 
-	</div>
+	<div id="dropdown_container"></div>
 <% end %>
 
+<%= render 'search_form' %>
 
 
 
 <script>
 
 $(document).ready(function() {
+	// hide all body_part selectors initially
 	$("#upper_body_selectors").hide();
 	$("#lower_body_selectors").hide();
 	$("#core_body_selectors").hide();
@@ -80,22 +88,23 @@ $(document).ready(function() {
 	if ($("#categories_Upper_Body").attr("checked") == "checked") {
 		$("#upper_body_selectors").show();
 	}
-
 	if ($("#categories_Lower_Body").attr("checked") == "checked") {
 		$("#lower_body_selectors").show();
 	}
-
 	if ($("#categories_Torso").attr("checked") == "checked") {
 		$("#core_body_selectors").show();
 	}
 
-
+	// form submission on checkbox click
 	$("#filter_exercises_by_category input").on('click', function() {
 		$("#filter_exercises_by_category").submit();
 	});
 
-	// for navigation
+	$("#dropdown_container").on('click', function(){
+		$("#filter_exercises_by_category").submit();
+	});
 
+	// for navigation
 	$("#skill_level_list_wrapper").on('click', function() {
 		if ($("#skill_level_list").css("display") == "none") {
 			$("#skill_level_list").show();
@@ -104,7 +113,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#category_list_wrapper").on('click', function(){
+	$("#category_list_wrapper").on('click', function() {
 		if ($("#category_list").css("display") == "none") {
 			$("#category_list").show();
 		} else {
@@ -112,11 +121,29 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#skill_level_list_wrapper, #category_list_wrapper").on('click', function() {
-		if ($("#dropdown_container").css("display") == "none") {
-			$("#dropdown_container").show();
+	$("#force_list_wrapper").on('click', function() {
+		if ($("#force_list").css("display") == "none") {
+			$("#force_list").show();
+		} else {
+			$("#force_list").hide();
 		}
 	});
+
+	$("#filter_options li:first-child").on('click', function() {
+		if $("#filter_options li:first-child")
+		$("#skill_level_list, #category_list, #force_list").show();
+		$("#filter_options li:first-child").css("background-color", "#999");
+		$("#filter_options li:first-child").attr("showing", "true");
+
+	});
+
+
+
+	// $("#skill_level_list_wrapper, #category_list_wrapper").on('click', function() {
+	// 	if ($("#dropdown_container").css("display") == "none") {
+	// 		$("#dropdown_container").show();
+	// 	}
+	// });
 
 
 });
