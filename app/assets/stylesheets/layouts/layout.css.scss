@@ -1,0 +1,119 @@
+
+/*******************************************
+*
+* HEADER & NAVIGATION
+*
+********************************************/
+
+#header {
+	position: fixed;
+	border: 0px solid green;
+	background: #ddd url("/assets/static.png");
+	width: 100%;
+	height: 40px;
+	z-index: 100;
+}
+
+#header_content {
+	border: 0px solid red;
+	width: 1150px;
+	margin: 0px auto;
+	clear: both;
+}
+
+/* Header Navigation */  
+.header-nav { 
+	display: block;
+	float: right;
+	position: relative; 
+	margin: -9px 0px 0px 0px;
+}
+  
+.header-nav-list { 
+	@extend %hr-list;
+	.nav-profile-li { 
+		padding-left: 20px; 
+		a:hover {	text-decoration: underline; }
+		&:before {
+			@include triangle-down(#444, 5px);
+			margin: 8px 0px 0px -15px;
+			opacity: 0.9;
+		}
+	}
+	li {
+		position: relative; 
+		padding: 4px 10px 12px 10px;
+		border: 1px solid rgba(90, 90, 90, 0.3); 	
+		background: #fffcf5;
+		@include inner-box-shadow(0px, 0px, 1px, 0px, #444);
+		&:hover { background: #eee; cursor: pointer; }
+	}
+
+	li.current { background: #eee; @include inner-box-shadow(0px, 0px, 4px, 0px, #444); }
+	a { text-decoration: none; }
+}  
+
+.header-nav-list-dropdown:hover {
+	background: #eee;
+	cursor: pointer;
+}  
+
+.header-nav-list-dropdown ul { 
+	@extend %dropdown-list;	
+	display: none;
+	margin-top: 10px; 
+	left: 0;
+	li {
+		font-size: 0.85em; 
+		border-bottom: 1px solid #eee;	
+		&:hover { background-color: #eee; }
+	} 
+} 
+
+/* Sub Header Navigation */
+.sub-header-nav {
+	@extend .header-nav;
+	position: fixed;
+	float: none;
+	width: 335px;
+	margin: 26px auto;
+}
+
+.sub-header-nav-list {
+	@extend .header-nav-list;
+}
+
+
+
+
+
+
+
+
+/********************************************
+*
+* WRAPPERS
+*
+********************************************/
+
+#application_wrapper {
+	border: 1px solid transparent;
+	width: 1150px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#content_wrapper {
+	margin: 100px auto;
+	text-align: center;
+	border: 0px solid red;
+	overflow: visible;
+}
+
+/* For landing page */
+.section_wrapper {
+	width: 1150px;
+	margin: 0 auto;
+}
+
+

@@ -1,0 +1,249 @@
+/********************************************
+*
+* WORKOUT FORM
+*
+********************************************/
+
+#workout_form {
+	position: relative;
+	width: 60%;
+	margin: 0 auto;
+	font-size: 16px;
+	@include inverted-rounded-corners(10px, 10px);
+	@include outer-box-shadow(0px, 0px, 5px, 0px, #444);
+	background: #fffefa;
+}
+
+.form-field-list { @extend %hr-list; }
+.form-field-list.exercise-list {
+	li { padding: 0px 5px 10px 22px; list-style-position: inside; }
+}
+
+.form-field-list.final-workout-details { 
+	li:nth-child(2) { float: right; } 
+}
+
+#workout_form label { @extend %block-label; }
+#workout_form input {
+	font-size: 0.8em;
+  padding: 6px 4px 6px 4px;
+	border: 1px solid #ddd;
+	@include rounded-corners(3px);
+	&[type="submit"] { @extend %button-large; }
+}
+
+#display-sets { display: none; margin-top: 8px; }
+.add-exercise-button {
+	margin-top: 20px;
+	padding: 19px 10px 10px 10px;
+	background: #abbaab;
+	@include inner-box-shadow(0px, 0px, 7px, 0px, #444);	
+	cursor: pointer; 
+	opacity: 0.9;	
+	&:hover { opacity: 1.0;	}
+	&:active { @include inner-box-shadow(0px, 0px, 10px, 0px, #444); }
+}
+.add-exercise-link {
+	font-size: 3em; 
+	text-decoration: none; 
+	color: white;
+}
+
+#num_sets {
+	text-decoration: underline;
+	color: #999;
+	display: block;
+	a { font-size: 2.75em; }
+	&:first-letter { font-size: 2.1em;  font-style: bolder; }
+}
+
+.exercise-wrapper {
+	display: block;
+	padding: 0px 0px 30px 10px;
+}
+
+.ex_counter {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	margin: 13px 0px 0px -48px;
+	background: #fd4042;
+	@include rounded-corners(10px);
+	padding: 10px;
+	color: #222;
+}
+
+
+
+
+
+
+
+
+
+/*****************************************
+*
+* TRAINING TABLE
+*
+******************************************/
+
+/**** 
+* Styling for list of workouts on training page.
+****/
+#index_of_workout_tables {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	background: #fff;
+	width: 550px;
+}
+
+#index_of_workout_tables  a {
+	text-decoration: none;
+}
+
+#index_of_workout_tables thead tr {
+	background: #fff;
+	width: 700px;
+}
+
+.date {
+	width: 40px;
+}
+
+.category {
+	width: 60px;
+}
+
+.sets {
+	width: 25px;
+}
+
+.name {
+	width: 80px;
+}
+
+.duration {
+	width: 40px;
+}
+
+.loadVolume {
+	width: 40px;
+}
+
+.scrollingArea {
+	max-height: 700px;
+	overflow: auto;
+	margin: 0 auto;
+	width: 560px;
+}
+
+#index_of_workout_tables th {
+	padding: 0px;
+	border: 1px solid #777;
+	font-variant: small-caps;
+	color: white;
+	background: #999;
+}
+
+#index_of_workout_tables th:hover {
+	cursor: default;
+}
+
+
+#index_of_workout_tables tr {
+	border: 1px solid #777;
+	text-align: center;
+	font-size: 12px;
+}
+
+#index_of_workout_tables tr:hover {
+	background: #ccc;
+	cursor: pointer;
+}
+
+#index_of_workout_tables td {
+	border: 1px solid #777;
+	padding: 2px;
+	text-align: center;
+	font-size: 12px;
+}
+
+/**** 
+* Classes for table header cells and table body cells
+* These are to synchronize widths of fixed table header cells
+****/
+
+
+/***
+* Workouts#show
+* Styling for actual workout table. 
+****/
+.workout_details {
+	border: 1px dotted #ddd;
+	width: 550px;
+	margin: 0 auto;
+	box-shadow: 0 0 20px #ddd;
+}
+
+.workout_details a {
+	color: red;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	padding: 2px;
+	box-shadow: 12px #eee;
+	float: right;
+}
+
+.workout_details a:hover {
+	color: red;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	padding: 2px;
+	box-shadow: 12px #eee;
+	float: right;
+	background: #ddd;
+}
+
+
+.show_workout_table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	text-align: center;
+	border: 0px solid red;
+	border-radius: 3px;
+}
+
+.show_workout_table table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.show_workout_table th {
+	padding: 5px;
+	border-bottom: 1px solid blue;
+}
+
+.show_workout_table tr, td {
+	border-bottom: 1px solid blue;
+	padding: 5px;
+	text-align: center;
+	font-size: 14px;
+}
+
+/* Styling for index table rows */
+
+.row_for_workout.active {
+		background-image: -webkit-linear-gradient(top, #eee 0%, #ccc 100%);
+		border-radius: 2px;
+}
+
+.row_for_workout a {
+	text-decoration: underline;
+}
+
+.row_for_workout tr {
+	border-bottom: 1px solid red;
+	border-top: 1px solid red;
+}

@@ -36,10 +36,9 @@ class WorkoutsController < ApplicationController
   # POST /workouts.json
   def create
     @workout = @user.workouts.new(workout_params)
-    @exercise = @workout.exercises.new(params[:workout][:exercise])
     
     respond_to do |format|
-      if @workout.save && @exercise.save
+      if @workout.save
         track_activity @workout
         
         format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
@@ -54,7 +53,7 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
-    @workout.update_attributes(params[:workout])
+    @workout.update_attributes(workout_params)
     
     respond_to do |format|
       if @workout.update(workout_params)
@@ -90,6 +89,14 @@ class WorkoutsController < ApplicationController
   
   
   private
+     # Never trust parameters from the scary internet, only allow the white list through.
+    def workout_params
+      params.require(:workout).permit(:name, :created_at, :hours, :minutes, :seconds, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :_destroy]) 
+    end
+
+    def exercise_params
+      params.require(:exercise).permit(:id, :name, :weight, :reps, :_destroy)
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
@@ -100,8 +107,5 @@ class WorkoutsController < ApplicationController
       @user = User.find(params[:user_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def workout_params
-      params.require(:workout).permit! 
-    end
+   
 end

@@ -1,24 +1,24 @@
 module FriendshipsHelper
 
 	def determine_status(user)
-		user.friendships.each do |friendship| 
-			if Friendship.are_friends(current_user, user) && friendship.friend == current_user
+			if Friendship.are_friends(current_user, user)
 				return HTMLEntities.new.decode "&#10003; Friends"
-			elsif friendship.status == "pending" && friendship.friend == current_user
+			elsif Friendship.is_pending?(current_user, user)
 				return "Pending ..."
-			elsif friendship.status == "requested" && friendship.friend == current_user
+			elsif Friendship.was_requested?(current_user, user)
 				return "Requested ..."
 			else
 				return link_to('Add Friend', friendships_path(friend_id: user.id, user_id: current_user), :method => :post, id: "add_friend")
 			end
-		end
+
 	end
 
 	def show_friend_photo(friendship)
 		if friendship.status == "accepted"
 			content_tag :li, class: "user_photo" do 
-				link_to(image_tag(friendship.friend.photo_url(:mini_thumb).to_s), user_path(friendship.friend)) +
-				show_tooltip(friendship.friend.name)
+				tooltip_for(friendship.friend.name) do
+					concat link_to(image_tag(friendship.friend.photo_url(:mini_thumb).to_s), user_path(friendship.friend))
+				end
 			end
 		end
 	end

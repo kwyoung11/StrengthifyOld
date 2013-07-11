@@ -1,101 +1,66 @@
 <%= form_for [@user, @workout] do |f| %>
-  <% if @workout.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+<%= render 'layouts/errors', object: f.object %>
 
-      <ul>
-      <% @workout.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-	
-	<div class="field">
-		<%= f.label "Category" %>
-  	<%= f.select(:category, [['Full Body'], ['Lower Body'], ['Upper Body'], ['Chest'], ['Legs'], ['Arms'], ['Back'], ['Hips'], ['Shoulders']], {}, :style => "height: 32px; width: 180px") %>
-	</div>
-
-		<div class="field">
-			<%= f.label "name" %>
-			<%= f.text_field :name, :placeholder => " name", :size => "8" %>
-		</div>
-		
-		<div class="field">
-			<%= f.label "time" %>
-			<%= f.text_field :hours, size: "3", :placeholder => " hr" %>
-			<%= f.text_field :minutes, size: "3", :placeholder => " min" %>
-			<%= f.text_field :seconds, size: "3", :placeholder => " sec" %>
-		</div>
-		
-		<div class="field">
-			<div id="sets">
+	<div class="row-1-3">
+		<ul class="form-field-list">
+				<li>
+					<%= f.label "Category" %>
+  				<%= f.select(:category, [['Full Body'], ['Lower Body'], ['Upper Body'], ['Chest'], ['Legs'], ['Arms'], ['Back'], ['Hips'], ['Shoulders'	]]	, 	{}, :style => "height: 32px; width: 180px") %>
+				</li>
+				<li>
+					<%= f.label "name" %>
+					<%= f.text_field :name, :placeholder => " name", :size => "8" %>
+				</li>		
+				<li>
+					<%= f.label "time" %>
+					<%= f.text_field :hours, size: "3", :placeholder => " hr" %>
+					<%= f.text_field :minutes, size: "3", :placeholder => " min" %>
+					<%= f.text_field :seconds, size: "3", :placeholder => " sec" %>
+				</li>		
+				<li>
 					<%= f.label "Sets" %>
 					<%= f.text_field :sets, size: "5", :placeholder => " sets" %>
+				</li>
+		</ul>
+	</div>
+
+
+		<div class="row-1-3 exercise-row">
+				<div id="display-sets">
+					<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
+				</div>
+			<div class="grid">
+				<div class="col-9-10">
+					<ol class="form-field-list exercise-list">
+						<%= f.fields_for :exercises do |builder| %>
+							<%= render 'exercise_fields', f: builder, :locals => {:edit => 	true} %> 
+						<% end %>
+					</ol>
+				</div>
+	
+				<div class="col-1-10 add-exercise-button">
+					<%= tooltip_for "Add Exercise" do %>	
+						<%= link_to_add_fields "+", f, :exercises, "workouts" %>
+					<% end %>
+				</div>
+				<div style="clear: both;"></div>
 			</div>
 		</div>
 
-		<div class="field">
-			<div id="sets">
-				<%= link_to ' ', '#', id: "num_sets" %>
-			</div>
-			<ol id="add_exercises">
-					<%= f.fields_for :exercise do |builder| %>
-						<%= render 'exercise_fields', f: builder, :locals => {:edit => true} %> 
-					<% end %>
-					<%= link_to_add_fields "+ Add Exercise", f, :exercises, "workouts" %>
-			</ol>
-		</div>
 		
-		<div class="field">
-			<%= link_to 'Today (change date)', '#', class: "workout_created_at_link" %>
-			<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
-		</div>
-		
-		<div class="field" id="submit">
-			<%= f.submit "I did this" %>
+		<div class="row-1-3">
+			<ul class="form-field-list final-workout-details">
+			<li>
+				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
+				<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+			</li>
+			<li> <%= f.submit "I did this" %> </li>
+		</ul>
 		</div>
 
 <% end %>
 
-<div id="empty_div"></div>
 
-<script>
-/*Focuses on workout name on page load*/
-$("#workout_name").focus();
-
-/***
-* Date input (default is today). If user wants to change this,
-* he/she can click link and datepicker will be brought up
-***/
-$(".jquery-ui-date").datepicker({ dateFormat: 'yy-mm-dd' });
-$('.jquery-ui-date').hide();
-$('.workout_created_at_link').on('click', function() {
-	$('.workout_created_at_link').hide();
-	$('.jquery-ui-date').show();
-	return false;
-});
-</script>
-
-<script>
-/*** 
-* On change in workout form sets input, hide input area, and display
-* value inputted in link, which can be clicked again to re-edit.
-***/
-$("#workout_sets").change(function () {
-     var value = $(this).val();
-     $("#num_sets").text(value);
-			$("#num_sets").append(' sets of:');
-			$('#num_sets').show("fold", 1000);
-			$('#workout_sets').hide("blind", 1000);
-			$('#sets label').hide();
-   }).keyup();
-
-	$('#num_sets').on('click', function() {
-		$('#num_sets').hide();
-		$('#workout_sets').show();
-	});
-</script>
 
 
  

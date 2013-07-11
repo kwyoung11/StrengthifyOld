@@ -1,0 +1,167 @@
+
+/********************************************
+*
+* LANDING PAGE
+*
+********************************************/
+.landing_even {
+	background: #355 url("/assets/noise.png");
+	height: auto;
+	margin: -18px 0px 0px 0px;
+	padding: 100px;
+	color: #000;
+}
+
+.landing_odd {
+	background: #e3e3e3 url("/assets/static.png");
+	height: auto;
+	opacity: 0.99;
+}
+
+.landing_odd:before {
+	content: "";
+	width: 0; 
+	height: 0;
+	margin: 0px 0px 0px -25px;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fffcf5;
+}
+
+.info {
+	border: 0px solid red;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 18px;
+}
+
+.landing_even:after {
+	content: "";
+	width: 0; 
+	height: 0;
+	margin: 100px 0px 0px -25px;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #355;
+}
+
+#first_value_statement {
+	border: 0px solid red;
+	padding-bottom: 10px;
+	margin-top: 50px;
+	text-align: center;
+	color: #444;
+	font-size: 28px;
+}
+
+#second_value_statement {
+	border-top: 1px grey dotted;
+	border-bottom: 1px grey dotted;
+	padding: 40px;
+	font-size: 22px;
+	font-style: bold;
+}
+
+#second_value_statement a {
+	background: #D00;
+	color: white;
+	padding: 12px;
+	border-radius: 3px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+#second_value_statement a:hover {
+	background: #F00;
+}
+
+
+/*****************************************
+*
+* FRONT PAGE
+*
+******************************************/
+
+#top_section {
+	border: 0px solid blue;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-bottom: 50px;
+	overflow: hidden;
+	width: 1150px;
+}
+
+#value_statement {
+	margin: 80px 0px 0px 0px;
+	border: 0px solid red;
+	padding: 5px;
+	float: left;
+	margin-left: 0px;
+}
+
+#login_area {
+	float: right;
+	border: 0px solid green;
+	margin: 0px auto 0px 0px;
+}
+
+#front_pageLogin {
+	color: #444;
+	margin: 15px 15px 10px;
+	background: #fff url("/assets/noise.png");
+	padding: 10px 5px 10px 5px;
+	width: 300px;
+	border-radius: 2px;
+	box-shadow: #444 0 0 10px;
+}
+
+#front_pageLogin a {
+	color: #444;
+}
+
+#front_pageLogin a:hover {
+	color: #D55;
+}
+
+#front_pageLogin input[type=text], input[type=password] {
+	width: 160px;
+	height: 24px;
+	border-radius: 5px;
+}
+
+#login_area h2 {
+	color: #26b3cc;
+	border: 0px solid blue;
+	margin: 0px 0px 10px 0px;
+}
+
+
+/*****************************************
+*
+* USER AUTHENTICATION/MANAGEMENT
+*
+******************************************/
+
+#register {
+	color: #26b3cc;
+	background: #333 url("/assets/noise.png");
+	margin: 0 auto 100px;
+	padding: 20px;
+	width: 300px;
+}
+
+#register input[type=text] {
+	width: 160px;
+	height: 24px;
+	border-radius: 5px;
+}
+
+#register a {
+	color: white;
+}
+
+
+
+

@@ -1,0 +1,94 @@
+@mixin vert-border-gradient($c-stop1, $c-stop2) {
+	@include simple-vert-gradient($c-stop1, $c-stop2);
+	position: absolute;
+	content: "";
+	height: 100%;
+	width: 1px;
+}
+
+@mixin hr-border-gradient($c-stop1, $c-stop2) {
+	position: absolute;
+	content: "";
+	@include simple-hr-gradient($c-stop1, $c-stop2);
+	width: 100%;
+	height: 1px;
+}
+/* Mixins */
+@mixin simple-vert-gradient($c-stop1: #f00, $c-stop2: lighten(#f00, 40%)) {
+	background: #436b99; /* Old browsers */
+	background: -moz-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,$c-stop1), color-stop(90%,$c-stop2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, $c-stop1 10%,$c-stop2 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* IE10+ */
+	background: linear-gradient(to bottom, $c-stop1 10%, $c-stop2 90%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$c-stop1', endColorstr='$c-stop2',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin simple-hr-gradient($c-stop1, $c-stop2) {
+	background: #436b99; /* Old browsers */
+	background: -moz-linear-gradient(left, $c-stop1 10%, $c-stop2 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(10%,$c-stop1), color-stop(90%,$c-stop2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, $c-stop1 10%,$c-stop2 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, $c-stop1 10%, $c-stop2 90%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, $c-stop1 10%, $c-stop2 90%); /* IE10+ */
+	background: linear-gradient(to right, $c-stop1 10%, $c-stop2 90%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$c-stop1', endColorstr='$c-stop2',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin rounded-corners($radius: 5px) {
+	 border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin inverted-rounded-corners($radius, $second-radius) {
+	border-radius: $radius/#{$second-radius};
+  -moz-border-radius: $radius/#{$second-radius};
+  -webkit-border-radius: $radius/#{$second-radius};
+}
+
+@mixin outer-box-shadow($horz-offset: 0px, $vert-offset: 0px, $blur-radius: 10px, $spread-radius: 0px, $color: #444) {
+	-moz-box-shadow:    $horz-offset $vert-offset $blur-radius $spread-radius $color;
+  -webkit-box-shadow: $horz-offset $vert-offset $blur-radius $spread-radius $color;
+  box-shadow:         $horz-offset $vert-offset $blur-radius $spread-radius $color;
+}
+
+@mixin inner-box-shadow($horz-offset: 0px, $vert-offset: 0px, $blur-radius: 10px, $spread-radius: 0px, $color: #444) {
+	-moz-box-shadow:    inset $horz-offset $vert-offset $blur-radius $spread-radius $color;
+  -webkit-box-shadow: inset $horz-offset $vert-offset $blur-radius $spread-radius $color;
+  box-shadow:         inset $horz-offset $vert-offset $blur-radius $spread-radius $color;
+}
+
+
+@mixin triangle-down($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-left: $dimension solid transparent;
+	border-right: $dimension solid transparent;
+	border-top: $dimension solid $color;
+}
+
+@mixin triangle-up($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-left: $dimension solid transparent;
+	border-right: $dimension solid transparent;
+	border-bottom: $dimension solid $color;
+}
+
+@mixin triangle-left($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-top: $dimension solid transparent;
+	border-bottom: $dimension solid transparent;
+	border-right: $dimension solid $color;
+}
+
+@mixin triangle-right($color: #444, $dimension: 5px) {
+	content: "";
+	position: absolute;
+	border-top: $dimension solid transparent;
+	border-bottom: $dimension solid transparent;
+	border-left: $dimension solid $color;
+}
