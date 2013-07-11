@@ -1,5 +1,4 @@
 class Challenge < ActiveRecord::Base
-	attr_accessible :reps, :exercise, :hms_duration, :duration, :of_type
 	attr_accessor :hms_duration
 	attr_writer :current_step
 	before_create :format_duration_to_seconds

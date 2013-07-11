@@ -1,0 +1,47 @@
+@import "mixins";
+
+/* Objects */
+
+.javascript-link {
+	text-decoration: underline;
+	color: #423f37;
+	font-size: 0.8em;
+	&:hover {
+		font-style: italic;
+	}
+}
+
+.normal-link {
+	color: #0077cc;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+%block-label {
+	display: block;
+	text-align: left;
+	font-size: 0.9em;
+	color: #555;
+}
+
+/* Buttons */
+
+%button-large {
+	@include simple-vert-gradient(#BFFFB5, #1AAD03);
+	cursor: pointer;
+	border: 1px solid #444;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+	&:hover {
+		background: rgba(34, 170, 5, 0.7);
+		border: 1px solid #111;
+	}
+}
+
+%header-md {
+	font-weight: bolder;
+	font-size: 1.3em;
+}

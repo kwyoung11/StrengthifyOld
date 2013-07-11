@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130630210215) do
+ActiveRecord::Schema.define(version: 20130711041741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20130630210215) do
     t.string   "of_type"
   end
 
-  create_table "db_of_exercises", force: true do |t|
+  create_table "exercise_descriptions", force: true do |t|
     t.text     "preparation"
     t.text     "execution"
     t.string   "category"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20130630210215) do
     t.string   "force"
   end
 
-  add_index "db_of_exercises", ["muscle_groups"], name: "db_of_exercises_muscle_groups"
+  add_index "exercise_descriptions", ["muscle_groups"], name: "db_of_exercises_muscle_groups"
 
   create_table "exercises", force: true do |t|
     t.string   "name"

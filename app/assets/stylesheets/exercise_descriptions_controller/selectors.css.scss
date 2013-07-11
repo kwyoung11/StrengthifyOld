@@ -1,0 +1,130 @@
+.faceted-navigation {
+	border: 1px solid #ddd;
+	@include outer-box-shadow(0px, 0px, 5px, 0px, #444);
+	margin: 0 auto;
+	width: 210px;
+	float: right;
+}
+
+.faceted-navigation-list { @extend %vert-list; }
+
+.faceted-navigation-list__sub-list {
+	margin-top: 20px;
+	@extend %hr-list;
+	li {
+		color: white;
+		width: 47%;
+		height: 20px;
+		border: 1px solid #777;
+		padding: 2px 2px 2px 2px;
+		background-color: #ccc;
+	}
+	&:hover {
+		background-color: #bbb;
+		cursor: pointer;
+	}
+}
+
+.filter-type-header {
+	@extend %header-md;	
+	position: relative;
+	padding: 0px 30px 0px 20px;
+	color: #565;
+	&:after {
+		@include hr-border-gradient(#444, #ccc);
+		top: 100%;
+		left: 0;
+	}
+	.fade { 
+		color: lighten(#444, 35%); 
+	}
+}
+
+.exercise-selectors-list {
+	@extend %vert-list;
+	li {
+		text-align: left;
+		padding: 0;
+		&:hover { background-color: #f5f5f5; cursor: pointer; }
+	}
+	label { 	white-space: nowrap; }
+}
+
+.facet-count {
+	color: #bbb;
+}
+
+
+
+
+
+
+
+
+/* Icons */
+
+#circle_UpperBody {
+	position: relative;
+	border: 1px solid red;
+	border-radius: 50%;
+	height: 10px;
+	width: 10px;
+	background-color: orange;
+	display: inline-block;
+}
+
+#circle_LowerBody {
+	position: relative;
+	border: 1px solid #444;
+	border-radius: 50%;
+	height: 10px;
+	width: 10px;
+	background-color: blue;
+	display: inline-block;
+}
+
+#circle_Torso {
+	position: relative;
+	border: 1px solid #444;
+	border-radius: 50%;
+	height: 10px;
+	width: 10px;
+	background-color: red;
+	display: inline-block;
+}
+
+
+
+
+
+
+
+
+/* Search */
+
+#search_exercises_wrapper {
+	border: 0px solid blue;
+	margin: 0px 0px 0px 10px;
+	background-color: #444;
+	height: 45px;
+}
+
+#search {
+	margin: 15px -46px 0px 0px;
+}
+
+#search_submit_button {
+	display: inline-block;
+	padding-left: 5px;
+	margin: 0px 0px 0px 0px;
+}
+
+.icon-search {
+	padding-left: 5px;
+	margin: 2px 0px 0px 0px;
+	border-left: 1px solid #bbb;
+}
+
+input[type="search"] {
+	width: 200px;
+}

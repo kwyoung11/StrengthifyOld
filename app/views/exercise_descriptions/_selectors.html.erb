@@ -1,0 +1,82 @@
+<%= form_tag exercise_descriptions_path, method: :get, id: "filter_exercises_by_category" do %>
+		
+	<ul class="faceted-navigation-list">
+
+		<li>
+			<div>
+					<h1 class="filter-type-header header-md"> Skill <span class="fade">Level</span> </h1>
+					<ul id="skill_level_list" class="exercise-selectors-list"> 
+					<% @all_skill_levels.each do |sl| %>
+							
+						<label for="skill_level_<%= sl %>"> 
+							<li> 
+								<%= image_tag "skill_level_#{sl.downcase}.jpg", class: "skill_level_icons" %>
+								<%= check_box_tag "skill_level[#{sl}]", id: "skill_levels_#{sl}" %> 
+								<%= sl %> 
+								<span class="facet-count">(<%= ExerciseDescription.where(skill_level: sl).count %>)</span>
+							</li>
+						</label>
+							
+					<% end %>
+				</ul>
+			</div>
+		</li>
+	
+	
+		<li>
+			<div>
+					<h1 class="filter-type-header header-md"> Categ<span class="fade">ory</span> </h1>
+				<ul id="category_list" class="exercise-selectors-list">
+				<% @all_categories.each do |cat| %>
+					
+						<label for="category_<%= cat %>">
+							<li> 
+								<div id="circle_<%= cat.delete(" ") %>"> </div>
+								 <%= check_box_tag "categories[#{cat}]", 1, (@checked_categories.include?(cat) unless @checked_categories.nil?), id: "categories_#{cat.gsub(" ", "_")}" %> <%= cat %>
+								<span class="facet-count">(<%= ExerciseDescription.where(:category => cat).count %>)</span>
+									<%= render 'body_part_selectors', cat: cat %>
+							</li>
+						</label>
+	
+				<% end %>
+				</ul>
+			</div>
+		</li>
+
+
+		<li>
+			<div>
+					<h1 class="filter-type-header header-md"> For<span class="fade">ce</span> </h1>
+					<ul id="force_list" class="exercise-selectors-list">
+						<% @all_forces.each do |force| %>
+							<label for="force_<%= force %>">
+								<li>
+									<%= check_box_tag "forces[#{force}]", 1, (@checked_forces.include?(force) unless @checked_forces.nil?), id: "forces_#{force}" %> <%= force %>
+									<span class="facet-count">(<%= ExerciseDescription.where(:force => force).count %>)</span>
+								</li>
+							</label>
+						<% end %>
+					</ul>
+			</div>
+		</li>
+
+
+		<ul class="faceted-navigation-list__sub-list">
+		<li> 
+				<%= tooltip_for("Show All Filters") do %>
+					<%= image_tag 'show_all_filters.svg', id: "show_all_filters" %>
+				<% end %> 
+		</li>
+		<li> 
+			<%= tooltip_for("Clear Selected Filters") do %> 
+				<i class="icon-retweet"></i>
+			<% end %>
+		</li>
+	</ul>
+
+	</ul>
+
+<% end %>
+
+
+<%= render 'search_form' %>

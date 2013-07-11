@@ -25,19 +25,18 @@
 				<li id="lift_logo"><%= render '/layouts/logo' %></li>
 				<li id="name_logo"><%= link_to name_and_notifications, root_url %></li>
 			</ul>
-			<nav id="topNav" class="right_align">
+			<nav class="header-nav">
 				<% if current_user %>
-				<ul id="main_nav">
-					<li><%= link_to "#{current_user.name}", user_path(current_user.id), 'data-no-turbolink' => true %></li>
-					<li><%= link_to 'Training', user_workouts_path(current_user.id), 'data-no-turbolink' => true %></li>
+				<ul class="header-nav-list">
+					<li class="nav-profile-li"> <%= link_to "#{current_user.name}", user_path(current_user.id), 'data-no-turbolink' => true %></li>
 					<li> <%= link_to 'Home', root_url %></li>
-					<li class="settings"> Settings
+					<li class="header-nav-list-dropdown"> Settings
 						<ul>
-							<li><%= link_to '+ Workout', new_user_workout_path(current_user.id), 'data-no-turbolink' => true %></li>
-							<li> <%= link_to "Plan", db_of_exercises_path, 'data-no-turbolink' => true %></li>
 							<li> <%= link_to 'Edit Profile', edit_user_path(current_user.id) %>
-							<li><%= link_to 'Logout', logout_path("current"), method: :delete %></li>
-							<li> <%= link_to 'Admin', admin_path if current_user.admin? %></li>
+							<li> <%= link_to 'Logout', logout_path("current"), method: :delete %></li>
+							<% if current_user.admin? %>
+							<li> <%= link_to 'Admin', admin_path %></li>
+							<% end %>
 						</ul>
 					</li>
 				</ul>
@@ -54,7 +53,16 @@
 	</div>
 
 <div id="application_wrapper">	
-	
+		<% if current_user %>
+	<nav class="sub-header-nav">
+		<ul class="sub-header-nav-list">
+			<li> <%= link_to "Build Workout", build_workout_path, 'data-no-turbolink' => true %> </li>
+			<li> Perform </li>
+			<li> <%= link_to "Record", new_user_workout_path(current_user.id), 'data-no-turbolink' => true %> </li>
+			<li> <%= link_to "Analyze", user_workouts_path(current_user.id), 'data-no-turbolink' => true %> </li>
+		</ul>
+	</nav>
+	<% end %>
 	<div id="content_wrapper">
 		<%= yield %>
 	</div>
@@ -63,17 +71,17 @@
 </html>
 <script>
 $(function() {
-  $('#topNav ul li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
+  $('.header-nav-list li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
 });
 </script>
 
 <script>
 $(document).ready(function(){
-  var nav = $("#topNav");  
+  var nav = $(".header-nav");  
  		
 		// Clicking the settings li shows the list.	
-    	$("#topNav ul li:last-child").on('click', function(e) { 
-	 		if ($("nav ul ul").css('display') == 'none') {
+    	$(".header-nav-list-dropdown").on('click', function(e) { 
+	 		if ($(".header-nav-list-dropdown ul").css('display') == 'none') {
              $(this).find("ul").show();
      			return false;
 			}
@@ -82,7 +90,7 @@ $(document).ready(function(){
     	// Clicking anywhere in browser window hides the list.
      	window.onclick = hideSettings;
 		function hideSettings() {
-	  			$("#topNav ul ul").hide();	
+	  			$(".header-nav-list-dropdown ul").hide();	
 		}
 });
 </script>

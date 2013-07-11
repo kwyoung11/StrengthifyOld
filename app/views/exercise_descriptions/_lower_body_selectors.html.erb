@@ -1,0 +1,14 @@
+<ul id="lower_body_selectors" class="body_part_selectors_list">
+		<% @all_lbps.each do |lbp| %>
+		
+			<label for="skill_level_<%= lbp %>"> 
+				<li> 
+					<%= check_box_tag "body_parts[#{lbp}]", 1, (@checked_lbps.include?(lbp) unless @checked_lbps.nil?), id: "		lower_body_parts_#{lbp}" %> <%= lbp %>
+					<span class="facet_count">
+						(<%= ExerciseDescription.where("ARRAY[?]::varchar[] && body_part", lbp).count %>)
+					</span>
+				</li>
+			</label>
+	
+		<% end %>
+</ul>

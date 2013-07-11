@@ -2,8 +2,6 @@ class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, :class_name => "User"
   
-  attr_accessible :user_id, :friend_id, :status
-  
   # Returns whether the current_user and a given 
   # other user are friends (true) or not (false).
   def self.are_friends(user, friend)
@@ -12,6 +10,24 @@ class Friendship < ActiveRecord::Base
     return false if user == friend
     return true if f1.status == "accepted" && f2.status == "accepted" unless find_by_user_id_and_friend_id(user, friend).nil?
     return true if f1.status == "accepted" && f2.status == "accepted" unless find_by_user_id_and_friend_id(friend, user).nil?
+    return false
+  end
+
+  def self.is_pending?(user, friend)
+    f1 = find_by_user_id_and_friend_id(user, friend)
+    f2 = find_by_user_id_and_friend_id(friend, user)
+    return false if user == friend
+    return true if f1.status == "pending" && f2.status == "requested" unless find_by_user_id_and_friend_id(user, friend).nil?
+    return true if f1.status == "pending" && f2.status == "requested" unless find_by_user_id_and_friend_id(friend, user).nil?
+    return false
+  end
+
+  def self.was_requested?(user, friend)
+    f1 = find_by_user_id_and_friend_id(user, friend)
+    f2 = find_by_user_id_and_friend_id(friend, user)
+    return false if user == friend
+    return true if f1.status == "requested" && f2.status == "pending" unless find_by_user_id_and_friend_id(user, friend).nil?
+    return true if f1.status == "requested" && f2.status == "pending" unless find_by_user_id_and_friend_id(friend, user).nil?
     return false
   end
   
@@ -77,5 +93,3 @@ class Friendship < ActiveRecord::Base
   end
   
 end
-__END__
-

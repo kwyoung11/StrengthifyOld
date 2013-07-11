@@ -1,28 +1,27 @@
-<li>
-	<div class="ex_fields">
-	<div class="ex_counter">1</div>
-	<div class="field">
-	<% if params[:action] = "edit" %>
-	<%= f.label :name, 'Exercise' %>
-	<% end %>
-	<%= f.text_field :name, :placeholder => " exercise", class: "exercise_name ui-autocomplete-input" %>
-	</div>
-	<div class="field">
-	<% if params[:action] = "edit" %>
-	<%= f.label :weight %>
-	<% end %>
-	<%= f.text_field :weight, size: "5", :placeholder => " weight" %>
-	</div>
-	<div class="field">
-	<% if params[:action] = "edit" %>
-	<%= f.label :reps %>
-	<% end %>
-	<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
-	<%= f.hidden_field :_destroy %>
-	<%= link_to "Remove Exercise", '#', class: "remove_fields" %>
-	</div>
-	</div>
-</li>
+<div class="exercise-wrapper">
+
+		<li>
+			<div class="ex_counter">1</div>	
+			<% if params[:action] = "edit" %>
+			<%= f.label :name, 'Exercise' %>
+			<% end %>
+			<%= f.text_field :name, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
+		</li>
+		<li>
+			<% if params[:action] = "edit" %>
+			<%= f.label :weight %>
+			<% end %>
+			<%= f.text_field :weight, size: "5", :placeholder => " weight" %>
+		</li>
+		<li>
+			<% if params[:action] = "edit" %>
+			<%= f.label :reps %>
+			<% end %>
+			<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
+			<%= f.hidden_field :_destroy %>
+			<%= link_to "Remove Exercise", '#', class: "remove-exercise-link javascript-link" %>
+		</li>
+</div>
 <script>
 
 

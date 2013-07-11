@@ -62,5 +62,3 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 
 # To use debugger
 # gem 'debugger'
-
-gem 'protected_attributes'

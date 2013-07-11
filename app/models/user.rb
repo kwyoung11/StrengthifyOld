@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
   
-  attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider, :photo
+  # attr_accessible :name, :email, :password, :password_confirmation, :oauth_token, :oauth_secret, :uid, :provider, :photo
 
   # Database Relations 
   has_many :challenges
