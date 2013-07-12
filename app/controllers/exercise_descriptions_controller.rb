@@ -6,7 +6,7 @@ class ExerciseDescriptionsController < ApplicationController
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = @exercises.with_categories(params[:categories]) if params[:categories]
     @exercises = @exercises.with_body_parts(params[:body_parts]) if params[:body_parts] unless params[:categories].nil?
-    
+
     @all_categories, @checked_categories = ExerciseDescription.categories, nil
     @all_ubps, @checked_ubps = ExerciseDescription.upper_body_parts, nil
     @all_lbps, @checked_lbps = ExerciseDescription.lower_body_parts, nil
@@ -34,10 +34,19 @@ class ExerciseDescriptionsController < ApplicationController
         @checked_tbps = nil
       end
     end
+
+    @built_workout = session[:built_workout]
     
   end
 
   def show
+    @exercise = ExerciseDescription.find(params[:id])
+    session[:built_workout]["#{@exercise.id}"].merge = exercises
+    @built_workout = session[:built_workout]
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

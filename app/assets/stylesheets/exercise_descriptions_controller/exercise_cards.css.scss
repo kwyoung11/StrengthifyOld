@@ -1,220 +1,51 @@
-#exercises_from_db {
-	border: 1px solid black;
-	float: left;
-	width: 780px;
-}
-
-.exercise_container {
+.ex-descriptions { width: 64.5%; overflow: hidden; border: 1px solid red; float: left;}
+.ex-descriptions-header { @extend .col-10-10; }
+.ex-descriptions-query-results { float: right; }
+.ex-descriptions-card {
 	position: relative;
-	border: 0px solid blue;
 	float: left;
 	margin: 5px;
+	width: 360px;	
 	box-shadow: #444 0 0 5px;
 	background-color: #fff;
 }
 
-.push {
-	height: 21px;
-}
+.meta-info { text-align: left; overflow: visible; background-color: #f8f8f8; }
+.meta-info:after { @include complex-hr-border-gradient(#f3f7f3, #ccc, #f3f7f3); }
 
-.exercises_db_table {
-	width: 360px;
-	background-color: white;
-	margin: 0px auto -21px;
-	height: 100%;
-	border: 1px solid red;
-}
-
-.show_exercise_wrapper {
-	position: relative;
-	display: inline-block;
-}
-
-.add_exercise_wrapper {
-	position: relative;
-	display: inline-block;
-	padding: 5px 0px 5px 5px;
-}
-
-.exercise_card_buttons {
-	position: relative;
-	display: block;
-	border: 0px solid red;
-	float: right;
-	z-index: 1000;
-}
-
-.add_exercise_link {
-	position: relative;
-	background-image: -webkit-gradient(
-										linear, left top, left bottom,
-										color-stop(0, #ffffff),
-										color-stop(0.5, #efefef), 
-										color-stop(1, #dbecfb));	
-	text-decoration: none;
-	border-top: 1px solid #aaa;
-	border-left: 1px solid #aaa;
-	border-right: 1px solid #aaa;
-	color: #444;
-	font-weight: bold;
-	margin-top: 5px;
-	padding: 6px 8px 8px 8px;
-}
-
-.add_exercise_link:hover {
-	color: #0077cc;
-}
-
-.ex_name {
+.ex-name {
 	display: inline-block;
 	padding: 10px 0px 0px 10px;
-	font-size: 20px;
-	font-family: baskerville;
-	color: #0077cc;
+	font-size: 1.4em;
+	a { color: #0077cc; text-decoration: none; &:hover { text-decoration: underline; } }
 }
+.ex-description-icons { opacity: 0.6; display: inline-block; }
 
-.ex_name a {
-	text-decoration: none; 
-	font-size: 20px;
-	font-family: baskerville;
-	color: #0077cc;
-}
-
-.ex_name a:hover {
-	text-decoration: underline; 
-}
-
-.category_and_BP {
+.ex-card-buttons { float: right; }
+.add-ex-link {
+	@include complex-vert-gradient(#fff, #efefef, #dbecfb, 0, 0.5, 1);
 	text-decoration: none;
-	color: #bbb;
-	font-size: 10px;
-	text-align: left;
-	padding: 5px;
+	border: 1px solid #aaa;
+	color: #444;
+	font-weight: bold;
+	padding: 6px 8px 6px 8px;
+	&:hover { color: #0077cc; cursor: pointer; }
 }
 
-span#eq_type {
-	font-weight: normal;
-	font-size: 10px;
-	color: #aaa;
-}
+.ex-descriptions-content { border-top: 2px solid #bbb; text-align: left; padding-left: 10px; }
+	.stats-description { font-size: 0.8em; color: #aaa; position: relative; padding-top: 3px; }
+.ex-descriptions-label { @extend .bold; }
+.extra-content-link { @extend .normal-link; }
+.triangle { @include triangle-down(#999, 4px); top: 50%; }
 
-.meta_info {
-	color: #333;
-	position: relative;
-	text-align: left;
-	width: 100%;
-	overflow: visible;
-	background-color: #f8f8f8;
-}
-
-.meta_info:after {
-	content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: -webkit-gradient(linear, left top, right top, 
-  	color-stop(0%,rgba(230, 230, 230,0)), 
-  	color-stop(50%,rgba(200, 200, 200,1)), 
-  	color-stop(100%,rgba(230, 230, 230,0)));
-}
-
-img.skill_level_icons {
-	position: relative;
-	border: 0px solid blue;
-	top: 3px;
-}
-
-.inner_list_wrapper {
-	border: 0px solid blue;
-	position: relative;
-}
-
-.skill_level_icon_wrapper {
-	position: relative;
-	display: inline-block;
-	border: 1px solid red;
-	overflow: hidden;
-}
-
-.icon_descriptors {
-	opacity: 0.6;
-	display: inline-block;
-}
-
-.description {
-	border-top: 1px solid #bbb;
+.ex-descriptions-extra-content {
 	text-align: left;
 	padding-left: 10px;
-}
-
-.description:after {
-	content: "";
-	position: absolute;
-	margin-left: 210px;
-	width: 20;
-	height: 20;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-top: 10px solid white;
-	z-index: 100;
-}
-
-span.desc_label {
-	font-weight: bold;
-}
-
-span.mg_label {
-	font-style: italic; 
-}
-
-.expandable_content {
-	text-align: left;
-	background-color: white;
 	display: none;
 	border: 2px groove #bbb;
 	box-shadow: inset #444 0 0 10px;
 }
+.muscle-group-header { font-size: 1em; @extend .bold; }
+.mg-label { font-weight: bold; font-size: 0.5em; }
 
-.expandable_content_wrapper {
-	border: 0px solid red;
-	text-align: left;
-	overflow: hidden;
-	top: 100%;
-}
-
-.expandable_content p:first-child {
-	float: left;
-	padding-left: 10px; 
-	width: 295px;
-	border: 0px solid red;
-}
-
-.triangle {
-	content: "";
-	position: absolute;
-	margin: 8.5px 0px 0px 2.5px;
-	width: 20;
-	height: 20;
-	border-left: 4px solid transparent;
-	border-right: 4px solid transparent;
-	border-top: 4px solid #999;
-	z-index: 1;
-}
-
-.dot_separator {
-	vertical-align: top;
-	color: #aaa;
-}
-
-.expandable_link {
-	color: #44aaee;
-	font-size: 10px;
-	display: inline;
-}
-
-.expandable_link:hover {
-	cursor: pointer;
-	text-decoration: underline;
-}
+.ex-count { @extend %hilite; font-size: 1.7em; }

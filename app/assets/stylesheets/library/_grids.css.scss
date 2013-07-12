@@ -7,11 +7,8 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.grid {
-	position: relative;
-	height: 100%;
-	width: 100%;
-}
+
+.grid { overflow: hidden; }
 
 .grid:after {
 	  content: "";
@@ -19,17 +16,17 @@
     clear: both;
 }
 
-.col-9-10 {
-	width: 86%;
-	height: 100%;
-	float: left;
-}
 	
-.col-1-10 {
-	width: 10%;
-	height: 100%;	
-	float: left;		
-}
+.col-1-10 { width: 10%; height: 100%;	float: left; }
+.col-2-10 { width: 20%; height: 100%; float: left; }
+.col-3-10 { width: 30%; }
+.col-4-10 { width: 40%; }
+.col-5-10 { width: 50%; }
+.col-6-10 { width: 60%; }
+.col-7-10 { width: 70%; }
+.col-8-10 { width: 80%; }
+.col-9-10 { width: 86%; height: 100%; float: left; }
+.col-10-10 { width: 100%; }
 
 
 
