@@ -1,0 +1,20 @@
+$(document).ready(function() {
+
+		// revert exercise card back to normal color
+		$(".ex-descriptions-card[data-ex_id='<%= session[:cleared_exercise] %>']").css("background-color", "white");
+
+
+		// iterate over each li element and determine if its still in the session
+		$(".workout-builder__exercise-list li").each(function() {
+			var ex_id = $(this).data("ex_id");
+	
+			if("<%= session[:built_workout] %>".indexOf(ex_id) == -1) {
+				$(this).remove();
+				$(".ex-descriptions-card[data-ex_id='" + ex_id + "']").removeClass("hilite");
+				$(".ex-descriptions-card[data-ex_id='" + ex_id + "']").css("background-color", "white");	
+			}
+		
+	});
+
+
+});

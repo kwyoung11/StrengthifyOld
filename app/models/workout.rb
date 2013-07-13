@@ -1,6 +1,8 @@
 class Workout < ActiveRecord::Base
 
   has_many :exercises, as: :exerciseable
+  has_many :rest_periods
+  accepts_nested_attributes_for :rest_periods, :allow_destroy => true
   accepts_nested_attributes_for :exercises, :allow_destroy => true 
   has_one :activity, as: :trackable, dependent: :destroy
   belongs_to :user

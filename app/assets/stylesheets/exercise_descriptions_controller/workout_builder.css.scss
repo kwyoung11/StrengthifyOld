@@ -11,6 +11,7 @@
 .workout-builder__exercise-list {
 	position: relative;
 	border: 1px solid green;
+	min-height: 200px;
 	overflow: hidden;
 	@extend %vert-list;
 	text-align: left;
@@ -63,8 +64,20 @@
 }
 
 .workout-builder--no-exercises {
+	position: absolute;
+	padding: 0px 5px 0px 5px;
 	font-family: "Source Sans Pro";
+	top: 25%;
 	font-size: 1.2em;
 	color: #aaa;
 	text-align: center;
+}
+
+.clear-exercises {
+	@extend %button-large;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1.2em;
+	bottom: 0;
+	@include outer-box-shadow(0px, 0px, 10px, 0px, #fff);	
 }

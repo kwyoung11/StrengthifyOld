@@ -20,7 +20,9 @@
 	a { color: #0077cc; text-decoration: none; &:hover { text-decoration: underline; } }
 }
 .ex-description-icons { opacity: 0.6; display: inline-block; }
-
+.hilite {
+	background-color: rgba(80, 80, 80, 0.7);
+}
 .ex-card-buttons { float: right; }
 .add-ex-link {
 	@include complex-vert-gradient(#fff, #efefef, #dbecfb, 0, 0.5, 1);

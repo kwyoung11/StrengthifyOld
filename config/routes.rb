@@ -28,14 +28,13 @@ Cs50xFinalProject::Application.routes.draw do
   end
 
   resources :exercise_descriptions do
-    get 'search', on: :collection
-    get 'filter', on: :collection
+    get 'build', on: :member
+    get 'clear', on: :collection
   end
-
   controller :exercise_descriptions do
     get 'build_workout', to: 'exercise_descriptions#index', as: :build_workout
   end
-  
+    
   resources :baselines
   resources :activities 
   resources :invite_friends

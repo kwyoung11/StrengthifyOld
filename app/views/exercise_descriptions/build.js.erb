@@ -1,0 +1,22 @@
+	<% if session[:built_workout].include?(@exercise.id) %>
+		$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").css("background-color", "#FFFF9C")
+.animate({ backgroundColor: "rgba(80, 80, 80, 0.7)"}, 500);
+	<% end %>
+
+	<% if session[:built_workout].include?(@exercise.id) %>
+	if (!$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").hasClass("hilite")) {
+		$(".workout-builder__exercise-list").append(
+			"<li data-ex_id='<%= @exercise.id %>'> <%= @exercise.name %> " +
+			"<span class='remove-exercise'>" + 
+			"		<a data-remote='true' href='/exercise_descriptions/clear?clear=remove-exercise&id=<%= @exercise.id %>'><i class='icon-remove'> </i></a></span></li> ");
+
+
+		$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").addClass("hilite");
+	}
+<% end %>
+
+	
+
+		
+
+
