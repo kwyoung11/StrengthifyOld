@@ -1,5 +1,5 @@
 class ExerciseDescriptionsController < ApplicationController
-	before_action :set_exercise_description, only: [:show]
+	before_action :set_exercise_description, only: [:show, :build]
   def index
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
@@ -35,17 +35,35 @@ class ExerciseDescriptionsController < ApplicationController
       end
     end
 
-    @built_workout = session[:built_workout]
-    
+    @built_workout = ExerciseDescription.all.where(id: session[:built_workout])
+    @exercise_ids = session[:built_workout] unless session[:built_workout].nil?
   end
 
   def show
-    @exercise = ExerciseDescription.find(params[:id])
-    session[:built_workout]["#{@exercise.id}"].merge = exercises
-    @built_workout = session[:built_workout]
+  end
+
+  def build
+    session[:built_workout] ||= []
+    session[:built_workout] << @exercise.id unless session[:built_workout].include?(params[:id].to_i)
+    puts session[:built_workout]
 
     respond_to do |format|
       format.js
+    end
+  end
+
+  def clear
+    if params[:clear] == "remove-exercise" && !session[:built_workout].nil?
+      ex_id = params[:id].to_i 
+      ex_id_index = session[:built_workout].find_index(ex_id) 
+      session[:built_workout].slice!(ex_id_index)
+      session[:cleared_exercise] = ex_id
+    elsif params[:clear] == "reset"
+      session[:built_workout] = nil
+    end
+ 
+    respond_to do |format|
+      format.js {}
     end
   end
 

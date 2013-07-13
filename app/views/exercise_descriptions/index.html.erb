@@ -4,11 +4,22 @@
 			<h3 class="header-md"> Your Workout <h3> 
 		</div>
 		<ul class="workout-builder__exercise-list">
-			<p class="workout-builder--no-exercises"> You have no exercises yet. Pick some from the database. <p>
-			<%= @built_workout %>
+			<% if @built_workout.count == 0 %>
+				<p class="workout-builder--no-exercises"> Pick and choose exercises to the right. Add them here. <p>
+			<% end %>
+
+			<% @built_workout.each do |ex| %>
+				<li class="exercise-list__list" data-ex_id="<%= ex.id %>"> 
+					<%=  ex.name %> 
+					<span class="remove-exercise"> 
+						<%= link_to "<i class='icon-remove'> </i>".html_safe, clear_exercise_descriptions_path(clear: "remove-exercise", id: ex.id), remote: true %> 
+					</span> 
+				</li>
+			<% end %>
 		<ul>
 	<div class="workout-builder-footer">
-			<%= link_to 'Save', user_workouts_path(current_user.id), method: :post, class: "save-built-workout"%>
+			<%= link_to 'Save', user_workouts_path(current_user.id, workout: { planned_workout: true, exercises_attributes: {ids: session[:built_workout]}), method: :post, class: "save-built-workout"%>
+			<%= link_to 'Clear', clear_exercise_descriptions_path(clear: "reset"), class: "clear-exercises", remote: true %>
 		</div>
 </div>
 	
@@ -33,12 +44,12 @@
 		</div>
 	</div>	
 	<% @exercises.each do |e| %>
-	<div class="ex-descriptions-card" data-ex_id="<%= e.id %>">
+	<div class="ex-descriptions-card<%= " hilite" if @exercise_ids.include?(e.id) unless @exercise_ids.nil? %>" data-ex_id="<%= e.id %>">
 
 			<div class="ex-descriptions-header meta-info grid"> 
 				<div class="ex-card-buttons">
 					<%= tooltip_for("Add to Workout") do %>
-					 <div class="add-ex-link"><%= link_to '+', remote: :true %></div>
+					 <div class="add-ex-link"><%= link_to '+', build_exercise_description_path(e.id), remote: true %></div>
 					<% end %>
 				</div>
 				<span class="ex-name"> <%= link_to "#{e.name}", e %> </span>
