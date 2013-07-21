@@ -13,7 +13,7 @@
 						<label for="skill_level_<%= sl %>"> 
 							<li> 
 								<%= image_tag "skill_level_#{sl.downcase}.jpg", class: "skill_level_icons" %>
-								<%= check_box_tag "skill_level[#{sl}]", id: "skill_levels_#{sl}" %> 
+								<%= check_box_tag "skill_level[#{sl}]", 1, (@checked_skill_levels.include?(sl) unless @checked_skill_levels.nil?), id: "skill_levels_#{sl}" %> 
 								<%= sl %> 
 								<span class="facet-count">(<%= ExerciseDescription.where(skill_level: sl).count %>)</span>
 							</li>
@@ -66,12 +66,12 @@
 		<ul class="faceted-navigation-list__sub-list">
 		<li> 
 				<%= tooltip_for("Show All Filters") do %>
-					<%= image_tag 'show_all_filters.svg', id: "show_all_filters" %>
+					<%= link_to image_tag('show_all_filters.svg'), exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
 				<% end %> 
 		</li>
 		<li> 
 			<%= tooltip_for("Clear Selected Filters") do %> 
-				<i class="icon-retweet"></i>
+				<%= link_to '<i class="icon-retweet"></i>'.html_safe, exercise_descriptions_path(clear_filters: "t"), 'data-no-turbolink' => true %>
 			<% end %>
 		</li>
 	</ul>
@@ -79,6 +79,3 @@
 	</ul>
 
 <% end %>
-
-
-

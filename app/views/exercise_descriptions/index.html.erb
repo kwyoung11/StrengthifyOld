@@ -1,31 +1,5 @@
-<div class="workout-builder">
-	<div class="workout-builder-wrapper">
-		<div class="workout-builder__header"> 
-			<h3 class="header-md"> Your Workout <h3> 
-		</div>
-		<ul class="workout-builder__exercise-list">
-			<% if @built_workout.count == 0 %>
-				<p class="workout-builder--no-exercises"> Pick and choose exercises to the right. Add them here. <p>
-			<% end %>
 
-			<% @built_workout.each do |ex| %>
-				<li class="exercise-list__list" data-ex_id="<%= ex.id %>"> 
-					<%=  ex.name %> 
-					<span class="remove-exercise"> 
-						<%= link_to "<i class='icon-remove'> </i>".html_safe, clear_exercise_descriptions_path(clear: "remove-exercise", id: ex.id), remote: true %> 
-					</span> 
-				</li>
-			<% end %>
-		<ul>
-	<div class="workout-builder-footer">
-			<%= link_to 'Save', user_workouts_path(current_user.id, workout: { planned_workout: true, exercises_attributes: {ids: session[:built_workout]}), method: :post, class: "save-built-workout"%>
-			<%= link_to 'Clear', clear_exercise_descriptions_path(clear: "reset"), class: "clear-exercises", remote: true %>
-		</div>
-</div>
-	
-
-</div>
-
+<%= render 'build_workouts' %>
 
 <nav class="faceted-navigation"> <%= render 'selectors' %> </nav>
 
@@ -33,10 +7,10 @@
 	<div class="ex-descriptions-header  grid">
 		<div class="ex-descriptions-query-results"> 
 			<% if @exercises.previous_page %>
-  			<%= link_to "Prev", params.merge(page: @exercises.previous_page), class: "previous_page" %>
+  			<%= link_to "Prev", params.merge(action: "index", page: @exercises.previous_page), class: "previous_page" %>
 			<% end %>
 			<% if @exercises.next_page %>
-  				<%= link_to "Next", params.merge(page: @exercises.next_page), class: "next_page" %>
+  				<%= link_to "Next", params.merge(action: "index", page: @exercises.next_page), class: "next_page" %>
 			<% end %>
 
 			Page <%= @exercises.current_page %> of <%= @exercises.total_pages %> out of 
@@ -49,14 +23,11 @@
 			<div class="ex-descriptions-header meta-info grid"> 
 				<div class="ex-card-buttons">
 					<%= tooltip_for("Add to Workout") do %>
-					 <div class="add-ex-link"><%= link_to '+', build_exercise_description_path(e.id), remote: true %></div>
+					 <div class="add-ex-link"><%= link_to 'Add exercise', build_exercise_description_path(e.id), remote: true %></div>
 					<% end %>
 				</div>
 				<span class="ex-name"> <%= link_to "#{e.name}", e %> </span>
-				<sup class="ex-description-icons"> 
-					<%= image_tag "skill_level_#{e.skill_level.downcase unless e.skill_level.	nil?}.jpg" %> 
-					<div id="circle_<%= e.category.delete(" ") %>"> </div>
-				</sup>
+				
 			</div>
 	
 			<div class="ex-descriptions-content">
@@ -73,6 +44,10 @@
 							<%= e.body_part.to_s.gsub('"', '').gsub(",", " &middot;").gsub(/\[|\]/, "").html_safe %>
 						<span class="extra-content-link">Expand</span>&nbsp;	
 						<span class="triangle"> </span>
+						<span class="ex-description-icons"> 
+							<%= image_tag "skill_level_#{e.skill_level.downcase unless e.skill_level.	nil?}.jpg" %> 
+							<div id="circle_<%= e.category.delete(" ") %>"> </div>
+						</span>
 					</div> 
 				</p>
 			</div>

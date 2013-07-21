@@ -1,52 +1,30 @@
-<div class="exercise-wrapper">
+<div class="exercise">
 
 		<li>
-			<div class="ex_counter">1</div>	
-			<% if params[:action] = "edit" %>
+			<div class="exercise-count">1</div>	
 			<%= f.label :name, 'Exercise' %>
-			<% end %>
 			<%= f.text_field :name, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
 		</li>
 		<li>
-			<% if params[:action] = "edit" %>
 			<%= f.label :weight %>
-			<% end %>
 			<%= f.text_field :weight, size: "5", :placeholder => " weight" %>
 		</li>
 		<li>
-			<% if params[:action] = "edit" %>
 			<%= f.label :reps %>
-			<% end %>
 			<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
 			<%= f.hidden_field :_destroy %>
-			<%= link_to "Remove Exercise", '#', class: "remove-exercise-link javascript-link" %>
+			<%= link_to "Remove Exercise", '#', class: "workout-remove-exercise-link javascript-link" %>
 		</li>
+		<br/><br/><br/><br/>
+
+		<div class="workout-rest">
+			<%= f.fields_for :rest_period do |rest_period_fields| %>
+				<%= f.label :rest_period %>
+				<%= rest_period_fields.hidden_field :minutes %>
+				<%= rest_period_fields.hidden_field :seconds %>
+			<% end %>	
+			<div id="slider"></div>
+			<div class="workout-rest-value"> </div>
+		</div>
+	
 </div>
-<script>
-
-
-
-/****  
-* Autocomplete for exercises in the workout form. 
-* Source (for autocomplete): all exercises marked as 'usable' in ibid table
-* Includes "Monkey patch" that allows for 
-* syntax highlighting of matched terms. 
-*
-****/
-function monkeyPatchAutocomplete() {
-    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
-        var keywords = $.trim(this.term).split(' ').join('|');
-        var output = item.label.replace(new RegExp("(" + keywords + ")", "gi"), '<span style="font-weight:bold;color:Blue;">$1</span>');
-        return $("<li>")
-            .append($("<a>").html(output))
-            .appendTo(ul);
-    };
-}
-
-$(function() {
-		monkeyPatchAutocomplete();
-    $('.exercise_name').autocomplete({ 
-			source: '<%= exercises_path %>'
-	 	});
-});
-</script>

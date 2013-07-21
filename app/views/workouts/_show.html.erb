@@ -1,7 +1,7 @@
 <div class="workout_details" data-workout_id="<%= @workout.id %>">
 <p id="notice"><%= notice %></p>
-<%= link_to 'Delete', user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Edit', edit_user_workout_path(@user.id, @workout) %>
+<%= link_to '<i class="icon-trash"></i>'.html_safe, user_workout_path(@user.id, @workout), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_workout_path(@user.id, @workout) %>
 <br />
 <h3> <%= @workout.name %> <%= "Untitled" if @workout.name.blank? %> on <%= @workout.created_at.strftime('%m/%d/%Y') %></h3> 
 
@@ -21,8 +21,3 @@
 </table>
 </div>
 </div>
-
-
-<script>
-
-</script>

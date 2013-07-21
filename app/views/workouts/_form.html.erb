@@ -1,7 +1,8 @@
+<div class="workout">
 <%= form_for [@user, @workout] do |f| %>
 <%= render 'layouts/errors', object: f.object %>
 
-	<div class="row-1-3">
+	<div id="form-row">
 		<ul class="form-field-list">
 				<li>
 					<%= f.label "Category" %>
@@ -25,7 +26,7 @@
 	</div>
 
 
-		<div class="row-1-3 exercise-row">
+		<div id="form-row">
 				<div id="display-sets">
 					<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
 				</div>
@@ -38,7 +39,7 @@
 					</ol>
 				</div>
 	
-				<div class="col-1-10 add-exercise-button">
+				<div class="col-1-10 workout-add-exercise">
 					<%= tooltip_for "Add Exercise" do %>	
 						<%= link_to_add_fields "+", f, :exercises, "workouts" %>
 					<% end %>
@@ -47,19 +48,19 @@
 			</div>
 		</div>
 
-		
-		<div class="row-1-3">
-			<ul class="form-field-list final-workout-details">
+	
+		<div id="form-row">
+			<ul class="form-field-list">
 			<li>
 				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
 				<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
 			</li>
-			<li> <%= f.submit "I did this" %> </li>
+			<li class="workout-submit"> <%= f.submit "I did this" %> </li>
 		</ul>
 		</div>
 
 <% end %>
-
+</div>
 
 
 

@@ -1,13 +1,15 @@
 class Challenge < ActiveRecord::Base
-	attr_accessor :hms_duration
-	attr_writer :current_step
-	before_create :format_duration_to_seconds
-
 	belongs_to :user
 	has_many :exercises, as: :exerciseable
 	has_one :baseline
 	has_one :activity, as: :trackable, dependent: :destroy
 	accepts_nested_attributes_for :baseline, allow_destroy: true
+
+	attr_accessor :hms_duration
+	attr_writer :current_step
+	before_create :format_duration_to_seconds
+
+
 
 	
 

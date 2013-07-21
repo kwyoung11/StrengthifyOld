@@ -867,19 +867,320 @@
   ################################################################################
 
  	{ # BARBELL LUNGES
-		:name 					=> "Barbell Lunges",
+		:name 				=> "Barbell Lunges",
 		:preparation 		=> "Stand with the legs slightly apart and the barbell ",
 		:execution 			=> "",
 		:category 			=> "Lower Body",
 		:body_part 			=> %w[Buttocks],
-		:muscle_groups 	=> {target: "Gluteus Maximus", synergists: ""}, 
-		:equipment_type => %w[]
-	}, 
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: ""}, 
+		:equipment_type 	=> %w[Barbell],
+		:skill_level 		=> "Intermediate", 			
+		:force 				=> "Push" 			
+	},
+
+	{ # DUMBBELL LUNGES
+		:name 				=> "Dumbbell Lunges",
+		:preparation 		=> "Stand with the legs slightly apart and hold a dumbbell in each hand.",
+		:execution 			=> "Take a big step forward, keeping the torso as straight as possible. When the forward thigh reaches horizontal or slightly below, use tonic extension to treturn to initial position. ",
+		:category 			=> "Lower Body",
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: "Quadriceps"}, 
+		:equipment_type 	=> %w[Dumbbell],
+		:skill_level 		=> "Beginner", 			
+		:force 				=> "Push" 			
+	},
+
+	{ # CABLE BACK KICKS
+		:name 				=> "Cable Back Kicks",
+		:preparation 		=> "Stand on one leg facing the machine, the other leg attached to the ankle strap of the low pulley, and the pelvis tilted forward. Grasp the handle.",
+		:execution 			=> "Extend the hip and pull the leg back.",
+		:category 			=> "Lower Body",
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: "Hamstrings"}, 
+		:equipment_type 	=> %w[Cable],
+		:skill_level 		=> "Intermediate", 			
+		:force 				=> "Push" 			
+	},
+
+	{ # MACHINE HIP EXTENSIONS
+		:name 				=> "Machine Hip Extensions",
+		:preparation 		=> "Stand on one leg with the other slightly forward and position the pad against the calf halfway between the knee and ankle. Lean the torso forward slightly and grasp the handles.",
+		:execution 			=> "Push the thigh back until the hip is hyperextended. Maintain the position with an isometric contraction for a couple of seconds. Return to initial position.",
+		:category 			=> "Lower Body",
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: "Hamstrings"}, 
+		:equipment_type 	=> %w[Lever],
+		:skill_level 		=> "Beginner", 			
+		:force 				=> "Push" 			
+	},
+
+	{ # FLOOR HIP EXTENSIONS
+		:name 				=> "Floor Hip Extensions",
+		:preparation 		=> "Kneel on one leg and bring the other knee to the chest while leaning on the elbows or on the hands with the arms extended.",
+		:execution 			=> "Extend the bent leg back with complete hip extension.",
+		:category 			=> "Lower Body",
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: "Hamstrings"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			
+		:force 				=> "Push" 			
+	},
+
+	{ # BRIDGING
+		:name 				=> "Bridging",
+		:preparation 		=> "Lie on the back with hands flat on the ground, arms alongside the body, and knees bent.",
+		:execution 			=> "Lift the buttocks off the ground, pushing down through the feet. Maintain the position for a couple of seconds and lower the pelvis without touching the buttocks to the ground. Repeat.",
+		:category 			=> "Lower Body", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Hamstrings", synergists: "Gluteus Maximus"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 				# Push or Pull
+	},
+
+	{ # CABLE HIP ABDUCTIONS
+		:name 				=> "Cable Hip Abductions",
+		:preparation 		=> "Stand on one leg with a pulley attached to the other ankle.",
+		:execution 			=> "Raise the leg laterally as high as possible.",
+		:category 			=> "Lower Body", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Medius", synergists: "Gluteus Minimus"}, 
+		:equipment_type 	=> %w[Cable],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # STANDING MACHINE HIP ABUDCTIONS
+		:name 				=> "Standing Machine Hip Abductions",
+		:preparation 		=> "Stand on one leg at the machine and place the other leg against the pad below the knee.",
+		:execution 			=> "Slowly raise the leg as high as possible. Return to initial position and repeat.",
+		:category 			=> "Lower Body", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Medius", synergists: "Gluteus Minimus"}, 
+		:equipment_type 	=> %w[Lever],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Push" 			# Push or Pull
+	},
+
+	{ # LYING HIP ABDUCTIONS
+		:name 				=> "Lying Hip Abductions",
+		:preparation 		=> "Lie on the side and support the head with the hand or rest the upper body on your elbow.",
+		:execution 			=> "Raise the leg laterally no more than 70 degrees, keeping the knee straight.",
+		:category 			=> "Lower Body", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Medius", synergists: "Gluteus Minimus"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Push" 			# Push or Pull
+	},
+
+	{ # SEATED MACHINE HIP ABDUCTIONS
+		:name 				=> "Seated Machine Hip Abductions",
+		:preparation 		=> "Sit at the machine",
+		:execution 			=> "Spread the legs as wide as possible. Return to initial position with a controlled movement.",
+		:category 			=> "Lower Body", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Buttocks],
+		:muscle_groups 		=> {target: "Gluteus Maximus", synergists: ""}, 
+		:equipment_type 	=> %w[Lever],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Push" 			# Push or Pull
+	},
 
 
+	################################################################################
+	######################                     #####################################
+	######################  ABDOMINALS SECTION  ####################################
+	######################                     ##################################### 
+    ################################################################################
+
+
+	{ # CRUNCHES
+		:name 				=> "Crunches",
+		:preparation 		=> "Lie on the back with hands behind the head, thighs vertical, and knees bent.",
+		:execution 			=> "Inhale and raise the shoulders off the ground, bringing the knees and head towards each other by crunching, which means rounding the back and rolling the spine up. Exhale and return to initial position.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "External Oblique, Tensor Fasciae Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # SIT-UPS
+		:name 				=> "Sit-Ups",
+		:preparation 		=> "Lie on the back with knees bent, feet flat on the ground, and hands behind the head.",
+		:execution 			=> "Raise the torso by rounding the back. Exhale and return to initial position.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+
+	{ # GYM-LADDER SIT-UPS
+		:name 				=> "Gym-Ladder Sit-Ups",
+		:preparation 		=> "Lie faceup on the ground and posiiton the feet between two bars in the ladder with the thighs vertical and hands behind the head.",
+		:execution 			=> "Raise the torso as high as possible, rounding the spine.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},	
+
+
+
+	{ # CALVES OVER BENCH SIT-UPS
+		:name 				=> "Calves Over Bench Sit-Ups",
+		:preparation 		=> "Lie on your back with your calves laying over a flat exercise bench. Place your hands behind your ears.",
+		:execution 			=> "Lift your shoulders off the floor. Try to touch your knees with your head.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+
+	{ # INCLINE BENCH SIT-UPS
+		:name 				=> "Incline Bench Sit-Ups",
+		:preparation 		=> "Sit on a bench with the feet positioned under the pads, hands behind the ears.",
+		:execution 			=> "Lower the torso less than 20 degrees. Raise the torso while slightly rounding the back to better focus on the rectus abdominis. Exhale and repeat.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+
+	{ # SUSPENDED BENCH SIT-UPS
+		:name 				=> "Suspended Bench Sit-Ups",
+		:preparation 		=> "Position the feet under the pads with the torso suspended in midair, hands behind the ears.",
+		:execution 			=> "Raise the torso, trying to bring the head to the knees while rounding the spine.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Advanced", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},	
+
+	{ # HIGH-PULLEY CRUNCHES
+		:name 				=> "High-Pulley Crunches",
+		:preparation 		=> "Kneel in front of the machine and hold the handle behind the neck.",
+		:execution 			=> "Inhale, then exhale and roll the spine as you lower the strenum toward the pubis.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "External Oblique, Pyramidalis"}, 
+		:equipment_type 	=> %w[Cable],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # MACHINE CRUNCHES
+		:name 				=> "Machine Crunches",
+		:preparation 		=> "Sit at the machine, grasp the handles, and position the feet under the pad.",
+		:execution 			=> "Roll the spine, trying to bring the sternum to the pubis.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors, External Oblique, Tensor Fascia Latae, Rectus Femoris"}, 
+		:equipment_type 	=> %w[Lever],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # INCLINE LEG RAISES
+		:name 				=> "Incline Leg Raises",
+		:preparation 		=> "Lie on an incline bench and grip the bars or handles.",
+		:execution 			=> "Raise the legs to horizontal. Then raise the pelvis, rolling the spine up as if trying to bring the knees to the head.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Rectus Abdominis", synergists: "Hip Flexors"}, 
+		:equipment_type 	=> %w[Body \Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # LEG RAISES 
+		:name 				=> "Leg Raises",
+		:preparation 		=> "Support the body by resting the elbows on the pads. Position the back against the back support.",
+		:execution 			=> "Raise the knees to the chest, rounding the back in order to contract the abdominal core.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Iliopsoas", synergists: "External Oblique, Pyramidalis, Tensor Fasciae Latae, Rectus Femoris."}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # HANGING LEG RAISES 
+		:name 				=> "Hanging Leg Raises",
+		:preparation 		=> "Hang from a chin-up bar.",
+		:execution 			=> "Inhale and raise the knees as high as possible by rolling up the spine and bringing the pubis toward the sternum.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "Hip Flexors", synergists: "Rectus Abdominis, External Oblique"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+	
+	{ # TRUNK ROTATIONS 
+		:name 				=> "Trunk Rotations",
+		:preparation 		=> "Stand with the legs apart. Hold a stick across the trapezius above the posterior deltoid, hands resting on the stick without pushing.",
+		:execution 			=> "Rotate the torso to one side and to the other, keeping the pelvis fixed with isometric contraction of the gluteal muscles.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "External Obliques", synergists: "Internal Oblique, Rectus Abdominis, Quadratus Lumborum, Erector Spinae"}, 
+		:equipment_type 	=> %w[Barbell],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # DUMBBELL SIDE BENDS
+		:name 				=> "Dumbbell Side Bends",
+		:preparation 		=> "Stand with the legs slightly apart and one hand behind the ear. Hold a dumbbell in the other hand.",
+		:execution 			=> "Bend the torso to the side opposite to the dumbbell. Return to the inital position or further with passive flexion of the torso. Alternate sets, changing sides without resting.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "External Oblique", synergists: "Rectus Abdominis, Pyramidalis, Erector Spinae, Quadratus Lumborum"}, 
+		:equipment_type 	=> %w[Dumbbell],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # ROMAN CHAIR SIDE BENDS
+		:name 				=> "Roman Chair Side Bends",
+		:preparation 		=> "Lie on your side with the hip on the bench, torso in the air, hands near the ears or on the chest, and feet positioned under the pads.",
+		:execution 			=> "Raise the side of the body toward the ceiling",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "External Oblique", synergists: "Rectus Abdominis, Quadratus Lumborum"}, 
+		:equipment_type 	=> %w[Body\ Weight],
+		:skill_level 		=> "Intermediate", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	},
+
+	{ # MACHINE TRUNK ROTATIONS
+		:name 				=> "Machine Trunk Rotations",
+		:preparation 		=> "Stand on the swivel plate and grasp the handle",
+		:execution 			=> "Rotate the pelvis to one side then to the other, keeping the shoulders fixed. The knees should be slighly bent. Control the rotations.",
+		:category 			=> "Torso", # Upper Body, Lower Body or Torso
+		:body_part 			=> %w[Abdomen],
+		:muscle_groups 		=> {target: "External and Internal Obliques", synergists: "Rectus Abdominis"}, 
+		:equipment_type 	=> %w[Lever],
+		:skill_level 		=> "Beginner", 			# Beginner, Intermediate or Advanced
+		:force 				=> "Pull" 			# Push or Pull
+	}
 
 ].each do |exercise|
-	DbOfExercise.create(
+	ExerciseDescription.create(
 		name: exercise[:name], 
 		preparation: exercise[:preparation], 
 		execution: exercise[:execution], 
@@ -899,15 +1200,17 @@ end
 
 
 ###### SAMPLE STRUCTURE
-	{ #
-		:name 					=> "",
-		:preparation 		=> "",
-		:execution 			=> "",
-		:category 			=> "Lower Body",
-		:body_part 			=> %w[Buttocks],
-		:muscle_groups 	=> {target: "Gluteus Maximus", synergists: ""}, 
-		:equipment_type => %w[]
-	},
+	# { # 
+	# 	:name 				=> "",
+	# 	:preparation 		=> "",
+	# 	:execution 			=> "",
+	# 	:category 			=> "Torso", # Upper Body, Lower Body or Torso
+	# 	:body_part 			=> %w[Abdomen],
+	# 	:muscle_groups 		=> {target: "Rectus Abdominis", synergists: ""}, 
+	# 	:equipment_type 	=> %w[],
+	# 	:skill_level 		=> "", 			# Beginner, Intermediate or Advanced
+	# 	:force 				=> "" 			# Push or Pull
+	# },
 
 
 

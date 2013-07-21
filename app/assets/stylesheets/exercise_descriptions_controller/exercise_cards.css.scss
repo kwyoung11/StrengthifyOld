@@ -8,6 +8,11 @@
 	width: 360px;	
 	box-shadow: #444 0 0 5px;
 	background-color: #fff;
+	&:hover, &:hover .ex-descriptions-header, &:hover .ex-card-buttons, &:hover .ex-description-icons {
+		opacity: 1;
+		cursor: pointer;
+		display: block;
+	}
 }
 
 .meta-info { text-align: left; overflow: visible; background-color: #f8f8f8; }
@@ -19,17 +24,22 @@
 	font-size: 1.4em;
 	a { color: #0077cc; text-decoration: none; &:hover { text-decoration: underline; } }
 }
-.ex-description-icons { opacity: 0.6; display: inline-block; }
+.ex-description-icons { 
+	opacity: 0.4; 
+	display: inline-block; 
+	float: right;
+	padding: 0px 10px 0px 0px; 
+}
 .hilite {
 	background-color: rgba(80, 80, 80, 0.7);
 }
 .ex-card-buttons { float: right; }
 .add-ex-link {
 	@include complex-vert-gradient(#fff, #efefef, #dbecfb, 0, 0.5, 1);
-	text-decoration: none;
+	a {text-decoration: none;}
 	border: 1px solid #aaa;
 	color: #444;
-	font-weight: bold;
+	border-radius: 10px/30px;
 	padding: 6px 8px 6px 8px;
 	&:hover { color: #0077cc; cursor: pointer; }
 }
