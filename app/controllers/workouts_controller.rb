@@ -13,10 +13,9 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1
   # GET /workouts/1.json
   def show
-    @workout = Workout.find(params[:id])
     
     respond_to do |format| 
-      format.js { }
+      format.js
     end
     
   end
@@ -25,6 +24,7 @@ class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new
     @exercise = @workout.exercises.build
+    @exercise.rest_period = RestPeriod.new
   end
 
   # GET /workouts/1/edit
@@ -70,6 +70,7 @@ class WorkoutsController < ApplicationController
   # DELETE /workouts/1.json
   def destroy
     @workout.destroy
+
     respond_to do |format|
       format.html { redirect_to user_workouts_path(@user.id) }
       format.json { head :no_content }
@@ -81,8 +82,6 @@ class WorkoutsController < ApplicationController
  def analyze
     
     respond_to do |format|
-      format.html { render action: 'analyze', layout: false }
-      format.js
       format.json { render json: get_metric_data_with_category(params[:metric], params[:category], params[:time]) }
     end
   end
@@ -91,7 +90,7 @@ class WorkoutsController < ApplicationController
   private
      # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:name, :created_at, :hours, :minutes, :seconds, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :_destroy]) 
+      params.require(:workout).permit(:name, :created_at, :hours, :minutes, :seconds, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :_destroy], rest_periods_attributes: [:id, :minutes, :seconds, :_destroy]) 
     end
 
     def exercise_params

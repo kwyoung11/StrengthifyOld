@@ -16,5 +16,9 @@ $(document).ready(function() {
 		
 	});
 
+		// show placeholder text when there are no more exercises
+		var num_exercises = $(".workout-builder__exercise-list li").length;
+		if (num_exercises == 0) { $(".workout-builder--no-exercises").show(); }
+
 
 });

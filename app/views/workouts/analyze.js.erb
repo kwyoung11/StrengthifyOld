@@ -1,6 +1,0 @@
-/* Loads the analytics graph and associated data */
-
-$(document).ready(function() {
-	var id = $(".tabs ul").attr("data-current")
-	$("#tabpage_" + id).html("<%= escape_javascript render("analyze") %>");
-});

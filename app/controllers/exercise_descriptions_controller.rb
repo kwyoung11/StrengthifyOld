@@ -1,11 +1,16 @@
 class ExerciseDescriptionsController < ApplicationController
 	before_action :set_exercise_description, only: [:show, :build]
+
   def index
+    @workout = Workout.new
+    @user = User.find(current_user.id)
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = @exercises.with_categories(params[:categories]) if params[:categories]
     @exercises = @exercises.with_body_parts(params[:body_parts]) if params[:body_parts] unless params[:categories].nil?
+    @exercises = @exercises.with_skill_levels(params[:skill_level]) if params[:skill_level]
+    @exercises = @exercises.with_forces(params[:forces]) if params[:forces]
 
     @all_categories, @checked_categories = ExerciseDescription.categories, nil
     @all_ubps, @checked_ubps = ExerciseDescription.upper_body_parts, nil
@@ -18,7 +23,7 @@ class ExerciseDescriptionsController < ApplicationController
     @checked_ubps = params[:body_parts] unless params[:categories].nil?
     @checked_lbps = params[:body_parts] unless params[:categories].nil?
     @checked_tbps = params[:body_parts] unless params[:categories].nil?
-    @checked_skill_levels = params[:skill_levels]
+    @checked_skill_levels = params[:skill_level]
     @checked_forces = params[:forces]
 
     if params[:categories]
@@ -35,6 +40,18 @@ class ExerciseDescriptionsController < ApplicationController
       end
     end
 
+    @checked_categories = @checked_ubps = @checked_lbps = @checked_tbps = @checked_skill_levels = @checked_forces = nil if params[:clear_filters]
+    
+    if params[:show_filters]
+      @checked_categories = @all_categories
+      @checked_ubps = @all_ubps
+      @checked_lbps = @all_lbps
+      @checked_tbps = @all_tbps
+      @checked_skill_levels = @all_skill_levels
+      @checked_forces = @all_forces
+    end
+
+    # remember settings from build and clear actions
     @built_workout = ExerciseDescription.all.where(id: session[:built_workout])
     @exercise_ids = session[:built_workout] unless session[:built_workout].nil?
   end

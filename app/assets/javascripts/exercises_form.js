@@ -6,15 +6,24 @@ before the link, and replaces the regexp with the index variables i (initialized
 The index (i) replaces the contents of the .ex_counter div in the rendered partial. If the remove field link
 is clicked, a second index, k, decrements i to reflect the number of deleted exercises.
 *****/
-$(document).ready(function() {
 
-/*Focuses on workout name on page load*/
+$(document).ready(function() {
 $("#workout_name").focus();
 
-/***
-* Date input (default is today). If user wants to change this,
-* he/she can click link and datepicker will be brought up
-***/
+// Provide better interface for choosing rest periods
+    $("#slider").slider({
+      value: 0,
+      min: 0,
+      max: 180,
+      step: 5,
+      slide: function( event, ui ) {
+        $(".rest-period-value").val( "$" + ui.value );
+      }	
+    });
+    $(".rest-period-value").val( "$" + $( "#slider" ).slider("value") );
+
+
+// Provide better interface for choosing date of workout
 $(".jquery-ui-date").datepicker({ dateFormat: 'yy-mm-dd' });
 $('.jquery-ui-date').hide();
 $('#workout_created_at_link').on('click', function() {
@@ -23,7 +32,7 @@ $('#workout_created_at_link').on('click', function() {
 	return false;
 });
 
-
+// Display sets in more visual format after input
 $("#workout_sets").change(function () {
     var value = $(this).val();
     $("#display-sets").css("display", "inline-block");
@@ -32,39 +41,70 @@ $("#workout_sets").change(function () {
 		$('#num_sets').show("fold", 1000);
 		$('#workout_sets').hide("blind", 1000);
    }).keyup();
-
+	
+	// Allow for re-edit of sets after input
 	$('#num_sets').on('click', function() {
 		$('#num_sets').hide();
 		$('#workout_sets').show();
 		setTimeout(function() { $("#workout_sets").focus();	}, 300);
 	});
 
-
-/*  Remove exercise link in workout form */
+/*  Implement ability to remove indiviual exercises if user made a mistake */
 	$(function() {
-	  return $('form').on('click', '.remove-exercise-link', function(event) {
+	  return $('form').on('click', '.workout-remove-exercise-link', function(event) {
 	    $(this).prev('input[type=hidden]').val('1');
-	    $(this).closest('.exercise-wrapper').hide();
+	    $(this).closest('.exercise').hide();
 	    return event.preventDefault();
 	  });
 	});
 
+	// Keep track of the number of exercise on the page
 	var k = 0;
-	$('form').on('click', '.remove-exercise-link', function(event) {
+	$('form').on('click', '.workout-remove-exercise-link', function(event) {
 		k++;
 	});
-$(".add-exercise-link").on('click', function(event) {
-		var i = $('#workout_form .exercise-wrapper').size() - k;
+
+	// Allow the user to add additional exercises to workout form
+$(".workout-add-exercise-link").on('click', function(event) {
+		var i = $('.workout .exercise').size() - k;
 		var regexp = new RegExp($(this).data('id'), 'g');
 		$(".exercise-list").append($(this).data('fields').replace(regexp, i));
 		event.preventDefault();
 		$("#workout_exercises_attributes_" + i + "_name").focus();
-		$("#workout_form .exercise-wrapper .ex_counter").last().html("" + (i+1));
+		$(".workout .exercise .exercise-count").last().html("" + (i+1));
 		i++;
 	});
 
 
 
-	
+
+/****  
+* Autocomplete for exercises in the workout form. 
+* Source (for autocomplete): all exercises marked as 'usable' in ibid table
+* Includes "Monkey patch" that allows for 
+* syntax highlighting of matched terms. 
+*
+****/
+function monkeyPatchAutocomplete() {
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+        var keywords = $.trim(this.term).split(' ').join('|');
+        var output = item.label.replace(new RegExp("(" + keywords + ")", "gi"), '<span style="font-weight:bold;color:Blue;">$1</span>');
+        return $("<li>")
+            .append($("<a>").html(output))
+            .appendTo(ul);
+    };
+}
+
+$(function() {
+		monkeyPatchAutocomplete();
+    $('.exercise_name').autocomplete({ 
+			source: '<%= exercises_path %>'
+	 	});
+});
+
+
+
+
+
 
 });	

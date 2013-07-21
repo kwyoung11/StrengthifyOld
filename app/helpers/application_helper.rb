@@ -13,7 +13,7 @@ module ApplicationHelper
      fields = f.fields_for(association, new_object, child_index: id) do |builder|
        render("/#{parent_model}/" + association.to_s.singularize + "_fields", f: builder)
      end
-     link_to(name, '#', class: "add-exercise-link", data: {id: id, fields: fields.gsub("\n", "")})
+     link_to(name, '#', class: "workout-add-exercise-link", data: {id: id, fields: fields.gsub("\n", "")})
   end
    
   def link_to_submit(text, id = nil)

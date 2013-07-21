@@ -11,5 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
+//= require jquery.ui.autocomplete
+//= require jquery.ui.slider
 //= require turbolinks
 //= require_tree .

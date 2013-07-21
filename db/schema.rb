@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130711041741) do
+ActiveRecord::Schema.define(version: 20130718203330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20130711041741) do
     t.datetime "updated_at"
     t.integer  "exerciseable_id"
     t.string   "exerciseable_type"
+    t.integer  "hours"
+    t.integer  "minutes"
+    t.integer  "seconds"
   end
 
   create_table "friendships", force: true do |t|
@@ -80,6 +83,14 @@ ActiveRecord::Schema.define(version: 20130711041741) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+  end
+
+  create_table "rest_periods", force: true do |t|
+    t.integer  "minutes"
+    t.integer  "seconds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "exercise_id"
   end
 
   create_table "users", force: true do |t|
@@ -107,6 +118,7 @@ ActiveRecord::Schema.define(version: 20130711041741) do
     t.string   "category"
     t.integer  "load_volume"
     t.integer  "duration"
+    t.boolean  "planned"
   end
 
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id"

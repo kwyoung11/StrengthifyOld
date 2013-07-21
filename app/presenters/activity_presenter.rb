@@ -28,8 +28,8 @@ class ActivityPresenter < SimpleDelegator
 	def partial_paths
 		[
 			"activities/#{activity.trackable_type.underscore}/#{activity.action}",
-      "activities/#{activity.trackable_type.underscore}",
-      "activities/activity"
+      		"activities/#{activity.trackable_type.underscore}",
+      		"activities/activity"
 		]
 	end
 end

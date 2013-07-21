@@ -7,7 +7,10 @@
 **************/	
 
 // On bar mouseover, display tooltip.
-function barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id, time, metric) {
+function barMouseOver(d, i, x, y, bar, tooltip, user_id, time, metric, barWidth) {
+	var formatTime = d3.time.format("%A %b %e"); // day month day_number
+
+	var time = $("ul#time_scale li.current").text();
 	if (d.load_volume != 0) {
 	var xy = $("#graph").offset();
 	d3.select(bar[0][i]).style("fill", "#00c0dc");
@@ -17,16 +20,18 @@ function barMouseOver(d, i, x, y, bar, tooltip, formatTime, user_id, time, metri
 	tooltip.style("display", "block");
 	tooltip.transition().duration(200).style("opacity", .9);
 	if (time == "Weeks") {
-		tooltip.html(formatTime(new Date(d.date + 86400000)) + "-" + formatTime(new Date(d.date + (7 * 86400000))) + "<br />") 
+		tooltip.html(formatTime(new Date(d.date + 86400000)) + "-" + formatTime(new Date(d.date + (7 * 86400000))) + "<br />");
 	} else {     
-		tooltip.html(formatTime(new Date(d.date + 86400000)) + "<br />")  
+		tooltip.html(formatTime(new Date(d.date + 86400000)) + "<br />");  
 	}
+	var tooltip_width = $(".tooltip").width();
+	var tooltip_height = $(".tooltip").height();
 	if (time == "Months") {
-	    tooltip.style("left", x(new Date(d.date)) + xy.left + 10 + "px")     
-	    tooltip.style("top", y(d.load_volume) - 60 + xy.top + "px");
+	    tooltip.style("left", x(new Date(d.date)) + (xy.left - tooltip_width + tooltip_width/2 + barWidth + barWidth/2 + 15) + "px");     
+	    tooltip.style("top", y(d.load_volume) - 70 - tooltip_height + xy.top + "px");
 	} else {
-		tooltip.style("left", x(new Date(d.date)) + xy.left - 37 + "px")     
-	    tooltip.style("top", y(d.load_volume) - 60 + xy.top + "px");
+		tooltip.style("left", x(new Date(d.date)) + (xy.left - tooltip_width + tooltip_width/2 + barWidth + barWidth/2) + "px");     
+	    tooltip.style("top", y(d.load_volume) - 70 + xy.top + "px");
 	}
 	$(".tooltip").append(toolTipContents(d, user_id, metric));
 	}

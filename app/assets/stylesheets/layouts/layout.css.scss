@@ -63,7 +63,7 @@
 	display: none;
 	margin-top: 10px; 
 	left: 0;
-	li {
+	> li {
 		font-size: 0.85em; 
 		border-bottom: 1px solid #eee;	
 		&:hover { background-color: #eee; }
@@ -77,10 +77,27 @@
 	float: none;
 	width: 335px;
 	margin: 26px auto;
+	z-index: 10000;
 }
 
 .sub-header-nav-list {
 	@extend .header-nav-list;
+
+}
+
+.sub-header-nav-list-dd {
+	position: absolute;
+	padding: 0;
+	list-style: none;
+	top: 100%;
+	left: 0;
+	display: none;
+	width: 1750px;
+	> li {
+		background-color: white; 
+		border: none;
+	}
+
 }
 
 

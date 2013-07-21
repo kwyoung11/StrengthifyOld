@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:xlink="http://www.w3.org/1999/xlink">
+<html>
 <head>
   <title>Strengthify</title>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -56,7 +56,13 @@
 		<% if current_user %>
 	<nav class="sub-header-nav">
 		<ul class="sub-header-nav-list">
-			<li> <%= link_to "Build Workout", build_workout_path, 'data-no-turbolink' => true %> </li>
+			<li> <%= link_to "Build Workout", build_workout_path, 'data-no-turbolink' => true %> 
+				<% if current_page?(controller: 'exercise_descriptions', action: 'index') %>
+				<ul class="sub-header-nav-list-dd">
+					<li> <div id="workout_form"><%= render 'workouts/form' %></div></li>
+				</ul>
+				<% end %>
+			</li>
 			<li> Perform </li>
 			<li> <%= link_to "Record", new_user_workout_path(current_user.id), 'data-no-turbolink' => true %> </li>
 			<li> <%= link_to "Analyze", user_workouts_path(current_user.id), 'data-no-turbolink' => true %> </li>
@@ -70,34 +76,4 @@
 </div>
 </body>
 </html>
-<script>
-$(function() {
-  $('.header-nav-list li a[href="<%= escape_javascript request.path %>"]').parents('li').addClass('current');
-});
-</script>
 
-<script>
-$(document).ready(function(){
-  var nav = $(".header-nav");  
- 		
-		// Clicking the settings li shows the list.	
-    	$(".header-nav-list-dropdown").on('click', function(e) { 
-	 		if ($(".header-nav-list-dropdown ul").css('display') == 'none') {
-             $(this).find("ul").show();
-     			return false;
-			}
-         });  
-      
-    	// Clicking anywhere in browser window hides the list.
-     	window.onclick = hideSettings;
-		function hideSettings() {
-	  			$(".header-nav-list-dropdown ul").hide();	
-		}
-});
-</script>
-
-<script>
-// See https://bitbucket.org/pellepim/jstimezonedetect
-var timezone = jstz.determine();
-document.cookie = 'time_zone='+timezone.name()+';';
-</script>
