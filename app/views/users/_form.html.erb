@@ -22,7 +22,31 @@
 	<div class="field">
 	  <%= f.file_field :photo, :size => "25", :placeholder => " email" %>
 	</div>
- 	
+
+  <div class="field">
+    <%= f.date_field :birthday %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :about_me, cols: "10", rows: "10", placeholder: "About me" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :website, :size => "35", :placeholder => " http://mywebsite.com" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :city, size: "25", placeholder: "City" %>
+  </div>
+
+  <div class="field">
+    <%= f.select(:state, [['MD'], ['DC'], ['VA'], ['IL']], {}, style: "height: 32px; width: 180px") %>
+  </div>
+
+  <div class="field">
+    <%= f.select(:country, ["United States"]) %>
+  </div>
+
 	<div class="field">
     <%= f.password_field :password, :size => "25", :placeholder => " password"%>
   </div>

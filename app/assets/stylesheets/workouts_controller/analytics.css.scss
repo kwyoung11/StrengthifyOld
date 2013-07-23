@@ -18,6 +18,54 @@
     width: auto;
 }
 
+/************
+
+Profile page
+
+************/
+
+#graph {
+	border: 0px solid red;
+    margin: 0 auto;
+    width: auto;
+}
+
+.workouts_graph {
+	position: relative;
+	border: 0px solid red;
+	padding: 10px;
+	width: auto;
+	margin: 20px 0px 0px 0px;
+	box-shadow: 0 0 10px #444;
+	background: #fffefc;
+}
+
+.workouts_graph p {
+	font-size: 36px;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;;
+}
+
+.workouts_graph a {
+	width: 100px;
+	border: 0px solid red;
+	background: #08D;
+	font-style: bolder;
+	font-size: 18px;
+	padding: 10px;
+	text-decoration: none;
+	color: #ddd;
+	border-radius: 5px;
+	box-shadow: #444 5px 5px 5px;
+}
+
+.workouts_graph a:hover {
+		background: #0AF;
+		color: #fff;
+		margin-left: 2px;
+		margin-top: 2px;
+		box-shadow: #444 3px 3px 3px;
+}
+
 /*******************************
 *
 * Chart-Specific CSS goes here
@@ -216,7 +264,6 @@
 	
 }
 
-
 .selection_label {
 	font-weight: bolder;
 	display: block;
@@ -252,24 +299,4 @@
 	width: 200px;
 	float: left;
 	margin: 0px 0px 0px 0px;
-}
-
-
-
-
-
-
-
-
-
-/************
-
-Profile page
-
-************/
-
-#graph {
-	border: 0px solid red;
-    margin: 0 auto;
-    width: auto;
 }

@@ -2,20 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .activity {
 	border-bottom: 1px solid #ccc;
 	margin: 0 auto;
 	padding: 16px 0;
 	max-width: 400px;
-}
-
-#activity_description {
-	border: 0px solid green;
-}
-
-.sets_and_exercises {
-	border: 0px solid blue;
 }
 
 #lv_label {
@@ -27,17 +18,58 @@
 	white-space: nowrap;
 }
 
-#lv_wrapper {
-	border: 0px solid blue;
-	background-color: #efa995;
+.media-workout {
+	border: none;
+	overflow: hidden;
+	width: 100%;
+	font-size: 14px;
+	padding: 0px 0px 10px 0px;
+}
+
+.media-workout tr, .media-workout td {
+	padding: 5px;
+}
+
+.media-workout-lv {
+	font-size: 0.9em;
+	height: 100%;
+	background-color: rgba(65, 106, 176, 0.15);
+	color: rgba(255, 95, 65, 0.8);
 	font-weight: bolder;
+}
+
+.media-workout-description {
+	padding: 0px 0px 0px 10px;
+	border: 0px solid green;
+}
+
+.media-workout-stats {
+	border: 0px solid red;
+}
+
+.media-workout-sets {
+	color: rgba(65, 176, 106, 1);
+	float: left;
+	width: 50%;
+}
+
+.media-workout-exercises {
+	color: #3ad;
+	float: left;
+	width: 50%;
+	border: 0px solid blue;
+}
+
+.media-workout-actions {
+	border: 0px solid red;
+	font-size: 0.8em;
+
 }
 
 #act_ex_label {
 	font-size: 10px;
 	display: block;
 	margin: -7px 0px 0px 0px;
-	border-bottom: 1px solid #ccc;
 }
 
 #act_sets_label {

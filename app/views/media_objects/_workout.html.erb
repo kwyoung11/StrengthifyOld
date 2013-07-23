@@ -1,0 +1,38 @@
+<table class="media-workout">
+	<tr>
+		<td rowspan="2" class="media-workout-lv">
+			<%= workout.load_volume %> 
+		</td>
+		
+		<td class="media-workout-description"> 
+			<% user = current_user unless defined? activity %>
+			<% if defined? activity %>
+				<% user = activity.user %>
+				<%= link_to(user.name, user) %>
+			<% end %>
+			<%= link_to user_workout_path(user.id, workout.id) do %>
+				<%= workout.category %> workout
+				in <%= format_duration_to_HMS(workout.duration) %>
+			<% end %>
+		</td>
+	
+		<td class="media-workout-stats"> 
+			<div class="media-workout-sets">
+				<%= workout.sets %> &middot;
+			</div>
+			<div class="media-workout-exercises"> 
+				<%= workout.exercises.count %>
+			</div>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="media-workout-actions"> 
+			<%= link_to 'Snag'.html_safe, '#' %>
+			<%= link_to 'Comment'.html_safe, '#' %> 
+			- <%= 	time_ago_in_words(workout.created_at) %> ago 
+		</td>
+		<td> <%= link_to '<i class="icon-chevron-up"></i>'.html_safe, '#' %></td>
+	</tr>
+</table>
+

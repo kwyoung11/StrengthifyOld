@@ -1,8 +1,7 @@
 $(document).ready(function() {	
-// Check if this is the training page
-if ($("#tabContainer").length == 1) { 
-	draw();
-}
-			
+	var user_id = $("#tabContainer").data("user");
+	var margin = {top: 20, right: 40, bottom: 40, left: 00};
+	var view = "Training";
 
-});  // end document.ready	
+	if ($("#tabContainer").length == 1) { draw(900, 360, margin, 25, user_id, view); }		
+}); 

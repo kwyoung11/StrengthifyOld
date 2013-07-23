@@ -40,6 +40,7 @@ gem 'debugger'
 gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
+gem 'country-select'
 
 gem 'carrierwave'
 gem 'rmagick'

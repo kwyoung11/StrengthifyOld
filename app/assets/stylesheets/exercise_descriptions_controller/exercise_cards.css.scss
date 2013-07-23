@@ -1,4 +1,9 @@
-.ex-descriptions { width: 64.5%; overflow: hidden; border: 1px solid red; float: left;}
+.ex-descriptions {
+	width: 66.5%; 
+	overflow: hidden; 
+	border: 1px solid red; 
+	float: left;
+}
 .ex-descriptions-header { @extend .col-10-10; }
 .ex-descriptions-query-results { float: right; }
 .ex-descriptions-card {
