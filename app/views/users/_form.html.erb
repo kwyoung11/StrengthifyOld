@@ -40,11 +40,15 @@
   </div>
 
   <div class="field">
-    <%= f.select(:state, [['MD'], ['DC'], ['VA'], ['IL']], {}, style: "height: 32px; width: 180px") %>
+    <%= f.select(:state, User.states, {}, style: "height: 32px; width: 180px") %>
   </div>
 
   <div class="field">
-    <%= f.select(:country, ["United States"]) %>
+    <%= f.select(:country, User.countries) %>
+  </div>
+
+   <div class="field">
+    <%= f.select(:gender, [['Male'], ['Femaile']]) %>
   </div>
 
 	<div class="field">

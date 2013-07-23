@@ -61,6 +61,22 @@ class User < ActiveRecord::Base
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def self.states
+    return STATES
+  end
+
+  def self.countries
+    return COUNTRIES
+  end
+
+
+  STATES = %w[
+    DC MD VA AL AK AZ AR CA CO CT DE
+    FL GA HI ID IL IN IA KS KY
+    LA ME MA MI MN MS MO MT NE
+    NV NH NJ NM NY NC ND OH OK OR PA
+    RI SC SD TN TX UT VT WA WV WI WY
+  ]
 
 
   COUNTRIES = ["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola",
@@ -102,17 +118,6 @@ class User < ActiveRecord::Base
         "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu",
         "Venezuela, Bolivarian Republic of", "Viet Nam", "Virgin Islands, British", "Virgin Islands, U.S.",
         "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"]
-
-
-
-
-
-
-
-
-
-
-
 
 
   

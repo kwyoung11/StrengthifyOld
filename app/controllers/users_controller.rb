@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   def show
     @user_workouts = current_user.workouts.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
     @user_challenges = current_user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
+    @user.profile_views += 1 unless @user == current_user
+    @user.save(validate: false)
   end
 
   # GET /users/new
@@ -81,6 +83,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :birthday, :about_me, :website, :city, :state, :country )
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :birthday, :about_me, :website, :city, :state, :country, :last_sign_in_at, :gender, :sign_in_count, :last_seen )
     end
 end

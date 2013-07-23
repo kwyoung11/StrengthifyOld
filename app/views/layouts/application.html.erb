@@ -77,3 +77,30 @@
 </body>
 </html>
 
+<script>
+$(document).ready(function(){
+
+
+window.onclick = updateLastSeen;
+
+function updateLastSeen() {
+	user_id = <%= @user.id unless @user.nil? %>;
+	time = new Date();
+	$.ajax({
+  		type: "POST",
+  		url: "/activity",
+  		data: {time: time, user_id: user_id},
+  		success: function(response) {
+
+  		}
+	});
+}
+
+});	
+
+
+
+
+</script>
+
+

@@ -15,31 +15,53 @@
 	overflow: hidden;
 }
 
-.profile-header {
-	float: left;
-	padding: 0px 0px 0px 10px;
-}
-
 .profile-info {
 	border: 1px solid black;
 	margin: 0px auto;
+	padding: 10px 0px 0px 0px;
 	overflow: hidden;
 	width: 75%;
 }
 
+.profile-header {
+	border: 1px solid black;
+	float: left;
+	width: 35%;
+	padding: 0px 0px 0px 10px;
+}
+
+.profile-data {
+	float: left;
+	border: 1px solid black;
+	width: 35%;
+}
+
 .profile-data th {
+	text-align: left;
 	font-style: italic;
 	padding: 0px 5px 0px 5px;
 }
 
 .profile-data td {
+	white-space: nowrap;
 	text-align: left;
-	padding: 0px 5px 0px 5px;
+	padding: 3px 5px 5px 0px;
 }
 
 .italic {
 	display: inline-block;
 	font-style: italic;
+}
+
+.profile-about-me {
+	float: left;
+	width: 30%;
+	text-align: left;
+	padding: 10px;
+	min-height: 200px;
+	background-color: #f8f8f8;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #eee;
 }
 
 #info {

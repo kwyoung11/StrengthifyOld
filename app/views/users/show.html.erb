@@ -3,7 +3,9 @@
 	<div class="profile-info">
 		
 		<div class="profile-header">
-			<div id="photo"> <%= image_tag @user.photo_url(:default).to_s %> </div>
+			<div id="photo"> 
+				<%= image_tag @user.photo_url(:default).to_s %> 
+			</div>
 				<i class="icon-arrow-down"></i>
 				<i class="icon-user"></i>
 				<i class="icon-arrow-up"></i>
@@ -43,34 +45,50 @@
 					<tr>
 						<th> </th> 
 						<td> location </td>
-						<td> </td>
+						<td> <%= @user.city + "," if @user.city %> <%= @user.state %></td>
+					</tr>
+					<tr>
+						<th>  </th> 
+						<td> gender </td>
+						<td> <%= @user.gender %></td>
 					</tr>
 				</tbody>
 
 				<tbody>
 					<tr>
 						<th> visits </th> 
-						<td> </td>
-						<td> </td> 
+						<td> member for </td>
+						<td class="fade"> <%= time_ago_in_words(@user.created_at) %></td> 
+					</tr>
+
+					<tr>
+						<th>  </th> 
+						<td> visited </td>
+						<td> <%= time_ago_in_words(@user.created_at) %></td> 
 					</tr>
 
 					<tr>
 						<th> </th> 
-						<td> </td>
-						<td> </td> 
+						<td> seen </td>
+						<td class="hilite"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
 					</tr>
+
+				
 				</tbody>
 
 				<tbody>
 					<tr>
 						<th> stats </th> 
-						<td> </td>
-						<td> </td> 
+						<td> profile views </td>
+						<td> <%= @user.profile_views %></td> 
 					</tr>
 				</tbody>
 
 			</table>
+		</div>
 
+		<div class="profile-about-me">
+			<%= @user.about_me %>
 		</div>
 
 
