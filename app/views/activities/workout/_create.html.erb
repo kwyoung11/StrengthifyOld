@@ -1,27 +1,4 @@
-<table>
-	<tr>
-		<td rowspan="2" id="lv_wrapper">
-			<span id="lv_label">Load V.</span><br />
-			<%= workout.load_volume %> 
-		</td>
-		<td rowspan="2" id="activity_description"> 
-			<%= link_to(activity.user.name, activity.user) %>
-			strengthened his <%= workout.category %>
-			in <%= format_duration_to_HMS(workout.duration) %>
-		</td>
-		<td id="activity_sets" class="sets_and_exercises"> 
-			<span id="act_sets_label">Sets</span><br />
-			<span id="act_sets_count"><%= workout.sets %></span>
-		</td>
-	</tr>
-	<tr>
-		<td id="activity_exercises" class="sets_and_exercises"> 
-			<span id="act_ex_label">Exercises</span><br />
-			<span id="act_ex_count"><%= workout.exercises.count %></span>
-		</td>
-	</tr>
-</table>
-<%= link_to 'Comment', '#' %> - <%= time_ago_in_words(workout.created_at) %> ago
+<%= render "media_objects/workout", workout: workout, activity: activity %>
 
 
 

@@ -1,85 +1,97 @@
-function draw() {
-	/******* GLOBAL VARIABLES ****************/
-	var user_id = $("#tabContainer").data("user");
-
+function draw(w, h, margin, barWidth, user_id, view) {
 	// Transition animation variables
 	var delay = function(d, i) { return i * 5; };
 	var duration = 750;
 	
 	// Define graph area and margin areas.
-	var margin = {top: 20, right: 40, bottom: 40, left: 00}, 
-	w = 900, 
-	h = 360 - margin.top - margin.bottom, 
-	barWidth = 25, padding = 0;
+	h = h - margin.top - margin.bottom, 
+	padding = 0;
 	/*****************************************/ 	
 
-
 	// Initialize domain and svg for graph
-	function initialize(data, time, metric, category) {
-		convertToMilliseconds(data); // Process Data. 
-		var tooltip = d3.select("body").append("div").attr("class", "tooltip"); // Set up the tooltip.
-		
-		// Set the X and Y scales.		
-		var x = d3.time.scale().domain([d3.time.day.offset(new Date(), -22), d3.time.day.offset(new Date(), 0)]).rangeRound([0, w - margin.left - margin.right]);
-		var y = d3.scale.linear().domain([0, d3.max(data, function(d) { return d.load_volume; })]).range([h - margin.top - margin.bottom, 0]);
-		
-		// Set the xAxis
-		var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.days, 1).tickFormat(d3.time.format('%d')).tickSize(0).tickPadding(8);
-	
-		// Create the SVG graph.
-		var svg = d3.select("#graphContainer").insert("svg", "#training_stats")
-		    .attr("class", "chart")
-		    .attr("width", w).attr("height", h)
-			.append("g")
-		    .attr("transform", "translate(" + (margin.left) + "," + margin.top + ")").attr("id", "graph");
-		
-		var bar = enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, category);
-		toolTipMouseOver(tooltip);
-		
-		// Update graph when time scale changes
-		$("ul#time_scale li, #metric_select, #category_select").on('click change', function () {
-			var flag = "Update";
-			sendAjaxRequest(flag, svg, x, y, xAxis, tooltip);
-		});
+	function initialize(view) {
+		var metric = "Load Volume";
+    	var category = "All";
+		var time = view == "Profile" ? "One-Week" : "Days";
 
+		var promise = sendAjaxRequest(time, metric, category);
+		promise.success(function(data) {
+			data = convertToMilliseconds(data); 
+			
+			// Set the X and Y scales.		
+			var x = setXDomain(time, w, margin);
+			var y = setYDomain(data, h, margin);
+			
+			// Set the xAxis.
+			var xAxis = d3.svg.axis().scale(x).orient('bottom').ticks(d3.time.days, 1).tickFormat(d3.time.format('%d')).tickSize(0).tickPadding(8);
+			var tooltip = d3.select("body").append("div").attr("class", "tooltip"); 
+	
+			// Create the SVG graph.
+			var svg = d3.select("#graphContainer").insert("svg", "#training_stats")
+			    .attr("class", "chart").attr("width", w).attr("height", h)
+				.append("g").attr("transform", "translate(" + (margin.left) + "," + margin.top + ")").attr("id", "graph");
+					
+			enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, category);
+			toolTipMouseOver(tooltip);
+
+			// Update graph when time scale changes
+			$("ul#time_scale li, #metric_select, #category_select").on('click change', function () {
+				var newTime = $("ul#time_scale li.current").text(),
+					newMetric = $("#metric_select option:selected").attr("value"),
+					newCategory = $("#category_select option:selected").attr("value");
+					updateGraph(svg, x, y, xAxis, tooltip, newTime, newMetric, newCategory);
+			});	
+			
+		});
 	} // end initialize function
 
+	// Redraw graph with new data.
+	function updateGraph(svg, x, y, xAxis, tooltip, newTime, newMetric, newCategory) {
+		var flag = "Update",
+		promise = sendAjaxRequest(newTime, newMetric, newCategory);
+		promise.success(function(data) {
+			data = convertToMilliseconds(data);
 
-	// Redraw graph with new data
-	function updateGraph(data, svg, x, y, xAxis, tooltip, time, metric, category) {
-		deduceTimeInterval(data, x, time);
-		deduceTickFormat(xAxis, x, time);
+			updateXDomain(data, x, newTime);
+			updateYDomain(data, y, newTime);
+			updateTickFormat(xAxis, x, newTime);
 
-		data = convertToMilliseconds(data); // Convert dates to millisecond time.
-	
-	   // Update Y domain.
-	   y.domain([0, d3.max(data, function(d) { return d.load_volume; })]);
-	
-		// Re-select chart elements and bind them to new data
+			enterSelections(data, svg, x, y, tooltip, xAxis, newTime, newMetric, newCategory, flag);
+			toolTipMouseOver(tooltip);
+		});	
+
+	} // End updateGraph() function.
+
+	// Draw bars, labels and xAxis
+	function enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, category, flag) {
+
 		var bar = svg.selectAll("rect").data(data, function(d) { return d.date; });
 		var text = svg.selectAll("text").data(data, function(d) { return d.date; });
+		var noDataColor = "#eee";
+		var dataColor = "rgba(65,131,196,0.4)";
 
-		// Update the rects.
-		bar.transition().duration(duration).delay(delay)
-			.attr("x", function(d) { return x(d.date); })
-		    .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
-		    .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) });
+		if (flag == "Update") {
+			bar.transition().duration(duration).delay(delay)
+				.attr("x", function(d) { return x(d.date); })
+		    	.attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
+		    	.attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
+		    	.style("fill", function(d) { return d.load_volume == 0 ? noDataColor : dataColor});
 			
-		// Update the text.
-		text.transition().duration(duration).delay(delay)
-			 .attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
-		     .attr("y", function(d) { return y(d.load_volume) + 20; })
-		     .text(function(d) { return d.load_volume == 0 ? null : format(d.load_volume, metric) });
-		
+			text.transition().duration(duration).delay(delay)
+			 	.attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
+		     	.attr("y", function(d) { return y(d.load_volume) + 20; })
+		     	.text(function(d) { return d.load_volume == 0 ? null : format(d.load_volume, metric) });
+		}
+	
 		bar.enter().append("rect")
 		    .attr("x", function(d) { return x(d.date); })
 		    .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
 		    .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
 		    .attr("width", barWidth).attr("class", "bar")
-		    .style("fill", function(d) { return d.load_volume == 0 ? "#888" : "#00e0fe"})
-			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, user_id, time, metric, barWidth) })
+		    .style("fill", function(d) { return d.load_volume == 0 ? noDataColor : dataColor})
+			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, user_id, $("ul#time_scale li.current").text(), $("#metric_select option:selected").attr("value"), barWidth) })
 			.on("mouseout", function (d, i) { return barMouseOut(d, i, bar, tooltip) });
-		
+				
 		text.enter().append("text")
 			.attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
 		 	.attr("y", function(d) { return y(d.load_volume) > (0.125 * (d3.max(data, function(d) { return d.load_volume; }))) ? y(d.load_volume) + 20 : y(d.load_volume) + 20; })
@@ -90,62 +102,15 @@ function draw() {
 			.attr('transform', 'translate(' + padding + ',' + (h - margin.bottom - margin.top) + ')')
 			.call(xAxis).selectAll("text").attr("dx", function(d) { return time == "Days" ? "0.5em" : time == "Weeks" ? "1.5em" : "1.05em" }); 
 
-		toolTipMouseOver(tooltip);
-        
-        // Remove rect and text elements not in current dataset.
-		bar.exit().remove();
-		text.exit().remove();
-
-} // End updateGraph() function.
-
-
-	// Draw bars, labels and xAxis
-	function enterSelections(data, svg, x, y, tooltip, xAxis, time, metric, category) {
-
-		var bar = svg.selectAll("rect")
-		    .data(data).enter().append("rect")
-		    .attr("x", function(d) { return x(d.date); })
-		    .attr("y", function(d) { return d.load_volume == 0 ? y(d.load_volume) - 30 : y(d.load_volume) })
-		    .attr("height", function(d) { return d.load_volume == 0 ? 30 : h - margin.top - margin.bottom - y(d.load_volume) })
-		    .attr("width", barWidth).attr("class", "bar")
-		    .style("fill", function(d) { return d.load_volume == 0 ? "#888" : "#00e0fe"})
-			.on("mouseover", function(d, i) { return barMouseOver(d, i, x, y, bar, tooltip, user_id, time, metric, barWidth) })
-			.on("mouseout", function (d, i) { return barMouseOut(d, i, bar, tooltip) });
-		
-		var label = svg.selectAll("text").data(data)
-		 	.enter().append("text")
-			.attr("x", function(d,i) { return x(new Date(d.date)) + barWidth/2; })
-		 	.attr("y", function(d) { return y(d.load_volume) > (0.125 * (d3.max(data, function(d) { return d.load_volume; }))) ? y(d.load_volume) + 20 : y(d.load_volume) + 20; })
-			.attr("text-anchor", "middle")
-		 	.text(function(d) { return d.load_volume == 0 ? null : format(d.load_volume) });
-
-		svg.append('g').attr('class', 'x axis')
-			.attr('transform', 'translate(' + padding + ',' + (h - margin.bottom - margin.top) + ')')
-			.call(xAxis).selectAll("text").attr("dx", function(d) { return time == "Days" ? "0.5em" : time == "Weeks" ? "1.5em" : "1.05em" }); 
-
-		return bar
+		// Remove rect and text elements not in current dataset.	
+		if (flag == "Update") { bar.exit().remove(); text.exit().remove(); }
 	}
 
-	function sendAjaxRequest(flag, svg, x, y, xAxis, tooltip) {
-		var time = $("ul#time_scale li.current").text();
-		var metric = $("#metric_select option:selected").attr("value");
-		var category = $("#category_select option:selected").attr("value");
-		$.ajax({
-			url: "/users/" + user_id +"/workouts/analyze.json",
-			data: { metric: metric, category: category, time: time },
-			dataType: "json",
-			success: function(response) {
-				flag == "Update" ? updateGraph(response, svg, x, y, xAxis, tooltip, time, metric, category) : initialize(response, time, metric, category);
-			
-			}, // end success callback
-			error: function (xhr, textStatus) {
-					alert('Server error: ' + textStatus)
-			}  // end error handling
-		}); // end ajax
+	function sendAjaxRequest(time, metric, category) {
+		return $.ajax({ url: "/users/" + user_id +"/workouts/analyze.json", data: { metric: metric, category: category, time: time }, dataType: "json" }); 
+	} 
 
-	} // end sendAjaxRequest()
-
-	sendAjaxRequest(null);
+	initialize(view);
 } // end draw function
 
 
