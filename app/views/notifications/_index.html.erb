@@ -1,0 +1,6 @@
+<% current_user.notifications.each do |note| %>
+  <li class="strengthify-header-dropdown-li-item">
+    <%= note.notifiable_type.constantize.requester(note.notifiable_id).name %> requested to be friends
+    <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id), current_user,  note.notifiable_type.constantize.find(note.notifiable_id)) %> 
+</li>
+<% end %>

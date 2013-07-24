@@ -19,53 +19,45 @@ svg#lifter {
 	stroke-width: 1;
 }
 
-#name_logo {
-	margin: 3px 0px 0px 0px;
-	text-decoration: none;
-	font-size: 26px;
-	font-family: baskerville;
-	font-weight: bolder;
-	text-shadow: 0px 0px #d55;
-	background: #ddd url("/assets/static.png");
-}
-
-#name_logo a {
-	color: #343434;
-}
-
-#name_logo a span {
-	color: #777;
-}
-
-#name_logo a i {
+.strengthify-header-link i {
 	-webkit-transform: scale(0.7);
 	margin: 11px 0px 0px 5px;
 }
 
-#lift_logo svg {
+.strengthify-logo svg {
 	margin: -5px 0px 0px 0px;
 	-webkit-transform: scale(0.6);
 }
 
-#lift_logo svg line {
+.strengthify-logo svg line {
 	fill: blue;
 	stroke: black;
 }
 
-#logo_list {
+.strengthify-header-list {
 	list-style-type: disc;
 	border: 0px solid blue;
 	margin: 0px 0px 0px 0px;
 	overflow: hidden;
 	float: left;
+	z-index: 1000000000;
+
 }
 
-#logo_list li {
-	height: auto;
+.strengthify-header-list li {
+	height: 35px;
 	display: inline;
 	float: left;
 }
 
-#logo_list li a {
-	text-decoration: none;
+.strengthify-header {
+	font-family: baskerville;
+	text-decoration: underline;
+	font-size: 1.9em;
+	font-weight: bolder;
+	text-shadow: 0px 0px #d55;
+	border: 3px solid blue;
+}
+.strengthify-header:hover {
+	cursor: pointer;
 }

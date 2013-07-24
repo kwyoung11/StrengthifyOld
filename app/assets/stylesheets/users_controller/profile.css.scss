@@ -15,8 +15,17 @@
 	overflow: hidden;
 }
 
-.profile-info {
+.profile-nav-header {
+	width: 75%;
+	margin: 0 auto;
 	border: 1px solid black;
+	overflow: hidden;
+	padding-left: 20px;
+	h2 {float: left;}
+}
+
+.profile-info {
+	border-top: 1px solid #aaa;
 	margin: 0px auto;
 	padding: 10px 0px 0px 0px;
 	overflow: hidden;
@@ -24,16 +33,16 @@
 }
 
 .profile-header {
-	border: 1px solid black;
+	border: 0px solid black;
 	float: left;
-	width: 35%;
+	width: 25%;
 	padding: 0px 0px 0px 10px;
 }
 
 .profile-data {
 	float: left;
-	border: 1px solid black;
-	width: 35%;
+	border: 0px solid black;
+	width: 45%;
 }
 
 .profile-data th {

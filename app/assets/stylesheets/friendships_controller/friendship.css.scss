@@ -54,9 +54,10 @@
 }
 
 #friends_list {
-	border: 1px solid black;
+	border: 0px solid black;
 	margin: 10px auto;
 	padding: 5px;
+	width: 90%;
 	min-height: 100px;
 	list-style-type: none;
 	text-align: center;
@@ -67,6 +68,7 @@
 	border: 0px solid red;
 	float: left;
 	padding-right: 5px;
+	margin-bottom: 5px;
 	max-height: 40px;
 	-webkit-transform: translateZ(0); /* webkit flicker fix */
 	-webkit-font-smoothing: antialiased; /* webkit text rendering fix */
@@ -83,10 +85,6 @@
 #friend_requests li {
 	border: 0px solid red;
 	padding: 5px;
-}
-
-#friend_requests li a {
-	
 }
 
 #list_user li#friend_status {

@@ -3,6 +3,7 @@ class Challenge < ActiveRecord::Base
 	has_many :exercises, as: :exerciseable
 	has_one :baseline
 	has_one :activity, as: :trackable, dependent: :destroy
+	has_one :notification, as: :notifiable, dependent: :destroy
 	accepts_nested_attributes_for :baseline, allow_destroy: true
 
 	attr_accessor :hms_duration

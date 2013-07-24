@@ -22,7 +22,8 @@ module ApplicationHelper
   end
 
   def name_and_notifications
-   "Strength#{content_tag(:span, "ify")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe
+   "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe +
+   "#{content_tag(:span, current_user.notifications.count, class: "notification-count")}".html_safe
   end
 
   def format_duration_to_HMS(total_seconds)

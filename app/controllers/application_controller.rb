@@ -39,5 +39,9 @@ class ApplicationController < ActionController::Base
   def track_activity(trackable, action = params[:action])
     current_user.activities.create! action: action, trackable: trackable
   end
+
+  def send_notification(user, notifiable, action = nil)
+    user.notifications.create! action: action, notifiable: notifiable.first
+  end
   
 end

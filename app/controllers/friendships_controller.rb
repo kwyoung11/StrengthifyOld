@@ -6,6 +6,8 @@ class FriendshipsController < ApplicationController
     unless friend.nil?
       if Friendship.request(user, friend)
        flash[:notice] = "A friend request has been sent."
+       @friendship = Friendship.where(user_id: user, friend_id: friend)
+       send_notification(friend, @friendship, "create")
        redirect_to find_users_path
      else
        flash[:error] = "Unable to add friend."
@@ -44,8 +46,10 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
-      @friendship.destroy
+    @destroyer = User.find(params[:destroyer])
+    @destroyed = User.find(params[:destroyed])
+    # @friendship = current_user.friendships.find(params[:id])
+      Friendship.destroy(@destroyer, @destroyed)
       flash[:notice] = "Removed friendship."
       redirect_to current_user
   end

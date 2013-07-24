@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # Database Relations 
   has_many :challenges
   has_many :activities
+  has_many :notifications
   has_many :workouts, :dependent => :destroy
   has_many :friendships
   has_many :friends, :through => :friendships

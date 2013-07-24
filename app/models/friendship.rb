@@ -1,6 +1,7 @@
 class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, :class_name => "User"
+  has_one :notification, as: :notifiable, dependent: :destroy
   
   # Returns whether the current_user and a given 
   # other user are friends (true) or not (false).
@@ -29,6 +30,11 @@ class Friendship < ActiveRecord::Base
     return true if f1.status == "requested" && f2.status == "pending" unless find_by_user_id_and_friend_id(user, friend).nil?
     return true if f1.status == "requested" && f2.status == "pending" unless find_by_user_id_and_friend_id(friend, user).nil?
     return false
+  end
+
+  def self.requester(friendship_id)
+    friendship = Friendship.find(friendship_id)
+    return User.find(friendship.user_id)
   end
   
   # Records a friend request in the friendships table, placing

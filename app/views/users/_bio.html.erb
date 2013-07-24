@@ -1,0 +1,56 @@
+<table>
+				<tbody>
+					<tr> 
+						<th> bio </th> 
+						<td> website</td>
+						<td> <%= link_to "#{@user.website}", "http://#{@user.website}" %>
+						</td>
+					</tr>
+					<tr>
+						<th>  </th> 
+						<td> age </td>
+						<td> <%= @user.age(@user.birthday) unless @user.birthday.nil? %></td>
+					</tr>
+					<tr>
+						<th> </th> 
+						<td> location </td>
+						<td> <%= @user.city + "," if @user.city %> <%= @user.state %></td>
+					</tr>
+					<tr>
+						<th>  </th> 
+						<td> gender </td>
+						<td> <%= @user.gender %></td>
+					</tr>
+				</tbody>
+
+				<tbody>
+					<tr>
+						<th> visits </th> 
+						<td> member for </td>
+						<td class="fade"> <%= time_ago_in_words(@user.created_at) %></td> 
+					</tr>
+
+					<tr>
+						<th>  </th> 
+						<td> visited </td>
+						<td> <%= time_ago_in_words(@user.created_at) %></td> 
+					</tr>
+
+					<tr>
+						<th> </th> 
+						<td> seen </td>
+						<td class="hilite"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
+					</tr>
+
+				
+				</tbody>
+
+				<tbody>
+					<tr>
+						<th> stats </th> 
+						<td> profile views </td>
+						<td> <%= @user.profile_views %></td> 
+					</tr>
+				</tbody>
+
+			</table>
