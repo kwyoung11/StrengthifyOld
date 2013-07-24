@@ -1,90 +1,37 @@
 <div class="profile">
-	<h2> <%= @user.name %> </h2>
-	<div class="profile-info">
+
+	<section class="profile-nav-header">
+		<h2 class="name-header"> <%= @user.name %> </h2>
+		<nav class="profile-nav">
+			<ul class="profile-nav-li">
+				<li> </li>
+			</ul>
+		</nav>
+	</section>
+	<section class="profile-info">
 		
 		<div class="profile-header">
 			<div id="photo"> 
 				<%= image_tag @user.photo_url(:default).to_s %> 
 			</div>
-				<i class="icon-arrow-down"></i>
-				<i class="icon-user"></i>
-				<i class="icon-arrow-up"></i>
 				
 			<ul id="friends_list">
 				<% @user.friendships.each do |friendship| %>
-						<%= show_friend_photo(friendship) %> 
+					<%= show_friend_photo(friendship) %> 
 				<% end %>
 			</ul>
 		
 			<ul id="friend_finder">
 				<%= show_friend_finder_nav %>
 			</ul>
-		
-			<h2> Friend Requests </h2>
-			<ul id="friend_requests">
-				<% @user.friendships.each do |friendship| %>
-					<%= show_friendship_status(friendship) %> 
-				<% end %>
-			</ul>
+			<% if Friendship.are_friends(current_user, @user) %>
+			<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, confirm: "Are you sure you want remove #{@user} from your friends?" %>
+			<% end %>
+
 		</div>
 
 		<div class="profile-data">
-			<table>
-				<tbody>
-					<tr> 
-						<th> bio </th> 
-						<td> website</td>
-						<td> <%= link_to "#{@user.website}", "http://#{@user.website}" %>
-						</td>
-					</tr>
-					<tr>
-						<th>  </th> 
-						<td> age </td>
-						<td> <%= @user.age(@user.birthday) %></td>
-					</tr>
-					<tr>
-						<th> </th> 
-						<td> location </td>
-						<td> <%= @user.city + "," if @user.city %> <%= @user.state %></td>
-					</tr>
-					<tr>
-						<th>  </th> 
-						<td> gender </td>
-						<td> <%= @user.gender %></td>
-					</tr>
-				</tbody>
-
-				<tbody>
-					<tr>
-						<th> visits </th> 
-						<td> member for </td>
-						<td class="fade"> <%= time_ago_in_words(@user.created_at) %></td> 
-					</tr>
-
-					<tr>
-						<th>  </th> 
-						<td> visited </td>
-						<td> <%= time_ago_in_words(@user.created_at) %></td> 
-					</tr>
-
-					<tr>
-						<th> </th> 
-						<td> seen </td>
-						<td class="hilite"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
-					</tr>
-
-				
-				</tbody>
-
-				<tbody>
-					<tr>
-						<th> stats </th> 
-						<td> profile views </td>
-						<td> <%= @user.profile_views %></td> 
-					</tr>
-				</tbody>
-
-			</table>
+			<%= render "bio" %>
 		</div>
 
 		<div class="profile-about-me">
@@ -92,7 +39,7 @@
 		</div>
 
 
-</div>
+</section>
 
 <section class="profile-workout-info">
 	<div class="workouts_graph" data-user_id="<%= @user.id %>">

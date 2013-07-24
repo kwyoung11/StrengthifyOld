@@ -1,15 +1,15 @@
 module FriendshipsHelper
 
 	def determine_status(user)
-			if Friendship.are_friends(current_user, user)
-				return HTMLEntities.new.decode "&#10003; Friends"
-			elsif Friendship.is_pending?(current_user, user)
-				return "Pending ..."
-			elsif Friendship.was_requested?(current_user, user)
-				return "Requested ..."
-			else
-				return link_to('Add Friend', friendships_path(friend_id: user.id, user_id: current_user), :method => :post, id: "add_friend")
-			end
+		if Friendship.are_friends(current_user, user)
+			return HTMLEntities.new.decode "&#10003; Friends"
+		elsif Friendship.is_pending?(current_user, user)
+			return "Pending ..."
+		elsif Friendship.was_requested?(current_user, user)
+			return "Requested ..."
+		else
+			return link_to('Add Friend', friendships_path(friend_id: user.id, user_id: current_user), :method => :post, confirm: "Are you sure you want to send a friend request to #{user.name}?", id: "add_friend")
+		end
 
 	end
 
@@ -41,9 +41,9 @@ module FriendshipsHelper
 	end
 
 	def friendship_status(user, friend, friendship)
-    if friendship.status == "requested"
+    if friendship.status == "pending"
       return ("#{link_to 'Accept', accept_friendship_path(:user_id => user, :friend_id => friend)}" + " #{link_to 'Reject', reject_friendship_path(:user_id => user, :friend_id => friendship.friend)}").html_safe
-    elsif friendship.status == "pending"
+    elsif friendship.status == "requested"
       return "pending"
     end
   end

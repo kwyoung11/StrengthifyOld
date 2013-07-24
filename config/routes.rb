@@ -1,4 +1,6 @@
 Cs50xFinalProject::Application.routes.draw do
+  resources :notifications
+
   require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
 
   # Root URL

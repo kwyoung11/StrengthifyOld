@@ -21,9 +21,16 @@
 <body>
 	<div id="header">
 		<div id="header_content">
-			<ul id="logo_list" class="left_align">
-				<li id="lift_logo"><%= render '/layouts/logo' %></li>
-				<li id="name_logo"><%= link_to name_and_notifications, root_url %></li>
+			<ul class="strengthify-header-list left_align">
+				<li class="strengthify-logo">
+					
+				</li>
+				<li class="strengthify-header">
+					<%= name_and_notifications %> 
+					<ul class="strengthify-header-dropdown"> 
+						<%= render "notifications/index" %>
+					</ul>
+				</li>
 			</ul>
 			<nav class="header-nav">
 				<% if current_user %>
