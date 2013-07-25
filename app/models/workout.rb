@@ -1,12 +1,9 @@
 class Workout < ActiveRecord::Base
   has_many :exercises, as: :exerciseable
   has_one :activity, as: :trackable, dependent: :destroy
-  has_one :notification, as: :notifiable, dependent: :destroy
   belongs_to :user
 
   accepts_nested_attributes_for :exercises, :allow_destroy => true 
-
-
 
   before_create :load_volume
   before_create :set_time_if_blank

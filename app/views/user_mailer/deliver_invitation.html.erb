@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p> Hi <%= @invitation.name unless @invitation.name.nil? %>,</p>
+    <p>	
+     <%= @invitation.message %>
+     <br />
+     <br />
+     <%= link_to "Pay us a visit to join #{@user.name} and see why Strengthify helps hundreds of people achieve their strength training goals.", signup_url(invitation_token: @invitation.token, name: @invitation.name) %> 
+    </p>
+  </body>
+</html>

@@ -1,7 +1,12 @@
 class Challenge < ActiveRecord::Base
+	
+	# Database Relations
 	belongs_to :user
-	has_many :exercises, as: :exerciseable
 	has_one :baseline
+
+	# Polymorphic Relations
+	has_many :invitations, as: :invitable, dependent: :destroy
+	has_many :exercises, as: :exerciseable
 	has_one :activity, as: :trackable, dependent: :destroy
 	has_one :notification, as: :notifiable, dependent: :destroy
 	accepts_nested_attributes_for :baseline, allow_destroy: true

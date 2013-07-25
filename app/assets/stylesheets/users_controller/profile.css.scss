@@ -15,28 +15,36 @@
 	overflow: hidden;
 }
 
+.profile-nav {
+	border: 1px solid red;
+	float: right;
+}
+
 .profile-nav-header {
-	width: 75%;
+	height: auto;
+	width: 100%;
 	margin: 0 auto;
 	border: 1px solid black;
-	overflow: hidden;
 	padding-left: 20px;
 	h2 {float: left;}
 }
 
 .profile-info {
-	border-top: 1px solid #aaa;
 	margin: 0px auto;
-	padding: 10px 0px 0px 0px;
-	overflow: hidden;
 	width: 75%;
 }
 
+.profile-main-content {
+	width: 100%;
+	border: 1px solid black;
+	overflow: hidden;
+}
+
 .profile-header {
-	border: 0px solid black;
+	border: 1px solid black;
 	float: left;
 	width: 25%;
-	padding: 0px 0px 0px 10px;
+	padding: 0px 0px 0px 0px;
 }
 
 .profile-data {

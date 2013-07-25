@@ -8,11 +8,33 @@ class UserMailer < ActionMailer::Base
   #
   def welcome_email(user)
     @user = user
-    mail :to => user.email, :subject => "I'm here to help you get the most out of Strengthify"
+    mail :to => user.email, :subject => "Hello there, and welcome to Strengthify"
   end
   
   def password_reset(user)
      @user = user
-     mail :to => user.email, :subject => "Password Reset"
+     mail :to => user.email, :subject => "Account Recovery - Strengthify"
+  end
+
+  def friendship_requested(user, friend)
+    @user = user
+    mail :to => friend.email, :subject => "You have a new item in your Strengthify inbox"
+  end
+
+  def friendship_accepted(user, friend)
+    @friend = friend
+    mail :to => user.email, :subject => "You have a new item in your Strengthify inbox"
+  end
+
+  def deliver_invitation(user, invitation)
+    @user = user
+    @invitation = invitation
+    mail( 
+    to: invitation.recipient_email,
+    from: %{"#{user.name}"},
+    reply_to: user.email, 
+    subject: invitation.subject, 
+    message: invitation.message
+    )
   end
 end

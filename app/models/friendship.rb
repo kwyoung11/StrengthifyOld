@@ -33,8 +33,13 @@ class Friendship < ActiveRecord::Base
   end
 
   def self.requester(friendship_id)
-    friendship = Friendship.find(friendship_id)
-    return User.find(friendship.user_id)
+    friendship = Friendship.find(friendship_id) if Friendship.exists?(friendship_id)
+    return User.find(friendship.user_id) unless friendship.nil?
+  end
+
+  def self.accepter(friendship_id)
+    friendship = Friendship.find(friendship_id) if Friendship.exists?(friendship_id)
+    return User.find(friendship.friend_id) unless friendship.nil?
   end
   
   # Records a friend request in the friendships table, placing
@@ -87,7 +92,10 @@ class Friendship < ActiveRecord::Base
   def self.destroy(user, friend)
     f1 = find_by_user_id_and_friend_id(user, friend)
     f2 = find_by_user_id_and_friend_id(friend, user)
-     if f1.nil? or f2.nil?
+    Notification.find_all_by_notifiable_id(f1.id).each do |n|
+      n.destroy
+    end
+     if f1.nil? || f2.nil?
         return false
       else
         transaction do

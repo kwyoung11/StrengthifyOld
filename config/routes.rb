@@ -1,6 +1,4 @@
 Cs50xFinalProject::Application.routes.draw do
-  resources :notifications
-
   require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
 
   # Root URL
@@ -10,6 +8,7 @@ Cs50xFinalProject::Application.routes.draw do
   # Signup path
   controller :users do
      get 'signup' => :new
+     get 'signup/:invitation_token' => :new
   end
   
   # Login and logout path
@@ -40,10 +39,15 @@ Cs50xFinalProject::Application.routes.draw do
     
   resources :baselines
   resources :activities 
-  resources :invite_friends
+  resources :invitations
   resources :password_resets
   resources :sessions
   resources :exercises
+  resources :notifications
+
+  controller :notifications do
+    post 'seen' => :seen
+  end
 
   resources :friendships do 
     get 'accept', on: :member

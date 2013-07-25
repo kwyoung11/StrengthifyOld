@@ -21,9 +21,13 @@ module ApplicationHelper
    link_to_function text, "$(this).closest('form').submit()", id: id
   end
 
-  def name_and_notifications
-   "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe +
-   "#{content_tag(:span, current_user.notifications.count, class: "notification-count")}".html_safe
+  def name
+   link_to "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe, root_url, class: "strengthify-header-link"
+  end
+
+  def notifications
+    notification_count = current_user.notifications.where(seen: false).count unless (current_user.notifications.where(seen: false).count == 0)
+   "#{content_tag(:span, notification_count, class: "notification-count")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe
   end
 
   def format_duration_to_HMS(total_seconds)

@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   
   # Database Relations 
   has_many :challenges
+  has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id"
+  belongs_to :invitation
   has_many :activities
   has_many :notifications
   has_many :workouts, :dependent => :destroy
@@ -21,6 +23,8 @@ class User < ActiveRecord::Base
   
   # Creates identificiation cookie for new users
   before_create { generate_token(:auth_token) }
+
+  before_create :set_invitation_limit
   
   # Search users table in users#find action (for finding friends)
   def self.search(search)
@@ -56,6 +60,9 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def set_invitation_limit
+    self.invitation_limit = 5
+  end
 
   def age(dob)
     now = Time.now.utc.to_date
@@ -68,6 +75,14 @@ class User < ActiveRecord::Base
 
   def self.countries
     return COUNTRIES
+  end
+
+  def invitation_token
+    invitation.token if invitation
+  end
+
+  def invitation_token=(token)
+    self.invitation = Invitation.find_by(token: token)
   end
 
 
