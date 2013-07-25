@@ -1,12 +1,58 @@
 $(document).ready(function() {
 
-// hide/show nav dropdown. Clicking the settings li shows the list.	
-$(".header-nav-list-dropdown").on('click', function(e) { 
-	if ($(".header-nav-list-dropdown ul").css('display') == 'none') {
-     $(this).find("ul").show();
+// show settings dropdown	
+$(".header-nav-list-dropdown, .profile-find-friends").on('click', function(e) { 
+    $(this).find("ul").show();
+	return false;
+ });  
+
+// Send ajax request when users clicks notifications tab and show dropdown
+$(".notifications").on('click', function() {
+	$(".notifications-dropdown-li-item").each(function() {
+			if ($(this).data("seen") == false) {
+				id = $(this).data("notification_id");
+	
+				$.ajax({
+					type: "POST",
+					url: "/seen",
+					data: {id: id},
+					success: function(response) {
+						$(".notification-count").html("");
+					}
+				});
+			}
+	});	
+
+	if ($(".notifications-dropdown").css('display') == 'none') {
+		$(this).find("ul").show();
 		return false;
 	}
- });  
+	
+});
+
+	// Hide and show the Find Friends link
+	$(".find-friends-link").on('click', function(e) {
+		e.stopPropagation();
+		if ($(".find-friend-actions > li").css('display') == 'none') {
+			$(".find-friend-actions > li").css("display", "block");
+		} else {
+			$(".find-friend-actions > li").css("display", "none");
+		}
+	});
+	
+	$("body").on('click', function() {
+		if ($(".find-friend-actions > li").css('display') == 'block') {
+			$(".find-friend-actions > li").css("display", "none");
+		}
+	});
+
+
+// hide nav/notifications/find friends link
+$(window).on('click', function() {
+	$(".notifications ul").hide();
+	$(".header-nav-list-dropdown ul").hide();
+	$(".find-friends-list").hide();	
+});
 
 // Change time zone according to location. See https://bitbucket.org/pellepim/jstimezonedetect
 var timezone = jstz.determine();
@@ -17,21 +63,5 @@ $(".sub-header-nav-list li").mouseover(function() {
 	$(".sub-header-nav-list-dd").css("display", "block");
 });
 
-// Show notifications dropdown menu
-$(".strengthify-header").on('click', function() {
-	$(".strengthify-header-dropdown").show();
-	$(".strengthify-header-dropdown-li-item").show();
 });
 
-$(window).on('click', function() {
-	$(".strengthify-header-dropdown-li-item").hide();
-	$(".header-nav-list-dropdown ul").hide();	
-});
-
-
-
-
-
-
-
-});

@@ -1,43 +1,50 @@
 <div class="profile">
 
-	<section class="profile-nav-header">
-		<h2 class="name-header"> <%= @user.name %> </h2>
-		<nav class="profile-nav">
-			<ul class="profile-nav-li">
-				<li> </li>
-			</ul>
-		</nav>
-	</section>
+	
 	<section class="profile-info">
+
+		<section class="profile-nav-header">
+			<h2 class="name-header"> <%= @user.name %> </h2>
+			<nav class="profile-nav">
+				<ul class="profile-nav-li">
+					<li class="profile-find-friends"> Find Friends
+						<ul class="find-friends-list"> 
+							<li class="search-community"> Search </li>
+							<li class="invite-friends"> Invite </li>
+						</ul> 
+					</li>
+				</ul>
+			</nav>
+		</section>
+		<div style="clear: both"> </div>
+		<section class="profile-main-content">
 		
-		<div class="profile-header">
-			<div id="photo"> 
-				<%= image_tag @user.photo_url(:default).to_s %> 
-			</div>
-				
-			<ul id="friends_list">
-				<% @user.friendships.each do |friendship| %>
-					<%= show_friend_photo(friendship) %> 
+			<div class="profile-header">
+				<div id="photo"> 
+					<%= image_tag @user.photo_url(:default).to_s %> 
+				</div>
+					
+				<ul id="friends_list">
+					<% @user.friendships.each do |friendship| %>
+						<%= show_friend_photo(friendship) %> 
+					<% end %>
+				</ul>
+			
+				<% if Friendship.are_friends(current_user, @user) %>
+				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, confirm: "Are you 	sure you want remove #{@user.name} from your friends?" %>
 				<% end %>
-			</ul>
-		
-			<ul id="friend_finder">
-				<%= show_friend_finder_nav %>
-			</ul>
-			<% if Friendship.are_friends(current_user, @user) %>
-			<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, confirm: "Are you sure you want remove #{@user} from your friends?" %>
-			<% end %>
+	
+			</div>
+	
+			<div class="profile-data">
+				<%= render "bio" %>
+			</div>
+	
+			<div class="profile-about-me">
+				<%= @user.about_me %>
+			</div>
 
-		</div>
-
-		<div class="profile-data">
-			<%= render "bio" %>
-		</div>
-
-		<div class="profile-about-me">
-			<%= @user.about_me %>
-		</div>
-
+		</section>
 
 </section>
 

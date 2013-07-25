@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  before_action :set_notification, only: [:show, :edit, :seen, :destroy]
 
   # GET /notifications
   # GET /notifications.json
@@ -15,10 +15,6 @@ class NotificationsController < ApplicationController
   # GET /notifications/new
   def new
     @notification = Notification.new
-  end
-
-  # GET /notifications/1/edit
-  def edit
   end
 
   # POST /notifications
@@ -37,17 +33,12 @@ class NotificationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notifications/1
-  # PATCH/PUT /notifications/1.json
-  def update
+  def seen
+    @notification.seen = true
+    @notification.save!(validate: false)
+
     respond_to do |format|
-      if @notification.update(notification_params)
-        format.html { redirect_to @notification, notice: 'Notification was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @notification.errors, status: :unprocessable_entity }
-      end
+      format.js
     end
   end
 

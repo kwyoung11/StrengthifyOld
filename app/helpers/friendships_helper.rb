@@ -24,10 +24,10 @@ module FriendshipsHelper
 	end
 
 	def show_friend_finder_nav
-	content = content_tag(:li, "Find Friends", id: "find_friends_link")
-		content += content_tag :ul, id: "friend_finder_actions" do
-			content_tag(:li, link_to("Search Comm.", find_users_path, id: "search_community_link")) +
-			content_tag(:li, link_to("Invite Friends", new_invite_friend_path, id: "invite_friends_link"))
+	content = content_tag(:li, "Find Friends", class: "find-friends-link")
+		content += content_tag :ul, class: "find-friend-actions" do
+			content_tag(:li, link_to("Search Comm.", find_users_path, class: "search-community")) +
+			content_tag(:li, link_to("Invite Friends", new_invitation_path, class: "invite-friends"))
 		end
 	content
 	end
@@ -42,7 +42,7 @@ module FriendshipsHelper
 
 	def friendship_status(user, friend, friendship)
     if friendship.status == "pending"
-      return ("#{link_to 'Accept', accept_friendship_path(:user_id => user, :friend_id => friend)}" + " #{link_to 'Reject', reject_friendship_path(:user_id => user, :friend_id => friendship.friend)}").html_safe
+      return ("#{link_to 'Accept', accept_friendship_path(:id => friendship.id, :user_id => user, :friend_id => friend)}" + " #{link_to 'Reject', reject_friendship_path(:id => friendship.id, :user_id => user, :friend_id => friendship.friend)}").html_safe
     elsif friendship.status == "requested"
       return "pending"
     end

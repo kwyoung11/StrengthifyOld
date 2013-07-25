@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723223130) do
+ActiveRecord::Schema.define(version: 20130725030421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(version: 20130723223130) do
     t.string   "status"
   end
 
+  create_table "invitations", force: true do |t|
+    t.integer  "sender_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "recipient_email"
+    t.integer  "invitable_id"
+    t.string   "invitable_type"
+  end
+
+  add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id"
+
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
     t.string   "action"
@@ -128,6 +140,8 @@ ActiveRecord::Schema.define(version: 20130723223130) do
     t.integer  "sign_in_count",          default: 0
     t.datetime "last_seen"
     t.integer  "profile_views",          default: 0
+    t.integer  "invitation_id"
+    t.integer  "invitation_limit"
   end
 
   create_table "workouts", force: true do |t|

@@ -1,7 +1,7 @@
 #friend_finder {
 	margin: 0px 10px 0px -15px;
-	border: 0px solid red;
-	
+	border: 4px solid red;
+	z-index: 200;
 }
 
 #find_friends_link {
@@ -11,6 +11,7 @@
 	background-color: #555;
 	padding: 2px 20px 2px 5px;
 	box-shadow: #444 0 0 8px;
+		z-index: 200;
 }
 
 #find_friends_link:after {
@@ -28,6 +29,7 @@
 }
 
 #friend_finder_actions {
+		z-index: 200;
 	position: absolute;
 	float: right;
 	font-size: 11px;
@@ -57,11 +59,11 @@
 	margin: 5px auto 5px;
 }
 
-#new_invite_friend .field {
+#new_invitation .field {
 	margin: 0;
 }
 
-#new_invite_friend label {
+#new_invitation label {
 	width: 110px;
 	vertical-align: middle;
 	border: 0px solid red;
@@ -72,24 +74,24 @@
 	font-family: rockwell;
 }
 
-#new_invite_friend input {
+#new_invitation input {
 	padding: 10px;
 	line-height: inherit;
 }
 
-#new_invite_friend {
+#new_invitation {
 	border: 0px solid red;
 }
 
-#invite_friend_email {
+#invitation_recipient_email {
 	width: 150px;
 }
 
-#invite_friend_subject {
+#invitation_subject {
 	height: 32px;
 }
 
-#invite_friend_message {
+#invitation_message {
 	height: 80px;
 }
 
@@ -116,7 +118,7 @@ textarea {
 
 
 /* Placeholder styling */
-#new_invite_friend ::-webkit-input-placeholder {
+#new_invitation ::-webkit-input-placeholder {
    font-family: rockwell;
    font-size: 12px;
    vertical-align: middle;
@@ -124,41 +126,41 @@ textarea {
    line-height: 15px;
 }
 
-#new_invite_friend :-moz-placeholder { /* Firefox 18- */
+#new_invitation :-moz-placeholder { /* Firefox 18- */
    color: red;  
 }
 
-#new_invite_friend ::-moz-placeholder {  /* Firefox 19+ */
+#new_invitation ::-moz-placeholder {  /* Firefox 19+ */
    color: red;  
 }
 
-#new_invite_friend :-ms-input-placeholder {  
+#new_invitation :-ms-input-placeholder {  
    color: red;  
 }
 
 
 /* These styles are for the textarea input */
-#invite_friend_message::-webkit-input-placeholder {
+#invitation_message::-webkit-input-placeholder {
    font-family: rockwell;
    font-size: 12px;
    vertical-align: middle;
 }
 
-#invite_friend_message:-moz-placeholder { /* Firefox 18- */
+#invitation_message:-moz-placeholder { /* Firefox 18- */
    color: red;  
 }
 
-#invite_friend_message::-moz-placeholder {  /* Firefox 19+ */
+#invitation_message::-moz-placeholder {  /* Firefox 19+ */
    color: red;  
 }
 
-#invite_friend_message:-ms-input-placeholder {  
+#invitation_message:-ms-input-placeholder {  
    color: red;  
 }
 
 
 /* Custom error handling */
-#invite_friend_error {
+#invitation_error {
   width: 177px;
   border: 1px solid red;
   background-color: #f0f0f0;
@@ -166,12 +168,12 @@ textarea {
 
 }
 
-#invite_friend_error ul {
+#invitation_error ul {
   list-style: none;
   padding: 0;
 }
 
-#invite_friend_error li {
+#invitation_error li {
   font-size: 11px;
 }
 

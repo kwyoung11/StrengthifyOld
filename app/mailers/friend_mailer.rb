@@ -1,9 +1,10 @@
 class FriendMailer < ActionMailer::Base
   default from: "activeterps@gmail.com"
   
-  def invite_friend(user, invite)
+  def invite_friend(user, invite, invitation)
     @invite = invite
     @user = user
+    @invitation = invitation
     mail( 
     to: user.email,
     from: %{"#{user.name}"},

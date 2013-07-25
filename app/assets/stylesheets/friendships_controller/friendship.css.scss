@@ -93,50 +93,40 @@
 	border: 0px solid blue;
 }
 
-#friend_finder {
+
+/****************** 
+ FIND FRIENDS LINK 
+ ********************/
+
+.profile-find-friends {
+	position: relative;
 	list-style-type: none;
 	float: right;
-	margin: 5px 0px 0px 0px;
-}
-
-#friend_finder:after {
-	clear: both;
-}
-
-#profile_left h2 {
-	clear: both;
-	padding-top: 15px;
-}
-
-#friend_finder li {
-	display: block;
-}
-
-#friend_finder_actions li {
-	display: none;
-	border: 1px solid black;
-	padding: 5px;
-	z-index: 50;
-	color: #eee;
-	background: #444;
-}
-
-#find_friends_link {
-	margin: 5px 0px 0px 0px;
-	color: red;
+	margin: 0px 0px 0px 0px;
 	text-decoration: underline;
 }
 
-#find_friends_link:hover {
-	cursor: pointer;
+.find-friends-list {
+	position: absolute;
+	display: none;
+	list-style-type: none;
+	left: 0;
+	padding: 0;
+	z-index: 150;
+	li {
+		background-color: white;
+		border: 1px solid #ccc;
+		padding: 5px;
+		color: #444;
+	}
 }
 
-#invite_friends_link {
-	margin: 5px 0px 0px 0px;
-	color: red;
+.invite-friends {
+	margin: 0px 0px 0px 0px;
+	color: #444;
 }
 
-#search_community_link {
-	margin: 5px 0px 0px 0px;
-	color: red;
+.search-community {
+	margin: 0px 0px 0px 0px;
+	color: #444;
 }

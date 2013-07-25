@@ -25,9 +25,9 @@
 				<li class="strengthify-logo">
 					
 				</li>
-				<li class="strengthify-header">
-					<%= name_and_notifications %> 
-					<ul class="strengthify-header-dropdown"> 
+				<li class="strengthify-header"> <%= name %> </li> 
+				<li class="notifications"> <%= notifications if logged_in? %> 
+					<ul class="notifications-dropdown"> 
 						<%= render "notifications/index" %>
 					</ul>
 				</li>

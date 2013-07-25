@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.order(:name)
-   
     @activities = Activity.order("created_at desc")
-
   end
   
   def find
@@ -26,7 +24,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    cookies[:invitation_token] = params[:invitation_token] if params[:invitation_token]
+    cookies[:name] = params[:name] if params[:name]
+    @user = User.new(invitation_token: cookies[:invitation_token], name: cookies[:name])
+    @user.email = @user.invitation.recipient_email if @user.invitation
+    @user.name = params[:name] if params[:name]
+
   end
 
   # GET /users/1/edit
@@ -83,6 +86,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :birthday, :about_me, :website, :city, :state, :country, :last_sign_in_at, :gender, :sign_in_count, :last_seen )
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :birthday, :about_me, :website, :city, :state, :country, :last_sign_in_at, :gender, :sign_in_count, :last_seen, :invitation_token )
     end
 end
