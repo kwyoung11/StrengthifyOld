@@ -1,5 +1,6 @@
 class Workout < ActiveRecord::Base
   has_many :exercises, as: :exerciseable
+  has_many :glory_pts, as: :glorifiable, class_name: "Glory"
   has_one :activity, as: :trackable, dependent: :destroy
   belongs_to :user
 

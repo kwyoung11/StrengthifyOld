@@ -9,20 +9,7 @@ is clicked, a second index, k, decrements i to reflect the number of deleted exe
 
 $(document).ready(function() {
 $("#workout_name").focus();
-
-// Provide better interface for choosing rest periods
-    $("#slider").slider({
-      value: 0,
-      min: 0,
-      max: 180,
-      step: 5,
-      slide: function( event, ui ) {
-        $(".rest-period-value").val( "$" + ui.value );
-      }	
-    });
-    $(".rest-period-value").val( "$" + $( "#slider" ).slider("value") );
-
-
+    
 // Provide better interface for choosing date of workout
 $(".jquery-ui-date").datepicker({ dateFormat: 'yy-mm-dd' });
 $('.jquery-ui-date').hide();
@@ -54,28 +41,52 @@ $("#workout_sets").change(function () {
 	  return $('form').on('click', '.workout-remove-exercise-link', function(event) {
 	    $(this).prev('input[type=hidden]').val('1');
 	    $(this).closest('.exercise').hide();
+	    $(this).closest('.exercise').children(".workout-rest").remove();
 	    return event.preventDefault();
 	  });
 	});
 
 	// Keep track of the number of exercise on the page
 	var k = 0;
-	$('form').on('click', '.workout-remove-exercise-link', function(event) {
+	$('form').on('click', '.workout-remove-exercise-link', function() {
 		k++;
 	});
 
+	$("#slider1").slider({
+    	value: 0,
+    	min: 0,
+    	max: 180,
+    	step: 5,
+    	slide: function(event, ui) {
+    		$("input[id=workout_exercises_attributes_0_rest_periods_seconds]").val(ui.value);
+    	  $("#rest1").html(ui.value + "s");
+    	}	
+  	});
+    		
 	// Allow the user to add additional exercises to workout form
-$(".workout-add-exercise-link").on('click', function(event) {
+	var i = $('.workout .exercise').size() - k;
+	$(".workout-add-exercise-link").on('click', function(e) {
 		var i = $('.workout .exercise').size() - k;
 		var regexp = new RegExp($(this).data('id'), 'g');
 		$(".exercise-list").append($(this).data('fields').replace(regexp, i));
-		event.preventDefault();
+		e.preventDefault();
 		$("#workout_exercises_attributes_" + i + "_name").focus();
 		$(".workout .exercise .exercise-count").last().html("" + (i+1));
+		$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
+		$(".workout-rest-value").last().removeAttr("id").attr("id", "rest" + (i+1));
+		$("#slider" + (i+1)).slider({
+    	value: 0,
+    	min: 0,
+    	max: 180,
+    	step: 5,
+    	slide: function(event, ui) {
+    		console.log(i+1);
+    		$("input[id=workout_exercises_attributes_" + (i-1) + "_rest_periods_seconds]").val(ui.value);
+    	  $("#rest" + (i)).html(ui.value + "s");
+    	}	
+  	});
 		i++;
 	});
-
-
 
 
 /****  

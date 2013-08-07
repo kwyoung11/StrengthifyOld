@@ -55,6 +55,7 @@ Cs50xFinalProject::Application.routes.draw do
   end
   
   patch '/admin/exercises', to: 'admin/exercises#add_exercise_to_db'
+  post '/give', to: 'glories#give'
 
   # Administration routes
   get "/admin", to: 'admin/home#index' 

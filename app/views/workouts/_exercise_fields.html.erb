@@ -3,7 +3,7 @@
 		<li>
 			<div class="exercise-count">1</div>	
 			<%= f.label :name, 'Exercise' %>
-			<%= f.text_field :name, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
+			<%= f.text_field :name, required: true, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
 		</li>
 		<li>
 			<%= f.label :weight %>
@@ -12,19 +12,26 @@
 		<li>
 			<%= f.label :reps %>
 			<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
+			or
+		</li>
+		<li>
+			<%= f.label :time %>
+			<%= f.number_field :hours, style: "width: 33px; height: 32px;", placeholder: "h" %>
+			<%= f.number_field :minutes, style: "width: 37px; height: 32px;", placeholder: "m" %>
+			<%= f.number_field :seconds, style: "width: 32px; height: 32px;", placeholder: "s" %>
 			<%= f.hidden_field :_destroy %>
-			<%= link_to "Remove Exercise", '#', class: "workout-remove-exercise-link javascript-link" %>
+			<%= link_to "Remove", '#', class: "workout-remove-exercise-link javascript-link" %>
 		</li>
 		<br/><br/><br/><br/>
 
 		<div class="workout-rest">
-			<%= f.fields_for :rest_period do |rest_period_fields| %>
-				<%= f.label :rest_period %>
-				<%= rest_period_fields.hidden_field :minutes %>
-				<%= rest_period_fields.hidden_field :seconds %>
-			<% end %>	
-			<div id="slider"></div>
-			<div class="workout-rest-value"> </div>
+			<div class="workout-rest-label"> Rest period</div>
+			<%= f.fields_for :rest_period do |rp_fields| %>
+				<%= rp_fields.hidden_field :minutes %>
+				<%= rp_fields.hidden_field :seconds %>
+			<% end %>
+			<div id="slider1" class="slider"></div>
+			<div class="workout-rest-value" id="rest1"> 0s</div>
 		</div>
 	
 </div>

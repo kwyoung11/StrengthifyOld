@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130725030421) do
+ActiveRecord::Schema.define(version: 20130807053309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 20130725030421) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+  end
+
+  create_table "glories", force: true do |t|
+    t.integer  "giver_id"
+    t.integer  "receiver_id"
+    t.integer  "glorifiable_id"
+    t.string   "glorifiable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invitations", force: true do |t|
@@ -157,6 +166,7 @@ ActiveRecord::Schema.define(version: 20130725030421) do
     t.integer  "load_volume"
     t.integer  "duration"
     t.boolean  "planned"
+    t.text     "description"
   end
 
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id"

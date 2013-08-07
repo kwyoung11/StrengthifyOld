@@ -7,12 +7,15 @@
 			<h2 class="name-header"> <%= @user.name %> </h2>
 			<nav class="profile-nav">
 				<ul class="profile-nav-li">
-					<li class="profile-find-friends"> Find Friends
-						<ul class="find-friends-list"> 
-							<li class="search-community"> Search </li>
-							<li class="invite-friends"> Invite </li>
+
+					<li class="profile-nav-li-item find-friends dd-prnt"> Friends
+						<ul class="find-friends-list dd-li"> 
+							<li class="search-community"> <%= link_to 'Search', find_users_path  %></li>
+							<li class="invite-friends"> <%= link_to 'Invite', new_invitation_path %> </li>
 						</ul> 
 					</li>
+					<li class="profile-nav-li-item"> <%= link_to "Prefs", "#" %>
+					<li class="profile-nav-li-item"> <%= link_to "Edit", edit_user_path(current_user) %> </li>
 				</ul>
 			</nav>
 		</section>
@@ -31,7 +34,7 @@
 				</ul>
 			
 				<% if Friendship.are_friends(current_user, @user) %>
-				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, confirm: "Are you 	sure you want remove #{@user.name} from your friends?" %>
+				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, data: {confirm: "Are you 	sure you want remove #{@user.name} from your friends?" } %>
 				<% end %>
 	
 			</div>
