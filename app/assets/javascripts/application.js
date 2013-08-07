@@ -11,8 +11,15 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.position
 //= require jquery.ui.datepicker
 //= require jquery.ui.autocomplete
 //= require jquery.ui.slider
+//= require webshims/extras/modernizr-custom
+//= require webshims/polyfiller
+//= require webshims
+//= require d3
+//= require ga
+//= require jstz-detect
 //= require turbolinks
 //= require_tree .

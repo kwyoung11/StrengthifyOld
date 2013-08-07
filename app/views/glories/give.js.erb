@@ -1,0 +1,9 @@
+if (<%= @alert_status == "self_pts_given" %>) {
+	alert("You can't give yourself glory points.");
+} else if (<%= @alert_status == "multiple_pts_given" %>) {
+	alert("You can't give more than one glory point.");
+} else {
+	var id = <%= @glory.glorifiable_id %>;
+	var el = $(".glory-pts-" + id);
+	el.text("<%= @glory_pts %>");
+}

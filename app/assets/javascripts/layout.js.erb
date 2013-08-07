@@ -1,0 +1,37 @@
+$(document).on('ready page:load', function() {
+	// show settings dropdown	
+	$(".header-nav-list-dropdown, .find-friends, .notifications").on('click', function(e) { 
+		e.stopPropagation();
+		dd = $(this).find("ul");
+	  dd.css('display') == 'none' ? dd.show() : dd.hide();
+	});  
+	// hide settings/notifications/find friends dd menus
+	$(window).on('click', function() { $(".dd-li").hide(); });
+
+
+	// Send ajax request when user clicks notifications tab
+	$(".notifications").on('click', function() {
+		$(".notifications-dropdown-li-item").each(function() {
+				if ($(this).data("seen") == false) {
+					id = $(this).data("notification_id");
+
+					$.ajax({type: "POST", url: "/seen", data: {id: id},
+						success: function(response) {
+							$(".notification-count").html("");
+						}
+					});
+				}
+		});	
+	});
+	
+	// Change time zone according to location. See https://bitbucket.org/pellepim/jstimezonedetect
+	var timezone = jstz.determine();
+	document.cookie = 'time_zone='+timezone.name()+';';
+	
+	// Show build workout dropdown on hover
+	$(".sub-header-nav-list li").mouseover(function() {
+		$(".sub-header-nav-list-dd").css("display", "block");
+	});
+
+});
+

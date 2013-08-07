@@ -32,7 +32,7 @@
 			<%= link_to 'Comment'.html_safe, '#' %> 
 			- <%= 	time_ago_in_words(workout.created_at) %> ago 
 		</td>
-		<td> <%= link_to '<i class="icon-chevron-up"></i>'.html_safe, '#' %></td>
+		<td class="workout-glory"> <%= link_to '<i class="icon-chevron-up glory-give"></i>'.html_safe, give_path(glory: { giver_id: current_user.id, receiver_id: workout.user.id, glorifiable_id: workout.id, glorifiable_type: workout.class.to_s }), method: :post, title: "This workout shows some effort", remote: true %> <span class="glory-pts-<%= workout.id %>"> <%= workout.glory_pts.count %> </span></td>
 	</tr>
 </table>
 

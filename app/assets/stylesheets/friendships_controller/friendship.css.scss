@@ -55,7 +55,7 @@
 
 #friends_list {
 	border: 0px solid black;
-	margin: 10px auto;
+	margin: 10px auto 0px 21px;
 	padding: 5px;
 	width: 90%;
 	min-height: 100px;
@@ -98,26 +98,38 @@
  FIND FRIENDS LINK 
  ********************/
 
-.profile-find-friends {
+.profile-nav-li-item {
 	position: relative;
 	list-style-type: none;
 	float: right;
-	margin: 0px 0px 0px 0px;
-	text-decoration: underline;
+	padding: 4px 4px 4px 4px;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background: white;
+	margin: 0px 7px 0px 0px;
+	background-color: white;
+	&:hover { cursor: pointer;}
 }
 
 .find-friends-list {
+	top: 100%;
 	position: absolute;
 	display: none;
 	list-style-type: none;
-	left: 0;
+	right: -1px;
+	margin-left: 1px;
 	padding: 0;
 	z-index: 150;
 	li {
 		background-color: white;
-		border: 1px solid #ccc;
-		padding: 5px;
+		border-bottom: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+		padding: 5px 9px 5px 9px;
 		color: #444;
+		&:hover { background-color: darken(white, 10%); }
 	}
 }
 

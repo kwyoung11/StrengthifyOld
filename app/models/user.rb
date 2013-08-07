@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   has_secure_password(validations: false) 
-  validates_presence_of :password, :on => :create, :on => :update
-  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_confirmation_of :password, :allow_blank => true
   
   # Creates identificiation cookie for new users
   before_create { generate_token(:auth_token) }

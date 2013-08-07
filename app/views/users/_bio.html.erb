@@ -3,7 +3,7 @@
 					<tr> 
 						<th> bio </th> 
 						<td> website</td>
-						<td> <%= link_to "#{@user.website}", "http://#{@user.website}" %>
+						<td> <%= link_to "#{@user.website.gsub("www.", "")}", "http://#{@user.website}" unless @user.website.nil?%>
 						</td>
 					</tr>
 					<tr>
@@ -39,7 +39,7 @@
 					<tr>
 						<th> </th> 
 						<td> seen </td>
-						<td class="hilite"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
+						<td class="hilite2"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
 					</tr>
 
 				

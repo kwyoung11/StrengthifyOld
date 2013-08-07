@@ -25,31 +25,35 @@
 		</ul>
 	</div>
 
-
 		<div id="form-row">
-				<div id="display-sets">
-					<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
-				</div>
+			<div id="display-sets">
+				<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
+			</div>
+
 			<div class="grid">
-				<div class="col-9-10">
+
+				<div class="col-10-10">
 					<ol class="form-field-list exercise-list">
 						<%= f.fields_for :exercises do |builder| %>
 							<%= render 'exercise_fields', f: builder, :locals => {:edit => 	true} %> 
 						<% end %>
 					</ol>
 				</div>
-	
-				<div class="col-1-10 workout-add-exercise">
-					<%= tooltip_for "Add Exercise" do %>	
-						<%= link_to_add_fields "+", f, :exercises, "workouts" %>
-					<% end %>
-				</div>
+
 				<div style="clear: both;"></div>
 			</div>
+
+				<div class="workout-add-exercise">
+					<%= link_to_add_fields "Add Exercise", f, :exercises, "workouts" %>
+				</div>
 		</div>
 
-	
+		
 		<div id="form-row">
+			<div class="field workout-description">
+				<%= f.label :description, "How did it go?" %>
+				<%= f.text_area :description, style: "width: 100%;" %>
+			</div>
 			<ul class="form-field-list">
 			<li>
 				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
