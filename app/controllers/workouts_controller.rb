@@ -23,9 +23,16 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
-    @workout = Workout.new
-    @exercise = @workout.exercises.build
-    @exercise.rest_period = RestPeriod.new
+    if !params[:snagged]
+      @workout = Workout.new
+      @exercise = @workout.exercises.build
+      @exercise.rest_period = RestPeriod.new
+    elsif params[:snagged]
+      @workout = Workout.new(workout_params)
+      @exercise = @workout.exercises.build()
+      @exercise.rest_period = RestPeriod.new
+    end
+
   end
 
   # GET /workouts/1/edit
@@ -91,7 +98,7 @@ class WorkoutsController < ApplicationController
   private
      # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:name, :created_at, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :hours, :minutes, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
+      params.require(:workout).permit(:snagged, :name, :created_at, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :hours, :minutes, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
     end
 
     def exercise_params

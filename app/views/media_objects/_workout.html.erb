@@ -28,7 +28,7 @@
 
 	<tr>
 		<td class="media-workout-actions"> 
-			<%= link_to 'Snag'.html_safe, '#' %>
+			<%= link_to 'Snag'.html_safe, new_user_workout_path(current_user.id, snagged: true, workout_id: workout.id, exercises_ids: workout.exercises.each {|e| [] << e.id}) %>
 			<%= link_to 'Comment'.html_safe, '#' %> 
 			- <%= 	time_ago_in_words(workout.created_at) %> ago 
 		</td>

@@ -58,8 +58,7 @@ $("#workout_sets").change(function () {
     	max: 180,
     	step: 5,
     	slide: function(event, ui) {
-    		$("input[id=workout_exercises_attributes_0_rest_periods_seconds]").val(ui.value);
-    	  $("#rest1").html(ui.value + "s");
+    		$("input[id=workout_exercises_attributes_0_rest_period_attributes_seconds]").val(ui.value);
     	}	
   	});
     		
@@ -81,8 +80,7 @@ $("#workout_sets").change(function () {
     	step: 5,
     	slide: function(event, ui) {
     		console.log(i+1);
-    		$("input[id=workout_exercises_attributes_" + (i-1) + "_rest_periods_seconds]").val(ui.value);
-    	  $("#rest" + (i)).html(ui.value + "s");
+    		$("input[id=workout_exercises_attributes_" + (i-1) + "_rest_period_attributes_seconds]").val(ui.value);
     	}	
   	});
 		i++;
