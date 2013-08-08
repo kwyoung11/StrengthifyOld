@@ -72,15 +72,13 @@
 	color: #222;
 }
 
-.workout-rest { width: 100%; border: 0px solid blue; }
+.workout-rest { 
+	width: 100%;
+}
 
 .slider { 
 	width: 33.33%; 
 	float: left; 
-}
-
-.ui-slider {
-		background-color: #444;
 }
 
 .workout-rest-label {
@@ -105,6 +103,21 @@
 .workout-description {
 	padding: 15px 15px 0px 15px;
 }
+
+.exercise__rest-period {
+	text-align: center;
+	background-color: #33aaff;
+	float: left;
+	margin: -8px 0px 0px 11px;
+	vertical-align: middle;
+}
+
+#rp-unit {
+	width: 10%;
+	margin: -2.5px 0px 0px -8px;
+}
+
+
 
 
 

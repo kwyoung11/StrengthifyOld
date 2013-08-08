@@ -28,12 +28,16 @@ class Workout < ActiveRecord::Base
   
 
  def load_volume
-   load_volume = 0;
+   load_volume = 0
    self.exercises.each do |e|
-     load_volume += e.weight * e.reps
+     load_volume += e.weight * e.reps unless e.reps.nil?
    end
   self[:load_volume] = load_volume
   return load_volume
+ end
+
+ def self.categories
+  return [['Full Body'], ['Lower Body'], ['Upper Body'], ['Chest'], ['Legs'], ['Arms'], ['Back'], ['Hips'], ['Shoulders']]
  end
   
 end

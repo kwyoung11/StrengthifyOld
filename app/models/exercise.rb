@@ -5,5 +5,12 @@ class Exercise < ActiveRecord::Base
   
   validates :name, presence: true
   validates :weight, presence: true
-  validates :reps, presence: true
+  validate :at_least_one_of
+
+
+  def at_least_one_of
+  	if [self.reps, self.hours, self.minutes, self.seconds].compact.blank?
+    errors[:base] << "Please choose either a rep or time value for each exercise."
+  	end
+	end
 end

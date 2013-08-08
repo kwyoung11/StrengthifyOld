@@ -1,0 +1,9 @@
+<div class="workout-rest">
+	<div class="workout-rest-label"> Rest period </div>
+	<div id="slider1" class="slider"></div>
+	<br/>
+	<%= f.fields_for :rest_period do |rp_fields| %>
+		<%= rp_fields.text_field :seconds, style: "width: 35px;", class: "exercise__rest-period" %>
+	<% end %>
+	<div id="rp-unit"> s </div>
+</div>

@@ -24,14 +24,6 @@
 		</li>
 		<br/><br/><br/><br/>
 
-		<div class="workout-rest">
-			<div class="workout-rest-label"> Rest period</div>
-			<%= f.fields_for :rest_period do |rp_fields| %>
-				<%= rp_fields.hidden_field :minutes %>
-				<%= rp_fields.hidden_field :seconds %>
-			<% end %>
-			<div id="slider1" class="slider"></div>
-			<div class="workout-rest-value" id="rest1"> 0s</div>
-		</div>
+		<%= render 'rest_period_fields', f: f %>
 	
 </div>
