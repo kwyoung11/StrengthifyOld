@@ -1,26 +1,47 @@
-	<% if session[:built_workout].include?(@exercise.id) %>
+	<% if session[:exercises].include?(@exercise.id) %>
+		// Hilite selected exercises
 		$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").css("background-color", "#FFFF9C")
 .animate({ backgroundColor: "rgba(80, 80, 80, 0.7)"}, 500);
-	<% end %>
 
-	<% if session[:built_workout].include?(@exercise.id) %>
-	if (!$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").hasClass("hilite")) {
-		$(".workout-builder__exercise-list").append(
-			"<li data-ex_id='<%= @exercise.id %>'> <%= @exercise.name %> " +
-			"<span class='remove-exercise'>" + 
-			"		<a data-remote='true' href='/exercise_descriptions/clear?clear=remove-exercise&id=<%= @exercise.id %>'><i class='icon-remove'> </i></a></span></li> ");
+	// If exercise is not yet selected .. 
+	if ($(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").hasClass("hilite")) {
+			alert("You've already added that exercise.");
+		} else {
+		
+		// Update bar count
+		$(".build-sets-exercises .hilite").html("<%= @exercises.count %>")
 
+		// Update sets count if not already set
+		var sets = $("#workout_sets");
+		if (sets.val() == 0) {
+			sets.val("1");
+		}
 
+		// Add exercise fields
+		var i = <%= @exercises.count %> - 1;
+		var regexp = new RegExp($("#build-workout__add-ex").data('id'), 'g');
+		$(".exercise-list").append($("#build-workout__add-ex").data('fields').replace(regexp, i));
+		$(".build .exercise .exercise-count").last().html("" + (i+1));
+		$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
+		$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
+		$("#slider" + (i+1)).slider({
+  		 	value: 0,
+  		 	min: 0,
+  		 	max: 180,
+  		 	step: 5,
+  		 	slide: function(event, ui) {
+  		 		$("input[id=workout_exercises_attributes_" + (i) + "_rest_period_attributes_seconds]").val(ui.value);
+  		 	}	
+  		});
 		$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").addClass("hilite");
-	}
+		$(".exercise_name").last().val("<%= @exercise.name %>");
+		var href = $(".remove-exercise a").last().attr("href") + "<%= @exercise.id %>";
+		$(".remove-exercise a").last().attr("href", href);
+		}
+
 <% end %>
 
 	// hide placeholder text when first exercise is added
 	$(".workout-builder--no-exercises").hide();
-
-
-	
-
-		
 
 

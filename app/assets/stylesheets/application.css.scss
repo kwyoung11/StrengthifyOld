@@ -18,12 +18,14 @@
  @import "layouts/layout";
  @import "layouts/tooltips"; 
  @import "users_controller/profile"; 
+  @import "exercise_descriptions_controller/exercise-descriptions";
  @import "exercise_descriptions_controller/exercise_cards";
  @import "exercise_descriptions_controller/workout_builder";
  @import "exercise_descriptions_controller/selectors";
  @import "workouts_controller/analytics";
  @import "workouts_controller/trainingTabs";
  @import "workouts_controller/workout_form"; 
+ @import "workouts_controller/build_workout_form"; 
  @import "friendships_controller/friendship";
  @import "friendships_controller/invite_friend";
  @import "challenges_controller/challenges";  

@@ -1,0 +1,14 @@
+<div class="ex-descriptions-header  grid">
+	<div class="ex-descriptions-query-results"> 
+		<% if @exercises.previous_page %>
+			<%= link_to "<<Prev", params.merge(action: "index", page: @exercises.previous_page), 	class: "	previous_page" %>
+		<% end %>
+		<% if @exercises.next_page %>
+				<%= link_to "Next>>", params.merge(action: "index", page: @exercises.next_page), 	class: "	next_page" %>
+		<% end %>
+		<div class="query-results">
+			Page <%= @exercises.current_page %> of <%= @exercises.total_pages %> out of 
+			<span class="ex-count hilite"> <%= @exercises.count %> </span>exercises 
+		</div>
+	</div>
+</div>	

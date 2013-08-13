@@ -1,8 +1,9 @@
 class ExerciseDescriptionsController < ApplicationController
 	before_action :set_exercise_description, only: [:show, :build]
+  before_action :load_workout, only: [:index]
 
   def index
-    @workout = Workout.new
+    @workout_action = "build"
     @user = User.find(current_user.id)
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
@@ -52,17 +53,22 @@ class ExerciseDescriptionsController < ApplicationController
     end
 
     # remember settings from build and clear actions
-    @built_workout = ExerciseDescription.all.where(id: session[:built_workout])
-    @exercise_ids = session[:built_workout] unless session[:built_workout].nil?
+    @built_workout = session[:built_workout]
+    @exercise_ids = session[:exercises].nil? ? [] : session[:exercises] 
   end
 
   def show
   end
 
   def build
-    session[:built_workout] ||= []
-    session[:built_workout] << @exercise.id unless session[:built_workout].include?(params[:id].to_i)
-    puts session[:built_workout]
+    # Set up built workout object
+    # session[:built_workout] ||= Workout.new
+    # session[:built_workout].exercises.new({name: @exercise.name, exercise_id: params[:id]}) unless session[:built_workout].exercises.map(&:exercise_id).include?(params[:id])
+
+    # Remember the selected exercises
+    session[:exercises] ||= []
+    session[:exercises] << @exercise.id unless session[:exercises].include?(params[:id].to_i)
+    @exercises = ExerciseDescription.all.where(id: session[:exercises])
 
     respond_to do |format|
       format.js
@@ -70,17 +76,20 @@ class ExerciseDescriptionsController < ApplicationController
   end
 
   def clear
-    if params[:clear] == "remove-exercise" && !session[:built_workout].nil?
+    if params[:clear] == "remove-exercise" && !session[:exercises].nil?
       ex_id = params[:id].to_i 
-      ex_id_index = session[:built_workout].find_index(ex_id) 
-      session[:built_workout].slice!(ex_id_index)
+      ex_id_index = session[:exercises].find_index(ex_id) 
+      session[:exercises].slice!(ex_id_index)
+      session[:sets] = 0 if session[:exercises].empty?
       session[:cleared_exercise] = ex_id
     elsif params[:clear] == "reset"
-      session[:built_workout] = nil
+      session[:exercises] = nil
+      session[:sets] = nil
     end
  
     respond_to do |format|
       format.js {}
+      format.html { redirect_to action: "index"}
     end
   end
 
@@ -93,5 +102,17 @@ class ExerciseDescriptionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_description_params
       params.require(:exercise_description).permit(:name, :preparation, :execution, :category, {:body_part => []}, :muscle_groups, :equipment_type, :skill_level, :force)
+    end
+
+    def load_workout
+      session[:sets] = params[:sets] if params[:sets]
+      @selected_exercises = ExerciseDescription.all.where(id: session[:exercises])
+      @workout = Workout.new
+      @workout.sets = session[:sets]
+      @workout.planned = true
+      @selected_exercises.each do |e|
+        @exercise = @workout.exercises.new({name: e.name, exercise_id: e.id})
+        @exercise.rest_period = RestPeriod.new
+      end
     end
 end

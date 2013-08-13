@@ -1,11 +1,18 @@
 .ex-descriptions {
-	width: 66.5%; 
-	overflow: hidden; 
-	border: 1px solid red; 
+	width: 76.5%; 
 	float: left;
 }
-.ex-descriptions-header { @extend .col-10-10; }
-.ex-descriptions-query-results { float: right; }
+
+.ex-descriptions-header {
+}
+.ex-descriptions-query-results { 
+	margin: 0 auto;
+	.query-results {
+		margin: 0 auto;
+	}
+	.previous_page {margin-left: 30px; float: left;} 
+	.next_page {margin-right: 30px; float: right;}
+}
 .ex-descriptions-card {
 	position: relative;
 	float: left;

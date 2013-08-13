@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807053309) do
+ActiveRecord::Schema.define(version: 20130810000156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20130807053309) do
     t.integer  "hours"
     t.integer  "minutes"
     t.integer  "seconds"
+    t.integer  "exercise_id"
   end
 
   create_table "friendships", force: true do |t|
@@ -167,6 +168,8 @@ ActiveRecord::Schema.define(version: 20130807053309) do
     t.integer  "duration"
     t.boolean  "planned"
     t.text     "description"
+    t.boolean  "snagged",     default: false
+    t.integer  "snag_count"
   end
 
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id"

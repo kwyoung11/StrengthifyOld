@@ -1,0 +1,68 @@
+<div class="workout <%= @workout_action %>" id="new-workout">
+<%= form_for [@user, @workout] do |f| %>
+<%= render 'layouts/errors', object: f.object %>
+<%= f.hidden_field :snagged %>
+
+	<div class="form-row first-row">
+		<ul class="form-field-list" style="margin: 0 auto; text-align: center;">
+			<li>
+				<%= f.label "How many sets?", id: "workout_sets_label" %>
+				<%= f.text_field :sets, size: "5", :placeholder => " sets" %>
+			</li>
+		</ul>
+	</div>
+
+	<div class="form-row">
+		<div id="display-sets">
+			<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
+		</div>
+
+		<div class="grid">
+
+			<div class="col-10-10">
+				<ol class="form-field-list exercise-list">
+					<%= f.fields_for :exercises do |builder| %>
+						<%= render 'exercise_fields', f: builder %> 
+					<% end %>
+				</ol>
+			</div>
+
+			<div style="clear: both;"></div>
+		</div>
+			<div class="workout-add-exercise">
+				<%= link_to_add_fields "Add Exercise", f, :exercises, "workouts", "record", "add-ex" %>
+			</div>
+	</div>
+
+		<div class="form-row">
+			<ul class="form-field-list">
+				<li>
+					<%= f.label "name" %>
+					<%= f.text_field :name, :placeholder => " name", :size => "8" %>
+				</li>		
+				<li>
+					<%= f.label "time" %>
+					<%= f.text_field :hours, size: "3", :placeholder => " hr" %>
+					<%= f.text_field :minutes, size: "3", :placeholder => " min" %>
+					<%= f.text_field :seconds, size: "3", :placeholder => " sec" %>
+				</li>			
+			</ul>
+	</div>
+
+		
+		<div class="form-row">
+			<div class="field workout-description">
+				<%= f.label :description, "How did it go?" %>
+				<%= f.text_area :description, style: "width: 100%;" %>
+			</div>
+			<ul class="form-field-list">
+			<li>
+				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
+				<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+			</li>
+			<li class="workout-submit"> <%= f.submit(params[:action] == "edit" ? 'Update' : 'I did this') %> </li>
+		</ul>
+		</div>
+
+<% end %>
+</div>

@@ -1,3 +1,4 @@
+<% unless workout.nil? %>
 <table class="media-workout">
 	<tr>
 		<td rowspan="2" class="media-workout-lv">
@@ -28,11 +29,12 @@
 
 	<tr>
 		<td class="media-workout-actions"> 
-			<%= link_to 'Snag'.html_safe, new_user_workout_path(current_user.id, snagged: true, workout_id: workout.id, exercises_ids: workout.exercises.each {|e| [] << e.id}) %>
+			<%= link_to 'Snag'.html_safe, snag_user_workout_path(current_user.id, id: workout.id ) %>
 			<%= link_to 'Comment'.html_safe, '#' %> 
 			- <%= 	time_ago_in_words(workout.created_at) %> ago 
 		</td>
 		<td class="workout-glory"> <%= link_to '<i class="icon-chevron-up glory-give"></i>'.html_safe, give_path(glory: { giver_id: current_user.id, receiver_id: workout.user.id, glorifiable_id: workout.id, glorifiable_type: workout.class.to_s }), method: :post, title: "This workout shows some effort", remote: true %> <span class="glory-pts-<%= workout.id %>"> <%= workout.glory_pts.count %> </span></td>
 	</tr>
 </table>
+<% end %>
 

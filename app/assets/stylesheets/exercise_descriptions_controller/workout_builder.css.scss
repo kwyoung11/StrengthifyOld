@@ -21,19 +21,7 @@
 		padding: 3px; }
 }
 
-.remove-exercise {
-	display: inline-block;
-	background-color: #bbb;
-	opacity: 0.6;
-	border-radius: 50%; 
-	float: right;
-	&:hover { 
-		cursor: pointer; 
-		background-color: #bbb;
-		opacity: 1;
-		border-radius: 50%; 
-	}
-}
+
 
 .workout-builder-wrapper {
 	border: 1px solid blue;

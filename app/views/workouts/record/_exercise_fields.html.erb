@@ -1,0 +1,41 @@
+<div class="exercise">
+		<li>
+			<div class="exercise-count" id="ex-num-1">1</div>	
+			<%= f.label :name, 'Exercise' %>
+			<%= f.text_field :name, size: "5", style: "width: 150px;", required: true, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
+		</li>
+		<li>
+			<%= f.label :weight %>
+			<%= f.text_field :weight, size: "5", :placeholder => " weight" %>
+		</li>
+		<li>
+			<%= f.label :reps %>
+			<%= f.text_field :reps, size: "5", :placeholder => " reps" %>
+			or
+		</li>
+		<li>
+			<%= f.label :time %>
+			<%= f.number_field :hours, style: "width: 33px; height: 26px;", placeholder: "h" %>
+			<%= f.number_field :minutes, style: "width: 37px; height: 26px;", placeholder: "m" %>
+			<%= f.number_field :seconds, style: "width: 32px; height: 26px;", placeholder: "s" %>
+		</li>
+		<li class="workout-rest">
+				<div class="exercise_rest_period">
+				<%= f.fields_for :rest_period do |builder| %>
+					<%= builder.hidden_field :id, value: nil %>
+					<%= builder.label :rest_period %>
+					<%= builder.text_field :seconds, style: "width: 35px;", class: "exercise__rest-period" %>
+				<% end %>	
+				</div>
+				<div id="rp-unit"> </div>
+				<div class="slider-wrapper">
+					<div id="slider1" class="slider"></div>
+				</div>
+	</li>
+	<li class="exercise-remove">
+		<%= f.hidden_field :_destroy %>
+		<span class="remove-exercise"> <%= link_to image_tag("icon-remove-16.svg"), '#', class: "workout-remove-exercise-link javascript-link", id: "remove-exercise" %></span> 
+	</li>
+
+</div>
+
