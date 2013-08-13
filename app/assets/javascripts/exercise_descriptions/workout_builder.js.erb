@@ -1,0 +1,53 @@
+$(document).on('ready page:load', function () {	
+
+if ($(".build").length > 0) {
+
+	var cardCollection = document.getElementsByClassName('ex-descriptions-card');
+	for(var i = 0; i < cardCollection.length; i++) {
+		if (cardCollection[i].className == "hilite") {
+			cardCollection[i].className += " hilite";
+		}
+	}
+
+	if ($(".exercise").length > 0 && $(".exercise").length < 2) {
+		$("#workout_sets").val("1");
+	}
+
+	// Save set number to session
+	$("#workout_sets").on('focusout', function() {
+		var num_sets = $("#workout_sets").val();
+		$.ajax({url: "/build_workout", data: {sets: num_sets} });
+	});
+ 
+ 	// Add exercise_id to remove exercise link
+	window.onload = loadPage;
+	function loadPage() {
+		var i = 0;
+		$(".build .exercise").each(function() {
+			var href = $(this).children(".exercise-remove").children(".remove-exercise").children("#remove-exercise").attr("href");
+			href += "" + $("input[id=workout_exercises_attributes_" + i + "_exercise_id]").val();
+			$(this).children(".exercise-remove").children(".remove-exercise").children("#remove-exercise").attr("href", href);
+			i++;
+	  });
+	}
+
+	showHideOnClick("#expand-workout-bar", ".build", "slow", "rotate");
+
+		// TODO: get sliders to appear on reload
+		$(".build .exercise .workout-rest").each(function(i) {
+			if (!$(this).has(".ui-slider-handle").length) {
+				$("#slider" + (i+1)).slider({
+  	  		value: $(this).children(".exercise__rest-period").val(),
+  	  		min: 0,
+  	  		max: 180,
+  	  		step: 5,
+  	  		slide: function(event, ui) {
+  	  			$("input[id=workout_exercises_attributes_" + (i) + "_rest_period_attributes_seconds]").val(ui.value);
+  	  		}	
+  			});
+			}
+		});
+	}
+
+});
+

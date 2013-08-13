@@ -1,9 +1,8 @@
 .faceted-navigation {
-	border: 1px solid #ddd;
+	margin-top: 4px;
 	@include outer-box-shadow(0px, 0px, 5px, 0px, #444);
-	margin: 0 auto;
-	width: 210px;
-	float: right;
+	width: 21%;
+	float: left;
 }
 
 .faceted-navigation-list { @extend %vert-list; }

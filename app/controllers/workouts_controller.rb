@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  before_action :set_workout, only: [:show, :edit, :snag, :perform, :update, :destroy]
   before_action :set_user
   before_filter :authorize
   include WorkoutsHelper
@@ -13,26 +13,18 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1
   # GET /workouts/1.json
   def show
-    
     respond_to do |format| 
       format.html
       format.js
     end
-    
   end
 
   # GET /workouts/new
   def new
-    if !params[:snagged]
-      @workout = Workout.new
-      @exercise = @workout.exercises.build
-      @exercise.rest_period = RestPeriod.new
-    elsif params[:snagged]
-      @workout = Workout.new(workout_params)
-      @exercise = @workout.exercises.build()
-      @exercise.rest_period = RestPeriod.new
-    end
-
+    @workout = Workout.new
+    @workout_action = "new"
+    @exercise = @workout.exercises.build
+    @exercise.rest_period = RestPeriod.new
   end
 
   # GET /workouts/1/edit
@@ -48,7 +40,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       if @workout.save
         track_activity @workout
-        
+        format.html { redirect_to perform_user_workout_path(current_user.id, @workout.id)} if @workout.planned == true
         format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
         format.json { render action: 'show', status: :created, location: @workout }
       else
@@ -61,10 +53,9 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
-    @workout.update_attributes(workout_params)
     
     respond_to do |format|
-      if @workout.update(workout_params)
+      if @workout.update_attributes(workout_params)
         format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully updated.' }
         format.json { head :no_content }
       else
@@ -85,34 +76,45 @@ class WorkoutsController < ApplicationController
     end
   end
   
-  # GET /workouts/analayze.json 
+  # GET /workouts/analayze
   # GET /workouts/analayze.json
  def analyze
-    
     respond_to do |format|
       format.json { render json: get_metric_data_with_category(params[:metric], params[:category], params[:time]) }
     end
   end
+
+  # GET /workouts/1/snag
+  # GET /workouts/1/snag.json
+  def snag
+    @workout.snagged = true
+    @workout.created_at = Date.today
+    @workout.updated_at = nil
+    @workout.description = nil
+    @exercise = @workout.exercises
+  end
+
+  # GET /workouts/1/perform
+  # GET /workouts/1/perform.json
+  def perform
+  end
+
+  def performable
+    @planned_workouts = @user.workouts.where(planned: true)
+  end
   
   
   private
-     # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:snagged, :name, :created_at, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, exercises_attributes: [:id, :name, :weight, :reps, :hours, :minutes, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
+      params.require(:workout).permit(:snagged, :id, :user_id, :name, :created_at, :updated_at, :duration, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, :planned, exercises_attributes: [:id, :exercise_id, :name, :weight, :reps, :hours, :minutes, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
     end
 
-    def exercise_params
-      params.require(:exercise).permit(:id, :name, :weight, :reps, :_destroy)
-    end
-
-    # Use callbacks to share common setup or constraints between actions.
     def set_workout
       @workout = Workout.find(params[:id])
     end
-    
+
     def set_user
       @user = User.find(params[:user_id])
     end
-
-   
+ 
 end

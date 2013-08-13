@@ -1,0 +1,123 @@
+/********************************************
+*
+* WORKOUT FORM
+*
+********************************************/
+
+.build-workout-bar {
+	font-family: "Source Sans Pro";
+	p {
+		color: white;
+	}
+	font-size: 1.5em;
+	height: auto;
+	overflow: hidden;
+	background-color: #444;
+}
+
+.remove-exercise {
+	margin: 1px 0px 0px 10px;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background-color: #bbb;
+	opacity: 0.4;
+	border-radius: 20%; 
+	&:hover { cursor: pointer; background-color: #e22; opacity: 1; }
+	img { margin-top: 3px; -webkit-transform: scale(0.9); }
+	a {
+		height: 100%;
+		padding: 5px 6px 5px 6px;
+		display: inline-block;
+		margin: 0px 0px 0px 0px;
+	}
+}
+
+.bar-expand {
+	a {
+		opacity: 0.9;
+		text-decoration: none;
+		&:hover {opacity: 1;}
+	}
+	border: 1px solid grey;
+	width: 10.5%;
+	height: 59px;	
+	float: left;
+}
+
+.build-sets-exercises {
+	float: left;
+	width: 30.5%;
+	border: 1px solid grey;
+	height: 59px;
+}
+
+.bar-content {
+	border: 1px solid grey;
+	float: left;
+	width: 40%;
+}
+
+.build #workout_sets {
+	position: absolute;
+	margin: -63px 0px 0px -80px;
+}
+
+.build .workout-rest label {
+	opacity: 0;
+}
+
+.build .workout-rest input {
+	margin: -18px 0px 0px 0px;
+}
+
+.build .workout-rest .slider {
+	top: -17px;	
+}
+
+// #expand-workout-bar {
+// 	font-size: 1.7em;
+// 	text-decoration: none;
+// 	opacity: 0.9;
+// 	&:hover {opacity: 1;}
+// }
+
+.build {
+	position: relative;
+	width: 60%;
+	font-size: 16px;
+	@include inverted-rounded-corners(0px, 0px);
+	@include outer-box-shadow(0px, 0px, 0px, 0px, #444);
+}
+
+.build .first-row {
+	margin: 0px 0px 0px 0px;
+	border: 1px solid red;
+}
+
+#build-workout__add-ex {
+	display: none;
+}
+
+.build .workout-submit { float: right; } 
+.build label { @extend %block-label; }
+.build input {
+	font-size: 0.8em;
+  padding: 6px 4px 6px 4px;
+	border: 1px solid #ddd;
+	@include rounded-corners(3px);
+	&[type="submit"] { @extend %button-large; }
+}
+
+.build .exercise-count {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	margin: -1px 0px 0px -42px;
+	background: #fd4042;
+	@include rounded-corners(10px);
+	padding: 5px;
+	color: #222;
+}
+
+

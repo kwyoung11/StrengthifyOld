@@ -23,7 +23,7 @@
 			<nav class="header-nav">
 				<% if current_user %>
 				<ul class="header-nav-list">
-					<li class="nav-profile-li"> <%= link_to "#{current_user.name}", user_path(current_user.id), 'data-no-turbolink' => true %></li>
+					<li class="nav-profile-li"> <%= link_to "#{current_user.name}", user_path(current_user.id) %></li>
 					<li> <%= link_to 'Home', root_url %></li>
 					<li class="header-nav-list-dropdown dd-prnt"> Settings
 						<ul class="dd-li">
@@ -38,7 +38,7 @@
 				
 				<% else %>
 				<ul>
-					<li> <%= link_to 'Sign Up', signup_path, 'data-no-turbolink' => true %> </li>
+					<li> <%= link_to 'Sign Up', signup_path %> </li>
 					<li> <%= link_to 'Log In', login_path %> </li>
 				</ul>
 				<% end %>
@@ -51,16 +51,10 @@
 		<% if current_user %>
 	<nav class="sub-header-nav">
 		<ul class="sub-header-nav-list">
-			<li> <%= link_to "Build Workout", build_workout_path, 'data-no-turbolink' => true %> 
-				<% if current_page?(controller: 'exercise_descriptions', action: 'index') %>
-				<ul class="sub-header-nav-list-dd">
-					<li> <div id="workout_form"><%= render 'workouts/form' %></div></li>
-				</ul>
-				<% end %>
-			</li>
-			<li> Perform </li>
-			<li> <%= link_to "Record", new_user_workout_path(current_user.id), 'data-no-turbolink' => true %> </li>
-			<li> <%= link_to "Analyze", user_workouts_path(current_user.id), 'data-no-turbolink' => true %> </li>
+			<li class="build-workout"> <%= link_to "Build Workout", build_workout_path %> </li>
+			<li> <%= link_to 'Perform', performable_user_workouts_path(current_user.id) %> </li>
+			<li> <%= link_to "Record", new_user_workout_path(current_user.id) %> </li>
+			<li> <%= link_to "Analyze", user_workouts_path(current_user.id) %> </li>
 		</ul>
 	</nav>
 	<% end %>

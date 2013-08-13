@@ -1,34 +1,18 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function () {	
 	// hide all body_part selectors initially
-	$("#upper_body_selectors").hide();
-	$("#lower_body_selectors").hide();
-	$("#core_body_selectors").hide();
+	$("#upper_body_selectors, #lower_body_selectors, #core_body_selectors").hide();
 
 	// show/hide body_part selectors if category is checked
-	if ($("#categories_Upper_Body").attr("checked") == "checked") {
+	if ($("#categories_Upper_Body, #categories_Lower_Body, #categories_Torso").attr("checked") == "checked") {
 		$("#upper_body_selectors").show();
-	}
-	if ($("#categories_Lower_Body").attr("checked") == "checked") {
-		$("#lower_body_selectors").show();
-	}
-	if ($("#categories_Torso").attr("checked") == "checked") {
-		$("#core_body_selectors").show();
 	}
 
 	// form submission on checkbox click
-	$("#filter_exercises_by_category input").on('click', function() {
+	$("#filter_exercises_by_category input, #dropdown_container").on('click', function() {
 		$("#filter_exercises_by_category").submit();
 	});
 
-	$("#dropdown_container").on('click', function() {
-		$("#filter_exercises_by_category").submit();
-	});
-
-	// for navigation
-	// showHideOnClick("#skill_level_list_wrapper", "#skill_level_list");
-	// showHideOnClick("#category_list_wrapper", "#category_list");
-	// showHideOnClick("#force_list_wrapper", "#force_list");
-
+	// show/hide filter selectors on click
 	$("#filter_options li:first-child").on('click', function() {
 		if ($("#filter_options li:first-child").attr("showing") == "false") {
 			$("#skill_level_list, #category_list, #force_list").show();

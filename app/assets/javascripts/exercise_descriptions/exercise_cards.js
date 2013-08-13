@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function () { 
  		// these are (ruh-roh) globals. You could wrap in an
     // immediately-Invoked Function Expression (IIFE) if you wanted to...
     var currentTallest = 0,
@@ -67,7 +67,6 @@ $(document).ready(function() {
     
     }
     
-    
     $(window).resize(function() {
       columnConform();
     });
@@ -78,8 +77,6 @@ $(document).ready(function() {
     $(function() {
       columnConform();
     });
-
-
 
 
 	// expanding information on exercise card

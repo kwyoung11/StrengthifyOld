@@ -38,7 +38,7 @@ class ExerciseDescription < ActiveRecord::Base
   	category = (category == "UB" ? "Upper Body" : category == "LB" ? "Lower Body" : "Torso")
   	muscle_groups = muscle_groups.prepend("%").concat("%") if muscle_groups
   	self.find_by_sql([%Q(
-  		SELECT * FROM db_of_exercises 
+  		SELECT * FROM exercise_descriptions 
   		WHERE (?) = ANY (equipment_type) 
   		OR name LIKE ? 
   		OR muscle_groups->'target' LIKE ? 

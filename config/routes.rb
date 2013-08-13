@@ -24,6 +24,9 @@ Cs50xFinalProject::Application.routes.draw do
     get 'find', :on => :collection
     resources :workouts do 
         get 'analyze', :on => :collection
+        get 'snag', on: :member
+        get 'performable', on: :collection
+        get 'perform', on: :member
     end
     resources :challenges
 

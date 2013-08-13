@@ -1,6 +1,9 @@
+<h1>Snagging workout</h1>
+
 <div class="workout">
-<%= form_for [@user, @workout] do |f| %>
+<%= form_for [@user, @workout], method: :post, url: {action: "create"} do |f| %>
 <%= render 'layouts/errors', object: f.object %>
+	<%= f.hidden_field :snagged %>
 
 	<div id="form-row">
 		<ul class="form-field-list">
@@ -44,7 +47,7 @@
 			</div>
 
 				<div class="workout-add-exercise">
-					<%= link_to_add_fields "Add Exercise", f, :exercises, "workouts" %>
+					<%= link_to_add_fields "Add Exercise", f, :exercises, "workouts", "add-ex" %>
 				</div>
 		</div>
 

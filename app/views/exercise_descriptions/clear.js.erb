@@ -2,13 +2,14 @@ $(document).ready(function() {
 
 		// revert exercise card back to normal color
 		$(".ex-descriptions-card[data-ex_id='<%= session[:cleared_exercise] %>']").css("background-color", "white");
+		$(".ex-descriptions-card[data-ex_id='<%= session[:cleared_exercise] %>']").removeClass("hilite");
 
 
 		// iterate over each li element and determine if its still in the session
 		$(".workout-builder__exercise-list li").each(function() {
 			var ex_id = $(this).data("ex_id");
 	
-			if("<%= session[:built_workout] %>".indexOf(ex_id) == -1) {
+			if("<%= session[:exercises] %>".indexOf(ex_id) == -1) {
 				$(this).remove();
 				$(".ex-descriptions-card[data-ex_id='" + ex_id + "']").removeClass("hilite");
 				$(".ex-descriptions-card[data-ex_id='" + ex_id + "']").css("background-color", "white");	
@@ -16,7 +17,15 @@ $(document).ready(function() {
 		
 	});
 
-		// show placeholder text when there are no more exercises
+		// If no exercises are left, set sets to 0
+		<% if session[:exercises].empty? %>
+			$("#workout_sets").val("0");
+		<% end %>
+
+		// Update exercise count
+		$(".build-sets-exercises .hilite").html("<%= session[:exercises].count %>");
+
+		// Show placeholder text when there are no more exercises
 		var num_exercises = $(".workout-builder__exercise-list li").length;
 		if (num_exercises == 0) { $(".workout-builder--no-exercises").show(); }
 

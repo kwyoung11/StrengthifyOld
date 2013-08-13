@@ -1,0 +1,20 @@
+<div class="build-workout-bar">	
+
+			<div class="bar-expand">
+				<p> <%= link_to ">>", "javascript:void(0)", id: "expand-workout-bar" %> </p>
+			</div>
+
+			<div class="build-sets-exercises" data-num_sets="0" data-ex_num="<%= @exercise_ids.count %>"> 
+				<p>
+					<%= f.text_field :sets, size: "1", value: @workout.sets.nil? ? 0 : @workout.sets %>
+					<%= f.label "sets", id: "workout_sets_label" %> of
+					<span class="hilite"><%= @exercise_ids.count %></span> exercises
+				</p>
+			</div>
+
+		<div class="bar-content"> <p> Add exercises below </p></div>
+		<div class="bar-options">
+			<%= f.submit 'Save', class: "save-built-workout" %>
+			<%= link_to 'Clear', clear_exercise_descriptions_path(clear: "reset"), class: "clear-exercises" %>
+		</div>
+	</div>

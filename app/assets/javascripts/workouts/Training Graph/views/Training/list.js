@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function () {	
 /* Highlight table row when clicked */
 $(function() {
    var tr = $('.row_for_workout').click(function() {

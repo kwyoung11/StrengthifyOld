@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
 
 // General helper function for displaying tooltips
 function ShowTooltip(selector) {

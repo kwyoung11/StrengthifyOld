@@ -21,5 +21,7 @@
 //= require d3
 //= require ga
 //= require jstz-detect
+//= require workout
+//= require snagged_workouts
 //= require turbolinks
 //= require_tree .
