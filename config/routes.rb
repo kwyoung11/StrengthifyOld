@@ -22,6 +22,9 @@ Cs50xFinalProject::Application.routes.draw do
   # Nested routes for users 
   resources :users do 
     get 'find', :on => :collection
+    get 'defaults', to: "defaults#show"
+    get 'defaults/edit', to: "defaults#edit"
+    resources :defaults
     resources :workouts do 
         get 'analyze', :on => :collection
         get 'snag', on: :member
@@ -29,7 +32,6 @@ Cs50xFinalProject::Application.routes.draw do
         get 'perform', on: :member
     end
     resources :challenges
-
   end
 
   resources :exercise_descriptions do
@@ -38,7 +40,7 @@ Cs50xFinalProject::Application.routes.draw do
   end
   controller :exercise_descriptions do
     get 'build_workout', to: 'exercise_descriptions#index', as: :build_workout
-  end
+  end 
     
   resources :baselines
   resources :activities 

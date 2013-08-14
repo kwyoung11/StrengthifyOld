@@ -1,22 +1,22 @@
-<div class="wrap">
-
+<div class="wrap" data-ex_id="<%= @user.id %>">
+<%= @show_built_wrkt %>
 		<section class="workout-build__container">
-			<%= render "/workouts/build/build" %>
+			<%= render "/workouts/build/build", user: @user %>
 		</section>
 
 	<section class="exercise-descriptions-container">
-			<%= render 'page_query_results' %>
+		
 		<nav class="faceted-navigation"> <%= render 'selectors' %> </nav>
 		
 		<div class="ex-descriptions  grid">
-		
+			<%= render 'page_query_results' %>
 			<% @exercises.each do |e| %>
 			<div class="ex-descriptions-card<%= " hilite" if @exercise_ids.include?(e.id) unless @exercise_ids.nil? %>" data-ex_id="<%= e.id %>">
 		
 					<div class="ex-descriptions-header meta-info grid"> 
 						<div class="ex-card-buttons">
 							<%= tooltip_for("Add to Workout") do %>
-							 <div class="add-ex-link"><%= link_to '+', 	build_exercise_description_path(e.id), remote: true, class: "add-ex" %></div>
+							 <div class="add-ex-link"><%= link_to 'Add', 	build_exercise_description_path(e.id), remote: true, class: "add-ex" %></div>
 							<% end %>
 						</div>
 						<span class="ex-name"> <%= link_to "#{e.name}", e %> </span>

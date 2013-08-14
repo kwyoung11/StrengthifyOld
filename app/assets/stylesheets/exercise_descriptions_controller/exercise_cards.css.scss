@@ -1,4 +1,5 @@
 .ex-descriptions {
+	margin: -21px 0px 0px 0px;
 	width: 76.5%; 
 	float: left;
 }
@@ -27,6 +28,11 @@
 	}
 }
 
+.hilite {
+	color: orange;
+	background: rgba(200, 200, 200, 0.7);
+}
+
 .meta-info { text-align: left; overflow: visible; background-color: #f8f8f8; }
 .meta-info:after { @include complex-hr-border-gradient(#f3f7f3, #ccc, #f3f7f3); }
 
@@ -42,9 +48,7 @@
 	float: right;
 	padding: 0px 10px 0px 0px; 
 }
-.hilite {
-	background-color: rgba(80, 80, 80, 0.7);
-}
+
 .ex-card-buttons { float: right; }
 .add-ex-link {
 	@include complex-vert-gradient(#fff, #efefef, #dbecfb, 0, 0.5, 1);
@@ -72,4 +76,4 @@
 .muscle-group-header { font-size: 1em; @extend .bold; }
 .mg-label { font-weight: bold; font-size: 0.5em; }
 
-.ex-count { @extend %hilite; font-size: 1.7em; }
+.ex-count { font-size: 1.7em; }

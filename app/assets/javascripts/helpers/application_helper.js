@@ -2,10 +2,10 @@ function showHideOnClick(wrapper, el, speed, effects) {
 	$(wrapper).on('click', function() {
 		if ($(el).css("display") == "none") {
 			$(el).show(speed);
-			if (effects == "rotate") { $(".bar-expand").css("-webkit-transform", "rotate(90deg)"); }
+			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(90deg)"); }
 		} else {
 			$(el).hide(speed);
-			if (effects == "rotate") { $(".bar-expand").css("-webkit-transform", "rotate(360deg)"); }
+			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(360deg)"); }
 		}
 		
 	});

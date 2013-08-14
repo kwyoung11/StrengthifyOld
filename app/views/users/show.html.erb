@@ -1,6 +1,5 @@
 <div class="profile">
 
-	
 	<section class="profile-info">
 
 		<section class="profile-nav-header">
@@ -14,7 +13,7 @@
 							<li class="invite-friends"> <%= link_to 'Invite', new_invitation_path %> </li>
 						</ul> 
 					</li>
-					<li class="profile-nav-li-item"> <%= link_to "Prefs", "#" %>
+					<li class="profile-nav-li-item"> <%= link_to "Prefs", user_defaults_path(user_id: current_user.id) %>
 					<li class="profile-nav-li-item"> <%= link_to "Edit", edit_user_path(current_user) %> </li>
 				</ul>
 			</nav>

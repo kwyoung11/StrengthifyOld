@@ -24,7 +24,6 @@
 			</div>
 		</li>
 	
-	
 		<li>
 			<div>
 					<h1 class="filter-type-header header-md"> Categ<span class="fade">ory</span> </h1>
@@ -71,7 +70,7 @@
 		</li>
 		<li> 
 			<%= tooltip_for("Clear Selected Filters") do %> 
-				<%= link_to '<i class="icon-retweet"></i>'.html_safe, exercise_descriptions_path(clear_filters: "t") %>
+				<%= link_to '<i class="icon-retweet"></i>'.html_safe, exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
 			<% end %>
 		</li>
 	</ul>

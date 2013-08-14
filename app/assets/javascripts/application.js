@@ -15,6 +15,8 @@
 //= require jquery.ui.datepicker
 //= require jquery.ui.autocomplete
 //= require jquery.ui.slider
+//= require jquery-color
+//= require jquery.cookie
 //= require webshims/extras/modernizr-custom
 //= require webshims/polyfiller
 //= require webshims

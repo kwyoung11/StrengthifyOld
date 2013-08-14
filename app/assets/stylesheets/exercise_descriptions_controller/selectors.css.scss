@@ -9,17 +9,21 @@
 
 .faceted-navigation-list__sub-list {
 	margin-top: 20px;
+	margin-bottom: -4px;
 	@extend %hr-list;
 	li {
 		color: white;
-		width: 47%;
-		height: 20px;
+		width: 50%;
+		height: 28px;
 		border: 1px solid #777;
-		padding: 2px 2px 2px 2px;
 		background-color: #ccc;
+		a {
+			display: inline-block;
+			width: 100%;
+			img {	margin-top: 5px;}
+		}
 	}
 	&:hover {
-		background-color: #bbb;
 		cursor: pointer;
 	}
 }
@@ -53,11 +57,9 @@
 	color: #bbb;
 }
 
-
-
-
-
-
+#clear_all_filters {
+	margin-top: 3px;
+}
 
 
 /* Icons */

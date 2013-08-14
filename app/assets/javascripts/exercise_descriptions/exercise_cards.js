@@ -79,7 +79,7 @@ $(document).on('ready page:load', function () {
     });
 
 
-	// expanding information on exercise card
+	// Expand information on exercise card
 $(".extra-content-link").on('click', function() {
 	var currentExerciseCard = $(this).parents(".ex-descriptions-card");
 	var expandableContent = $(this).parents(".ex-descriptions-card").find(".ex-descriptions-extra-content");
@@ -107,11 +107,6 @@ $(".extra-content-link").on('click', function() {
 });
 
 if ($(".ex-descriptions").length == 1) {
-// for pagination links
-
-// turn off turbolinks 
-$(".previous_page").attr("data-no-turbolink", "true");
-$(".next_page").attr("data-no-turbolink", "true");
 
 // get position of left and right edges of exercise cards window
 var positionLeft = $(".ex-descriptions").position().left;

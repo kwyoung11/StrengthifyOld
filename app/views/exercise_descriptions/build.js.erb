@@ -8,11 +8,12 @@
 			alert("You've already added that exercise.");
 		} else {
 		
-		// Update bar count
-		$(".build-sets-exercises .hilite").html("<%= @exercises.count %>")
+		// Update bar count and highlight
+		$(".hilite2").hide().toggle("highlight").fadeIn();
+		$(".build-sets-exercises .hilite2").html("<%= @exercises.count %>")
 
 		// Update sets count if not already set
-		var sets = $("#workout_sets");
+		var sets = $("input[id=workout_sets]");
 		if (sets.val() == 0) {
 			sets.val("1");
 		}
@@ -37,6 +38,11 @@
 		$(".exercise_name").last().val("<%= @exercise.name %>");
 		var href = $(".remove-exercise a").last().attr("href") + "<%= @exercise.id %>";
 		$(".remove-exercise a").last().attr("href", href);
+		$(".exercise").last().attr("data-ex_id", "<%= @exercise.id %>");
+		$(".bar-expand").animate({
+			backgroundColor: "#abcdef"
+		}, 75 );
+		$(".bar-expand").animate({backgroundColor: "#444"}, 300);
 		}
 
 <% end %>
