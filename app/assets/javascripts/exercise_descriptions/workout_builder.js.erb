@@ -2,13 +2,7 @@ $(document).on('ready page:load', function () {
 
 if ($(".build").length > 0) {
 
-	var cardCollection = document.getElementsByClassName('ex-descriptions-card');
-	for(var i = 0; i < cardCollection.length; i++) {
-		if (cardCollection[i].className == "hilite") {
-			cardCollection[i].className += " hilite";
-		}
-	}
-
+	// Sets
 	if ($(".exercise").length > 0 && $(".exercise").length < 2) {
 		$("#workout_sets").val("1");
 	}
@@ -16,17 +10,52 @@ if ($(".build").length > 0) {
 	// Save set number to session
 	$("#workout_sets").on('focusout', function() {
 		var num_sets = $("#workout_sets").val();
-		$.ajax({url: "/build_workout", data: {sets: num_sets} });
+		$.ajax({url: "/exercise_descriptions", data: {sets: num_sets},
+		success: function(respose) {
+			console.log(num_sets > 1 || num_sets == 0);
+			if (num_sets > 1 || num_sets == 0) { 
+				console.log("r");
+			$("#workout_sets_label").html("sets");
+			} else {
+				console.log(num_sets);
+				$("#workout_sets_label").html("set");
+			}
+		}
+		});
 	});
+
+	// Update set number
+	var sets = $("input[id=workout_sets]");
+		if (sets.val() == 0 && $(".exercise").length) {
+			sets.val("1");
+		}
+	
+	window.onunload = unloadPage;
+	function unloadPage() {
+		console.log("unload event!!!!!!");
+		if ($(".build").css("display") == "block") {
+			$.cookie("show_wrkt", true);
+			console.log("imin yer show's");
+		} else {
+			$.removeCookie("show_wrkt");
+		}
+	}
+
  
  	// Add exercise_id to remove exercise link
 	window.onload = loadPage;
 	function loadPage() {
+		var myCookie = $.cookie("show_wrkt");
+		if (myCookie != null) {
+			$(".build").show('slow');
+		}
 		var i = 0;
 		$(".build .exercise").each(function() {
+			var id = $("input[id=workout_exercises_attributes_" + i + "_exercise_id]").val();
 			var href = $(this).children(".exercise-remove").children(".remove-exercise").children("#remove-exercise").attr("href");
-			href += "" + $("input[id=workout_exercises_attributes_" + i + "_exercise_id]").val();
+			href += "" + id;
 			$(this).children(".exercise-remove").children(".remove-exercise").children("#remove-exercise").attr("href", href);
+			$(this).attr("data-ex_id", id);
 			i++;
 	  });
 	}
@@ -35,7 +64,9 @@ if ($(".build").length > 0) {
 
 		// TODO: get sliders to appear on reload
 		$(".build .exercise .workout-rest").each(function(i) {
+
 			if (!$(this).has(".ui-slider-handle").length) {
+				$(this).children(".slider-wrapper").children(".slider").removeAttr("id").attr("id", "slider" + (i+1));
 				$("#slider" + (i+1)).slider({
   	  		value: $(this).children(".exercise__rest-period").val(),
   	  		min: 0,
@@ -47,7 +78,18 @@ if ($(".build").length > 0) {
   			});
 			}
 		});
-	}
+
+		// Save rest period values to session
+		$(".ui-slider-handle").on('mouseup', function(){
+			var rp = $(this).parents(".workout-rest").children(".exercise_rest_period").children("input[class=exercise__rest-period]").val();
+			var id = $(this).parents(".exercise").attr("data-ex_id");
+			console.log(id);
+			$.ajax({url: "/exercise_descriptions", data: {rest_period: rp, id: id} })
+		});
+
+		showHideOnClick("#default-link", ".defaults-list");
+
+	} // end build if statement
 
 });
 

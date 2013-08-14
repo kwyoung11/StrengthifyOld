@@ -5,6 +5,7 @@ class ExerciseDescriptionsController < ApplicationController
   def index
     @workout_action = "build"
     @user = User.find(current_user.id)
+    @default = @user.default
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
@@ -51,6 +52,8 @@ class ExerciseDescriptionsController < ApplicationController
       @checked_skill_levels = @all_skill_levels
       @checked_forces = @all_forces
     end
+
+    @show_built_wrkt = "show" if params[:show_wrkt] 
 
     # remember settings from build and clear actions
     @built_workout = session[:built_workout]
@@ -106,6 +109,8 @@ class ExerciseDescriptionsController < ApplicationController
 
     def load_workout
       session[:sets] = params[:sets] if params[:sets]
+      session[:rps] ||= {}
+      session[:rps].merge!( {params[:id] => params[:rest_period]} ) if (params[:id] && params[:rest_period])
       @selected_exercises = ExerciseDescription.all.where(id: session[:exercises])
       @workout = Workout.new
       @workout.sets = session[:sets]
@@ -113,6 +118,7 @@ class ExerciseDescriptionsController < ApplicationController
       @selected_exercises.each do |e|
         @exercise = @workout.exercises.new({name: e.name, exercise_id: e.id})
         @exercise.rest_period = RestPeriod.new
+        @exercise.rest_period.seconds = session[:rps].fetch(@exercise.exercise_id.to_s, 0)
       end
     end
 end

@@ -1,19 +1,19 @@
 <div class="exercise">
 	<%= f.hidden_field :exercise_id %>
 	
-	<li>
+	<li class="ex-name">
 		<div class="exercise-count" id="ex-num-1">1</div>	
 		<%= f.text_field :name, size: "5", style: "width: 150px;", required: true, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
 	</li>
 	
-	<li> <%= f.text_field :weight, size: "5", :placeholder => " weight" %> </li>
+	<li class="ex-weight"> <%= f.text_field :weight, size: "5", :placeholder => " weight", value: @user.default.weight %> </li>
 	
-	<li> <%= f.text_field :reps, size: "5", :placeholder => " reps" %> or </li>
+	<li class="ex-reps"> <%= f.text_field :reps, size: "5", :placeholder => " reps", value: @user.default.reps %> or </li>
 
-	<li>
+	<li class="ex-time">
 		<%= f.number_field :hours, style: "width: 33px; height: 26px;", placeholder: "h" %>
 		<%= f.number_field :minutes, style: "width: 37px; height: 26px;", placeholder: "m" %>
-		<%= f.number_field :seconds, style: "width: 32px; height: 26px;", placeholder: "s" %>
+		<%= f.number_field :seconds, style: "width: 32px; height: 26px;", placeholder: "s", value: @user.default.exercise_seconds %>
 	</li>
 	
 	<li class="workout-rest">
@@ -21,7 +21,7 @@
 		<%= f.fields_for :rest_period do |builder| %>
 			<%= builder.hidden_field :id, value: nil %>
 			<%= builder.label HTMLEntities.new.decode "Rest period" %>
-			<%= builder.text_field :seconds, style: "width: 35px;", class: "exercise__rest-period" %>
+			<%= builder.text_field :seconds, style: "width: 35px;", class: "exercise__rest-period", value: @user.default.rest_period_seconds %>
 		<% end %>	
 		</div>
 		<div id="rp-unit"> </div>

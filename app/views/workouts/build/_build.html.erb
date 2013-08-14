@@ -1,8 +1,10 @@
+<%= render '/workouts/defaults/defaults' %>
 <%= form_for [@user, @workout] do |f| %>
 <%= render "build_workout_bar", f: f %>
 <div class="workout <%= @workout_action %>" id="new-workout">
 <%= render 'layouts/errors', object: f.object %>
 	<%= f.hidden_field :snagged %>
+	<%= f.hidden_field :planned, value: true %>
 	
 	<% if @built_workout %>
 	<p class="workout-builder--no-exercises"> <%= @built_workout %> You have no exercises yet. <p>

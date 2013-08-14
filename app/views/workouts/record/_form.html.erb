@@ -22,7 +22,7 @@
 			<div class="col-10-10">
 				<ol class="form-field-list exercise-list">
 					<%= f.fields_for :exercises do |builder| %>
-						<%= render 'exercise_fields', f: builder %> 
+						<%= render '/workouts/record/exercise_fields', f: builder %> 
 					<% end %>
 				</ol>
 			</div>

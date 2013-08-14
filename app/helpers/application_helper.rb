@@ -21,6 +21,10 @@ module ApplicationHelper
    link_to_function text, "$(this).closest('form').submit()", id: id
   end
 
+  def determine_set_label(count)
+    return count == nil ? " sets" : count == 1 ? " set" : " sets"
+  end
+
   def name
    link_to "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe, root_url, class: "strengthify-header-link"
   end

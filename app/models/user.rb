@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_one :default
   
   # Validations 
   # has_secure_password set to false to allow omniauth login
@@ -84,7 +85,6 @@ class User < ActiveRecord::Base
   def invitation_token=(token)
     self.invitation = Invitation.find_by(token: token)
   end
-
 
   STATES = %w[
     DC MD VA AL AK AZ AR CA CO CT DE

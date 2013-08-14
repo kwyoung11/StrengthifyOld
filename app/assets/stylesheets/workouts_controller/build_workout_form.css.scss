@@ -11,8 +11,17 @@
 	}
 	font-size: 1.5em;
 	height: auto;
-	overflow: hidden;
 	background-color: #444;
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.workout-build__container {
+	position: relative;
+	padding-bottom: 10px;
 }
 
 .remove-exercise {
@@ -55,7 +64,36 @@
 .bar-content {
 	border: 1px solid grey;
 	float: left;
-	width: 40%;
+	width: 20%;
+}
+
+.defaults {
+	border: 1px solid grey;
+	float: left;
+	width: 10%;
+	height: 59px;
+	&:hover {
+		background-color: lighten(#444, 5%);
+	}
+}
+
+.defaults-list {
+	right: 0;
+	top: 60px;
+	width: 130px;
+	z-index: 300;
+	background-color: #444;
+	display: none;
+	@extend %dropdown-list;
+}
+
+.bar-options {
+	width: 29%;
+	float: left;
+}
+
+#default-link:hover .defaults-list {
+	display: block;
 }
 
 .build #workout_sets {
@@ -83,11 +121,14 @@
 // }
 
 .build {
+	display: none;
 	position: relative;
-	width: 60%;
+	margin: 0 auto;
+	width: 55.5%;
 	font-size: 16px;
+	padding-left: 48px;
 	@include inverted-rounded-corners(0px, 0px);
-	@include outer-box-shadow(0px, 0px, 0px, 0px, #444);
+	@include outer-box-shadow(0px, 0px, 1px, 0px, #444);
 }
 
 .build .first-row {
@@ -109,15 +150,56 @@
 	&[type="submit"] { @extend %button-large; }
 }
 
+#workout_sets {
+	text-align: center;
+	margin: -9px 3px 0px 0px;
+	font-size: 0.8em;
+  padding: 6px 4px 6px 4px;
+	border: 1px solid #ddd;
+	@include rounded-corners(3px);
+	&[type="submit"] { @extend %button-large; }
+}
+
 .build .exercise-count {
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	margin: -1px 0px 0px -42px;
+	margin: 2px 0px 0px -42px;
 	background: #fd4042;
 	@include rounded-corners(10px);
 	padding: 5px;
 	color: #222;
+}
+
+#save-built-workout {
+	background-color: #fefefe;
+	border: 2px outset;
+	color: buttontext;
+	text-decoration: none;
+	border-radius: 3px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-top: 16px;
+	padding: 2px 6px 3px;
+	bottom: 0;
+	&:hover {
+		@include outer-box-shadow(0px, 0px, 2px, 0px, #fff);	
+	}
+}
+
+.clear-exercises {
+	@extend #save-built-workout;
+}
+
+
+.workout-builder--no-exercises {
+	position: absolute;
+	padding: 0px 5px 0px 5px;
+	font-family: "Source Sans Pro";
+	top: 25%;
+	font-size: 1.2em;
+	color: #aaa;
+	text-align: center;
 }
 
 
