@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  def new  
+  def new
+    render layout: "responsive_layout"  
   end
 
   def activity
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
+    user = User.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password])
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
@@ -27,7 +28,8 @@ class SessionsController < ApplicationController
         user.sign_in_count += 1
       end
       user.save!(validate: false)
-      redirect_to user_path(user.id), :notice => "Logged in!"
+      # Direct user to perform workouts on mobile, else to profile
+      redirect_to( mobile_device? ? performable_user_workouts_path(user) : user_path(user) ) 
     else
       flash.now[:notice] = "Invalid email or password"
       render "new"

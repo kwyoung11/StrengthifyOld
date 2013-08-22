@@ -1,0 +1,12 @@
+<h1> Planned Workouts </h1>
+	<table class="performable">
+    <% @planned_workouts.each_with_index do |w, i| %>
+    <tr> 
+    	<td class="perf-num"> <%= i + 1 %>. </td>
+      <td> 
+      	Planned workout created on <%= w.created_at.strftime("%m/%d/%y") %> with <%= w.sets %> <%= determine_set_label(w.sets) %> and <%= w.exercises.count %> exercises 
+    </td>
+    <td> <%= link_to 'Perform', perform_user_workout_path(current_user.id, w.id), class: "perform-button" %> </td>
+    </tr>                
+    <% end %>
+  </table>

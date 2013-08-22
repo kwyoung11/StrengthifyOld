@@ -1,6 +1,33 @@
-<div id="register">
-	<h1> Register </h1>
 
-	<%= render 'form' %>
-	<p> or <%= link_to 'Login', login_path %> to your account </p>
+<div class="register">
+<h1> Sign up </h1>
+	<%= form_for(@user, :html => {class: "ws-instantvalidation", :multipart => true}) do |f| %>
+  	<%= render "/layouts/errors", object: f.object %>
+  	<%= f.hidden_field :invitation_token %>
+		
+  	<div class="field">
+  	  <%= f.text_field :name, required: true, :size => "25", :placeholder => " name" %>
+  	</div>
+ 		
+		<div class="field">
+  	  <%= f.email_field :email, required: true, :size => "25", :placeholder => " email" %>
+  	</div>
+
+ 		<div class="field">
+  	  <%= f.password_field :password, required: true, :size => "25", :placeholder => " password"%>
+  	</div>
+  	 
+  	<div class="field">
+  	  <%= f.password_field :password_confirmation, required: true, :size => "25", :placeholder => " confirm password" %>
+  	</div>
+  	
+		<div class="actions">
+  	  <%= f.submit 'Register' %>
+  	</div>
+	
+	<% end %>
+	<div class="registration"> 
+		<p class="new-registrant"> Already have an account? </p>
+		<p> <%= link_to 'Login', login_path, class: "register-button" %> </p>
+	</div>
 </div>

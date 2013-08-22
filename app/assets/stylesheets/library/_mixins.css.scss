@@ -23,7 +23,7 @@
 }
 
 /* Mixins */
-@mixin simple-vert-gradient($c-stop1: #f00, $c-stop2: lighten(#f00, 40%)) {
+@mixin simple-vert-gradient($c-stop1: #f00, $c-stop2: lighten($c-stop1, 15%)) {
 	background: #436b99; /* Old browsers */
 	background: -moz-linear-gradient(top, $c-stop1 10%, $c-stop2 90%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,$c-stop1), color-stop(90%,$c-stop2)); /* Chrome,Safari4+ */

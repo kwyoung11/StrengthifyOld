@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     @user = User.new(invitation_token: cookies[:invitation_token], name: cookies[:name])
     @user.email = @user.invitation.recipient_email if @user.invitation
     @user.name = params[:name] if params[:name]
+    render layout: "responsive_layout"
   end
 
   # GET /users/1/edit

@@ -33,17 +33,36 @@
 
 /* Buttons */
 %button-large {
-	@include simple-vert-gradient(#BFFFB5, #1AAD03);
+	@include simple-vert-gradient(#0077CC, #44AAEE);
 	cursor: pointer;
 	border: 1px solid #444;
 	color: white;
 	padding: 10px;
-	border-radius: 10px;
+	border-radius: 5px;
 	&:hover {
-		background: rgba(170, 170, 5, 0.7);
+		text-decoration: none;
+		background: #0077cc;
 		border: 1px solid #111;
 	}
 }
+
+.button {
+	@include simple-vert-gradient(#0077CC, #44AAEE);
+	cursor: pointer;
+	font-size: 1.2em;
+	color: white;
+	border: 1px solid #444;
+	padding: 10px;
+	vertical-align: middle;
+	display: block;
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+		background-color: #0077cc;
+		border: 1px solid #111;
+	}
+}
+
 
 %header-md {
 	font-weight: bolder;

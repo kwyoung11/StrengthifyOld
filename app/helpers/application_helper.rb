@@ -25,8 +25,21 @@ module ApplicationHelper
     return count == nil ? " sets" : count == 1 ? " set" : " sets"
   end
 
+  def find_ex_field_value(f, field, user, session)
+    default_field = (field == :seconds && f.object.class == RestPeriod) ? ("rest_period_" << field.to_s) : (field == :seconds) ? ("exercise_" << field.to_s) : field
+    !(f.object.send(field) == 0) && (session.has_key?(default_field.to_sym)) ? f.object.send(field) : user.default.send(default_field.to_sym)
+  end
+
   def name
    link_to "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe, root_url, class: "strengthify-header-link"
+  end
+
+  def active?(cont = nil, action)
+    if cont != nil
+      if controller.action_name == action && controller.controller_name == cont
+        return "active" 
+      end
+    end
   end
 
   def notifications
@@ -47,6 +60,14 @@ module ApplicationHelper
     content_tag :div, class: "tooltip_wrapper" do
       content + content_tag(:div, content_tag(:div, "", class: "tooltip_triangle") + text, class: "helper_tooltip")
      end
+  end
+
+  def meta_keywords
+    "Strength Training, Weightlifting, Resistance Training, Power Lifting, Muscular Development, Fitness, Health, Exercise"
+  end
+  
+  def meta_description
+    "Strengthify -- The easiest way to jumpstart your strength training."
   end
     
 end

@@ -97,10 +97,12 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1/perform
   # GET /workouts/1/perform.json
   def perform
+    render layout: "responsive_layout"
   end
 
   def performable
     @planned_workouts = @user.workouts.where(planned: true)
+    render layout: "responsive_layout"
   end
   
   

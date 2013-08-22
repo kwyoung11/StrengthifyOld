@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Weight:</strong>
+  <%= @default.weight %>
+</p>
+
+<p>
+  <strong>Reps:</strong>
+  <%= @default.reps %>
+</p>
+
+<p>
+  <strong>Exercise seconds:</strong>
+  <%= @default.exercise_seconds %>
+</p>
+
+<p>
+  <strong>Rest period seconds:</strong>
+  <%= @default.rest_period_seconds %>
+</p>
+
+
+<%= link_to 'Edit', user_defaults_edit_path(@user) %> |
+<%= link_to 'Back', user_path(@user) %>

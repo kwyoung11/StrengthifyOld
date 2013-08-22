@@ -125,9 +125,15 @@
 	color: #D55;
 }
 
-#front_pageLogin input[type=text], input[type=password] {
+#front_pageLogin input {
 	width: 160px;
 	height: 24px;
+	border-radius: 5px;
+}
+
+#front_pageLogin input[type="checkbox"] {
+	width: auto;
+	height: auto;
 	border-radius: 5px;
 }
 

@@ -1,0 +1,252 @@
+
+/*******************************************
+*
+* HEADER & NAVIGATION
+*
+********************************************/
+
+.resp #header {
+	position: fixed;
+	background: #ddd url("/assets/static.png");
+	width: 100%;
+	height: 40px;
+	z-index: 100;
+}
+
+.resp #header_content {
+	width: auto;
+	margin: 0px auto;
+	clear: both;
+}
+
+/* Header Navigation */  
+.resp .header-nav { 
+	display: block;
+	float: right;
+	position: relative; 
+	margin: -9px 0px 0px 0px;
+}
+
+.resp .drawer-nav-icon {
+	position: absolute;
+	display: none;
+	content: "poop";
+	border: 10px solid red;
+	height: 20px;
+	left: -20px;
+	top: 20px;
+	width: 20px;
+}
+  
+.resp .header-nav-list { 
+	@extend %hr-list;
+	.nav-profile-li { 
+		padding-left: 20px; 
+		a:hover {	text-decoration: underline; }
+		&:before {
+			@include triangle-down(#444, 5px);
+			margin: 8px 0px 0px -15px;
+			opacity: 0.9;
+		}
+	}
+	li {
+		position: relative; 
+		padding: 4px 10px 12px 10px;
+		border: 1px solid rgba(90, 90, 90, 0.3); 	
+		background: #fffcf5;
+		@include inner-box-shadow(0px, 0px, 1px, 0px, #444);
+		&:hover { background: #eee; cursor: pointer; }
+	}
+
+	li.current { background: #eee; @include inner-box-shadow(0px, 0px, 4px, 0px, #444); }
+	a { text-decoration: none; }
+}  
+
+.resp .header-nav-list-dropdown:hover {
+	background: #eee;
+	cursor: pointer;
+}  
+
+.resp .header-nav-list-dropdown ul { 
+	@extend %dropdown-list;	
+	display: none;
+	margin-top: 10px; 
+	left: 0;
+	> li {
+		font-size: 0.85em; 
+		border-bottom: 1px solid #eee;	
+		&:hover { background-color: #eee; }
+	} 
+} 
+
+/* Sub Header Navigation */
+.resp .sub-header-nav {
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 335px;
+	margin: 26px auto;
+	z-index: 10;
+}
+
+.resp .sub-header-nav-list {
+	@extend %hr-list;
+	li.active {
+		background-color: darken(#fefefe, 10%);
+	}
+	a {
+		border:1px solid blue; 
+		padding: 10px; 
+		display: inline-block; 
+		width: 100%; 
+		height: 100%;
+	}
+}
+
+
+/******************************************
+
+NOTIFICATIONS
+
+*******************************************/
+
+
+.resp .strengthify-header-list {
+	list-style-type: none;
+	margin: 0px 0px 0px 0px;
+	float: left;
+}
+
+.resp .strengthify-header-list > li {
+	height: 35px;
+	display: inline;
+	float: left;
+}
+
+.resp .strengthify-header {
+	font-family: baskerville;
+	text-decoration: underline;
+	font-size: 1.9em;
+	font-weight: bolder;
+	text-shadow: 0px 0px #d55;
+}
+
+.resp .strengthify-header:hover {
+	cursor: pointer;
+}
+
+.resp .strengthify-header-link {
+	display: inline-block;
+	margin-top: 8px;
+}
+
+.resp .notifications {
+	position: relative;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin: 2px 0px 0px 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	&:hover {
+		cursor: pointer;
+	}
+	&:hover i {
+		margin-top: 11px;
+	}
+}
+
+.resp .notifications i {
+	margin: 10px auto;
+}
+
+.resp .notification-count {
+	position: absolute;
+	text-align: center;
+	background-color: #dd4400;
+	font-size: 0.7em;
+	color: #222;
+	opacity: 0.9;
+}
+	
+.resp .notification-count:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.resp .notifications-dropdown {
+	padding: 0;
+	left: 0;
+	margin-top: 5px;
+	margin-left: -95px;
+	list-style-type: none;
+	display: none;
+	position: absolute;
+	background: white;
+	font-size: 0.7em;
+	color: #777;
+	border: 1px solid #ccc;
+	@include outer-box-shadow(0px, 0px, 5px, 0px, #444);
+	&:before {
+		@include triangle-up(#fff, 10px);
+		left: 50%;
+		top: -10px;
+	}
+}
+
+.resp .notifications-dropdown-li-item {
+	width: 200px;
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+/********************************************
+*
+* WRAPPERS
+*
+********************************************/
+
+.resp #application_wrapper {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.resp #content_wrapper {
+	margin: 100px auto;
+	text-align: center;
+	overflow: visible;
+}
+
+/* For landing page */
+.resp .section_wrapper {
+	width: 1150px;
+	margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 640px) {
+	$nav_width: 10em; 
+	
+	.resp .header-nav {
+		display: none;
+		width: $nav_width; 
+		left: $nav_width;	
+		.drawer-nav-icon { display: block; }	
+	}
+
+	.resp .header-nav-list { 
+		li { float: none; display: block; }
+	}
+
+	.resp .sub-header-nav { position: absolute; display: none; }
+	.resp .strengthify-header-list { width: 100%; padding: 0; display: inline-block; }
+	.resp .strengthify-header {width: 100%; text-align: center;}
+	.resp .strengthify-header-link { margin: 11px auto; }
+	.resp #content_wrapper { margin: 70px auto; }
+	.resp .notifications {display: none; border: none; i {display: none;}}
+	.resp .notifications-dd {display: none;}
+}
+
+

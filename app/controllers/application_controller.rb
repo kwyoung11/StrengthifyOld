@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_url, alert: "Sign up or login" if current_user.nil?
   end
+
+  def mobile_device?
+    request.user_agent =~ /Mobile|webOS/
+  end
   
   def admin?
     if !current_user.nil?

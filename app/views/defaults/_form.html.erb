@@ -1,0 +1,33 @@
+<%= form_for [@user, @default] do |f| %>
+  <% if @default.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@default.errors.count, "error") %> prohibited this default from being saved:</h2>
+
+      <ul>
+      <% @default.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.number_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :reps %><br />
+    <%= f.number_field :reps %>
+  </div>
+  <div class="field">
+    <%= f.label :exercise_seconds %><br />
+    <%= f.number_field :exercise_seconds %>
+  </div>
+  <div class="field">
+    <%= f.label :rest_period_seconds %><br />
+    <%= f.number_field :rest_period_seconds %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

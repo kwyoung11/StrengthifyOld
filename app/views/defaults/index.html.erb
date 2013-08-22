@@ -1,0 +1,33 @@
+<h1>Listing defaults</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Weight</th>
+      <th>Reps</th>
+      <th>Exercise seconds</th>
+      <th>Rest period seconds</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @defaults.each do |default| %>
+    <tr>
+      <td><%= default.weight %></td>
+      <td><%= default.reps %></td>
+      <td><%= default.exercise_seconds %></td>
+      <td><%= default.rest_period_seconds %></td>
+      <td><%= link_to 'Show', user_default_path(@user, default) %></td>
+      <td><%= link_to 'Edit', edit_user_default_path(@user, default) %></td>
+      <td><%= link_to 'Destroy', user_default_path(@user, default), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Default', new_user_default_path(@user) unless @user.default %>

@@ -1,0 +1,10 @@
+<ul class="defaults-list"> 
+	<%= form_for [@user, @default], url: "/users/#{@user.id}/defaults/#{@default.id}" do |f| %>
+  	<%= f.hidden_field :user_id, value: @user.id %>
+  	<li><%= f.number_field :weight, placeholder: "weight"%></li>
+  	<li><%= f.number_field :reps, placeholder: "reps" %> </li>
+  	<li><%= f.number_field :exercise_seconds, placeholder: "exercise (time)(s)" %></li>
+  	<li><%= f.number_field :rest_period_seconds, placeholder: "rest (seconds)"%></li>
+  	<li><%= f.submit "Update"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(defaults: "true"), id: "re-apply-defaults" %></li>
+	<% end %>
+</ul> 

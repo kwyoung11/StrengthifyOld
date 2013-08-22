@@ -1,0 +1,80 @@
+.login {
+	background: rgba(00, 100, 200, 0.4);
+	width: 360px;
+	border-radius: 5px;
+	padding: 50px 30px;
+	margin: 0px auto;
+	h1 { margin-top: -20px;}
+	#email, #password {
+		font-size: 1.1em;
+  	padding: 10px 6px;
+  	width: 240px;
+		border: 1px solid #ddd;
+		@include rounded-corners(3px);
+	}
+	input[type="submit"] { 
+		font-size: 1.2em;
+		width: 240px;
+		@extend %button-large; 
+	}
+}
+
+.register {
+	@extend .login;
+	input {
+		font-size: 1.1em;
+  	padding: 10px 6px;
+  	width: 240px;
+		border: 1px solid #ddd;
+		@include rounded-corners(3px);
+	}
+}
+
+.register-button {
+	@extend .button;
+	@include simple-vert-gradient(#309930);
+	width: 240px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.new-registrant {
+	padding-left: 30px;
+	text-align: left;
+	color: #555;
+}
+
+
+@media only screen and (max-width: 640px) {
+
+.login {
+	width: 300px;
+	padding: 10px 10px;
+	#email, #password {
+		font-size: 1.1em;
+  	padding: 10px 6px;
+  	width: 280px;
+		border: 1px solid #ddd;
+		@include rounded-corners(3px);
+	}
+	input[type="submit"] { 
+		width: 280px;
+		@extend %button-large; 
+	}
+}
+
+.register-button {
+	width: 280px;
+}
+
+.new-registrant { padding-left: 0px; }
+
+.login h1, .register h1 {
+	display: none;
+}
+
+
+}
+
+
+

@@ -8,7 +8,6 @@ $(document).on('ready page:load', function() {
 	// hide settings/notifications/find friends dd menus
 	$(window).on('click', function() { $(".dd-li").hide(); });
 
-
 	// Send ajax request when user clicks notifications tab
 	$(".notifications").on('click', function() {
 		$(".notifications-dropdown-li-item").each(function() {
@@ -27,11 +26,31 @@ $(document).on('ready page:load', function() {
 	// Change time zone according to location. See https://bitbucket.org/pellepim/jstimezonedetect
 	var timezone = jstz.determine();
 	document.cookie = 'time_zone='+timezone.name()+';';
+
+
+	function navResponsive(nav_width_px, nav_width_em) {
+
+		// Make header navigation responsive
+		$(".drawer-nav-icon").on('click', function(event) {
+			if ($('.header-nav').css("left") == nav_width_px) {
+				$('.header-nav').css("left", "0px");
+				$("#application_wrapper").css("margin", "0 auto 0 -360px");
+			} else {
+				$("#application_wrapper").css("margin", "0 auto");
+				$('.header-nav').css("left", nav_width_em);
+			}
+		});
 	
-	// Show build workout dropdown on hover
-	$(".sub-header-nav-list li").mouseover(function() {
-		$(".sub-header-nav-list-dd").css("display", "block");
-	});
+		$(window).on('resize', function() {
+			if ($(window).width() > 640) {
+				$(".header-nav").css("left", "");
+				$("#application_wrapper").css("margin", "0 auto");
+			}
+		});
+	}
+
+	navResponsive("130px", "10em");
+
 
 });
 

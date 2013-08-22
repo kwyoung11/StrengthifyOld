@@ -3,7 +3,7 @@ ruby "2.0.0"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '4.0.0.rc2'
 
 gem 'pg'
 
@@ -21,6 +21,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'better_errors'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'guard-livereload', require: false
