@@ -9,16 +9,12 @@ gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platforms: :ruby
-
-  gem 'uglifier', '>= 1.0.3'	
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', '>= 2.1.2'	
+  gem 'jquery-rails'
   gem 'jquery-ui-rails'
-end
+
 
 group :development, :test do
   gem 'better_errors'
@@ -40,11 +36,10 @@ gem 'htmlentities'
 gem 'debugger'
 gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
-gem 'jquery-rails'
 gem 'carrierwave'
 gem 'webshims-rails'
 gem 'rmagick'
-gem 'mail_form'
+gem 'mail_form', '~> 1.5.0rc'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -53,7 +48,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby', '~> 3.1.1'
 
 # Use unicorn as the app server
 # gem 'unicorn'
