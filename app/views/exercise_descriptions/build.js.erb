@@ -8,7 +8,7 @@
 			alert("You've already added that exercise.");
 		} else {
 		
-		// Update bar count and highlight
+		// Update bar count and toggle highlight
 		$(".hilite2").hide().toggle("highlight").fadeIn();
 		$(".build-sets-exercises .hilite2").html("<%= @exercises.count %>")
 
@@ -23,17 +23,7 @@
 		var regexp = new RegExp($("#build-workout__add-ex").data('id'), 'g');
 		$(".exercise-list").append($("#build-workout__add-ex").data('fields').replace(regexp, i));
 		$(".build .exercise .exercise-count").last().html("" + (i+1));
-		$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
-		$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
-		$("#slider" + (i+1)).slider({
-  		 	value: 0,
-  		 	min: 0,
-  		 	max: 180,
-  		 	step: 5,
-  		 	slide: function(event, ui) {
-  		 		$("input[id=workout_exercises_attributes_" + (i) + "_rest_period_attributes_seconds]").val(ui.value);
-  		 	}	
-  		});
+		addRestPeriodFields(i);
 		$(".ex-descriptions-card[data-ex_id='<%= @exercise.id %>']").addClass("hilite");
 		$(".exercise_name").last().val("<%= @exercise.name %>");
 		var href = $(".remove-exercise a").last().attr("href") + "<%= @exercise.id %>";
@@ -46,6 +36,25 @@
 		}
 
 <% end %>
+
+		// Save rest period values to session
+		$(".ui-slider-handle").on('mouseup', function() {
+			var rp = $(this).parents(".workout-rest").children("input[class=exercise__rest-period]").val();
+			var id = $(this).parents(".exercise").attr("data-ex_id");
+			$.ajax({url: "/exercise_descriptions", data: {rest_period: rp, id: id} })
+		});
+
+		$(".exercise_weight").on('focusout', function() {
+			var weight = $(this).val();
+			var id = $(this).parents(".exercise").attr("data-ex_id");
+			$.ajax({url: "/exercise_descriptions", data: {weight: weight, id: id} })
+		});
+
+		$(".exercise_reps").on('focusout', function() {
+			var reps = $(this).val();
+			var id = $(this).parents(".exercise").attr("data-ex_id");
+			$.ajax({url: "/exercise_descriptions", data: {reps: reps, id: id} })
+		});
 
 	// hide placeholder text when first exercise is added
 	$(".workout-builder--no-exercises").hide();

@@ -29,6 +29,9 @@ GEM
     arel (4.0.0)
     atomic (1.1.10)
     bcrypt-ruby (3.0.1)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -205,6 +208,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.1)
+  better_errors
   capybara
   carrierwave
   coffee-rails (~> 4.0.0.beta1)

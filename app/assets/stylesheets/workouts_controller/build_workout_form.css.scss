@@ -96,11 +96,6 @@
 	display: block;
 }
 
-.build #workout_sets {
-	position: absolute;
-	margin: -63px 0px 0px -80px;
-}
-
 .build .workout-rest label {
 	opacity: 0;
 }
@@ -113,12 +108,12 @@
 	top: -17px;	
 }
 
-// #expand-workout-bar {
-// 	font-size: 1.7em;
-// 	text-decoration: none;
-// 	opacity: 0.9;
-// 	&:hover {opacity: 1;}
-// }
+.bar-ex-count {
+	vertical-align: middle;
+	font-size: 1.47em;
+	margin: -.1em 0px 0px 0px;
+	display: inline-block;
+}
 
 .build {
 	display: none;
@@ -129,11 +124,6 @@
 	padding-left: 48px;
 	@include inverted-rounded-corners(0px, 0px);
 	@include outer-box-shadow(0px, 0px, 1px, 0px, #444);
-}
-
-.build .first-row {
-	margin: 0px 0px 0px 0px;
-	border: 1px solid red;
 }
 
 #build-workout__add-ex {
@@ -157,7 +147,6 @@
   padding: 6px 4px 6px 4px;
 	border: 1px solid #ddd;
 	@include rounded-corners(3px);
-	&[type="submit"] { @extend %button-large; }
 }
 
 .build .exercise-count {
@@ -194,12 +183,16 @@
 
 .workout-builder--no-exercises {
 	position: absolute;
-	padding: 0px 5px 0px 5px;
 	font-family: "Source Sans Pro";
 	top: 25%;
-	font-size: 1.2em;
+	left: 39%;
 	color: #aaa;
 	text-align: center;
+}
+
+.default-triangle {
+	@include triangle-down(#dcdcdc, 5px);
+	margin: 10px 0px 0px 5px;
 }
 
 

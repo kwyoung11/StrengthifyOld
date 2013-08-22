@@ -1,4 +1,4 @@
-function showHideOnClick(wrapper, el, speed, effects) {
+function showHideOnClick(wrapper, el, speed, effects, windowed) {
 	$(wrapper).on('click', function() {
 		if ($(el).css("display") == "none") {
 			$(el).show(speed);
@@ -7,11 +7,19 @@ function showHideOnClick(wrapper, el, speed, effects) {
 			$(el).hide(speed);
 			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(360deg)"); }
 		}
-		
 	});
+
+	// Hide on window click
+	if (windowed == true) {
+		$(window).on('click', function(e) {
+			var target_id = "#" + String(e.target.id)  
+			if (target_id != wrapper) { $(el).hide();	}
+		});
+	}
 }
 
-function addExercise(selector, link_id, form_namespace) {
+function addExercise(selector, link_id, form_namespace, trigger) {
+	trigger = trigger || null;
 	// Keep track of the number of exercises on the page
 	var k = 0;
 	$('form').on('click', '.workout-remove-exercise-link', function() {
@@ -26,24 +34,23 @@ function addExercise(selector, link_id, form_namespace) {
 		e.preventDefault();
 		$("#workout_exercises_attributes_" + i + "_name").focus();
 		$(form_namespace + " .exercise .exercise-count").last().html("" + (i+1));
-		$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
-		if ($(".build")) {
-			$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
-		} else {
-			$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
-		}
-		$("#slider" + (i+1)).slider({
-    	value: 0,
-    	min: 0,
-    	max: 180,
-    	step: 5,
-    	slide: function(event, ui) {
-    		$("input[id=workout_exercises_attributes_" + (i-1) + "_rest_period_attributes_seconds]").val(ui.value);
-    	}	
-  	});
+		addRestPeriodFields(i);
 		i++;
-
 	});
+}
+
+function addRestPeriodFields(i) {
+	$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
+	$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
+	$("#slider" + (i+1)).slider({
+  	value: 0,
+  	min: 0,
+  	max: 180,
+  	step: 5,
+  	slide: function(event, ui) {
+  		$("input[id=workout_exercises_attributes_" + (i) + "_rest_period_attributes_seconds]").val(ui.value);
+  	}	
+  });
 }
 
 function removeExercise() {

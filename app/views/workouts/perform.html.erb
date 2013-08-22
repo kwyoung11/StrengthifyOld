@@ -1,0 +1,41 @@
+<div class="workout-perform">
+
+	<!-- Action Buttons --> 	
+	<table class="wrkt-button-menu">
+		<tr class="wrkt-perform-actions">
+			<td class="wrkt-start col-5-10">
+				<%= link_to "Start", "javascript:void(0)", class: "button", id: "wrkt-start-link" %>
+			</td>
+			<td class="wrkt-finish col-5-10">
+				<%= link_to "Finish", "#", class: "button", id: "wrkt-finish-link" %>
+			</td>
+		</tr>
+	</table>
+	
+	<!-- Workout table -->
+		<div class="workout-performable" data-workout_id="<%= @workout.id %>">
+			<table class="wrkt-table">
+			
+				<% @workout.exercises.each_with_index do |e, i| %>
+				<tr id="ex-1">
+					<td> 1x </td>
+					<td> <%= e.name %> @ <%= e.weight %> lbs for <%= e.reps %> reps</td>
+					<td> <%= link_to "Finish", "javascript:void(0)", class: "ex-f", id: "next-exercise-link" %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+		
+		<div class="wrkt-progress">
+			<div class="wrkt-prog-bar col-8-10">
+				Progress Bar
+			</div>
+			<div class="wrkt-percent-complete col-2-10">
+				40%
+			</div>
+		</div>
+	
+	</div>
+
+	<%= link_to "Back", performable_user_workouts_path(current_user.id) %>
+</div>

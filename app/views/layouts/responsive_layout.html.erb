@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= render "/layouts/head" %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="resp">
+	<div id="header">
+		<div id="header_content">
+			<ul class="strengthify-header-list">
+				<li class="strengthify-header"> <%= name %> </li> 
+				<li class="notifications dd-prnt"> <%= notifications if logged_in? %> 
+					<ul class="notifications-dropdown dd-li"> 
+						<%= render "notifications/index" %>
+					</ul>
+				</li>
+			</ul>
+
+			<nav class="header-nav">
+				<% if current_user %>
+				<ul class="header-nav-list">
+					<li class="nav-profile-li"> <%= link_to "#{current_user.name}", user_path(current_user.id) %></li>
+					<li> <%= link_to 'Home', root_url %></li>
+					<li class="header-nav-list-dropdown dd-prnt"> Settings
+						<ul class="dd-li">
+							<li> <%= link_to 'Edit Profile', edit_user_path(current_user.id) %>
+							<li> <%= button_to 'Logout', logout_path, method: :delete %></li>
+							<% if current_user.admin? %>
+							<li> <%= link_to 'Admin', admin_path %></li>
+							<% end %>
+						</ul>
+					</li>
+				</ul>
+				<% else %>
+				<ul>
+					<li> <%= link_to 'Sign Up', signup_path %> </li>
+					<li> <%= link_to 'Log In', login_path %> </li>
+				</ul>
+				<% end %>
+			</nav>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+
+<div id="application_wrapper">	
+		<% if current_user %>
+	<nav class="sub-header-nav">
+		<ul class="sub-header-nav-list">
+			<li class="build-workout <%= active?('exercise_descriptions', 'index') %>"> <%= link_to "Build Workout", build_workout_path %> </li>
+			<li class="<%= active?('workouts', 'performable') %>"> <%= link_to 'Perform', performable_user_workouts_path(current_user.id) %> </li>
+			<li class="<%= active?('workouts', 'new') %>"> <%= link_to "Record", new_user_workout_path(current_user.id) %> </li>
+			<li class="<%= active?('workouts', 'index') %>"> <%= link_to "Analyze", user_workouts_path(current_user.id) %> </li>
+		</ul>
+	</nav>
+	<% end %>
+	<div id="content_wrapper">
+			<p id="notice"><%= notice %></p>
+		<%= yield %>
+	</div>
+</div>
+</body>
+</html>

@@ -56,7 +56,6 @@ class ExerciseDescriptionsController < ApplicationController
     @show_built_wrkt = "show" if params[:show_wrkt] 
 
     # remember settings from build and clear actions
-    @built_workout = session[:built_workout]
     @exercise_ids = session[:exercises].nil? ? [] : session[:exercises] 
   end
 
@@ -64,10 +63,6 @@ class ExerciseDescriptionsController < ApplicationController
   end
 
   def build
-    # Set up built workout object
-    # session[:built_workout] ||= Workout.new
-    # session[:built_workout].exercises.new({name: @exercise.name, exercise_id: params[:id]}) unless session[:built_workout].exercises.map(&:exercise_id).include?(params[:id])
-
     # Remember the selected exercises
     session[:exercises] ||= []
     session[:exercises] << @exercise.id unless session[:exercises].include?(params[:id].to_i)
@@ -88,6 +83,11 @@ class ExerciseDescriptionsController < ApplicationController
     elsif params[:clear] == "reset"
       session[:exercises] = nil
       session[:sets] = nil
+      session[:rps] = nil
+    elsif params[:defaults]
+      session[:rps] = nil
+      session[:reps] = nil
+      session[:weight] = nil
     end
  
     respond_to do |format|
@@ -109,16 +109,24 @@ class ExerciseDescriptionsController < ApplicationController
 
     def load_workout
       session[:sets] = params[:sets] if params[:sets]
+      session[:reps] ||= {}
+      session[:reps].merge!( {params[:id] => params[:reps]} ) if params[:id] && params[:reps]
+      session[:weight] ||= {}
+      session[:weight].merge!( {params[:id] => params[:weight]} ) if (params[:id] && params[:weight])
       session[:rps] ||= {}
       session[:rps].merge!( {params[:id] => params[:rest_period]} ) if (params[:id] && params[:rest_period])
+      @session_vars = { :rest_period_seconds => session[:rps] }.merge({ :exercises => session[:exercises] }).merge({ :sets => session[:sets] }).merge( { weight: session[:weight] }).merge( { reps: session[:reps] })
       @selected_exercises = ExerciseDescription.all.where(id: session[:exercises])
       @workout = Workout.new
       @workout.sets = session[:sets]
       @workout.planned = true
       @selected_exercises.each do |e|
-        @exercise = @workout.exercises.new({name: e.name, exercise_id: e.id})
+        @exercise = @workout.exercises.new({name: e.name, exercise_id: e.id, weight: params[:weight]})
+        @exercise.weight = session[:weight].fetch(@exercise.exercise_id.to_s, 0)
+        @exercise.reps = session[:reps].fetch(@exercise.exercise_id.to_s, 0)
         @exercise.rest_period = RestPeriod.new
         @exercise.rest_period.seconds = session[:rps].fetch(@exercise.exercise_id.to_s, 0)
+
       end
     end
 end

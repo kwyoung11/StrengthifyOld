@@ -6,9 +6,7 @@
 	<%= f.hidden_field :snagged %>
 	<%= f.hidden_field :planned, value: true %>
 	
-	<% if @built_workout %>
-	<p class="workout-builder--no-exercises"> <%= @built_workout %> You have no exercises yet. <p>
-	<% end %>
+	<div class="workout-builder--no-exercises"> You have no exercises yet. </div>
 
 	<div class="form-row">
 		<div id="display-sets">

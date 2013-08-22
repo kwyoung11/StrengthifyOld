@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Strengthify</title>
+	<%= render "/layouts/head" %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery_ujs", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.ui.position", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.ui.datepicker", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.ui.autocomplete", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.ui.slider", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-color", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.cookie", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery.icheck", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "webshims/extras/modernizr-custom", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "webshims/polyfiller", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "d3", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "ga", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jstz-detect", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "turbolinks", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "exercise_cards", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "selectors", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "workout_builder.js.erb", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application_helper", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "signup_form", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "draw_graph.js.erb", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "analyze_helper", "data-turbolinks-track" => true %>	
+	<%= javascript_include_tag "draw_graph_helper", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "Profile.js.erb", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "list", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "Training.js.erb", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "layout.js.erb", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "perform", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "snagged_workouts", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "tooltips", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "training_tabs", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "workout", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -20,6 +52,7 @@
 					</ul>
 				</li>
 			</ul>
+
 			<nav class="header-nav">
 				<% if current_user %>
 				<ul class="header-nav-list">
@@ -51,10 +84,10 @@
 		<% if current_user %>
 	<nav class="sub-header-nav">
 		<ul class="sub-header-nav-list">
-			<li class="build-workout"> <%= link_to "Build Workout", build_workout_path %> </li>
-			<li> <%= link_to 'Perform', performable_user_workouts_path(current_user.id) %> </li>
-			<li> <%= link_to "Record", new_user_workout_path(current_user.id) %> </li>
-			<li> <%= link_to "Analyze", user_workouts_path(current_user.id) %> </li>
+			<li class="build-workout <%= active?('exercise_descriptions', 'index') %>"> <%= link_to "Build Workout", build_workout_path %> </li>
+			<li class="<%= active?('workouts', 'performable') %>"> <%= link_to 'Perform', performable_user_workouts_path(current_user.id) %> </li>
+			<li class="<%= active?('workouts', 'new') %>"> <%= link_to "Record", new_user_workout_path(current_user.id) %> </li>
+			<li class="<%= active?('workouts', 'index') %>"> <%= link_to "Analyze", user_workouts_path(current_user.id) %> </li>
 		</ul>
 	</nav>
 	<% end %>
@@ -67,25 +100,25 @@
 </html>
 
 <script>
-// $(document).ready(function() {
+$(document).ready(function() {
 
 
-// // window.onclick = updateLastSeen;
+window.onclick = updateLastSeen;
 
-// // function updateLastSeen() {
-// // 	var user_id = <%= @user.id unless @user.nil? %>;
-// // 	var time = new Date();
-// // 	$.ajax({
-// //   		type: "POST",
-// //   		url: "/activity",
-// //   		data: {time: time, user_id: user_id},
-// //   		success: function(response) {
+function updateLastSeen() {
+	var user_id = <%= @user.id unless @user.nil? %>;
+	var time = new Date();
+	$.ajax({
+  		type: "POST",
+  		url: "/activity",
+  		data: {time: time, user_id: user_id},
+  		success: function(response) {
 
-// //   		}
-// // 	});
-// // }
+  		}
+	});
+}
 
-// });	
+});	
 
 </script>
 

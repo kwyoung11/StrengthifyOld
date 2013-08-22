@@ -1,16 +1,5 @@
 <%= form_for(@user, :html => {class: "ws-instantvalidation", :multipart => true}) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render "/layouts/errors", object: f.object %>
   <%= f.hidden_field :invitation_token %>
 	
   <div class="field">
@@ -24,7 +13,7 @@
 
 
 <% if params[:action] == "edit" %>
-   <a id="change-pword-link" href="javascript:void(0);" onclick="togglePWord();">Change Password</a>
+  <a id="change-pword-link" href="javascript:void(0);" onclick="togglePWord();">Change Password</a>
   <div class="change-password" style="opacity: 0.4;">
    <div class="field">
       <%= f.password_field :password, :size => "25", :placeholder => " password", disabled: true%>

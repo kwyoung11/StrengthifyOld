@@ -17,6 +17,7 @@
  @import "layouts/base";   
  @import "layouts/layout";
  @import "layouts/tooltips"; 
+ @import "layouts/responsive"; 
  @import "users_controller/profile"; 
  @import "exercise_descriptions_controller/exercise-descriptions";
  @import "exercise_descriptions_controller/exercise_cards";
@@ -25,6 +26,8 @@
  @import "workouts_controller/trainingTabs";
  @import "workouts_controller/workout_form"; 
  @import "workouts_controller/build_workout_form"; 
+ @import "workouts_controller/perform";
+ @import "sessions_controller/login";
  @import "friendships_controller/friendship";
  @import "friendships_controller/invite_friend";
  @import "challenges_controller/challenges";  
