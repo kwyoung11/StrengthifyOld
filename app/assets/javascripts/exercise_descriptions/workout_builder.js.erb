@@ -61,19 +61,19 @@ if ($(".build").length > 0) {
 		$(".ui-slider-handle").on('mouseup', function() {
 			var rp = $(this).parents(".workout-rest").children(".exercise_rest_period").children("input[class=exercise__rest-period]").val();
 			var id = $(this).parents(".exercise").attr("data-ex_id");
-			$.ajax({url: "/exercise_descriptions", data: {rest_period: rp, id: id} })
+			$.ajax({url: "/exercise_descriptions", data: {rest_period: rp, id: id} });
 		});
 
 		$(".exercise_weight").on('focusout', function() {
 			var weight = $(this).val();
 			var id = $(this).parents(".exercise").attr("data-ex_id");
-			$.ajax({url: "/exercise_descriptions", data: {weight: weight, id: id} })
+			$.ajax({url: "/exercise_descriptions", data: {weight: weight, id: id} });
 		});
 
 		$(".exercise_reps").on('focusout', function() {
 			var reps = $(this).val();
 			var id = $(this).parents(".exercise").attr("data-ex_id");
-			$.ajax({url: "/exercise_descriptions", data: {reps: reps, id: id} })
+			$.ajax({url: "/exercise_descriptions", data: {reps: reps, id: id} });
 		});
 
 		// Save set number to session
@@ -90,6 +90,5 @@ if ($(".build").length > 0) {
 		showHideOnClick("#expand-workout-bar", ".build", "fast", "rotate", false);
 
 	} // end build if statement
-
-});
+}); // end document ready
 
