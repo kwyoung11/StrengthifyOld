@@ -55,12 +55,10 @@ function addRestPeriodFields(i) {
 
 function removeExercise() {
 	// Remove exercise link
-	$(function() {
-	  return $('form').on('click', '.workout-remove-exercise-link', function(event) {
-	    $(this).prev('input[type=hidden]').val('1');
-	    $(this).closest('.exercise').hide();
-	    $(this).closest('.exercise').children(".workout-rest").remove();
-	    return event.preventDefault();
-	  });
+	return $('form').on('click', '.workout-remove-exercise-link', function(event) {
+	  $(this).prev('input[type=hidden]').val('1');
+	  $(this).closest('.exercise').hide();
+	  $(this).closest('.exercise').children(".workout-rest").remove();
+	  return event.preventDefault();
 	});
 }

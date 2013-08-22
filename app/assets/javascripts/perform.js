@@ -1,7 +1,6 @@
 $(document).on('ready page:load', function() {
-
-		// Index the exercises
-		var i = $(".wrkt-table tr").length;
+	// Index the exercises
+	var i = $(".wrkt-table tr").length;
 	// When user starts workout
 	$("#wrkt-start-link").on('click', function() {
 		// global variables
@@ -15,7 +14,6 @@ $(document).on('ready page:load', function() {
 		var currEx = $(this).parents("tr");
 		var currExNum = currEx.attr("id").split("-")[1];
 		currEx.css("");
-
 	});
 
 });
