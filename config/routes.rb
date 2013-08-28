@@ -14,9 +14,9 @@ Cs50xFinalProject::Application.routes.draw do
   # Login and logout path
   controller :sessions do
     get 'login' => :new
-    post 'activity' => :activity
     post 'login' => :create
     delete 'logout' => :destroy
+    post 'activity' => :activity
   end
 
   # Nested routes for users 

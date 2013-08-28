@@ -29,10 +29,7 @@
 		var href = $(".remove-exercise a").last().attr("href") + "<%= @exercise.id %>";
 		$(".remove-exercise a").last().attr("href", href);
 		$(".exercise").last().attr("data-ex_id", "<%= @exercise.id %>");
-		$(".bar-expand").animate({
-			backgroundColor: "#abcdef"
-		}, 75 );
-		$(".bar-expand").animate({backgroundColor: "#444"}, 300);
+		highlight(".bar-expand", "#444", "#abcdef");
 		}
 
 <% end %>

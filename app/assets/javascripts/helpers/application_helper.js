@@ -1,3 +1,26 @@
+(function ( $ ) {
+
+	$.fn.hilite = function( options ) {
+		var originalColor = this.parent().css("background-color");
+
+		// Default options.
+		var settings = $.extend({
+			property: "backgroundColor",
+			originalColor: originalColor,
+			highlightColor: "#fefc99",
+			timeToHighlight: 75,
+			timeToOriginal: 300
+		}, options );
+		alert(eval(settins.property));
+		// Highlight the element based on the settings variable.
+		this.animate({ backgroundColor: settings.highlightColor}, settings.timeToHighlight);
+		this.animate({ backgroundColor: settings.originalColor}, settings.timeToOriginal);
+		return this;
+	};
+
+}( jQuery ));	
+
+
 function showHideOnClick(wrapper, el, speed, effects, windowed) {
 	$(wrapper).on('click', function() {
 		if ($(el).css("display") == "none") {
@@ -62,3 +85,10 @@ function removeExercise() {
 	  return event.preventDefault();
 	});
 }
+
+function highlight(el, originalColor, highlightColor) {
+	$(el).animate({ backgroundColor: highlightColor}, 75);
+	$(el).animate({ backgroundColor: originalColor}, 300);
+}
+
+

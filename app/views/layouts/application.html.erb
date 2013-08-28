@@ -2,16 +2,14 @@
 <html>
 <head>
 	<%= render "/layouts/head" %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<%= render "/layouts/relations" %>
 </head>
 <body>
 	<div id="header">
 		<div id="header_content">
 			<ul class="strengthify-header-list left_align">
 				<li class="strengthify-logo">
-					
+				
 				</li>
 				<li class="strengthify-header"> <%= name %> </li> 
 				<li class="notifications dd-prnt"> <%= notifications if logged_in? %> 
@@ -61,6 +59,7 @@
 	<% end %>
 	<div id="content_wrapper">
 			<p id="notice"><%= notice %></p>
+
 		<%= yield %>
 	</div>
 </div>
@@ -78,10 +77,10 @@ function updateLastSeen() {
 	var time = new Date();
 	$.ajax({
   		type: "POST",
-  		url: "/activity",
+  		url: "/sessions/activity",
   		data: {time: time, user_id: user_id},
   		success: function(response) {
-
+  			alert("success!");
   		}
 	});
 }

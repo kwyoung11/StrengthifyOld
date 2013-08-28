@@ -11,13 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.icheck
 //= require jquery.ui.position
 //= require jquery.ui.datepicker
 //= require jquery.ui.autocomplete
 //= require jquery.ui.slider
 //= require jquery-color
 //= require jquery.cookie
-//= require jquery.icheck
 //= require webshims/extras/modernizr-custom
 //= require webshims/polyfiller
 //= require webshims
