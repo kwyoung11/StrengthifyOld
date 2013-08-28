@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813175752) do
+ActiveRecord::Schema.define(version: 20130828041843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "baselines", force: true do |t|
     t.integer  "challenge_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.datetime "updated_at"
   end
 
-  add_index "defaults", ["user_id"], name: "index_defaults_on_user_id"
+  add_index "defaults", ["user_id"], name: "index_defaults_on_user_id", using: :btree
 
   create_table "exercise_descriptions", force: true do |t|
     t.text     "preparation"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.string   "force"
   end
 
-  add_index "exercise_descriptions", ["muscle_groups"], name: "db_of_exercises_muscle_groups"
+  add_index "exercise_descriptions", ["muscle_groups"], name: "db_of_exercises_muscle_groups", using: :gin
 
   create_table "exercises", force: true do |t|
     t.string   "name"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.string   "invitable_type"
   end
 
-  add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id"
+  add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.boolean  "seen",            default: false
   end
 
-  add_index "notifications", ["notifiable_id"], name: "index_notifications_on_notifiable_id"
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+  add_index "notifications", ["notifiable_id"], name: "index_notifications_on_notifiable_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "rest_periods", force: true do |t|
     t.integer  "minutes"
@@ -182,8 +182,9 @@ ActiveRecord::Schema.define(version: 20130813175752) do
     t.text     "description"
     t.boolean  "snagged",     default: false
     t.integer  "snag_count"
+    t.boolean  "completed"
   end
 
-  add_index "workouts", ["user_id"], name: "index_workouts_on_user_id"
+  add_index "workouts", ["user_id"], name: "index_workouts_on_user_id", using: :btree
 
 end

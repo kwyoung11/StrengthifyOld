@@ -1,4 +1,10 @@
 <div class="workout-perform">
+	<%= form_for [@user, @workout], method: :put do |f| %>
+		<%= render 'layouts/errors', object: f.object %>
+		<%= f.hidden_field :completed, value: true %>
+
+		<%= f.label "Sets" %>
+		<%= f.text_field :sets, size: "5", :placeholder => " sets" %>
 
 	<!-- Action Buttons --> 	
 	<table class="wrkt-button-menu">
@@ -7,35 +13,51 @@
 				<%= link_to "Start", "javascript:void(0)", class: "button", id: "wrkt-start-link" %>
 			</td>
 			<td class="wrkt-finish col-5-10">
-				<%= link_to "Finish", "#", class: "button", id: "wrkt-finish-link" %>
+				<%= link_to "Finish & Save", "#", class: "button-success", id: "wrkt-finish-link" %>
 			</td>
 		</tr>
 	</table>
-	
-	<!-- Workout table -->
+			
+	<%= f.fields_for :exercises do |builder| %>
+		<!-- Workout table -->
 		<div class="workout-performable" data-workout_id="<%= @workout.id %>">
 			<table class="wrkt-table">
-			
+				<thead> 
+					<tr> 
+						<th> Name </th>
+						<th> Lbs </th>
+						<th> Reps </th>
+					<tr>
 				<% @workout.exercises.each_with_index do |e, i| %>
-				<tr id="ex-1">
-					<td> 1x </td>
-					<td> <%= e.name %> @ <%= e.weight %> lbs for <%= e.reps %> reps</td>
-					<td> <%= link_to "Finish", "javascript:void(0)", class: "ex-f", id: "next-exercise-link" %></td>
+				<tr data-ex_id="<%= i %>" class="performable-ex">
+					<td class="ex-name"> <%= e.name.capitalize %> </td>
+					<td class="ex-weight"> <%= e.weight %> </td>
+					<td class="ex-reps"> <%= e.reps %>  </td>
+					<td class="finish-link"> <%= link_to "Finish", "javascript:void(0)", class: "ex-f" %></td>
 				</tr>
 				<% end %>
 			</table>
 		</div>
-		
+	<% end %>
+
 		<div class="wrkt-progress">
-			<div class="wrkt-prog-bar col-8-10">
-				Progress Bar
-			</div>
-			<div class="wrkt-percent-complete col-2-10">
-				40%
+			<div class="wrkt-prog-bar col-8-10 progress progress-striped active">
+				<div class="bar" style="width: 1%;"> 
+					<div class="prog-text"> 
+						<span id="wrkt-percent-complete">0</span>% completed 
+					</div> 
+				</div>
 			</div>
 		</div>
-	
-	</div>
 
+		<div class="workout-add-exercise">
+		
+		</div>
+
+		<div class="field workout-description">
+			<%= f.label :description, "How did it go?" %>
+			<%= f.text_area :description, style: "width: 100%;" %>
+		</div>
+	<% end %>
 	<%= link_to "Back", performable_user_workouts_path(current_user.id) %>
 </div>

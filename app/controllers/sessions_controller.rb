@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    render layout: "responsive_layout"  
   end
 
   def activity
