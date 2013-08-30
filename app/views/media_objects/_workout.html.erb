@@ -1,17 +1,17 @@
 <% unless workout.nil? %>
 <table class="media-workout">
 	<tr>
+		<td><%= image_tag workout.user.photo_url(:mini_thumb).to_s %></td>
+		<td style="text-align: left;"><%= link_to "#{workout.user.name}", workout.user %></td>
+	</tr>
+	<tr>
 		<td rowspan="2" class="media-workout-lv">
 			<%= workout.load_volume %> 
 		</td>
 		
 		<td class="media-workout-description"> 
-			<% user = current_user unless defined? activity %>
-			<% if defined? activity %>
-				<% user = activity.user %>
-				<%= link_to(user.name, user) %>
-			<% end %>
-			<%= link_to user_workout_path(user.id, workout.id) do %>
+			<%= workout.planned == true ? "performed a" : "created a" %>
+			<%= link_to user_workout_path(workout.user.id, workout.id) do %>
 				<%= workout.category %> workout
 				in <%= format_duration_to_HMS(workout.duration) %>
 			<% end %>
@@ -19,10 +19,10 @@
 	
 		<td class="media-workout-stats"> 
 			<div class="media-workout-sets">
-				<%= workout.sets %> &middot;
+				<%= workout.sets %> <br />sets 
 			</div>
 			<div class="media-workout-exercises"> 
-				<%= workout.exercises.count %>
+				<%= workout.exercises.count %> exercises
 			</div>
 		</td>
 	</tr>

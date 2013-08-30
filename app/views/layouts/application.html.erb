@@ -36,7 +36,7 @@
 				</ul>
 				
 				<% else %>
-				<ul>
+				<ul class="header-nav-list__unregistered">
 					<li> <%= link_to 'Sign Up', signup_path %> </li>
 					<li> <%= link_to 'Log In', login_path %> </li>
 				</ul>
@@ -66,27 +66,5 @@
 </body>
 </html>
 
-<script>
-$(document).ready(function() {
-
-
-window.onclick = updateLastSeen;
-
-function updateLastSeen() {
-	var user_id = <%= @user.id unless @user.nil? %>;
-	var time = new Date();
-	$.ajax({
-  		type: "POST",
-  		url: "/sessions/activity",
-  		data: {time: time, user_id: user_id},
-  		success: function(response) {
-  			alert("success!");
-  		}
-	});
-}
-
-});	
-
-</script>
 
 

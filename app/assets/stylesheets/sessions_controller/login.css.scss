@@ -31,7 +31,7 @@
 }
 
 .register-button {
-	@extend .button;
+	@extend .btn;
 	@include simple-vert-gradient(#309930);
 	width: 240px;
 	margin: 0 auto;

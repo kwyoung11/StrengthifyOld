@@ -53,11 +53,17 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
-    
+
     respond_to do |format|
       if @workout.update_attributes(workout_params)
-        format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully updated.' }
-        format.json { head :no_content }
+        if request.put? && params[:commit] == "Finish & Save" # request from perform page?
+          track_activity @workout
+          format.html { redirect_to performable_user_workouts_path(@user.id), notice: 'Workout was successfully performed.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
@@ -101,7 +107,7 @@ class WorkoutsController < ApplicationController
   end
 
   def performable
-    @planned_workouts = @user.workouts.where(planned: true)
+    @planned_workouts = @user.workouts.where(planned: true).where(completed: nil)
   end
   
   

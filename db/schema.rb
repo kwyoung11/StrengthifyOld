@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828041843) do
+ActiveRecord::Schema.define(version: 20130829192354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20130828041843) do
     t.integer  "minutes"
     t.integer  "seconds"
     t.integer  "exercise_id"
+    t.integer  "duration"
   end
 
   create_table "friendships", force: true do |t|

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= render "/layouts/head" %>
+	<%= render "/layouts/relations" %>
+</head>
+<body>
+	<div id="header">
+		<div id="header_content"> <%= name %> </div>
+	</div>
+
+<div id="application_wrapper">	
+	<div id="content_wrapper">
+			<p id="notice"><%= notice %></p>
+		<%= yield %>
+	</div>
+</div>
+</body>
+</html>
