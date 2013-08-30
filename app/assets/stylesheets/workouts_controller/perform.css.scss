@@ -31,10 +31,6 @@
 	position: relative;
 }
 
-.performable-ex {
-
-}
-
 .wrkt-button-menu {
 	width: 100%;
 	border-collapse: collapse;
@@ -46,62 +42,91 @@
 }
 
 .wrkt-table {
+	@include outer-box-shadow(#444, 0px, 0px, 10px, 0px);
 	width: 100%;
 	border-collapse: collapse;
 	font-family: "Source Sans Pro";
 	font-size: 2.3em;
 	line-height: 1em;
 	margin: 0 auto;
-	border: 1px solid red;
-	text-align: center;
-	thead tr th { border: 1px solid red; font-weight: bold;}
-	tr { 
+	text-align: left;
+	thead tr th { font-weight: bold; font-size: .7em; }
+	td { padding: 3px 3px; }
+	input {
+		border: none;
+		width: 60px;
+		font-size: 1.1em;
+		height: 100%;
+		background: transparent;
+		text-align: left;
 	}
-	td {
-		&:first-child {
-			text-align: center;
-			width: 100%;
-		}
-		padding: 5px 3px;
-		@include outer-box-shadow(#444, 0px, 0px, 3px, 0px);
+}
+
+.wrkt-sets {
+	text-align: center;
+	border: 1px solid red;
+	.total-sets input {
+	font-size: 0.9em;
+	color: #494949;
+	border: 0.101em solid transparent;
+	display: inline-block;
+	vertical-align: bottom;
 	}
 }
 
 .performable-ex {
 	.ex-name {
-		color: #434547;
+		font-size: 0.9em;
 		text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+		input { margin-top: 2px; width: auto;}
 	}
-	.ex-weight {background-color: #fe8975;}
-	.ex-reps {background-color: #fefd99;}
-
+	.ex-duration {
+		input {
+			width: 100px;
+		}
+	}
 }
 
-.wrkt-start {
-	height: 100%;
-	
+.completed {
+	color: #3f3;
+	background-color: #37dd66;
+}
+.uncompleted {
+	input {opacity: 0.76;}
+	background-color: rgba(255, 0, 0, 0.5);
+}
+.performing {
+	opacity: 1;
+	border: 1px solid #0077CC;
+	background-color: #fefdaa;
 }
 
-.wrkt-finish {
-	height: 100%;
+.btn-increment, .btn-decrement {
+	display: none;
 }
 
-.wrkt-progress {
-	
+input.focus {
+	border: 1px solid #f00;
+}
+
+input.last-focus {
+	border: 1px solid #f00;
+}
+
+.next-ex {
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.revision {
+	display: none;
 }
 
 .wrkt-prog-bar {
 	width: 100%;
 	border: 1px solid black;
 	float: left;
-}
-
-.icheckbox {
-
-}
-
-.ex-f {
-	opacity: 1;
 }
 
 .prog-text {
@@ -114,6 +139,15 @@
 	display: inline-block;
 }
 
+#wrkt-fin-link {
+	display: none;
+	border-width: 2px;
+}
+
+#wrkt-finish-link {
+	display: none;
+	border-width: 2px;
+}
 
 @media only screen and (max-width: 640px) {
 

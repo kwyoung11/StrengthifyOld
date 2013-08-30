@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @user_challenges = current_user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
     @user.profile_views += 1 unless @user == current_user
     @user.save(validate: false)
+
   end
 
   # GET /users/new
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(invitation_token: cookies[:invitation_token], name: cookies[:name])
     @user.email = @user.invitation.recipient_email if @user.invitation
     @user.name = params[:name] if params[:name]
+    render layout: "landing"
   end
 
   # GET /users/1/edit

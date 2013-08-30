@@ -46,7 +46,7 @@
 	}
 }
 
-.button {
+.btn {
 	@include simple-vert-gradient(rgb(73,132,180), rgb(97,155,203));
 	@include rounded-corners();
 	-webkit-box-shadow: 0px 6px 0px #3f799e, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
@@ -67,16 +67,16 @@
 	}
 }
 
-.button-success {
+.btn-success {
 	@include simple-vert-gradient(rgb(73,180,132), rgb(97,203,155));
 	@include rounded-corners();
 	-webkit-box-shadow: 0px 6px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
 	-moz-box-shadow: 0px 6px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
-	box-shadow: 1px 4px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	box-shadow: 1px 3px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
 	cursor: pointer;
 	font-size: 1.2em;
 	color: white;
-	border: 1px solid #2d6898;
+	border: 1px solid #bbb;
 	padding: 10px;
 	vertical-align: middle;
 	display: block;
@@ -88,6 +88,84 @@
 	}
 }
 
+.btn-new {
+	@include simple-vert-gradient(rgb(203,87,87), rgb(233,107,107));
+	@include rounded-corners();
+	-webkit-box-shadow: 0px 6px 0px #e55, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	-moz-box-shadow: 0px 6px 0px #e55, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	box-shadow: 1px 3px 0px #e55, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	cursor: pointer;
+	font-size: 1.2em;
+	color: white;
+	border: 1px solid #ccc;
+	padding: 10px;
+	vertical-align: middle;
+	display: block;
+	text-decoration: none;
+	text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+	&:hover {
+		@include simple-vert-gradient(rgb(208,92,92), rgb(238,112,112));
+		text-decoration: none;
+	}
+}
+
+.btn-increment {
+	@include simple-vert-gradient(rgb(73,180,132), rgb(97,203,155));
+	@include rounded-corners();
+	-webkit-box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	-moz-box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	cursor: pointer;
+	font-size: 1.2em;
+	color: #999;
+	border: 1px solid #777;
+	padding: 10px;
+	vertical-align: middle;
+	display: block;
+	text-decoration: none;
+	text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+	&:hover {
+		@include simple-vert-gradient(rgb(78,185,137), rgb(102,208,160));
+		text-decoration: none;
+	}
+}
+
+.btn-decrement {
+	@include simple-vert-gradient(rgb(73,180,132), rgb(97,203,155));
+	@include rounded-corners();
+	-webkit-box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	-moz-box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	box-shadow: 1px 1px 0px #3f9e79, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+	cursor: pointer;
+	font-size: 1.2em;
+	color: #999;
+	border: 1px solid #777;
+	padding: 10px;
+	vertical-align: middle;
+	display: block;
+	text-decoration: none;
+	text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+	&:hover {
+		@include simple-vert-gradient(rgb(78,185,137), rgb(102,208,160));
+		text-decoration: none;
+	}
+}
+
+.header-bg {
+	font-weight: 600;
+	font-size: 7.1em;
+	margin: 0;
+	padding: 0;
+	color: #373737;
+	font-family: "Source Sans Pro";
+}
+
+.header-md {
+	font-weight: 600;
+	font-size: 2.1em;
+	color: #373737;
+	font-family: "Source Sans Pro";
+}
 
 %header-md {
 	font-weight: bolder;

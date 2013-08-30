@@ -16,6 +16,7 @@ class ActivityPresenter < SimpleDelegator
 	def render_partial
 		locals = {activity: activity, presenter: self}
 		locals[activity.trackable_type.underscore.to_sym] = activity.trackable
+
 		render partial_path, locals
 	end
 

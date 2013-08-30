@@ -3,22 +3,19 @@
 		<%= render 'layouts/errors', object: f.object %>
 		<%= f.hidden_field :completed, value: true %>
 
-		<%= f.label "Sets" %>
-		<%= f.text_field :sets, size: "5", :placeholder => " sets" %>
-
 	<!-- Action Buttons --> 	
 	<table class="wrkt-button-menu">
 		<tr class="wrkt-perform-actions">
 			<td class="wrkt-start col-5-10">
-				<%= link_to "Start", "javascript:void(0)", class: "button", id: "wrkt-start-link" %>
+				<%= link_to "Start", "javascript:void(0)", class: "btn unstarted", id: "wrkt-start-link" %>
 			</td>
-			<td class="wrkt-finish col-5-10">
-				<%= link_to "Finish & Save", "#", class: "button-success", id: "wrkt-finish-link" %>
-			</td>
+			<td class="wrkt-next">
+				<%= link_to "Next Exercise", "javascript:void(0)", class: "btn-success ex-finished", id: "wrkt-next-link" %>
+			<td> 
 		</tr>
 	</table>
 			
-	<%= f.fields_for :exercises do |builder| %>
+
 		<!-- Workout table -->
 		<div class="workout-performable" data-workout_id="<%= @workout.id %>">
 			<table class="wrkt-table">
@@ -27,18 +24,35 @@
 						<th> Name </th>
 						<th> Lbs </th>
 						<th> Reps </th>
-					<tr>
-				<% @workout.exercises.each_with_index do |e, i| %>
-				<tr data-ex_id="<%= i %>" class="performable-ex">
-					<td class="ex-name"> <%= e.name.capitalize %> </td>
-					<td class="ex-weight"> <%= e.weight %> </td>
-					<td class="ex-reps"> <%= e.reps %>  </td>
-					<td class="finish-link"> <%= link_to "Finish", "javascript:void(0)", class: "ex-f" %></td>
+						<th> Duration </th>
+						<th> Rest Period</th>
+					</tr>
+					<tr class="sets-row"> 
+						<th colspan="5" class="wrkt-sets"> 
+							Set 
+							<span id="current-set">1</span> of 
+							<span class="total-sets"> <%= f.text_field :sets, id: "tot-sets" %> </span> 
+						</th> 
+					</tr>
+				</thead>
+				<%= f.fields_for :exercises do |builder| %>
+				<tr data-ex_id="<%= builder.options[:child_index] %>" class="performable-ex uncompleted">
+					<td class="ex-name"> <%= builder.text_field :name, disabled: true %> </td>
+					<td class="ex-weight"> <%= builder.text_field :weight, disabled: true  %> </td>
+					<td class="ex-reps"> <%= builder.text_field :reps, disabled: true %>  </td>
+					<td class="ex-duration"> <%= builder.text_field :duration, disabled: true, id: "duration_#{builder.options[:child_index]}" %> </td>
+					<%= builder.fields_for :rest_period do |rp_fields| %>
+					<td class="ex-rp"> <%= rp_fields.text_field :seconds, disabled: true, id: "rp_#{builder.options[:child_index]}" %></td>
+					<% end %>
+					<td class='revision'>
+						<a class='btn-increment' href='javascript:void(0)'>+</a>
+						<a class='btn-decrement' href='javascript:void(0)'>-</a>
+					</td>
 				</tr>
 				<% end %>
 			</table>
 		</div>
-	<% end %>
+	
 
 		<div class="wrkt-progress">
 			<div class="wrkt-prog-bar col-8-10 progress progress-striped active">
@@ -49,10 +63,11 @@
 				</div>
 			</div>
 		</div>
+		<div class="wrkt-finish-actions">
 
-		<div class="workout-add-exercise">
-		
 		</div>
+
+		
 
 		<div class="field workout-description">
 			<%= f.label :description, "How did it go?" %>

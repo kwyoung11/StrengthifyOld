@@ -1,0 +1,55 @@
+$nav_width: 10em; 
+/*******************************************
+*
+* HEADER & NAVIGATION
+*
+********************************************/
+
+#header {
+	position: fixed;
+	background: #ddd url("/assets/static.png");
+	width: 100%;
+	top: 0;
+	height: 40px;
+	z-index: 100;
+}
+
+#header_content {
+	width: 100%; 
+	text-align: center;
+	font-family: baskerville;
+	text-decoration: underline;
+	font-size: 1.9em;
+	font-weight: bolder;
+	text-shadow: 0px 0px #d55;
+}
+
+.strengthify-header-link {
+	margin: 10px auto;
+	display: inline-block;
+}
+
+
+/********************************************
+*
+* WRAPPERS
+*
+********************************************/
+
+#application_wrapper {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#content_wrapper {
+	margin: 70px auto;
+	text-align: center;
+	overflow: visible;
+}
+
+/* For landing page */
+.section_wrapper {
+	width: 1150px;
+	margin: 0 auto;
+}
