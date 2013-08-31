@@ -1,32 +1,24 @@
 <div id="invite_friend_container">
 <%= form_for [@invitation] do |f| %>
-<% if @invitation.errors.any? %>
-   <div id="invite_friend_error">
-     <ul>
-     <% @invitation.errors.full_messages.each do |msg| %>
-       <li><%= msg %></li>
-     <% end %>
-     </ul>
-   </div>
- <% end %>
+<%= render "/layouts/errors", object: @invitation %>
 
   <div class="field">
-    <%= f.label "Friend's name" %>
+    <%= f.label "Friend's name:" %>
     <%= f.text_field :name, placeholder: "What's your friends name?" %>
   </div>
 	
 	<div class="field">
-    <%= f.label "Friend's Email" %>
+    <%= f.label "Friend's Email:" %>
   	<%= f.text_field :recipient_email, :placeholder => " What's your friends email?" %>
 	</div>
 	
 	<div class="field">
-		<%= f.label "Subject" %>
+		<%= f.label "Subject:" %>
   	<%= f.text_area :subject, :placeholder => " Subject", :value => "#{current_user.name} has invited you to Strengthify" %>
 	</div>
 	
 	<div class="field">
-		<%= f.label "Message" %>
+		<%= f.label "Message:" %>
   	<%= f.text_area :message, :placeholder => " Tell your friend about us", :value => "#{current_user.name} wants you to join Strengthify." %>
 	</div>
 	

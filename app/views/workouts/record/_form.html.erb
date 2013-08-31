@@ -2,6 +2,7 @@
 <%= form_for [@user, @workout] do |f| %>
 <%= render 'layouts/errors', object: f.object %>
 <%= f.hidden_field :snagged %>
+<%= f.hidden_field :completed, value: true %>
 
 	<div class="form-row first-row">
 		<ul class="form-field-list" style="margin: 0 auto; text-align: center;">

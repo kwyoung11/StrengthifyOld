@@ -82,7 +82,16 @@ if ($(".build").length > 0) {
 			$.ajax({url: "/exercise_descriptions", data: {sets: num_sets} });
 		});
 
+		// Show extra details when user adds at least one exercise
+		$(".add-ex").on('click', function() {
+			$(".build-wrkt-details").show();	
+		});
+		if ( $(".exercise").length ) {
+			$(".build-wrkt-details").show();	
+		}
 
+		// When user wants to add even more details
+		showHideOnClick("#build-wrkt-details", ".wrkt-build-details", "fast", "none", false, "Hide Details", "More Details");
 
 		// Show/hide defaults
 		showHideOnClick("#default-link", ".defaults-list", 0, "", true);

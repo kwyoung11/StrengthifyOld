@@ -21,13 +21,16 @@
 }( jQuery ));	
 
 
-function showHideOnClick(wrapper, el, speed, effects, windowed) {
+function showHideOnClick(wrapper, el, speed, effects, windowed, newText, oldText) {
 	$(wrapper).on('click', function() {
 		if ($(el).css("display") == "none") {
 			$(el).show(speed);
+			$(wrapper).html(newText);
+			$()
 			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(90deg)"); }
 		} else {
 			$(el).hide(speed);
+			$(wrapper).html(oldText);
 			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(360deg)"); }
 		}
 	});
