@@ -2,8 +2,9 @@ Cs50xFinalProject::Application.routes.draw do
   require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
 
   # Root URL
+  root to: 'home#index', as: :unauthenticated_root
   root to: 'users#index', :constraints => LoggedInConstraint.new
-  root to: 'home#index', as: :authenticated_root
+  
 
   # Signup path
   controller :users do

@@ -2,6 +2,9 @@ class HomeController < ApplicationController
 	layout "landing"
 	
   def index
+    if logged_in?
+      redirect_to users_path
+    end
   end
 
   def invite
