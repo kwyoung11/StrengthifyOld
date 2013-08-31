@@ -1,3 +1,5 @@
+$.webshims.setOptions('basePath', '/webshims/shims/');
+
 $.webshims.setOptions('forms', {
 	customMessages: true,
 	replaceValidationUI: true
