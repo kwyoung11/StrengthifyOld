@@ -146,7 +146,7 @@ $(document).on('ready page:load', function() {
 	        }
 	        el.value = parseInt(seconds) % 60;
 	        seconds--;
-	    }, 400);
+	    }, 1000);
 	}
 
 	function stopCountdown(num) {
