@@ -9,10 +9,18 @@ class Exercise < ActiveRecord::Base
   validate :at_least_one_of
 
   def convert_time_to_seconds
-    seconds = 0
+   seconds = 0
+    if self[:time_option] == "Hrs" 
       seconds += self.hours * (60**2) if !self[:hours].blank? 
-      seconds += self.minutes * 60 if !self[:minutes].blank?
+    elsif self[:time_option] == "Mins"
+      seconds += self.hours * (60**2) if !self[:hours].blank? 
+    elsif self[:time_option] == "Sec"
       seconds += self.seconds if !self[:seconds].blank?
+    else
+      seconds += self.hours * (60**2) if !self[:hours].blank? 
+      seconds += self.hours * (60**2) if !self[:hours].blank? 
+      seconds += self.seconds if !self[:seconds].blank?
+    end
     self[:duration] = seconds
   end
 
