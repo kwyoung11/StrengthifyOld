@@ -33,33 +33,32 @@ $(document).on('ready page:load', function() {
 
 	function completeExercise(ctrlBtn, cachedDur, cachedRP) {
 		$(".ex-finished").on('click', function() {
-			console.log($("input[id=duration_" + exFinInSet).val());
-			var finishingExercise = $(".uncompleted").first();
-			var currentExercise = $(".uncompleted").eq(1); // equivalent to $(this)
-			var nextExercise = $(".uncompleted").eq(2);
-			var exDuration = parseInt(initDur) - parseInt(finishingExercise.find("input[id=duration_" + exFinInSet + "]").val());
-			
-			if (!ctrlBtn.hasClass("unstarted") && !ctrlBtn.hasClass("resume") && currentExercise.hasClass("uncompleted") && !currentExercise.hasClass("performing") && currentExercise.hasClass("next-ex") ) {
-				stopCountdown(totExFin);
-				$("input[id=duration_" + exFinInSet + "]").val(exDuration);
-				exFinInSet++;
-				totExFin++;
-
+			if ( !$(this).hasClass("wrkt-finished") ) {
+				var finishingExercise = $(".uncompleted").first();
+				var currentExercise = $(".uncompleted").eq(1); // equivalent to $(this)
+				var nextExercise = $(".uncompleted").eq(2);
+				var exDuration = parseInt(initDur) - parseInt(finishingExercise.find("input[id=duration_" + exFinInSet + "]").val());
+				
 				// If user is on last exercise in set ...
 				if (exFinInSet == exInSet-1 && setsFin != totSets) { 
-					$(".ex-finished").addClass("next-set");
-					$(".ex-finished").html("Next Set"); 
 					proceedToNextSet(cachedDur, cachedRP);
 				} 
-
-				finishingExercise.removeClass("uncompleted").removeClass("performing").addClass("completed");
-				finishingExercise.find("input").attr("disabled", "disabled");
-				currentExercise.addClass("performing").find("input").removeAttr("disabled");
-				currentExercise.removeClass("next-ex");
-				nextExercise.addClass("next-ex");
-				countdown("duration_" + exFinInSet, $("input[id=duration_" + exFinInSet + "]").val());
-				updateWrktPercentComplete();
-				prepareToFinish();
+	
+				if (!ctrlBtn.hasClass("unstarted") && !ctrlBtn.hasClass("resume") && currentExercise.hasClass("uncompleted") && !currentExercise.hasClass("performing") && currentExercise.hasClass("next-ex") ) {
+					stopCountdown(totExFin);
+					$("input[id=duration_" + exFinInSet + "]").val(exDuration);
+					exFinInSet++;
+					totExFin++;
+	
+					finishingExercise.removeClass("uncompleted").removeClass("performing").addClass("completed");
+					finishingExercise.find("input").attr("disabled", "disabled");
+					currentExercise.addClass("performing").find("input").removeAttr("disabled");
+					currentExercise.removeClass("next-ex");
+					nextExercise.addClass("next-ex");
+					countdown("duration_" + exFinInSet, $("input[id=duration_" + exFinInSet + "]").val());
+					updateWrktPercentComplete();
+					prepareToFinish();
+				}
 			}
 		});
 	}
@@ -75,9 +74,11 @@ $(document).on('ready page:load', function() {
 	}
 
 	function proceedToNextSet(cachedDur, cachedRP) {
-		var finishingExercise = $(".uncompleted").first();
-		var exDuration = parseInt(initDur) - parseInt(finishingExercise.find("input[id=duration_" + exFinInSet + "]").val());
-		$(".next-set").on('click', function() {
+		$(".ex-finished").addClass("next-set");
+		$(".ex-finished").html("Next Set"); 
+		if ($(".next-ex").length == 0) {
+			var finishingExercise = $(".uncompleted").first();
+			var exDuration = parseInt(initDur) - parseInt(finishingExercise.find("input[id=duration_" + exFinInSet + "]").val());
 			stopCountdown(totExFin);
 			$("input[id=duration_" + exFinInSet + "]").val(exDuration);
 			if (exFinInSet == exInSet-1 && setsFin != totSets) {
@@ -94,12 +95,15 @@ $(document).on('ready page:load', function() {
 				updateWrktPercentComplete();
 				countdown("duration_" + exFinInSet, $("input[id=duration_" + exFinInSet + "]").val());
 			}
-		});
+		}
 	}
 
 	function prepareToFinish() {
 		// Show and highlight finish buttons when performing last exercise.
 		if (exFinInSet == exInSet-1 && setsFin == totSets-1 ) {
+			// Disable next exercise link
+			$(".ex-finished").addClass("wrkt-finished");
+			$("#wrkt-start-link").removeClass("pause");
 			$(".wrkt-finish-actions").append("" +
 				"<a class='btn' href='javascript:void(0)' id='wrkt-fin-link' style='display: inline;'>" + 
 				"<span>Finish</span>" + 
@@ -117,17 +121,20 @@ $(document).on('ready page:load', function() {
 			lastExercise.removeClass("uncompleted").removeClass("performing").addClass("completed");
 			lastExercise.find("input").attr("disabled", "disabled");
 			$("#wrkt-fin-link").stop().animate({"border-color": "transparent"}, 'slow');
+			stopCountdown(totExFin);
+			var exDuration = parseInt(initDur) - parseInt(lastExercise.find("input[id=duration_" + exFinInSet + "]").val());
+			$("input[id=duration_" + exFinInSet + "]").val(exDuration);
 			if (exFinInSet < exInSet) {
 				exFinInSet++;
 				totExFin++;
 				updateWrktPercentComplete();	
+
 			}
 		});
 	}
 
 	// See http://stackoverflow.com/questions/4584397/javascript-countdown-clock
 	function countdown(element, seconds) {
-			var time = parseInt(seconds);
 	    var intervalId = "interval_" + totExFin;
 	    intervals[intervalId] = setInterval(function() {
 	        var el = document.getElementById(element);
@@ -137,7 +144,7 @@ $(document).on('ready page:load', function() {
 	        		startRestPeriod();
 	        	}
 	        }
-	        el.value = time % 60;
+	        el.value = parseInt(seconds) % 60;
 	        seconds--;
 	    }, 400);
 	}
@@ -173,15 +180,20 @@ $(document).on('ready page:load', function() {
 
 	function reStartWorkout(cachedDur, cachedRP) {
 		$(".bar").css("width", "1%");
-		$("#wrkt-percent-complete").html("1");
+		$("#wrkt-percent-complete").html("0");
 		reSetIntervals(cachedDur, cachedRP);
 		exFinInSet = 0;
+		totExFin = 0;
+		setsFin = 0;
+		$("#wrkt-start-link").addClass("unstarted");
+		$("#current-set").html("1");
 		$(".performable-ex").removeClass("completed").removeClass("performing").addClass("uncompleted");
 		$(".wrkt-finish-actions").html("");
 	}
 
 	function initializeWorkout(ctrlBtn) {
-		ctrlBtn.removeClass("unstarted").addClass("pause");
+		ctrlBtn.removeClass("unstarted").removeClass("restart").addClass("pause");
+		$("#wrkt-next-link").removeClass("wrkt-finished");
 		$(".performable-ex").first().addClass("performing");
 		$(".performable-ex").eq(1).addClass("next-ex");
 		countdown("duration_" + exFinInSet, $("input[id=duration_" + exFinInSet + "]").val());
@@ -223,6 +235,19 @@ $(document).on('ready page:load', function() {
 			$(".revision").hide();	
 		}
 	});
+
+	// if ( ($(".workout-perform").length > 0) ) {
+	// 	$(window).on('beforeunload ',function() {
+ //    	return "Your workout is still in progress.";
+	// 	});
+
+	// 	$(window).on('onunload ',function() {
+ //    	return "Your workout is still in progress.";
+	// 	});
+	// }
+	
+
+
 
 });
 
