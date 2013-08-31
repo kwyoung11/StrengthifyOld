@@ -29,6 +29,25 @@ $nav_width: 10em;
 	display: inline-block;
 }
 
+.strengthify-header-list {
+	list-style: none;
+	padding: 0;
+	margin: 0px 0px;
+}
+
+.header-nav-list__unregistered {
+	display: none;
+	@extend %hr-list;
+	li {
+		margin: -3px 0px;
+		padding: 0px 5px;
+	}
+	.btn {
+		font-size: 1.0em;
+		padding: 7px;
+	}
+}
+
 
 /********************************************
 *

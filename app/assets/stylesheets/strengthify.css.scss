@@ -42,18 +42,6 @@
 	background: #F00;
 }
 
-.header-nav-list__unregistered {
-	@extend %hr-list;
-	li {
-		margin: -3px 0px;
-		padding: 0px 5px;
-	}
-	.btn {
-		font-size: 1.0em;
-		padding: 7px;
-	}
-}
-
 .cool-features {
 	border: 1px solid red;
 	overflow: hidden;
