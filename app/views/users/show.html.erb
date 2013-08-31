@@ -57,7 +57,7 @@
 	</div>
 	<div class="profile-workouts">
 		<header class="profile-workout-header"> 
-			<h2><span><%= @user.workouts.count %></span> Workouts</h2>
+			<h2><span><%= @user_workouts.count %></span> Workouts</h2>
 		</header>
 		<% @user_workouts.each do |workout| %>
 		<%= render "media_objects/workout", workout: workout %>

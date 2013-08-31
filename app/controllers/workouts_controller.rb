@@ -36,10 +36,12 @@ class WorkoutsController < ApplicationController
   # POST /workouts.json
   def create
     @workout = @user.workouts.new(workout_params)
-    
+    debugger
     respond_to do |format|
       if @workout.save
-        track_activity @workout
+        if @workout.completed == true
+          track_activity @workout
+        end
         format.html { redirect_to perform_user_workout_path(current_user.id, @workout.id)} if @workout.planned == true
         format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
         format.json { render action: 'show', status: :created, location: @workout }
@@ -113,7 +115,7 @@ class WorkoutsController < ApplicationController
   
   private
     def workout_params
-      params.require(:workout).permit(:snagged, :id, :user_id, :name, :created_at, :updated_at, :duration, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, :planned, exercises_attributes: [:id, :exercise_id, :name, :weight, :reps, :hours, :minutes, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
+      params.require(:workout).permit(:snagged, :completed, :id, :user_id, :name, :created_at, :updated_at, :duration, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, :planned, exercises_attributes: [:id, :exercise_id, :name, :weight, :reps, :hours, :minutes, :time_option, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
     end
 
     def set_workout

@@ -10,9 +10,10 @@
 	<li class="ex-reps"> <%= f.text_field :reps, size: "5", :placeholder => " reps", class: "exercise_reps", value: find_ex_field_value(f, :reps, @user, @session_vars) %> or </li>
 
 	<li class="ex-time">
-		<%= f.number_field :hours, style: "width: 33px; height: 26px;", placeholder: "h" %>
-		<%= f.number_field :minutes, style: "width: 37px; height: 26px;", placeholder: "m" %>
-		<%= f.number_field :seconds, style: "width: 32px; height: 26px;", placeholder: "s", value: find_ex_field_value(f, :seconds, @user, @session_vars) %>
+		<%= f.number_field :hours, style: "width: 33px; height: 26px;", class: "wrkt-hrs" %>
+		<%= f.number_field :minutes, style: "width: 37px; height: 26px;", class: "wrkt-mins" %>
+		<%= f.text_field :seconds, size: "2", class: "wrkt-sec", value: find_ex_field_value(f, :seconds, @user, @session_vars) %>
+		<%= f.select :time_option, options_for_select(["Sec", "Mins", "Hrs"]), class: "wrkt-time-opts"  %>
 	</li>
 	
 	<li class="workout-rest">
@@ -20,7 +21,7 @@
 		<%= f.fields_for :rest_period do |builder| %>
 			<%= builder.hidden_field :id, value: nil %>
 			<%= builder.label HTMLEntities.new.decode "Rest period" %>
-			<%= builder.text_field :seconds, style: "width: 35px;", class: "exercise__rest-period", value: find_ex_field_value(builder, :seconds, @user, @session_vars) %>
+			<%= builder.text_field :seconds, size: "1", class: "exercise__rest-period", value: find_ex_field_value(builder, :seconds, @user, @session_vars) %>
 		<% end %>	
 		</div>
 		<div id="rp-unit"> </div>

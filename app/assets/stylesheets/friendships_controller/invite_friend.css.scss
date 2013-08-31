@@ -57,42 +57,34 @@
 	box-shadow: 0px 0px 10px #888;
 	width: 350px;
 	margin: 5px auto 5px;
+	.field {
+		margin: 0;
+	}
+	label {
+		width: 113px; 
+		display: inline;
+		float: left;
+		text-align: left;
+		margin-top: 13px;
+		font-weight: bold;
+		font-family: rockwell;
+	}
+	input {
+		display: inline;
+		float: left;
+		padding: 10px;
+		width: auto;
+		line-height: inherit;
+}
 }
 
-#new_invitation .field {
-	margin: 0;
-}
-
-#new_invitation label {
-	width: 110px;
-	vertical-align: middle;
-	border: 0px solid red;
-	text-align: right;
-	float: left;
-	padding: 10px;
-	font-weight: bold;
-	font-family: rockwell;
-}
-
-#new_invitation input {
-	padding: 10px;
-	line-height: inherit;
-}
-
-#new_invitation {
-	border: 0px solid red;
-}
-
-#invitation_recipient_email {
-	width: 150px;
-}
 
 #invitation_subject {
 	height: 32px;
 }
 
 #invitation_message {
-	height: 80px;
+	height: 50px;
 }
 
 textarea {

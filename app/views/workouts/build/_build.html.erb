@@ -9,27 +9,37 @@
 	<div class="workout-builder--no-exercises"> You have no exercises yet. </div>
 
 	<div class="form-row">
-		<div id="display-sets">
-			<%= link_to ' ', '#', id: "num_sets", class: "javascript-link" %>
-		</div>
-
 		<div class="grid">
-
 			<div class="col-10-10">
 				<ol class="form-field-list exercise-list">
-			
 						<%= f.fields_for :exercises do |builder| %>
 							<%= render '/workouts/build/exercise_fields', f: builder %> 
 						<% end %>
-	
 				</ol>
 			</div>
-
-			<div style="clear: both;"></div>
 		</div>
 			<div class="workout-add-exercise">
 				<%= link_to_add_fields "Add Exercise", f, :exercises, "workouts", "build", "build-workout__add-ex" %>
 			</div>
+			<div class="build-wrkt-details">
+				<div class="form-row wrkt-completed">
+						<%= f.label :completed, "Have you done this workout already?" %>
+						<%= f.label "Yes" %>
+						<%= f.radio_button :completed, true %>
+						<%= f.label "No" %>
+						<%= f.radio_button :completed, false %> 
+				</div>
+				<div class="detail-link-wrapper">
+					<%= link_to "More Details", "javascript:void(0)", id: "build-wrkt-details" %>
+				</div>
+				<div style="clear: both;"> </div>
+			<div class="form-row wrkt-build-details">
+				<%= f.label :description, "How did it go?" %>
+				<%= f.text_area :description, style: "width: 100%;" %>
+				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
+				<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
+			</div>
+		</div>
 	</div>
 
 <% end %>

@@ -6,26 +6,16 @@
 
 .build-workout-bar {
 	font-family: "Source Sans Pro";
-	p {
-		color: white;
-	}
+	p { color: white; }
 	font-size: 1.5em;
-	height: auto;
 	background-color: #444;
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+	&:after { content: ""; display: table; clear: both; }
 }
 
-.workout-build__container {
-	position: relative;
-	padding-bottom: 10px;
-}
+.workout-build__container {	padding-bottom: 10px; }
 
 .remove-exercise {
-	margin: 1px 0px 0px 10px;
+	margin-left: 10px;
 	width: 30px;
 	height: 30px;
 	display: inline-block;
@@ -33,53 +23,24 @@
 	opacity: 0.4;
 	border-radius: 20%; 
 	&:hover { cursor: pointer; background-color: #e22; opacity: 1; }
-	img { margin-top: 3px; -webkit-transform: scale(0.9); }
-	a {
-		height: 100%;
-		padding: 5px 6px 5px 6px;
-		display: inline-block;
-		margin: 0px 0px 0px 0px;
-	}
+	img { margin-top: 3px; opacity: 0.8; }
+	a { padding: 5px 6px; display: inline-block; }
 }
 
-.bar-expand {
-	a {
-		opacity: 0.9;
-		text-decoration: none;
-		&:hover {opacity: 1;}
-	}
-	border: 1px solid grey;
-	width: 10.5%;
-	height: 59px;	
-	float: left;
-}
-
-.build-sets-exercises {
-	float: left;
-	width: 30.5%;
-	border: 1px solid grey;
-	height: 59px;
-}
-
-.bar-content {
-	border: 1px solid grey;
-	float: left;
-	width: 20%;
-}
+.bar-expand { border: 1px solid #666; width: 10.5%; float: left; }
+.build-sets-exercises { float: left; width: 30.5%; height: 59px; }
+.bar-content { float: left; width: 20%; }
 
 .defaults {
-	border: 1px solid grey;
 	float: left;
 	width: 10%;
-	height: 59px;
-	&:hover {
-		background-color: lighten(#444, 5%);
-	}
+	&:hover { background-color: lighten(#444, 5%); }
 }
 
 .defaults-list {
+	position: absolute;
 	right: 0;
-	top: 60px;
+	top: 160px;
 	width: 130px;
 	z-index: 300;
 	background-color: #444;
@@ -87,26 +48,9 @@
 	@extend %dropdown-list;
 }
 
-.bar-options {
-	width: 29%;
-	float: left;
-}
-
-#default-link:hover .defaults-list {
-	display: block;
-}
-
-.build .workout-rest label {
-	opacity: 0;
-}
-
-.build .workout-rest input {
-	margin: -18px 0px 0px 0px;
-}
-
-.build .workout-rest .slider {
-	top: -17px;	
-}
+.build .workout-rest label { opacity: 0; }
+.build .workout-rest input { margin-top: -17px; }
+.build .slider { top: -17px; }
 
 .bar-ex-count {
 	vertical-align: middle;
@@ -116,70 +60,52 @@
 }
 
 .build {
-	display: none;
-	position: relative;
-	margin: 0 auto;
+	border: 1px solid #ccc;
 	width: 55.5%;
 	font-size: 16px;
-	padding-left: 48px;
-	@include inverted-rounded-corners(0px, 0px);
-	@include outer-box-shadow(0px, 0px, 1px, 0px, #444);
+	padding: 0px 0px 10px 48px;
+	@include outer-box-shadow(0px, 0px, 0px, 0px, #444);
 }
 
-#build-workout__add-ex {
-	display: none;
-}
-
-.build .workout-submit { float: right; } 
+#build-workout__add-ex { display: none; }
 .build label { @extend %block-label; }
-.build input {
-	font-size: 0.8em;
-  padding: 6px 4px 6px 4px;
-	border: 1px solid #ddd;
-	@include rounded-corners(3px);
-	&[type="submit"] { @extend %button-large; }
-}
+.build input { font-size: 0.8em; padding: 6px 4px; }
 
 #workout_sets {
 	text-align: center;
-	margin: -9px 3px 0px 0px;
+	margin-top: -9px;
+	margin-right: 3px;
 	font-size: 0.8em;
-  padding: 6px 4px 6px 4px;
+  padding: 6px 4px;
 	border: 1px solid #ddd;
 	@include rounded-corners(3px);
 }
 
+.wrkt-hrs, .wrkt-mins { display: none;}
+.wrkt-time-opts {width: 48px;}
+
 .build .exercise-count {
 	position: absolute;
-	width: 30px;
-	height: 30px;
-	margin: 2px 0px 0px -42px;
-	background: #fd4042;
-	@include rounded-corners(10px);
-	padding: 5px;
+	margin: 4px 0px 0px -42px;
+	background: #ee4040;
+	@include rounded-corners(5px);
+	padding: 6px 5px;
 	color: #222;
 }
 
+.bar-options { width: 29%; float: left; }
+
 #save-built-workout {
-	background-color: #fefefe;
-	border: 2px outset;
-	color: buttontext;
-	text-decoration: none;
-	border-radius: 3px;
+	@extend .btn;
+	width: 80px;
+	margin: 8px auto;
 	display: inline-block;
-	font-size: 0.8em;
-	margin-top: 16px;
-	padding: 2px 6px 3px;
-	bottom: 0;
-	&:hover {
-		@include outer-box-shadow(0px, 0px, 2px, 0px, #fff);	
-	}
 }
-
-.clear-exercises {
-	@extend #save-built-workout;
+.clear-exercises { @extend #save-built-workout; }
+.build-wrkt-details { 
+	display: none; 
+	&:after { content: ""; display: table; clear: both; }
 }
-
 
 .workout-builder--no-exercises {
 	display: none;
@@ -191,9 +117,37 @@
 	text-align: center;
 }
 
-.default-triangle {
-	@include triangle-down(#dcdcdc, 5px);
-	margin: 10px 0px 0px 5px;
+.wrkt-completed {
+	width: 70%;
+	float: left;
 }
+
+.detail-link-wrapper {
+	width: 30%;
+	float: left;
+	position: relative;
+}
+
+
+.build-wrkt-details .form-row input, .build-wrkt-details .form-row label {
+	display: inline; margin: 5px;
+}
+
+
+
+#build-wrkt-details:after {
+	@include triangle-down(#444, 5px);
+	top: 47%;
+	margin-left: 5px;
+}
+
+.wrkt-build-details {
+	padding-top: 10px; 
+	border-top: 1px dotted #aaa;
+	display: none; 
+	label {float: left; text-align: left;}
+	input, a {float: left;}
+}
+
 
 
