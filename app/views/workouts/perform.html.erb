@@ -24,8 +24,8 @@
 						<th> Name </th>
 						<th> Lbs </th>
 						<th> Reps </th>
-						<th> Duration </th>
-						<th> Rest Period</th>
+						<th> Time </th>
+						<th> Rest <br />Period</th>
 					</tr>
 					<tr class="sets-row"> 
 						<th colspan="5" class="wrkt-sets"> 
@@ -56,7 +56,7 @@
 
 		<div class="wrkt-progress">
 			<div class="wrkt-prog-bar col-8-10 progress progress-striped active">
-				<div class="bar" style="width: 1%;"> 
+				<div class="bar" style="width: 0%;"> 
 					<div class="prog-text"> 
 						<span id="wrkt-percent-complete">0</span>% completed 
 					</div> 
@@ -69,7 +69,7 @@
 
 		
 
-		<div class="field workout-description">
+		<div class="field workout-description" style="display: none;">
 			<%= f.label :description, "How did it go?" %>
 			<%= f.text_area :description, style: "width: 100%;" %>
 		</div>
