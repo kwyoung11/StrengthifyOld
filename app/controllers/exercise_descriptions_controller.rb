@@ -5,7 +5,7 @@ class ExerciseDescriptionsController < ApplicationController
   def index
     @workout_action = "build"
     @user = User.find(current_user.id)
-    @default = @user.default
+    @default = @user.default.nil? ? Default.new : @user.default
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
     @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
     @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])

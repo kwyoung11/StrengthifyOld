@@ -27,7 +27,11 @@ module ApplicationHelper
 
   def find_ex_field_value(f, field, user, session)
     default_field = (field == :seconds && f.object.class == RestPeriod) ? ("rest_period_" << field.to_s) : (field == :seconds) ? ("exercise_" << field.to_s) : field
-    !(f.object.send(field) == 0) && (session.has_key?(default_field.to_sym)) ? f.object.send(field) : user.default.send(default_field.to_sym)
+    if !(f.object.send(field) == 0) && (session.has_key?(default_field.to_sym)) 
+      f.object.send(field)
+    else
+     user.default.send(default_field.to_sym) if !user.default.nil?
+   end
   end
 
   def name
