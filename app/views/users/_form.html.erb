@@ -40,7 +40,7 @@
     </div>
   
     <div class="field">
-      <%= f.date_field :birthday %>
+      <%= f.date_field :birthday, size: "34" %>
     </div>
   
     <div class="field">
@@ -48,7 +48,7 @@
     </div>
   
     <div class="field">
-      <%= f.text_field :website, required: true, :size => "35", :placeholder => " http://mywebsite.com" %>
+      <%= f.text_field :website, :size => "35", :placeholder => " mywebsite.com" %>
     </div>
   
     <div class="field">
@@ -60,7 +60,7 @@
     </div>
   
     <div class="field">
-      <%= f.select(:country, User.countries) %>
+      <%= f.select(:country, User.countries, selected: "United States") %>
     </div>
   
      <div class="field">

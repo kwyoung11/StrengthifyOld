@@ -64,13 +64,13 @@
 
 		<ul class="faceted-navigation-list__sub-list">
 		<li> 
-				<%= tooltip_for("Show All Filters") do %>
-					<%= link_to image_tag('show_all_filters.svg'), exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
+				<%= tooltip_for("View All Filters") do %>
+					<%= link_to "VIEW ALL", exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
 				<% end %> 
 		</li>
 		<li> 
-			<%= tooltip_for("Clear Selected Filters") do %> 
-				<%= link_to '<i class="icon-retweet"></i>'.html_safe, exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
+			<%= tooltip_for("Reset Selected Filters") do %> 
+				<%= link_to 'RESET', exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
 			<% end %>
 		</li>
 	</ul>

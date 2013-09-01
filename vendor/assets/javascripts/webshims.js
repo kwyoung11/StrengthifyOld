@@ -26,4 +26,4 @@ $.webshims.validityMessages['en'] = {
 };
 
 // load features
-$.webshims.polyfill("forms forms-ext");
+$.webshims.polyfill();
