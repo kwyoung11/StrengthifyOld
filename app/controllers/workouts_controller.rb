@@ -41,10 +41,12 @@ class WorkoutsController < ApplicationController
       if @workout.save
         if @workout.completed == true
           track_activity @workout
+          format.html { redirect_to current_user, notice: "Workout was successfully created."}
+        else
+          format.html { redirect_to performable_user_workouts_path(current_user.id), notice: "Workout was successfully saved. You can perform or print it out below."} if @workout.planned == true
+          format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @workout }
         end
-        format.html { redirect_to perform_user_workout_path(current_user.id, @workout.id)} if @workout.planned == true
-        format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @workout }
       else
         format.html { render action: 'new' }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
@@ -58,9 +60,10 @@ class WorkoutsController < ApplicationController
 
     respond_to do |format|
       if @workout.update_attributes(workout_params)
-        if request.put? && params[:commit] == "Finish & Save" # request from perform page?
+        if request.put? && params[:commit] == "Finish & Save" # request from perform page
           track_activity @workout
-          format.html { redirect_to performable_user_workouts_path(@user.id), notice: 'Workout was successfully performed.' }
+          format.html { redirect_to performable_user_workouts_path(@user.id), notice: 'Workout was successfully performed.' } if mobile_device?
+          format.html { redirect_to current_user, notice: 'Workout was successfully performed.' } if !mobile_device?
           format.json { head :no_content }
         else
           format.html { redirect_to user_workouts_path(@user.id), notice: 'Workout was successfully updated.' }
@@ -79,7 +82,7 @@ class WorkoutsController < ApplicationController
     @workout.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_workouts_path(@user.id) }
+      format.html { redirect_to performable_user_workouts_path(@user.id) }
       format.json { head :no_content }
     end
   end
@@ -109,7 +112,7 @@ class WorkoutsController < ApplicationController
   end
 
   def performable
-    @planned_workouts = @user.workouts.where(planned: true).where(completed: nil)
+    @planned_workouts = @user.workouts.where(planned: true).where(completed: false)
   end
   
   

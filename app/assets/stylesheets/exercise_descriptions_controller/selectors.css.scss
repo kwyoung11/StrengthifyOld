@@ -14,9 +14,10 @@
 	li {
 		color: white;
 		width: 50%;
-		height: 28px;
+		height: 42px;
 		border: 1px solid #777;
 		background-color: #ccc;
+		&:first-child {a {margin-top: 3px;}}
 		a {
 			display: inline-block;
 			width: 100%;

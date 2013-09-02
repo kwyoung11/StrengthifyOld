@@ -1,15 +1,12 @@
 // Performable page
 .performable {
 	border-collapse: collapse;
-	td {
-		padding: 10px;
-		border-bottom: 1px dotted #444;
-	}
-	left: 0;
-	right: 0;
+	text-align: left;
+	td { padding: 15px 10px; border-bottom: 1px solid #ccc; }
 	margin: 0 auto;
-	.perf-num {
-		vertical-align: top;
+	.perf-num { vertical-align: top; color: #999; }
+	.button_to, .button_to div {
+		display: inline;
 	}
 }
 
@@ -22,7 +19,6 @@
 	@extend %button-large;
 	padding: 8px;
 }
-
 
 // Perform page
 .workout-perform {

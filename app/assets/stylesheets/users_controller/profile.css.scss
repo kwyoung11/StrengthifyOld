@@ -6,7 +6,7 @@
 
 #photo img {
 	border: 0px solid white;
-	box-shadow: #444 0 0 10px;
+	box-shadow: #444 0 0 5px;
 	margin-left: 0;
 }
 
@@ -49,21 +49,34 @@
 
 .profile-data {
 	float: left;
-	border: 0px solid black;
 	width: 45%;
+	table {
+		border-collapse: collapse;
+	}
 }
 
 .profile-data th {
 	text-align: left;
 	font-style: italic;
-	padding: 0px 5px 0px 5px;
+	font-weight: normal;
+	color: #A0A0A0;
+	padding-right: 15px;
 }
 
 .profile-data td {
 	white-space: nowrap;
 	text-align: left;
-	padding: 3px 5px 5px 0px;
+	padding: 2px 5px 2px 0px;
 }
+
+.profile-data tbody:first-child {
+	border-top: 5px solid transparent;
+}
+
+.profile-data tbody {
+	border-top: 13px solid transparent;
+}
+
 
 .italic {
 	display: inline-block;

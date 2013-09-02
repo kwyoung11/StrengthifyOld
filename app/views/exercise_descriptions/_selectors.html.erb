@@ -65,12 +65,12 @@
 		<ul class="faceted-navigation-list__sub-list">
 		<li> 
 				<%= tooltip_for("View All Filters") do %>
-					<%= link_to "VIEW ALL", exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
+					<%= link_to "Select All", exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
 				<% end %> 
 		</li>
 		<li> 
 			<%= tooltip_for("Reset Selected Filters") do %> 
-				<%= link_to 'RESET', exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
+				<%= link_to 'Deselect All', exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
 			<% end %>
 		</li>
 	</ul>

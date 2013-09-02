@@ -1,29 +1,35 @@
 <div class="exercise">
 	<%= f.hidden_field :exercise_id %>
 	<li class="ex-name">
-		<div class="exercise-count" id="ex-num-1">1</div>	
+		<div class="exercise-count <%="first-ex-count" if f.options[:child_index] == 0 %>" id="ex-num-1">1</div>	
+		<%= f.label :name, "Exercise Name" if f.options[:child_index] == 0 %>
 		<%= f.text_field :name, size: "5", style: "width: 150px;", required: true, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
 	</li>
 	
-	<li class="ex-weight"> <%= f.text_field :weight, size: "5", :placeholder => " weight", class: "exercise_weight", value: find_ex_field_value(f, :weight, @user, @session_vars) %> </li>
+	<li class="ex-weight"> 
+		<%= f.label :weight if f.options[:child_index] == 0 %>
+		<%= f.text_field :weight, size: "5", :placeholder => " weight", class: "exercise_weight", value: find_ex_field_value(f, :weight, @user, @session_vars) %> 
+		<%= f.select :weight_type, options_for_select(["LBS", "KG", "BW"]) %>
+	</li>
 	
-	<li class="ex-reps"> <%= f.text_field :reps, size: "5", :placeholder => " reps", class: "exercise_reps", value: find_ex_field_value(f, :reps, @user, @session_vars) %> or </li>
+	<li class="ex-reps"> 
+		<%= f.label :reps if f.options[:child_index] == 0 %>
+		<%= f.text_field :reps, size: "5", :placeholder => " reps", class: "exercise_reps", value: find_ex_field_value(f, :reps, @user, @session_vars) %> or </li>
 
 	<li class="ex-time">
 		<%= f.number_field :hours, style: "width: 33px; height: 26px;", class: "wrkt-hrs" %>
 		<%= f.number_field :minutes, style: "width: 37px; height: 26px;", class: "wrkt-mins" %>
+		<%= f.label "Time" if f.options[:child_index] == 0 %>
 		<%= f.text_field :seconds, size: "2", class: "wrkt-sec", value: find_ex_field_value(f, :seconds, @user, @session_vars) %>
 		<%= f.select :time_option, options_for_select(["Sec", "Mins", "Hrs"]), class: "wrkt-time-opts"  %>
 	</li>
 	
 	<li class="workout-rest">
-		<div class="exercise_rest_period">
-		<%= f.fields_for :rest_period do |builder| %>
-			<%= builder.hidden_field :id, value: nil %>
-			<%= builder.label HTMLEntities.new.decode "Rest period" %>
-			<%= builder.text_field :seconds, size: "1", class: "exercise__rest-period", value: find_ex_field_value(builder, :seconds, @user, @session_vars) %>
+		<%= f.fields_for :rest_period do |rp_fields| %>
+			<%= rp_fields.hidden_field :id, value: nil %>
+			<%= rp_fields.label HTMLEntities.new.decode "Rest period (s)" %>
+			<%= rp_fields.text_field :seconds, size: "1", class: "exercise__rest-period", value: find_ex_field_value(rp_fields, :seconds, @user, @session_vars) %>
 		<% end %>	
-		</div>
 		<div id="rp-unit"> </div>
 		<div class="slider-wrapper">
 			<div id="slider1" class="slider"></div>
@@ -31,9 +37,8 @@
 	</li>
 	
 	<li class="exercise-remove">
-
 		<%= f.hidden_field :_destroy %>
-		<span class="remove-exercise"> <%= link_to image_tag("icon-remove-16.svg"), clear_exercise_descriptions_path(clear: "remove-exercise", id: ""), remote: :true, class: "workout-remove-exercise-link javascript-link", id: "remove-exercise" %></span> 
+		<span class="remove-exercise <%= "first" if f.options[:child_index] == 0 %>"> <%= link_to image_tag("icon-remove-16.svg"), clear_exercise_descriptions_path(clear: "remove-exercise", id: ""), remote: :true, class: "workout-remove-exercise-link javascript-link", id: "remove-exercise" %></span> 
 	</li>
 </div>
 

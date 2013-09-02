@@ -15,7 +15,6 @@
 .workout-build__container {	padding-bottom: 10px; }
 
 .remove-exercise {
-	margin-left: 10px;
 	width: 30px;
 	height: 30px;
 	display: inline-block;
@@ -27,14 +26,26 @@
 	a { padding: 5px 6px; display: inline-block; }
 }
 
-.bar-expand { border: 1px solid #666; width: 10.5%; float: left; }
-.build-sets-exercises { float: left; width: 30.5%; height: 59px; }
-.bar-content { float: left; width: 20%; }
+.first { margin: 17px 0px 0px -17px; }
 
-.defaults {
-	float: left;
-	width: 10%;
-	&:hover { background-color: lighten(#444, 5%); }
+.bar-expand { border: 1px solid #666; width: 10.5%; float: left; }
+.build-sets-exercises {
+	overflow: hidden;
+	padding-top: 5px;
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+	label { background-color: #efefef; margin-top: 0px; padding: 5px 0px; float: left; }
+	#workout_sets { float: left; display: inline; margin-top: 0;} 
+	#workout_name { float: left; display: inline; margin-top: 0; }
+}
+
+.sets-box { width: 21%; float: left; }
+.name-box { width: 45%; float: left; }
+.defaults { float: right; left: 40px; margin-top: 7px; width: 10%; 
+	a {
+		opacity: 0.6;
+		&:hover {opacity: 0.9;}
+	} 
 }
 
 .defaults-list {
@@ -48,9 +59,10 @@
 	@extend %dropdown-list;
 }
 
-.build .workout-rest label { opacity: 0; }
-.build .workout-rest input { margin-top: -17px; }
-.build .slider { top: -17px; }
+
+.build .workout-rest label { opacity: 1; margin-top: 0px; }
+.build .workout-rest input { margin-top: 0px; }
+.build .slider { top: 0px; width: 38px; }
 
 .bar-ex-count {
 	vertical-align: middle;
@@ -60,15 +72,16 @@
 }
 
 .build {
+	display: none;
 	border: 1px solid #ccc;
-	width: 55.5%;
+	width: 60.5%;
 	font-size: 16px;
 	padding: 0px 0px 10px 48px;
 	@include outer-box-shadow(0px, 0px, 0px, 0px, #444);
 }
 
 #build-workout__add-ex { display: none; }
-.build label { @extend %block-label; }
+.build label { @extend %block-label; font-size: 0.8em; }
 .build input { font-size: 0.8em; padding: 6px 4px; }
 
 #workout_sets {
@@ -80,6 +93,8 @@
 	border: 1px solid #ddd;
 	@include rounded-corners(3px);
 }
+
+.ex-name label {font-size: 0.6em;}
 
 .wrkt-hrs, .wrkt-mins { display: none;}
 .wrkt-time-opts {width: 48px;}
@@ -93,7 +108,11 @@
 	color: #222;
 }
 
-.bar-options { width: 29%; float: left; }
+.first-ex-count { top: 65px; }
+
+.bar-options { 
+	width: auto; 
+}
 
 #save-built-workout {
 	@extend .btn;
