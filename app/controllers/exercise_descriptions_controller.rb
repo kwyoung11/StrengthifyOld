@@ -1,4 +1,5 @@
 class ExerciseDescriptionsController < ApplicationController
+  require 'will_paginate/array'
 	before_action :set_exercise_description, only: [:show, :build]
   before_action :load_workout, only: [:index]
 
@@ -6,13 +7,13 @@ class ExerciseDescriptionsController < ApplicationController
     @workout_action = "build"
     @user = User.find(current_user.id)
     @default = @user.default.nil? ? Default.new : @user.default
-    @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
-    @exercises = ExerciseDescription.search(params[:search]).paginate(:per_page => 20, :page => params[:page]) if params[:search]
-    @exercises = ExerciseDescription.all.paginate(:per_page => 20, :page => params[:page])
+    @exercises = ExerciseDescription.all
+    @exercises = ExerciseDescription.search(params[:search]) if params[:search]
     @exercises = @exercises.with_categories(params[:categories]) if params[:categories]
     @exercises = @exercises.with_body_parts(params[:body_parts]) if params[:body_parts] unless params[:categories].nil?
     @exercises = @exercises.with_skill_levels(params[:skill_level]) if params[:skill_level]
     @exercises = @exercises.with_forces(params[:forces]) if params[:forces]
+    @exercises = @exercises.paginate(:per_page => 20, :page => params[:page]) 
 
     @all_categories, @checked_categories = ExerciseDescription.categories, nil
     @all_ubps, @checked_ubps = ExerciseDescription.upper_body_parts, nil
@@ -108,6 +109,10 @@ class ExerciseDescriptionsController < ApplicationController
     end
 
     def load_workout
+      session[:wrkt_name] = params[:wrkt_name] if params[:wrkt_name]
+      session[:completed] = params[:completed] if params[:completed]
+      session[:description] = params[:description] if params[:description]
+      session[:created_at] = params[:created_at] if params[:created_at]
       session[:sets] = params[:sets] if params[:sets]
       session[:reps] ||= {}
       session[:reps].merge!( {params[:id] => params[:reps]} ) if params[:id] && params[:reps]
@@ -115,10 +120,19 @@ class ExerciseDescriptionsController < ApplicationController
       session[:weight].merge!( {params[:id] => params[:weight]} ) if (params[:id] && params[:weight])
       session[:rps] ||= {}
       session[:rps].merge!( {params[:id] => params[:rest_period]} ) if (params[:id] && params[:rest_period])
-      @session_vars = { :rest_period_seconds => session[:rps] }.merge({ :exercises => session[:exercises] }).merge({ :sets => session[:sets] }).merge( { weight: session[:weight] }).merge( { reps: session[:reps] })
+      @session_vars = { rest_period_seconds: session[:rps] }
+      .merge( { exercises: session[:exercises] })
+      .merge( { sets: session[:sets] })
+      .merge( { weight: session[:weight] })
+      .merge( { reps: session[:reps] })
+      .merge( { completed: session[:completed] })
+      .merge( { description: session[:description] })
       @selected_exercises = ExerciseDescription.all.where(id: session[:exercises])
       @workout = Workout.new
+      @workout.name = session[:wrkt_name]
       @workout.sets = session[:sets]
+      @workout.description = session[:description]
+      @workout.created_at = session[:created_at]
       @workout.planned = true
       @selected_exercises.each do |e|
         @exercise = @workout.exercises.new({name: e.name, exercise_id: e.id, weight: params[:weight]})

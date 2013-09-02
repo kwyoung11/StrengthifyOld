@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831155940) do
+ActiveRecord::Schema.define(version: 20130902160029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20130831155940) do
     t.integer  "exercise_id"
     t.integer  "duration"
     t.string   "time_option"
+    t.string   "weight_type",       default: "lbs"
   end
 
   create_table "friendships", force: true do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(version: 20130831155940) do
     t.integer  "profile_views",          default: 0
     t.integer  "invitation_id"
     t.integer  "invitation_limit"
+    t.integer  "visited",                default: 0
   end
 
   create_table "workouts", force: true do |t|

@@ -5,7 +5,7 @@ $.webshims.setOptions('forms', {
 	replaceValidationUI: true
 });
 
-// improve custom messages
+// Improve custom messages
 $.webshims.validityMessages['en'] = {
 	typeMismatch: {
 		email: 'Please provide a valid email.',

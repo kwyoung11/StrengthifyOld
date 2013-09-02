@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
 
 	$("#time_scale li:last").addClass('current');
 	$("#time_scale li").on("click", function() {

@@ -1,12 +1,24 @@
 <%= render '/workouts/defaults/defaults' %>
 <%= form_for [@user, @workout] do |f| %>
-<%= render "build_workout_bar", f: f %>
+<p> <%= link_to "#{@workout.name.blank? ? "Your Workout" : @workout.name}" + " (0 exercises)", "javascript:void(0)", id: "expand-workout-bar" %> </p>
 <div class="workout <%= @workout_action %>" id="new-workout">
 <%= render 'layouts/errors', object: f.object %>
 	<%= f.hidden_field :snagged %>
 	<%= f.hidden_field :planned, value: true %>
 	
-	<div class="workout-builder--no-exercises"> You have no exercises yet. </div>
+	<div class="build-sets-exercises" data-num_sets="0" data-ex_num="<%= @exercise_ids.count %>"> 
+		<div class="sets-box">
+			<%= f.label "Total Sets:" %>
+			<%= f.text_field :sets, size: "1", value: @workout.sets.nil? ? 0 : @workout.sets %>
+		</div>
+		<div class="name-box">
+			<%= f.label "Workout Name:" %>
+			<%= f.text_field :name %>
+		</div>
+		<div class="defaults">
+			<%= link_to "<i class='icon-certificate'></i>".html_safe, "javascript:void(0)", id: "default-link" %> 
+		</div>
+	</div>
 
 	<div class="form-row">
 		<div class="grid">
@@ -25,9 +37,9 @@
 				<div class="form-row wrkt-completed">
 						<%= f.label :completed, "Have you done this workout already?" %>
 						<%= f.label "Yes" %>
-						<%= f.radio_button :completed, true %>
+						<%= f.radio_button :completed, true, checked: @session_vars[:completed] == "true" ? true : false %>
 						<%= f.label "No" %>
-						<%= f.radio_button :completed, false %> 
+						<%= f.radio_button :completed, false, checked: @session_vars[:completed] == "true" ? false : true %> 
 				</div>
 				<div class="detail-link-wrapper">
 					<%= link_to "More Details", "javascript:void(0)", id: "build-wrkt-details" %>
@@ -39,6 +51,10 @@
 				<%= link_to 'Today (change date)', '#', id: "workout_created_at_link", class: "javascript-link" %>
 				<%= f.text_field :created_at, :placeholder => "date", class: "jquery-ui-date" %>
 			</div>
+		</div>
+		<div class="bar-options">
+			<%= link_to_submit('Create', "save-built-workout") %>
+			<%= link_to 'Clear', clear_exercise_descriptions_path(clear: "reset"), method: :get, class: "clear-exercises" %>
 		</div>
 	</div>
 

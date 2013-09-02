@@ -1,5 +1,5 @@
 <table>
-				<tbody>
+				<tbody class="body">
 					<tr> 
 						<th> bio </th> 
 						<td> website</td>
@@ -23,7 +23,7 @@
 					</tr>
 				</tbody>
 
-				<tbody>
+				<tbody class="body">
 					<tr>
 						<th> visits </th> 
 						<td> member for </td>
@@ -33,7 +33,7 @@
 					<tr>
 						<th>  </th> 
 						<td> visited </td>
-						<td> <%= time_ago_in_words(@user.created_at) %></td> 
+						<td> <%= @user.visited %> day<%= "s" if @user.visited != 1 %></td> 
 					</tr>
 
 					<tr>
@@ -42,10 +42,9 @@
 						<td class="hilite2"> <%= time_ago_in_words(@user.last_seen) + " ago" unless @user.last_seen.nil?  %></td> 
 					</tr>
 
-				
 				</tbody>
 
-				<tbody>
+				<tbody class="body">
 					<tr>
 						<th> stats </th> 
 						<td> profile views </td>

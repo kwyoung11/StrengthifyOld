@@ -7,6 +7,10 @@ class SessionsController < ApplicationController
   def activity
     user = User.find(params[:user_id])
     user.last_seen = params[:time]
+
+    unless user.last_seen.to_date == Date.today
+      user.visited += 1
+    end
     user.save(validate: false)
 
     respond_to do |format|

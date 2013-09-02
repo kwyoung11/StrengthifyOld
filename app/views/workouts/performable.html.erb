@@ -1,16 +1,22 @@
 <h1> Planned Workouts </h1>
 	<table class="performable">
+    <% if @planned_workouts.count == 0 %>
+      <p> You have no planned workouts. <%= link_to "Click here", build_workout_path %> to plan one. <p>
+    <% end %>
     <% @planned_workouts.each_with_index do |w, i| %>
+    
+  
     <tr> 
-    	<td class="perf-num"> <%= i + 1 %>. </td>
+    	<td class="perf-num"> <%= w.created_at.strftime("%m/%d/%y") %> </td>
       <td> 
-      	Planned workout created on <%= w.created_at.strftime("%m/%d/%y") %> 
+      	<%= w.name.blank? ? "Planned workout" : w.name %> 
         with <%= w.sets %> <%= determine_set_label(w.sets) %> 
         and <%= w.exercises.count %> exercises 
       </td>
       <td> 
         <%= link_to 'Perform', perform_user_workout_path(current_user.id, w.id), class: "perform-button" %> 
         <%= link_to 'Edit', edit_user_workout_path(current_user.id, w.id) if !mobile_device? %>
+        <%= button_to 'Delete', user_workout_path(current_user.id, w.id), method: :delete %>
       </td>
     </tr>                
     <% end %>

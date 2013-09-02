@@ -30,9 +30,10 @@ class Workout < ActiveRecord::Base
  def load_volume
    load_volume = 0
    self.exercises.each do |e|
-     load_volume += e.weight * e.reps unless e.reps.nil?
-   end
-  self[:load_volume] = load_volume
+      weight = e.weight_type.downcase == "kgs" ? (e.weight*2.20462).to_i : e.weight
+     load_volume += weight * e.reps unless e.reps.nil?
+   end 
+  self[:load_volume] = load_volume * self.sets
   return load_volume
  end
 
