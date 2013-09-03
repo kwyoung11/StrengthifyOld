@@ -6,7 +6,7 @@
 		<%= f.text_field :name, size: "5", style: "width: 150px;", required: true, :placeholder => " exercise", class: "exercise_name ui-autocomplete-	input" %>
 	</li>
 	
-	<li class="ex-weight"> 
+	<li class="ex-weight">
 		<%= f.label :weight if f.options[:child_index] == 0 %>
 		<%= f.text_field :weight, size: "5", :placeholder => " weight", class: "exercise_weight", value: find_ex_field_value(f, :weight, @user, @session_vars) %> 
 		<%= f.select :weight_type, options_for_select(["LBS", "KG", "BW"]) %>

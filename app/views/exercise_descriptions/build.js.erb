@@ -10,7 +10,7 @@
 		
 		// Update bar count and toggle highlight
 		$(".hilite2").hide().toggle("highlight").fadeIn();
-		$(".build-sets-exercises .hilite2").html("<%= @exercises.count %>")
+		$(".workout-link-wrapper .hilite2").html("<%= @exercises.count %>")
 
 		// Update sets count if not already set
 		var sets = $("input[id=workout_sets]");

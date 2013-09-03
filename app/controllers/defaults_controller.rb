@@ -43,7 +43,7 @@ class DefaultsController < ApplicationController
   def update
     respond_to do |format|
       if @default.update(default_params)
-        format.html { redirect_to :back, notice: 'Default was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Defaults were successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
