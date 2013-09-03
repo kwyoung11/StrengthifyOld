@@ -7,7 +7,7 @@
       <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note.notifiable_type.constantize.find(note.notifiable_id)) %>
       <% elsif note.action == "accept" %>
       <% if note.notifiable_type.constantize.exists?(note.notifiable_id) %>
-        You are now friends with <%= link_to "#{note.notifiable_type.constantize.accepter.name}", note.notifiable_type.constantize.accepter %> 
+        You are now friends with <%= link_to "#{note.notifiable_type.constantize.accepter(note.notifiable_id).name}", note.notifiable_type.constantize.accepter(note.notifiable_id) %> 
         <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note.notifiable_type.constantize.find(note.notifiable_id)) %>
         <% end %>
       <% end %>
