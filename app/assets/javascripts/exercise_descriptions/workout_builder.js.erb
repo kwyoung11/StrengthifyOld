@@ -109,7 +109,7 @@ if ($(".build").length > 0) {
 		});
 
 		$("#workout_name").on('change', function(){
-			$("#expand-workout-bar").text($(this).val() + " (0 exercises)");
+			$("#workout-link").text($(this).val() + " (0 exercises)");
 		});
 
 		// Show extra details when user adds at least one exercise
@@ -124,13 +124,13 @@ if ($(".build").length > 0) {
 		$(".build .workout-rest label").hide();
 		$(".build .workout-rest label").eq(0).show();
 
-		// When user wants to add even more details
+		// When user wants to add more details
 		showHideOnClick("#build-wrkt-details", ".wrkt-build-details", "fast", "none", false, "Hide Details", "More Details");
 
 		// Show/hide defaults
-		showHideOnClick("#default-link", ".defaults-list", 0, "", true);
+		showHideOnClick("#default-link", ".defaults-list", "fast", "", false);
 		// Show/hide build workout form
-		showHideOnClick("#expand-workout-bar", ".build", "fast", "rotate", false);
+		showHideOnClick("#workout-link", ".build", "fast", "rotate", false);
 
 	} // end build if statement
 }); // end document ready

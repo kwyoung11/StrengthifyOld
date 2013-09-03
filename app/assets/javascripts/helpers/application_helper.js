@@ -3,7 +3,6 @@ function showHideOnClick(wrapper, el, speed, effects, windowed, newText, oldText
 		if ($(el).css("display") == "none") {
 			$(el).show(speed);
 			$(wrapper).html(newText);
-			$()
 			if (effects == "rotate") { $(".bar-expand a").css("-webkit-transform", "rotate(90deg)"); }
 		} else {
 			$(el).hide(speed);
@@ -44,7 +43,12 @@ function addExercise(selector, link_id, form_namespace, trigger) {
 
 function addRestPeriodFields(i) {
 	$(".slider").last().removeAttr("id").attr("id", "slider" + (i+1));
-	$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
+	if (i == 0) {
+		$(".workout-rest").last().children("#rp-unit").before('<label for="workout_exercises_attributes_' + i + '_rest_period_attributes_rest_period"> Rest Period</label><input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
+	} else {
+		$(".workout-rest").last().children("#rp-unit").before('<input class="exercise__rest-period" id="workout_exercises_attributes_' + i + '_rest_period_attributes_seconds" name="workout[exercises_attributes][' + i + '][rest_period_attributes][seconds]" style="width: 35px;" type="text" value="" /><input id="workout_exercises_attributes_' + i + '_rest_period_attributes_id" name="workout[exercises_attributes][' + i + '][rest_period_attributes][id]" type="hidden" value="' + (i+5) + '>');
+	}
+	
 	$("#slider" + (i+1)).slider({
   	value: 0,
   	min: 0,

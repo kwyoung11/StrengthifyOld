@@ -4,22 +4,60 @@
 
 	<%= form_for [@user, @default], url: "/users/#{@user.id}/defaults/#{@default.id}" do |f| %>
   	<%= f.hidden_field :user_id, value: @user.id %>
-  	<li><%= f.number_field :weight, placeholder: "weight"%></li>
-  	<li><%= f.number_field :reps, placeholder: "reps" %> </li>
-  	<li><%= f.number_field :exercise_seconds, placeholder: "exercise (time)(s)" %></li>
-  	<li><%= f.number_field :rest_period_seconds, placeholder: "rest (seconds)"%></li>
-  	<li><%= f.submit "Update"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(defaults: "true"), id: "re-apply-defaults" %></li>
+  	<li>
+      <%= f.label :weight %>
+      <%= f.number_field :weight, placeholder: "weight"%>
+    </li>
+
+  	<li>
+      <%= f.label :reps %>
+      <%= f.number_field :reps, placeholder: "reps" %> 
+    </li>
+
+  	<li>
+      <%= f.label "Exercise Time (sec)" %>
+      <%= f.number_field :exercise_seconds, placeholder: "exercise (time)(s)" %>
+    </li>
+
+  	<li>
+      <%= f.label "Rest Period Time (sec)" %>
+      <%= f.number_field :rest_period_seconds, placeholder: "rest (seconds)"%>
+    </li>
+
+  	<li>
+      <%= f.submit "Update"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(defaults: "true"), id: "re-apply-defaults" %>
+    </li>
+
   	<% end %>
 
 	<% else %>
 
 		<%= form_for [@user, @default], url: "/users/#{@user.id}/defaults", method: :post do |f| %>
   		<%= f.hidden_field :user_id, value: @user.id %>
-  		<li><%= f.number_field :weight, placeholder: "weight"%></li>
-  		<li><%= f.number_field :reps, placeholder: "reps" %> </li>
-  		<li><%= f.number_field :exercise_seconds, placeholder: "exercise (time)(s)" %></li>
-  		<li><%= f.number_field :rest_period_seconds, placeholder: "rest (seconds)"%></li>
-  		<li><%= f.submit "Create"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(	defaults: "true"), id: "re-apply-defaults" %></li>
+  		    <li>
+      <%= f.label :weight %>
+      <%= f.number_field :weight, placeholder: "weight"%>
+    </li>
+
+    <li>
+      <%= f.label :reps %>
+      <%= f.number_field :reps, placeholder: "reps" %> 
+    </li>
+
+    <li>
+      <%= f.label "Exercise Time (sec)" %>
+      <%= f.number_field :exercise_seconds, placeholder: "exercise (time)(s)" %>
+    </li>
+
+    <li>
+      <%= f.label "Rest Period Time (sec)" %>
+      <%= f.number_field :rest_period_seconds, placeholder: "rest (seconds)"%>
+    </li>
+
+  	<li>
+        <%= f.submit "Create"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(	defaults: "true"), id: "re-apply-defaults" %>
+    </li>
+
  	 	<% end %>
 
   <% end %>

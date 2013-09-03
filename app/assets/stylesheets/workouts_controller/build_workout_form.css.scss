@@ -41,8 +41,10 @@
 
 .sets-box { width: 21%; float: left; }
 .name-box { width: 45%; float: left; }
-.defaults { float: right; left: 40px; margin-top: 7px; width: 10%; 
+.defaults { float: right; margin-top: 7px; width: 10%; 
 	a {
+		display: inline-block;
+		margin-left: -15px;
 		opacity: 0.6;
 		&:hover {opacity: 0.9;}
 	} 
@@ -51,10 +53,11 @@
 .defaults-list {
 	position: absolute;
 	right: 0;
-	top: 160px;
-	width: 130px;
+	top: 0;
+	left: 101%;
+	width: 156px;
 	z-index: 300;
-	background-color: #444;
+	background-color: transparent;
 	display: none;
 	@extend %dropdown-list;
 }

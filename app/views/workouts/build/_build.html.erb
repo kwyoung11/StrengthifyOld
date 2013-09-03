@@ -1,7 +1,9 @@
+<p class="workout-link-wrapper"> <%= link_to "#{@workout.name.blank? ? "Your Workout" : @workout.name} (<span class='hilite2'>#{@exercise_ids.count}</span> exercises)".html_safe, "javascript:void(0)", id: "workout-link" %> </p>
+<div class="workout <%= @workout_action %>" id="new-workout">
 <%= render '/workouts/defaults/defaults' %>
 <%= form_for [@user, @workout] do |f| %>
-<p> <%= link_to "#{@workout.name.blank? ? "Your Workout" : @workout.name}" + " (0 exercises)", "javascript:void(0)", id: "expand-workout-bar" %> </p>
-<div class="workout <%= @workout_action %>" id="new-workout">
+
+
 <%= render 'layouts/errors', object: f.object %>
 	<%= f.hidden_field :snagged %>
 	<%= f.hidden_field :planned, value: true %>
@@ -16,7 +18,7 @@
 			<%= f.text_field :name %>
 		</div>
 		<div class="defaults">
-			<%= link_to "<i class='icon-certificate'></i>".html_safe, "javascript:void(0)", id: "default-link" %> 
+			<%= link_to "Defaults", "javascript:void(0)", id: "default-link" %> 
 		</div>
 	</div>
 
