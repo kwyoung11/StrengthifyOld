@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   end
 
-  # GET /users/new
+  # GET /users/new 
   def new
     cookies[:invitation_token] = params[:invitation_token] if params[:invitation_token]
     cookies[:name] = params[:name] if params[:name]
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       if @user.save
       UserMailer.welcome_email(@user).deliver
       cookies[:auth_token] = @user.auth_token
-        format.html { redirect_to @user, notice: "Welcome #{@user.name}! Now, get out there and pump some iron!" }
+        format.html { redirect_to @user, notice: "Welcome to Strengthify #{@user.name}. Let us suggest you begin by planning your next workout or recording a previous one." }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }

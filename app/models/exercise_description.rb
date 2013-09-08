@@ -1,4 +1,5 @@
 class ExerciseDescription < ActiveRecord::Base
+  has_many :exercises
   scope :with_skill_levels, ->(skill_level) { where(skill_level: skill_level.keys) }
   scope :with_categories, ->(categories) { where(category: categories.keys) }
   scope :with_body_parts, ->(body_parts) { where("ARRAY[?]::varchar[] && body_part", body_parts.keys) }

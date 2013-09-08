@@ -211,7 +211,14 @@ NOTIFICATIONS
 
 #application_wrapper {
 	border: 1px solid transparent;
-	width: 1150px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#landing_wrapper {
+	border: 1px solid transparent;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -220,10 +227,4 @@ NOTIFICATIONS
 	margin: 100px auto;
 	text-align: center;
 	overflow: visible;
-}
-
-/* For landing page */
-.section_wrapper {
-	width: 1150px;
-	margin: 0 auto;
 }

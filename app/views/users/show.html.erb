@@ -3,7 +3,13 @@
 	<section class="profile-info">
 
 		<section class="profile-nav-header">
+				<% if @user.invitation_limit %>
+				<p class="invitation-text"> 
+					<%= link_to "Send Invitation", new_invitation_path %> (<%= @user.invitation_limit %> remaining)
+				</p>
+			<% end %>
 			<h2 class="name-header"> <%= @user.name %> </h2>
+	
 			<nav class="profile-nav">
 				<ul class="profile-nav-li">
 

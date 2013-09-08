@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_secure_password(validations: false) 
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password, :allow_blank => true
+  validates_presence_of :invitation_id, message: "is required"
+  validates_uniqueness_of :invitation_id
   
   # Creates identificiation cookie for new users
   before_create { generate_token(:auth_token) }
@@ -136,5 +138,4 @@ class User < ActiveRecord::Base
         "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"]
 
 
-  
 end
