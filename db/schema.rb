@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902160029) do
+ActiveRecord::Schema.define(version: 20130908014626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,14 +179,15 @@ ActiveRecord::Schema.define(version: 20130902160029) do
     t.integer  "minutes"
     t.integer  "seconds"
     t.integer  "sets"
-    t.string   "category"
     t.integer  "load_volume"
     t.integer  "duration"
     t.boolean  "planned"
     t.text     "description"
-    t.boolean  "snagged",     default: false
+    t.boolean  "snagged",        default: false
     t.integer  "snag_count"
     t.boolean  "completed"
+    t.string   "category_count", default: [],    array: true
+    t.string   "category",       default: [],    array: true
   end
 
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id", using: :btree

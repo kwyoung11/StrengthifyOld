@@ -1,6 +1,7 @@
 class Exercise < ActiveRecord::Base  
   belongs_to :exerciseable, polymorphic: true
   has_one :rest_period
+  belongs_to :exercise_description, foreign_key: "exercise_id"
   accepts_nested_attributes_for :rest_period, :allow_destroy => true
   before_create :convert_time_to_seconds
   

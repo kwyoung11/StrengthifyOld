@@ -12,9 +12,14 @@ class InvitationsController < ApplicationController
     @invitation.sender = current_user
 
     if @invitation.save
+      if logged_in?
         UserMailer.deliver_invitation(current_user, @invitation).deliver 
-        flash[:notice] = "You've sent a message inviting #{@invitation.recipient_email}. Do you think they'll join us? "
+        flash[:notice] = "You have successfully invited #{@invitation.recipient_email}. "
         redirect_to current_user
+      else
+        flash[:notice] = "Thanks! We'll send you an email when we're ready."
+        redirect_to root_url
+      end
     else
       render :action => 'new'
     end

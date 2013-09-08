@@ -22,7 +22,6 @@ module WorkoutsHelper
   end
   
   
-  
   #########################
   # Begin helper functions
   ########################
@@ -30,7 +29,7 @@ module WorkoutsHelper
   # Set the categories if none was chosen
   def determineCatParam(cat_param)
     if ((cat_param == "All") || (cat_param == nil))
-      cat_param = ["Full Body", "Lower Body", "Upper Body", "Legs", "Hips", "Shoulders", "Arms", "Chest", "Back"]
+      cat_param = ["Full Body", "Lower Body", "Upper Body", "Torso", "Legs", "Hips", "Shoulders", "Arms", "Chest", "Back"]
     else 
       cat_param
     end
@@ -52,7 +51,7 @@ module WorkoutsHelper
          LEFT OUTER JOIN 
             workouts on series.date = workouts.created_at::date AND 
             workouts.user_id = ? AND 
-            workouts.category IN (?) AND 
+            workouts.category::text[] <@ ARRAY[?] AND 
             (workouts.created_at BETWEEN ? AND ?) 
          WINDOW 
             WIN AS (PARTITION BY date_trunc(?, series.date)::date)
@@ -73,7 +72,7 @@ module WorkoutsHelper
         LEFT JOIN (
             exercises INNER JOIN (select * from workouts where user_id = ?) workouts 
             ON exercises.exerciseable_id = workouts.id AND 
-            workouts.category IN (?) AND 
+            workouts.category::text[] <@ ARRAY[?] AND 
             (workouts.created_at BETWEEN ? AND ?)
         ) 
         ON series.date = exercises.created_at::date 
@@ -96,7 +95,7 @@ module WorkoutsHelper
         LEFT JOIN (
             exercises INNER JOIN (select * from workouts where user_id = ?) workouts 
             ON exercises.exerciseable_id = workouts.id AND 
-            workouts.category IN (?) AND 
+            workouts.category::text[] <@ ARRAY[?] AND 
             (workouts.created_at BETWEEN ? AND ?)
         ) 
         ON series.date = exercises.created_at::date 
@@ -120,13 +119,13 @@ module WorkoutsHelper
          LEFT OUTER JOIN 
             workouts on series.date = workouts.created_at::date AND 
             workouts.user_id = ? AND 
-            workouts.category IN (?) AND 
+            workouts.category::text[] <@ ARRAY[?] AND 
             (workouts.created_at BETWEEN ? AND ?) 
          WINDOW 
             WIN AS (PARTITION BY date_trunc(?, series.date)::date)
          ORDER BY 
             date ASC", 
-         time_period, series_length, @user.id, cat_param, time_window, Time.now.midnight, time_period
+         time_period, series_length, @user.id, cat_param, time_window, Time.now.tomorrow.midnight, time_period
         ])
       
       
@@ -144,13 +143,13 @@ module WorkoutsHelper
           LEFT OUTER JOIN 
              workouts on series.date = workouts.created_at::date AND 
              workouts.user_id = ? AND 
-             workouts.category IN (?) AND 
+             workouts.category::text[] <@ ARRAY[?] AND 
              (workouts.created_at BETWEEN ? AND ?) 
           WINDOW 
              WIN AS (PARTITION BY date_trunc(?, series.date)::date)
           ORDER BY 
              date ASC", 
-         time_period, series_length, @user.id, cat_param, time_window, Time.now.midnight, time_period
+         time_period, series_length, @user.id, cat_param, time_window, Time.now.tomorrow.midnight, time_period
         ])
     end
   end

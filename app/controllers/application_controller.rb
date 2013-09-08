@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_timezone
+  # before_filter :set_timezone
   layout :set_layout
   
   
@@ -51,9 +51,9 @@ class ApplicationController < ActionController::Base
     cookies[:auth_token] = user.auth_token
   end
   
-  def set_timezone
-    Time.zone = cookies["time_zone"]
-  end
+  # def set_timezone
+  #   Time.zone = cookies["time_zone"]
+  # end
 
   def track_activity(trackable, action = params[:action])
     current_user.activities.create! action: action, trackable: trackable

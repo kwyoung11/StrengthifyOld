@@ -1,0 +1,315 @@
+
+/********************************************
+*
+* LANDING PAGE
+*
+********************************************/
+
+.info {
+	border: 0px solid red;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 18px;
+}
+
+.invitation-signup {
+	background-color: rgba(0, 77, 188, 0.2);
+	width: 58%;
+	margin: 0 auto;
+	padding: 50px;
+	border-radius: 10px;
+	p {
+		font-family: "Source Sans Pro";
+		font-size: 1.5em;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 1.5em;
+		margin: 0;
+		padding-bottom: 10px;
+	}
+
+	#invitation_recipient_email { 
+		font-size: 0.8em; 
+		padding: 6px 4px;
+		border-radius: 2px;
+		border: 1px solid #ddd;
+		@include rounded-corners(3px);
+	}
+
+	#submit_email {
+		display: inline-block;
+		@extend .btn-success;
+		width: auto;
+		font-size: .9em;
+		margin-top: -5px;
+		padding: 3px 5px;
+		box-shadow: none;
+		border-radius: none;
+	}
+}
+
+#invitation_recipient_email::-webkit-input-placeholder {
+  	display: inline-block;
+  	font-family: "rockwell";
+  	vertical-align: middle;
+  	margin: 0px 0px 0px 0px;
+  	padding: 3px 0px 0px 5px;
+	}
+
+#invitation_recipient_email :-moz-placeholder { /* Firefox 18- */
+    font-family: "rockwell";
+  	vertical-align: middle;
+  	margin: 0px 0px 0px 0px;
+  	padding: 3px 0px 0px 5px;
+}
+
+#invitation_recipient_email ::-moz-placeholder {  /* Firefox 19+ */
+    font-family: "rockwell";
+  	vertical-align: middle;
+  	margin: 0px 0px 0px 0px;
+  	padding: 3px 0px 0px 5px;
+}
+
+#invitation_recipient_email :-ms-input-placeholder {  
+    font-family: "rockwell";
+  	vertical-align: middle;
+  	margin: 0px 0px 0px 0px;
+  	padding: 3px 0px 0px 5px;
+}
+
+#first_value_statement {
+	border: 0px solid red;
+	padding-bottom: 10px;
+	margin-top: 50px;
+	text-align: center;
+	color: #444;
+	font-size: 28px;
+}
+
+#second_value_statement {
+	border-top: 1px grey dotted;
+	border-bottom: 1px grey dotted;
+	padding: 40px;
+	font-size: 22px;
+	font-style: bold;
+}
+
+#second_value_statement a {
+	background: #D00;
+	color: white;
+	padding: 12px;
+	border-radius: 3px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+#second_value_statement a:hover {
+	background: #F00;
+}
+
+.icon-circle-arrow-right {
+	display: inline-block;
+	-webkit-transform: scale(2.5);
+	vertical-align: middle;
+}
+
+.cool-features {
+	position: relative;
+	margin-top: 30px;
+}
+
+.feature-wrap {
+	display: table;
+	background-color: transparent;
+	border-collapse: separate;
+	border-spacing: 0 25px;
+	height: 100%;
+	width: 100%;
+}
+
+.feature-section {
+	padding-top: 60px;
+}
+
+.feature-build-workout {
+	background-color: #dd6666;
+	color: #fdfdfd;
+		&:after {
+		position: absolute;
+		@include triangle-down(#dd6666, 20px);
+		left: 47%;
+		margin-top: 0px;
+	}
+}
+
+.feature-ex-db {
+	background-color: #66bb99;
+		&:after {
+		position: absolute;
+		@include triangle-down(#66bb99, 20px);
+		left: 47%;
+		margin-top: 0px;
+	}
+}
+
+.meta-description-dark {
+	color: #444;
+	text-align: left;
+	padding: 10px 5px;
+	margin: 0px 10px 0px 0px;
+	border-bottom: 1px dotted #444;
+}
+
+.meta-description-light {
+	color: #fdfdfd;
+	text-align: left;
+	padding: 10px 5px;
+	margin: 0px 0px 0px 10px;
+	border-bottom: 1px dotted #eee;
+}
+
+
+.feature-perform {
+	background-color: #dd6666;
+	color: #fdfdfd;
+		&:after {
+		position: absolute;
+		@include triangle-down(#dd6666, 20px);
+		left: 47%;
+		margin-top: 0px;
+	}
+}
+
+.feature-analyze {
+		background-color: #66bb99;
+		&:after {
+		position: absolute;
+		@include triangle-down(#66bb99, 20px);
+		left: 47%;
+		margin-top: 0px;
+	}
+}
+
+.feature-social {
+	background-color: #dd6666;
+	color: #fdfdfd;
+		&:after {
+		position: absolute;
+		@include triangle-down(#dd6666, 20px);
+		left: 47%;
+		margin-top: 0px;
+	}
+}
+
+.feature { display: table-row; margin: 0px auto;}
+
+.main-feature-header {
+	line-height: 1.1em;
+	padding: 0px 0px 10px 0px;
+	margin: 0;
+	font-family: "AlteHaasGrotesk";
+	font-size: 4.1em;
+}
+
+.section-header {
+	position: relative;
+	top: 10px;
+	color: white;
+	padding: 1px 10px;
+	text-align: center;
+	background-color: #a4b344;
+	margin: 0 auto;
+	width: 100px;
+}
+
+.feature-gif {
+	z-index: 500;
+	display: table-cell;
+	width: 75%;
+	height: 100%;
+	img { 
+		max-width: 100% !important; 
+		height: auto;
+	}
+}
+
+.feature-description {
+	position: relative;
+	font-weight: bolder;
+	display: table-cell;
+	border-radius: 15px;
+	text-align: left;
+	font-family: "AlteHaasGrotesk";
+	font-size: 1.5em;
+	margin-top: 20px;
+	width: 25%;
+	vertical-align: middle;
+	max-width: 400px;
+
+	ul { 
+		padding: 0px;
+		list-style: none;
+		li { padding: 10px; }
+	}
+}
+
+.feature-perform {
+	i { vertical-align: middle; }
+	img { @include outer-box-shadow(#0077CC, 0px, 0px, 0px, 0px); }
+}
+
+.phone-wrap {
+	vertical-align: middle;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.phone {
+	display: table-cell;
+	width: 30%;
+	vertical-align: middle;
+	img { @include rounded-corners(30px); max-width: 100% !important; height: auto; }
+}
+
+.next-phone {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+
+@media screen and (max-width: 800px) {
+.main-feature-header { line-height: 1.1em; }
+.feature-gif {  width: 100%;  float: left; }
+.feature-description {
+	display: table; 
+	width: 100%;
+	max-width: 100%;
+	float: left;
+	ul { 
+		display: table-row;
+		width: 100%;
+		margin: 0 auto;
+
+		li { 
+			margin: 0 auto;
+			padding: 0px 10px;
+			height: 100%;
+			max-width: 120px;
+			display: table-cell;
+
+		}
+	}
+}
+
+.header-bg { font-size: 4.1em; }
+#first_value_statement, #second_value_statement {line-height: 0.8em;}
+
+.invitation-signup {
+	padding: 20px 15px;
+	width: 90%;
+	input { margin-bottom: 10px; }
+}
+
+}

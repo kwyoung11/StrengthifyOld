@@ -14,9 +14,6 @@ $nav_width: 10em;
 	z-index: 100;
 }
 
-.header-bg { font-size: 4.1em; }
-#first_value_statement, #second_value_statement {line-height: 0.9em;}
-
 #header_content {
 	width: 100%; 
 	text-align: center;
@@ -52,6 +49,8 @@ $nav_width: 10em;
 }
 
 
+
+
 /********************************************
 *
 * WRAPPERS
@@ -59,6 +58,14 @@ $nav_width: 10em;
 ********************************************/
 
 #application_wrapper {
+	width: 100%;
+	border: 2px solid green;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#landing_wrapper {
+	border: 1px solid transparent;
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
@@ -68,10 +75,4 @@ $nav_width: 10em;
 	margin: 70px auto;
 	text-align: center;
 	overflow: visible;
-}
-
-/* For landing page */
-.section_wrapper {
-	width: 1150px;
-	margin: 0 auto;
 }
