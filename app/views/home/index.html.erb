@@ -2,18 +2,22 @@
 
 		<h1 class="slogan header-bg">Strengthify Yourself</h1>
 		<h2 class="val header-md"> Automated Personal Training at Your Fingertips</h2>
-		<div class="invitation-signup">
-			<%= form_for Invitation.new do |f| %>
-			<p> 
-				Strengthify is currently in private beta. Register your email with us and we'll let you know when we're ready for you.
-			</p> 
-			<p>
-			  <%= f.label :recipient_email, "Your Email:" %>
-			  <%= f.email_field :recipient_email, placeholder: "No spam. Pinky promise" %>
-			  <%= link_to_submit 'Register E-mail', "submit_email" %>
-			</p>
-			<% end %>
+
+		<div class="flipbox-container">
+			<div class="invitation-signup flipbox">
+				<%= form_for(Invitation.new, :html => {class: "ws-instantvalidation", remote: true}) do |f| %>
+				<p> 
+					Strengthify is currently in private beta. Register your email with us and we'll let you know when 	we're ready for you.
+				</p> 
+				<p>
+				  <%= f.label :recipient_email, "Your Email:" %>
+				  <%= f.email_field :recipient_email, required: true, placeholder: "No spam. Pinky promise" %>
+				  <%= f.submit 'Register E-mail', id: "submit_email" %>
+				</p>
+				<% end %>
+			</div>
 		</div>
+
 </div>
 
 
@@ -28,7 +32,7 @@
 					<%= image_tag "feature-build-workout.png" %>
 				</div>
 				<div class="feature-description"> 
-					<div class="meta-description-dark">
+					<div class="meta-description">
 						Your workout should be configurable. Everyone's different. That's why Strengthify provides options for building a workout exactly the way you like it. 
 					</div>
 					<ul> 
@@ -48,7 +52,7 @@
 			<div class="feature"> 
 
 				<div class="feature-description"> 
-					<div class="meta-description-light">
+					<div class="meta-description">
 						Tired of the same old workout? You should be able to easily learn new exercises. Search our exercise database to increase workout variety and take muscle confusion to the next level.
 					</div>
 					<ul> 
@@ -57,7 +61,7 @@
 						<li> Search by exercise, category, equipment type, and muscle groups </li>
 					</ul>
 				</div> 
-		
+
 				<div class="feature-gif"> 
 					<%= image_tag "feature-exercise-db.png" %>
 				</div>
@@ -69,7 +73,7 @@
 	<section class="feature-section  feature-perform">
 		<h3 class="main-feature-header">Take Your Workout To The Gym, Into Your Backyard, Anywhere</h3>
 		<div class="feature-wrap">
-			<div class="feature feature-perform">
+			<div class="feature">
 				
 				<div class="feature-gif"> 
 					<div class="phone-wrap">
@@ -92,14 +96,13 @@
 				</div>
 	
 				<div class="feature-description"> 
-						<div class="meta-description-dark">
+						<div class="meta-description">
 						Use your mobile phone to help guide you through your workout. Our program guides you through each exercise and each set of your workout, so you don't have to wonder what you have to do next. 
 					</div>
 					<ul> 
 						<li> Proceed sequentially through your workout </li>
 						<li> Edit weight and reps during your workout -- for e.g. if you lifted more or less </li>
 						<li> Progress bar keeps you motivated and on track </li>
-						<li>  </li>
 					</ul>
 				</div> 
 			</div>
@@ -107,28 +110,29 @@
 	</section>
 
 <section class="feature-section  feature-analyze">
+	<h3 class="main-feature-header">Visualize Your Progress</h3>
 	<div class="feature-wrap">
 		<div class="feature">
 			<div class="feature-description"> 
-					<div class="meta-description-light">
+					<div class="meta-description">
 						See your progress and determine where you can improve. Get feedback on important metrics such as <span class="emphasis"> Load-Volume </span> (LV) and Workout Time, and view each against specific categories.
 					</div>
 					<ul> 
 						<li> Interactive graphs for beatiful visual displays </li>
 						<li> Change graph time scales between days, weeks and months </li>
 						<li> Filter by metric and category to segment your data </li>
-						<li>  </li>
 					</ul>
 			</div> 
 			<div class="feature-gif"> 
-				<%= image_tag "feature-analyze.png" %>
+				<%= image_tag "feature-analyze-2.png" %>
 			</div>
 			
 		</div>
 	</div> <!-- end feature wrap -->
 </section>
 
-<section class="feature-section feature-social">
+<!-- <section class="feature-section feature-social">
+	<h3 class="main-feature-header">Share With Friends, Personal Trainers, Coaches</h3>
 	<div class="feature-wrap">
 		<div class="feature">
 			<h3>Invite and Challenge Friends</h3>
@@ -136,21 +140,15 @@
 				<%= image_tag "" %>
 			</div>
 			<div class="feature-description">
-					<div class="meta-description-dark">
+					<div class="meta-description">
 						Your workout should be configurable. Everyone's different. That's why Strengthify provides options for building a workout exactly the way you like it. 
 					</div>
 			 </div> 
 		</div>
-	</div> <!-- end feature wrap -->
-</section>
+	</div> 
+</section> -->
 
 </div>	<!-- end cool features -->
 
 
-<div id="first_value_statement"> 
-	Strength Training Doesn't Have To Be A Hassle. 
-</div>
-<p id="second_value_statement"> 
-	Experience the best way to record workouts. <%= link_to 'Get Started', signup_path  %> 
-</p>
 

@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.flippy
 //= require jquery.icheck
 //= require jquery.ui.position
 //= require jquery.ui.datepicker
