@@ -51,5 +51,40 @@ $(document).on('ready page:load', function() {
 
 	navResponsive("130px", "10em");
 
+		$(window).on('resize', function() { reArrangeDOMElements(); });
+		reArrangeDOMElements();
+
+		function reArrangeDOMElements() {
+			var myViewPort = viewport();
+			if (myViewPort.width < 800) {
+				$(".feature-ex-db").find(".feature-description").insertAfter(".feature-ex-db .feature-gif");
+				$(".feature-analyze").find(".feature-description").insertAfter(".feature-analyze .feature-gif");
+			}
+
+			if (myViewPort.width > 800) {
+					$(".feature-ex-db").find(".feature-description").insertBefore(".feature-ex-db .feature-gif");
+					$(".feature-analyze").find(".feature-description").insertBefore(".feature-analyze .feature-gif");
+			}
+		}
+
+		$("#submit_email").on('click', function() {
+			console.log($("#invitation_recipient_email").val() == "");
+			if (($(".ws-errorbox").length == 0 || $(".ws-errorbox").css("display") == "none") && $("#invitation_recipient_email").val() != "" ) {
+				$(".flipbox").flippy({
+					duration: "250",
+					verso: "Thanks! We'll send you an email when we're ready. No spam. Promise."
+				});
+			}
+		});
+
+		function viewport() {
+    	var e = window, a = 'inner';
+    	if (!('innerWidth' in window )) {
+    	    a = 'client';
+    	    e = document.documentElement || document.body;
+    	}
+    	return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+		}
+
 
 });
