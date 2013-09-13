@@ -27,12 +27,19 @@ class UserMailer < ActionMailer::Base
   end
 
   def deliver_invitation(user, invitation)
-    @user = user
+    if user == "Strengthify"
+      user_name = "Strengthify"
+      user_email = "activeterps@gmail.com"
+    else
+      user_name = user.name
+      user_email = user.email
+    end
+    @user_name = user_name
     @invitation = invitation
     mail( 
     to: invitation.recipient_email,
-    from: %{"#{user.name}"},
-    reply_to: user.email, 
+    from: %{"#{user_name}"},
+    reply_to: user_email, 
     subject: invitation.subject, 
     message: invitation.message
     )

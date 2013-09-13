@@ -118,7 +118,7 @@ class WorkoutsController < ApplicationController
   
   private
     def workout_params
-      params.require(:workout).permit(:snagged, :completed, :id, :user_id, :name, :created_at, :updated_at, :duration, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, :planned, exercises_attributes: [:id, :exercise_id, :name, :weight, :reps, :hours, :minutes, :time_option, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
+      params.require(:workout).permit(:category_count, :snagged, :completed, :id, :user_id, :name, :created_at, :updated_at, :duration, :hours, :minutes, :seconds, :description, :sets, :category, :load_volume, :planned, exercises_attributes: [:id, :exercise_id, :name, :weight, :reps, :hours, :minutes, :time_option, :seconds, :_destroy, rest_period_attributes: [:id, :minutes, :seconds, :_destroy]]) 
     end
 
     def set_workout
