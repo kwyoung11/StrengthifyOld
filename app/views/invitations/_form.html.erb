@@ -14,12 +14,12 @@
 	
 	<div class="field">
 		<%= f.label "Subject:" %>
-  	<%= f.text_area :subject, :placeholder => " Subject", :value => "#{current_user.name} has invited you to Strengthify" %>
+  	<%= f.text_area :subject, :placeholder => " Subject", :value => "#{current_user.name unless current_user.nil?} has invited you to Strengthify" %>
 	</div>
 	
 	<div class="field">
 		<%= f.label "Message:" %>
-  	<%= f.text_area :message, :placeholder => " Tell your friend about us", :value => "#{current_user.name} has invited you to join Strengthify, which is currently in private beta." %>
+  	<%= f.text_area :message, :placeholder => " Tell your friend about us", :value => "#{current_user.name unless current_user.nil?} has invited you to join Strengthify, which is currently in private beta." %>
 	</div>
 	
 	<div class="field" id="submit">

@@ -10,6 +10,7 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params)
     @invitation.sender = current_user
+    puts logged_in?
 
     if @invitation.save
       if logged_in?
@@ -21,7 +22,7 @@ class InvitationsController < ApplicationController
         redirect_to root_url
       end
     else
-      render :action => 'new'
+     render :action => 'new'
     end
   end
 

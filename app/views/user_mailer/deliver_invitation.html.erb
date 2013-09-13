@@ -9,7 +9,7 @@
      <%= @invitation.message %>
      <br />
      <br />
-     <%= link_to "Follow this link to join #{@user.name} and see why Strengthify is the best way to strength train.", signup_url(invitation_token: @invitation.token, name: @invitation.name) %> 
+     <%= link_to "Follow this link to join #{@user_name} and see why Strengthify is the best way to strength train.", signup_url(invitation_token: @invitation.token, name: @invitation.name) %> 
     </p>
   </body>
 </html>
