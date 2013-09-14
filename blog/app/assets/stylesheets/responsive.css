@@ -1,0 +1,173 @@
+
+@media only screen and (max-width: 640px) {
+
+body { overflow: hidden;}
+
+.nav-li {
+	float: none;
+	display: block;
+}
+
+.header {
+	top: 0;
+	position: relative;
+	float: none;
+	width: 100%;
+	height: 70px;
+	clear: none;
+	display: block;
+	background-color: white;
+	border-bottom: 1px solid #bbb;
+}
+
+.what-im-doing {
+	display: none;
+}
+
+.wrap {
+	position: relative;
+	top: 0;
+	margin: 0 auto;
+	width: 74%;
+	height: 65px;
+	vertical-align: none;
+	position: relative;
+	display: block;
+}
+
+#image {
+	position: absolute;
+	left: 0;
+	top: 8%;
+	-webkit-transform: scale(0.6);	
+	margin: -20px 0px 0px 0px;
+}
+
+.head_shot {
+	border: 0px solid red;
+	margin: 0px 0px 0px 0px;
+}
+
+.home-icon {
+	display: none;
+}
+
+.author-name {
+	position: absolute;
+	display: inline-block;
+	top: 40%;
+	left: 44%;
+	margin: 0px 0px 0px 10px;
+	font-size: 14px;
+}
+
+#social_media_wrapper {
+
+	float: right;
+	display: inline-block;
+	border: 0px solid blue;
+	top: 0;
+	margin: -100px 0px 0px 0px;
+
+}
+
+#social_media {
+	width: 75px;
+}
+
+/*  LOGOS */
+/* Stackoverflow logo */
+#stackoverflow_logo {
+  margin: -1px 0px 0px -1px;
+  -webkit-transform: scale(0.7);
+}
+
+/* Github logo */
+#github_logo .logo-github-small {
+  margin: -13px 0px 0px -10.5px;
+  -webkit-transform: scale(0.45);
+}
+
+/**** ActiveTerps logo ****/
+#at_logo {
+	font-size: 1.25em;
+  margin-top: 6px;
+}
+
+/**** Linkedin logo ****/
+#in_logo {
+	font-size: 1.5em;
+  margin-top: 6px;
+}
+
+
+.content_wrapper {
+	float: none;
+	display: block;
+	width: auto;
+	height: auto;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 50px 0px 0px 0px;
+	padding: 0;
+	background-color: white;
+	text-align: center;
+}
+
+.article-list {
+	padding: 10px 0px 10px 0px;
+}
+
+.article-body p {
+	font-size: 1.35em;
+	line-height: 22px;
+	color: #676358;
+}
+
+.article-body p:first-child {
+	font-size: 1.5em;
+	line-height: 28px;
+	font-style: normal;	
+	color: #556767;
+}
+
+.article-header {
+	padding: 10px 0px 0px 10px;
+}
+
+.article-body {
+	padding: 15px;
+}
+
+.main {
+	padding: 0px 10px 0px 10px;
+	text-align: center;
+}
+
+#statuses {
+	display: none;
+}
+
+/* Portfolio page */
+
+.portfolio-piece {
+	padding: 10px;
+	margin: 0px 0px 0px 0px;
+}
+
+.portfolio-piece-container {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.portfolio-piece__description p {
+	font-size: 1.3em;
+}
+
+.arrow-container {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+
+} /* end media query */

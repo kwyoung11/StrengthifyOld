@@ -1,0 +1,27 @@
+
+	<section class="main">
+	<% @posts.each do |post| %>
+			<ul class="article-list">
+				<% if post.published == false && logged_in? %>
+					<li><h1 class="article-title"><%= link_to "#{raw post.title}".html_safe, post, class: "article-title" %></h1></li>
+					<li> <time class="article-date"> <%= post.created_at.strftime("%B %Y") %> </time>	</li>	
+				<% end %>
+				<% if post.published != false %>
+					<li> <h1 class="article-title">	<%= link_to "#{raw post.title}".html_safe, post, class: "article-title" %>	</h1></li>
+					<li> <time class="article-date"> <%= post.created_at.strftime("%B %Y") %>	</time>
+				<% end %>
+					<% if logged_in? %>
+  					<li>	<%= link_to 'Edit', edit_post_path(post), class: "edit-delete" %>
+									<%= link_to 'Delete', post, class: "edit-delete", :method => :delete %>
+									<% if post.published == false %>
+										<%= form_tag(post_path(post), method: :put) do %>
+											<%= hidden_field_tag "post[published]", 1 %>
+											<%= submit_tag 'Publish' %>
+										<% end %>
+									<% end %>
+						</li>
+					<% end %>
+			</ul>
+	<% end %>
+	</section>
+

@@ -1,0 +1,115 @@
+
+/****************************************************************
+*
+* 	POST CONTENT
+*
+*****************************************************************/
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+/*****
+* Posts#show
+*****/
+
+.article-body {
+	padding: 20px 100px 50px 80px;
+}
+
+.article-body p {
+	font-size: 1.5em;
+	line-height: 33px;
+	color: #676358;
+}
+
+.article-body p:first-child {
+	font-size: 1.75em;
+	line-height: 35px;
+	font-style: normal;	
+	color: #556767;
+}
+
+.article-body img {
+	padding: 20px;
+}
+
+/*****
+* Posts#index
+*****/
+
+.main {
+	padding: 50px 50px 0px 80px;
+}
+
+.article-header {
+	padding: 50px 50px 0px 80px;
+}
+
+.article-title {
+	display: inline-block;
+	font-size: 22px;
+	color: #423f37;
+	font-weight: bold;
+	font-family: Lucida Bright;
+	text-align: left;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+	line-height: 26px;
+}
+
+.article-title:hover {
+	color: #65aacd;
+}
+
+.article-date {
+	display: inline-block;
+	margin-top: 7px;
+	font-size: 1.2em;
+	text-align: left;
+	color: #b6c5a8;
+}
+
+.article-list {
+	padding: 10px 10px 10px 0px;
+	list-style: none;
+	text-decoration: none;
+}
+
+
+.edit-delete {
+	text-decoration: underline;
+	font-size: 10px;
+	color: red;
+}
+
+
+/* Article Styles */
+
+img.left {
+	float: left;
+}
+
+img.center {
+	margin: 20px auto 20px 20px;
+}
+
+img.right {
+	float: right;
+}
+
+img.illustration {
+	box-shadow: #444 0 0 10px;
+}
+
+.center_captioned {
+	font-weight: bold;
+	font-family: copperplate;
+	margin: 0px 0px 0px 200px;
+}
+
+.article-body blockquote {
+	font-weight: bolder;
+	font-size: 1.3em;
+	margin: 2em 0px 2em 0px;
+	color: #444;
+}

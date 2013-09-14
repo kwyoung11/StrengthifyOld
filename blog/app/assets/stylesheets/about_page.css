@@ -1,0 +1,137 @@
+/************************************************
+*
+*  About Page
+*
+*************************************************/
+
+
+#experience {
+	border: 0px solid black;
+	padding: 50px;
+}
+
+#about {
+	font-family: baskerville;
+	font-size: 18px;
+}
+
+#experience ul {
+	border-radius: 5px;
+	border: 1px dotted #666;
+	margin-right: 50px;
+	padding: 20px;
+	background: #fff;
+	font-family: baskerville;
+	font-size: 15px;
+}
+
+.list_format {
+	list-style-type: none;
+}
+
+.course a {
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.list_format li {
+	font-size: 13px;
+}
+
+.qualifier strong {
+	font-size: 14px;
+}
+
+.qualifier {
+	text-decoration: none;
+	font-size: 12px;
+	margin-right: 50px;
+	padding-right: 50px;
+	border-top: 0px solid black;
+	border-right: 0px solid black;
+	border-left: 0px solid black;
+	border-bottom: 0px dotted black;
+}
+
+.status_active {
+	color: #F32;
+	font-family: copperplate;
+	float: right;
+	margin-right: 50px;
+}
+
+.status_onHold {
+	color: #777;
+	font-family: copperplate;
+	float: right;
+	margin-right: 50px;
+}
+
+.firstWord {
+	text-decoration: underline;
+	color: #EA6;
+	font-weight: bold;
+	text-shadow: 0.5px 0.5px #666;
+}
+
+#projects p {
+	padding-left: 30px;
+	margin-right: 50px;
+	font-family: baskerville;
+	font-size: 16px;
+}
+
+#projects a {
+	font-size: 17px;
+	color: #666;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#projects a:hover {
+	color: #1645bd;
+}
+
+#projects {
+	list-style-type: none;
+}
+
+#stack {
+	color: #555;
+	font-size: 13px;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+.book {
+	color: #666;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#accounts {
+	list-style-type: none;
+	border: 1px solid red;
+	margin: 0 auto;
+}
+
+#accounts div {
+	border: 0px solid black;
+	overflow: hidden;
+	width: 175px;
+	margin: 0 auto;
+}
+
+#accounts li {
+	display: inline;
+	float: left;
+	padding-right: 10px;
+}
+
+.account a {
+	color: #444;
+	font-size: 13px;
+	font-weight: bold;
+}

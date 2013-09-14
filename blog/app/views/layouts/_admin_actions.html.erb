@@ -1,0 +1,7 @@
+<% if logged_in? %>
+		<ul class="admin_actions">
+			<li> <%= link_to 'Edit', edit_post_path(@post) if @post && !current_page?(:action => 'new') %> </li>
+			<li> <%= link_to 'New Post', new_post_path %> </li>
+			<li> <%= link_to 'Delete', @post, :method => :delete if @post %> </li>
+		</ul>
+	<% end %>

@@ -1,0 +1,9 @@
+<%= link_to statuses_path do %>
+<span class="status"> 
+	<div id="quote">
+		<span id="first_curly">&#8220;</span>
+		<%= current_status.status.html_safe unless current_status.nil? %>
+		<span id="last_curly">&#8221;</span>
+		</span>&nbsp;</span>
+		</div>
+<% end %>
