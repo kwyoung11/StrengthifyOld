@@ -1,0 +1,11 @@
+
+<header class="article-header">
+	<h1 class="article-title"> <%= @post.title.html_safe %> </h1><br />
+	<time class="article-date"><%= @post.created_at.strftime("%B %Y") %></time>
+</header>
+
+<div class="article-body">
+	<%= markdown(@post.body) %>
+</div>
+
+

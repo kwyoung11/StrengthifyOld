@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> <%= title %> </title>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="<%= meta_keywords %>" />
+	<meta name="description" content="<%= meta_description %>" />
+	<meta name="author" content="Kevin William Young" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-39228168-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+  
+  <%= favicon_link_tag "image_profile3.ico" %>
+  <%= stylesheet_link_tag "application", :media => "all", :recursive => true %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header class="header">
+	<div class="wrap">
+			<div id="image">	
+				<%= link_to image_tag("kevin.jpg", options = {:class => "head_shot"}), root_url %>
+			</div>
+			<h3 class="author-name"> <%= link_to "KEVIN YOUNG", root_url, id: "name_link" %> </h3>
+			<p class="what-im-doing"> Working on <%= link_to "Strengthify", "http://strengthify.me" %></br>
+			 		Web Development Intern @ <%= link_to "Fosterly", "http://fosterly.com" %> </br>
+					Studying <%= link_to "Computer Science @ University of Maryland", "https://www.cs.umd.edu/" %> </p>
+			<div id="social_media_wrapper">
+				<%= render '/layouts/social_media' %>
+			</div>
+
+		</div>
+		<%= render '/layouts/admin_actions' %>
+		<nav class="nav-li">
+			<li class="nav-li-item"> More
+				<ul class="nav-dropdown">
+					<li class="nav-dropdown-item"> <%= link_to "About", "/about" %></li>
+					<li class="nav-dropdown-item"> <%= link_to "Portfolio", "/portfolio/index" %></li>
+				</ul>
+			</li>
+		</nav>
+</header>
+	
+	<div class="content_wrapper">
+		<%= link_to '<i class="icon-home"></i>'.html_safe, root_url, class: "home-icon" %>
+		<%= yield %>
+	</div>
+
+</body>
+</html>
+
+<script> 
+$(function() {
+	$(".nav-li-item").on('click', function() {
+		if ($(".nav-dropdown").css("display") == 'none') {
+			$(this).find("ul").show();
+			return false;
+		}
+	});
+
+	// Clicking anywhere in browser window hides the list.
+    window.onclick = hideMoreAboutMe;
+		function hideMoreAboutMe() {
+	  			$(".nav-li-item ul").hide();	
+		}
+});
+</script>
+
+<script>
+$(document).ready(function(){
+
+var height = $("#statuses").height();
+	var width = $("#statuses").width();
+	$("#status_link").css("margin-top", "" + (height/2 - 10) + "px");
+	$("#status_link").css("margin-left", "" + (width/2 - 20) + "px");
+
+
+	// On window resize
+$(window).resize(function() {
+  var height = $("#statuses").height();
+	var width = $("#statuses").width();
+  $("#status_link").css("margin-top", "" + (height/2 - 10) + "px");
+	$("#status_link").css("margin-left", "" + (width/2 - 20) + "px");
+});
+
+});
+	
+</script>

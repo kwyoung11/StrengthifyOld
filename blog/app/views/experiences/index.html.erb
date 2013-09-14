@@ -1,0 +1,41 @@
+
+
+<div id="experience">
+	<p id="about"> This website acts as my "repository", where I may write about topics concerning programming and web development, and occasionally health and exercise. I also (try to) keep track of my projects here. </p>
+<h1>Experience</h1>
+<h3>Web Development & Programming: </h3>
+	
+	<p class="qualifier"> <strong> Courses </strong> I've taken and completed: </p>
+	<ul class="list_format" id="courses">
+		<li> <span class="course"> <%= link_to 'HarvardX CS50X Introduction to Computer Science', "https://www.edx.org/courses/HarvardX/CS50x/2012/info" %> </span> on edx.org (<%= link_to 'Certificate', 'https://s3.amazonaws.com/verify.edx.org/downloads/799d195703d34479abed345077208177/Certificate.pdf' %>)</li>
+		<li> <span class="course"> <%= link_to 'Stanford CS106A Programming Methodology', 'http://see.stanford.edu/see/courseinfo.aspx?coll=824a47e1-135f-4508-a5aa-866adcae1111' %> </span> (Solutions on <%= link_to 'GitHub', 'http://github.com/kwyoung11/CS106A' %>)</li>
+	</ul>
+	
+	<p class="qualifier"> <strong> Projects </strong> I've undertaken: </p>
+	<ul id="projects">
+		<li> <%= link_to 'Strengthify', 'http://strengthify.me' %> <span class="status_active">[ACTIVE, UNDER DEVELOPMENT] </span><br /> 
+			<p> <span class="firstWord">Description:</span> A web app that makes it easier to record strength training progress. Includes analytics and intuitive forms for recording workouts. So far this has involved working on the full stack: writing custom SQL queries for the analytics-facing side, lots of jquery and Ajax for switching between graphs and browsing past workouts, visualizing query output with D3.js, designing a simple logo in SVG and D3, all the HTML and CSS, and many smaller snippets of javascript and jquery code for improving UI. I also partially integrated with the Fitbit API and OAuth login. <br /><span id="stack">Stack:</span> Postgres 9.2.4, SQL, RoR4, HTML, CSS3, SVG, JQuery UI/Ajax, Javascript, D3.js, Git, Heroku. <p>
+			</li>
+		<li> <%= link_to 'ActiveTerps', 'http://activeterps.com' %> <span class="status_onHold">[ON HOLD] </span><br />
+			<p> <span class="firstWord">Description:</span> A web app to encourage physical activity among college students, staff and faculty. Implemented a social component, and a simple workout recording interface. This project is on hold. <br /><span id="stack">Stack:</span> Postgres 9.1.2, SQL, RoR3.1, HTML, CSS3, Git, Heroku. <p>
+			</li>	
+	</ul>
+	
+	<p class="qualifier"> <strong> Books </strong> I've read, from cover to cover and from which I've completed some or all of the associated problem sets (if any): </p>
+		<ul class="list_format" id="books">
+			<li><span class="book">Agile Web Development with Rails </span> by Sam Ruby, Dave Thomas and David Heinemeir Hansson</li>
+			<li><span class="book">The Art and Science of Java: An Introduction to Computer Science </span>  by Eric Roberts </li>
+			<li><span class="book">Absolute Beginner's Guide to C </span>  by Greg Perry </li>
+			<li><span class="book">Teach Yourself Visually HTML and CSS </span>  by Mike and Linda Wooldridge </li>
+			<li><span class="book">PHP Solutions: Dynamic Web Design Made Easy </span> by David Powers </li>
+		</ul>
+	
+	<p class="qualifier"> Related <strong> Accounts</strong>: </p>
+	<ul id="accounts">
+		<div>
+		<li> <span class="account"><%= link_to 'Github', 'http://github.com/kwyoung11' %> <span class="account"></li>
+		<li> <span class="account"><%= link_to 'StackOverflow', 'http://stackoverflow.com/users/1205460/kwyoung11' %> <span class="account"></li>
+		</div>
+	</ul>
+	
+</div>

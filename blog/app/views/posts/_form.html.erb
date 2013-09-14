@@ -1,0 +1,56 @@
+<div id="syntax_reminder">
+	<h4> Markdown Syntax</h4>
+	<ul>
+		<li><b> Images: </b>![alt text](:id|:size|:float| type[e.g. illustration]) </li>
+		<li><b> Code: </b><br /> ~~~lang <br />[code] <br />~~~~  <br />or four spaces/tab</li>
+		<li> <b>Italic/Underline/Bold: </b> *text* / _text_ / **text** </li>
+		<li> <b> Headers: </b> #text or ##text </li>
+		<li> <b> Block Quote: </b> >text </li>
+		<li> <b> hr: </b> ---- </li>
+
+	</ul>
+</div>
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+
+	<%= f.fields_for :images do |img| %>
+		<div class="field">
+	    <%= img.label :name %><br />
+	    <%= img.text_field :name %>
+	  </div>
+		<div class="field">
+		  <%= img.label :file %><br />
+		  <%= img.file_field :file %>
+		</div>
+		<% end %>
+
+    <div class="field">
+      <%= f.label :published, "Publish?" %>
+      <%= f.check_box :published %>
+    </div>
+  	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+<% end %>
+
+
+

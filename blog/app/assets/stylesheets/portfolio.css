@@ -1,0 +1,146 @@
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.portfolio-piece {
+	overflow: hidden;
+	background-color: white;
+	color: #343434;
+	margin: 50px 0px 0px 0px;
+	padding: 0px;
+}
+
+.portfolio-piece-container {
+	border-bottom: 1px dotted #444;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 30px 0px 0px;
+}
+
+.portfolio-piece__description {
+	background-color: white;
+	padding: 0px 0px 0px 0px;
+	border-radius: 10px;		
+}
+
+.portfolio-piece__description p {
+	font-size: 1.5em;
+	line-height: 1.3em;	
+}
+
+.portfolio-piece__image {
+	border-radius: 10px;
+	padding: 10px;	
+	width: 75%;
+	float: left;
+	background-color: #555;
+	box-shadow: #444 0 0 10px;	
+}
+
+.portfolio-image {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.portfolio-piece__image__caption {
+	clear: both;
+	font-size: 1.8em;
+	color: #777;
+	width: 75%;
+	margin: 0 auto;
+	padding: 0.5px 0px 10px 0px;
+}
+
+.portfolio-piece__image__caption p {
+	font-size: 0.7em;
+}
+
+.grid-pad {
+	padding: 20px 0 20px 20px;
+}
+
+.col-1-3 {
+	padding: 0px 0px 0px 0px;
+	margin: 0 auto;
+}
+
+.col-2-3 {
+}
+
+.portfolio-piece__header {
+	text-align: center;
+	font-size: 2.1em;
+	padding-bottom: 20px;
+}
+
+.portfolio-piece__header a {
+	color: #0077cc;
+	text-decoration: none;
+}
+
+.portfolio-piece__header a:hover {
+	text-decoration: underline;
+}
+
+.portfolio-piece__header p {
+	font-size: 2.1em;
+}
+
+.arrow-container {
+	border: 1px solid transparent;
+	float: left;
+	width: 10%;
+	margin-top: 13%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.left-arrow {
+	opacity: 0.6;
+	width: 100%;
+	-webkit-transform: scale(1);
+}
+
+.right-arrow {
+	opacity: 0.6;
+	width: 100%;
+	-webkit-transform: scale(1);
+}
+
+.left-arrow:hover, .right-arrow:hover {
+	opacity: 1;
+
+	cursor: pointer;
+	text-shadow: 
+    0 2px 2px rgba(255,255,255,0.7), 
+    0 10px 4px rgba(0,0,0,0.5);
+}
+
+#name_logo {
+	margin: 3px 0px 0px 0px;
+	text-decoration: none;
+	font-size: 26px;
+	font-family: baskerville;
+	font-weight: bolder;
+	text-shadow: 0px 0px #d55;
+}
+
+#name_logo a {
+	color: #343434;
+}
+
+#name_logo a span {
+	color: #777;
+}
+
+#name_logo a i {
+	-webkit-transform: scale(0.7);
+	margin: 11px 0px 0px 5px;
+}
+
+.image-count {
+	font-family: Times;
+	font-weight: bolder;
+}

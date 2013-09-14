@@ -1,0 +1,97 @@
+<div class="portfolio-piece grid-pad">
+	<div class="portfolio-piece-container">
+		<div class="portfolio-piece__header">
+			<span id="name_logo"><%= link_to name_and_notifications, "http://www.strengthify.com" %></span>
+		</div>
+
+		<div class="col-1-3">
+
+			<div class="arrow-container"><%= image_tag "arrow_left.svg", class: "left-arrow"%></div>
+
+			<div class="portfolio-piece__image"> 
+				<%= image_tag 'strengthify.png', id: "strengthify-img-0", class: "portfolio-image" %>
+				<%= image_tag 'strengthify2.png', id: "strengthify-img-1", class: "portfolio-image" %>
+			</div>
+			
+			<div class="arrow-container"><%= image_tag "arrow_right.svg", class: "right-arrow" %></div>
+
+			<div class="portfolio-piece__image__caption">
+				<p id="strengthify-desc-0" class="portfolio-image-description">
+					<span class="image-count"> </span>: An interactive graph depicting load volume over the past 12 days (taken 	on July 17th, 2013). Change the time scale and metric at top right, and 	hover over graph bars to view further details.
+				</p>
+				<p id="strengthify-desc-1" class="portfolio-image-description">
+					<span class="image-count"> </span>: Dynamic forms let you customize workout and exercise data, including the number of exercises, sets, weights and reps, rest periods and total time. 
+				</p>
+				<p id="strengthify-desc-2" class="portfolio-image-description">
+					<span class="image-count"> </span>: Build workouts from over 74 exercises, search specific exercises or filter by skill level, category and other metrics, and then save them as planned workouts.
+				</p>
+			</div>
+		</div>
+		<div class="col-2-3">
+			<div class="portfolio-piece__description"> 
+				<p>
+					<%= link_to 'Strengthify.com', "http://www.strengthify.com" %> is the best 	way to achieve your strength training goals. Set custom challenges, then "workout" your way to completing them. We make that simple: plan workouts by choosing from over 74 exercises, then view it as a reference on your mobile phone during 	workouts. Once saved, let strengthify analyze your progress and share your hard work with fellow strengthifyers.  <br /><br />
+	
+					My primary role has been as a generalist developer. This includes front-	end design (layout, themes, graphs, icons, logos and interactivity) and 	back-end engineering (object associations, SQL queries, dynamic forms 	and data extraction, input and optimal storage). <br /> <br />
+					Technologies:  Postgres 9.2.4, SQL, RoR4, HTML, CSS3, SASS, SVG, JQuery UI/Ajax, Javascript, D3.js, Git, Heroku. <br/>
+					Techniques:  Responsive design, OOCSS + SASS, modularity + metaprogramming<br/>
+					Design patterns:  MVC 
+				</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+	var click_right = 0;
+	var click_left = 0;
+	var click_position = click_right - click_left;
+
+	if (click_left == 0) { $(".left-arrow").hide(); }
+
+	num_images = $(".portfolio-image").length;
+	$(".portfolio-image").css("display", "none");
+	$(".portfolio-image-description").css("display", "none");	
+	$("#strengthify-img-0").show();
+	$("#strengthify-desc-0").show();
+	$(".image-count").html("Image 1 of " + num_images);
+
+	$(".right-arrow").on('click', function() {
+		click_right++;
+		click_position = click_right - click_left;
+
+		$("#strengthify-img-" + click_position).fadeIn();
+		$("#strengthify-desc-" + click_position).fadeIn();
+		$(".image-count").html("Image " + (click_position + 1) + " of " + num_images);
+		$("#strengthify-img-" + (click_position - 1)).hide();
+		$("#strengthify-desc-" + (click_position - 1)).hide();
+
+		$(".left-arrow").show();
+		if (click_position == (num_images - 1)) {
+			$(".right-arrow").hide();
+		}
+	});
+
+	$(".left-arrow").on('click', function() {
+		click_left++;
+		click_position = click_right - click_left;
+
+		$("#strengthify-img-" + click_position).fadeIn();
+		$("#strengthify-desc-" + click_position).fadeIn();	
+		$(".image-count").html("Image " + (click_position + 1) + " of " + num_images);	
+		$("#strengthify-img-" + (click_position + 1)).hide();
+		$("#strengthify-desc-" + (click_position + 1)).hide();
+
+		if (click_position == 0) {
+			$(".left-arrow").hide();
+		}
+		if (click_position < (num_images - 1)) {
+			$(".right-arrow").show();
+		}
+
+
+	});
+});
+</script>

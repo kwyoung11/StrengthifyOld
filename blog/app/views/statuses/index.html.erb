@@ -1,0 +1,25 @@
+<div id="statuses">
+				<div id="status_link"> More </div>
+					<%= render :partial => '/statuses/status' %>
+				<div id="more_status">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			</div>
+
+<div id="status_index">
+	<h1>Statuses</h1>
+<table>
+<% @statuses.each do |status| %>
+  <tr>
+		<td><%= status.created_at.strftime("%b %d") %>:</td>
+		<td><%= status.status.html_safe %></td>
+		<% if logged_in? %>
+    <td><%= link_to 'Show', status %></td>
+    <td><%= link_to 'Edit', edit_status_path(status) %></td>
+    <td><%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'New Status', new_status_path %> </td>
+		<% end %>
+  </tr>
+<% end %>
+</table>
+</div>
+
+

@@ -1,0 +1,127 @@
+#statuses {
+	color: #333;
+	width: auto;
+	min-width: 118px;
+	max-width: 160px;
+	margin: 40px auto 0px 0px;
+	border-radius: 10px;
+	padding-top: 15px;
+	text-align: center;
+}
+
+#statuses:before {
+	content: '';
+	height: 100%;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+#statuses:hover {
+	opacity: 0.85;
+}
+
+#statuses:hover .status {
+	color: rgba(10, 10, 10, 0.4);
+}
+
+#statuses:hover #status_link {
+	display: inline-block;
+	color: #65aacd;
+	font-family: baskerville;
+	font-size: 15px;
+}
+
+#status_link {
+	border-radius: 5px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 50px;
+	padding: 5px;
+	position: absolute;
+	z-index: 1000;
+	display: none;
+	text-align: center;
+	pointer-events: none;
+}
+
+#status_link:hover {
+	color: #65aacd;
+}
+
+#status {
+	border: 0px solid red;
+	float: right;
+}
+
+.status {
+	font-family: baskerville;
+	font-size: 20px;
+	color: #333;
+}
+
+.status_date {
+	font-variant: small-caps;
+	font-size: 10px;
+	color: #666;
+}
+
+#quote {
+	display: inline-block;
+	line-height: 25px;
+	text-transform: none;
+	font-variant: none;
+	margin: 0px 0px 0px 5px;
+}
+
+#more_status {
+	font-size: 14px;
+	border: 0px solid red;
+	position: relative;
+	float: right;
+	margin: 0 0 0 118px;
+	z-index: 1000;
+}
+
+#first_curly {
+	font-family: Lucida Grande;
+	float: left;
+	height: 45px;
+  margin-top: -35px;
+  padding-top: 45px;
+  margin-bottom: -50px;
+  font-size: 300%;
+  color: #555;
+	margin-right: 3px;
+}
+
+#last_curly {
+	font-family: Lucida Grande;
+  margin-top: -20px;
+  padding-top: 45px;
+	float: right;
+  font-size: 300%;
+  color: #555;
+}
+
+/**********
+Status#index
+**********/
+#status_index {
+	padding: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+#statuses {
+	color: #333;
+	width: auto;
+	max-width: 160px;
+	margin: 40px auto;
+}
+
+.status {
+	font-family: baskerville;
+	font-size: 16px;
+	color: #333;
+}
+}
+
