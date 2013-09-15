@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def name
-   link_to "Strength#{content_tag(:span, "ify", class: "fade")}".html_safe, root_url, class: "strengthify-header-link"
+   link_to "Strength#{content_tag(:span, "ify", class: "fade1")}".html_safe, root_url, class: "strengthify-header-link"
   end
 
   def active?(cont = nil, action)
