@@ -2,9 +2,8 @@
 	background: rgba(00, 100, 200, 0.4);
 	width: 360px;
 	border-radius: 5px;
-	padding: 50px 30px;
+	padding: 0px 0px 30px;
 	margin: 0px auto;
-	h1 { margin-top: -20px;}
 	#email, #password {
 		font-size: 1.1em;
   	padding: 10px 6px;
@@ -30,6 +29,15 @@
 	}
 }
 
+.title {
+	color: #eecc99;
+	width: 100%;
+	font-size: 1.9em;
+	padding: 20px;
+	border: 1px solid #bbb;
+	background-color: darken(rgba(00, 100, 200, 0.4), 10%);
+}
+
 .register-button {
 	@extend .btn;
 	@include simple-vert-gradient(#309930);
@@ -39,7 +47,7 @@
 }
 
 .new-registrant {
-	padding-left: 30px;
+	padding-left: 60px;
 	text-align: left;
 	color: #555;
 }
@@ -47,32 +55,28 @@
 
 @media only screen and (max-width: 640px) {
 
-.login {
+.login, .register {
 	width: 300px;
-	padding: 10px 10px;
-	#email, #password {
+	padding-bottom: 10px;
+	input[type="text"], input[type="email"], input[type="password"] {
 		font-size: 1.1em;
   	padding: 10px 6px;
-  	width: 280px;
+  	width: 260px;
 		border: 1px solid #ddd;
 		@include rounded-corners(3px);
 	}
-	input[type="submit"] { 
-		width: 280px;
+}
+
+.register input[type="submit"], .register .register-button { 
+		font-size: 1.2em;
+		width: 260px;
 		@extend %button-large; 
-	}
 }
 
-.register-button {
-	width: 280px;
+.title {
+	font-size: 1.7em;
 }
-
-.new-registrant { padding-left: 0px; }
-
-.login h1, .register h1 {
-	display: none;
-}
-
+.new-registrant { padding-left: 30px; }
 
 }
 

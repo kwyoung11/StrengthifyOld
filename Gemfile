@@ -7,6 +7,7 @@ gem 'rails', '4.0.0.rc2'
 
 gem 'pg'
 
+
 # Gems used only for assets and not required
 # in production environments by default.
   gem 'sass-rails',   '~> 4.0.0'
