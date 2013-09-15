@@ -1,6 +1,6 @@
 
 <div class="register">
-<h1> Sign up </h1>
+<p class="title"> Sign Up In Seconds</p>
 	<%= form_for(@user, :html => {class: "ws-instantvalidation", :multipart => true}) do |f| %>
   	<%= render "/layouts/errors", object: f.object %>
   	<%= f.hidden_field :invitation_token %>
@@ -22,7 +22,7 @@
   	</div>
   	
 		<div class="actions">
-  	  <%= f.submit 'Register' %>
+  	  <%= f.submit 'Create Your Account' %>
   	</div>
 	
 	<% end %>
