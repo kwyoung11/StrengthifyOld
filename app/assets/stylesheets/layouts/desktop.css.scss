@@ -7,7 +7,8 @@
 
 #header {
 	position: fixed;
-	background: #ddd url("/assets/static.png");
+	background: rgba(245, 245, 245, 0.85);
+	border-bottom: 1px solid #ccc;
 	width: 100%;
 	height: 40px;
 	z-index: 100;
@@ -15,7 +16,7 @@
 
 #header_content {
 	width: auto;
-	width: 1150px;
+	width: 90%;
 	margin: 0px auto;
 	clear: both;
 }

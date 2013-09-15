@@ -4,16 +4,25 @@
 * LANDING PAGE
 *
 ********************************************/
-.val {line-height: 1.1em;}
+.val {
+	font-family: "AlteHaasGrotesk";
+	line-height: 1.1em;
+}
+
+.slogan {
+	font-family: "AlteHaasGrotesk";
+}
 
 .invitation-signup {
-	background-color: rgba(0, 77, 188, 0.2);
+	background-color: rgba(245, 245, 245, 0.2);
+	border: 3px solid #eee;
 	width: 58%;
 	margin: 0 auto;
 	padding: 50px;
 	border-radius: 10px;
 	p {
 		font-family: "AlteHaasGrotesk";
+		font-style: italic;
 		font-size: 1.5em;
 		margin: 0 auto;
 		text-align: center;
@@ -80,7 +89,7 @@
 // *****************************
 html, body { background-color: #fff; height: 100%; }
 #wrap {	
-	margin: 100px auto 0px 0px;
+	margin: 95px auto 0px 0px;
 	min-height: 100%;
 	text-align: center;
 	overflow: auto;
@@ -157,7 +166,13 @@ html, body { background-color: #fff; height: 100%; }
 	-webkit-transform: scale(2.5);
 	vertical-align: middle;
 }
-.cool-features { position: relative; margin-top: 30px; padding: 3px; }
+
+.cool-features { 
+	position: relative; 
+	margin-top: 130px; 
+	padding: 3px; 
+}
+
 .feature-wrap {
 	display: table;
 	background-color: transparent;
@@ -171,11 +186,11 @@ html, body { background-color: #fff; height: 100%; }
 .feature-section { padding-top: 60px; }
 .feature-build-workout {
 	.feature-wrap {	max-width: 1200px;}
-	background-color: rgba(200, 66, 66, 0.7);
+	background-color: rgba(66, 166, 99, 0.7);
 	color: #fdfdfd;
 		&:after {
 		position: absolute;
-		@include triangle-down(rgba(200, 66, 66, 0.7), 20px);
+		@include triangle-down(rgba(66, 210, 99, 0.5), 20px);
 		left: 47%;
 		margin-top: 0px;
 	}
@@ -186,8 +201,8 @@ html, body { background-color: #fff; height: 100%; }
 .feature-ex-db {
 	.feature-wrap {	max-width: 1400px;}
 	@extend .feature-build-workout;
-	background-color: rgba(66, 166, 99, 0.7);
-	&:after { @include triangle-down(rgba(66, 210, 99, 0.5), 20px); }
+	background-color: rgba(200, 66, 66, 0.7);
+	&:after { @include triangle-down(rgba(200, 66, 66, 0.7), 20px); }
 	.feature-description {
 		padding-left: 10px;
 		ul li { color: #cff0cf; }	
@@ -196,7 +211,7 @@ html, body { background-color: #fff; height: 100%; }
 }
 
 .feature-perform { 
-	@extend .feature-build-workout; 
+	@extend .feature-ex-db; 
 	.feature-wrap {	max-width: 1350px;}
 }
 .feature-analyze { 
