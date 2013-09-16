@@ -144,7 +144,9 @@ html, body { background-color: #fff; height: 100%; }
 	color: #fefefe;
 	border-top: 1px grey dotted;
 	border-bottom: 1px grey dotted;
-	margin: 25px auto;
+	margin: 0 auto;
+	margin-top: 25px;
+	margin-bottom: 5px;
 	padding: 0px;
 	font-size: 22px;
 	font-style: bold;
@@ -156,6 +158,22 @@ html, body { background-color: #fff; height: 100%; }
 }
 
 #second_value_statement a:hover { background: #F00; }
+
+.footer-media {
+	width: 60%;
+	margin: 15px auto;
+	position: relative;
+	display: block;
+	.footer-social {
+		float: left;
+		width: 40%;
+		text-align: left;
+	}
+	.footer-nav {
+		float: left;
+		width: 60%;
+	}
+}
 
 // *********************************
 // Features section for landing page
