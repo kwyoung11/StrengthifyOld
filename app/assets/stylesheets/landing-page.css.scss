@@ -185,7 +185,7 @@ html, body { background-color: #fff; height: 100%; }
 
 .feature-section { padding-top: 60px; }
 .feature-build-workout {
-	.feature-wrap {	max-width: 1200px;}
+	.feature-wrap {	max-width: 1000px;}
 	background-color: rgba(66, 166, 99, 0.7);
 	color: #fdfdfd;
 		&:after {
@@ -199,7 +199,7 @@ html, body { background-color: #fff; height: 100%; }
 }
 
 .feature-ex-db {
-	.feature-wrap {	max-width: 1400px;}
+	.feature-wrap {	max-width: 1200px;}
 	@extend .feature-build-workout;
 	background-color: rgba(200, 66, 66, 0.7);
 	&:after { @include triangle-down(rgba(200, 66, 66, 0.7), 20px); }
@@ -315,9 +315,10 @@ html, body { background-color: #fff; height: 100%; }
 		text-align: center;
 		width: 100%;
 		li { 
+			font-size: 0.9em;
 			display: table-cell;
 			padding: 0px 3px;
-			max-width: 120px;
+			max-width: 100px;
 		}
 	}
 }
