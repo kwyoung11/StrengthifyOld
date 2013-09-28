@@ -1,0 +1,42 @@
+#user-edit {
+	margin: 0 auto;
+	width: auto;
+	form {
+		display: inline-block;
+	}
+
+	label, input, textarea, select {
+		display: inline-block;
+		float: left;
+		text-align: left;
+	}
+
+	label {
+		font-weight: bold;
+		clear: left;
+		text-align: right;
+		margin-right: 5px;
+		width: 30%;
+		margin-bottom: 10px;
+	}
+
+	#user_photo {
+		width: 200px;
+	}
+
+	#user_country {
+		width: 200px;
+	}
+
+	.actions {
+		float: left;
+		clear: both;
+		width: 100%;
+		input {
+			width: 80%;
+			text-align: center;
+			float: none;
+			margin: 0 auto;
+		}
+	}
+}

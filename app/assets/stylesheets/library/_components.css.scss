@@ -6,6 +6,10 @@
 	li {
 		float: left;
 	}
+	a {
+		text-decoration: none;
+		color: #666;
+	}
 }
 
 %vert-list {
@@ -24,9 +28,26 @@
 	width: 100%; 
 	margin: 0;
 	padding: 0;	
+	left: 0;
 	position: absolute;
 	li {
-		width: 100%;
 		text-align: left;	
+	}
+}
+
+.dd-prnt {
+	&:hover {
+		color: #343434;
+		cursor: pointer;
+	}
+}
+
+.dd-li {
+	z-index: 1000;
+	@extend %dropdown-list;	
+	display: none;
+	margin-top: 5px; 
+	> li {
+		font-weight: bold;
 	}
 }

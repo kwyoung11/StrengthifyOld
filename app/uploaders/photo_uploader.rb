@@ -26,7 +26,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
    # For Rails 3.1+ asset pipeline compatibility:
       # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
        
-    "fallback/" + [version_name, "kettlebell.jpg"].compact.join('_')
+    "fallback/" + [version_name, "orange_man.jpg"].compact.join('_')
   end
 
   # Process files as they are uploaded:
@@ -39,8 +39,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
 
   # Create different versions of your uploaded files:
+  version :tiny_thumb do 
+    process :resize_to_fill => [20,20]
+  end
+
   version :mini_thumb do 
-    process :resize_to_fill => [50, 40]
+    process :resize_to_fill => [40, 40]
   end
   
   version :thumb do

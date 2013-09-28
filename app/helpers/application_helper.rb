@@ -47,8 +47,11 @@ module ApplicationHelper
   end
 
   def notifications
-    notification_count = current_user.notifications.where(seen: false).count unless (current_user.notifications.where(seen: false).count == 0)
-   "#{content_tag(:span, notification_count, class: "notification-count")}".html_safe + "#{content_tag(:i, "", class: "icon-chevron-down")}".html_safe
+    count = current_user.notifications.where(seen: false).count
+    state = count > 0 ? "notifications-present" : "notifications-absent"
+    icon = count > 0 ? "icon-folder-open" : "icon-folder-close"
+    notification_count = count unless (count == 0)
+   "#{content_tag(:span, notification_count, class: "notification-count " + state)}".html_safe + "#{content_tag(:i, "", class: icon)}".html_safe
   end
 
   def format_duration_to_HMS(total_seconds)

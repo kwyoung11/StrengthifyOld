@@ -12,10 +12,7 @@
 			</ul>
 
 			<nav class="header-nav">
-				<ul class="header-nav-list__unregistered">
-					<li> <%= link_to 'Sign Up', signup_path, class: "btn btn-new" %> </li>
-					<li> <%= link_to 'Log In', login_path, class: "btn btn-success" %> </li>
-				</ul>
+				<%= render "layouts/header_nav_list" %>
 			</nav>
 			<div style="clear: both;"></div>
 		</div>
@@ -28,32 +25,7 @@
 	</div>
 </div>
 <footer class="footer">
-	<div class="icon-triangle-down"></div>
-
-	<div class="footer-wrap">
-
-		<div id="first_value_statement"> 
-			Strength Training Doesn't Have To Be A Hassle. 
-		</div>
-		<div id="second_value_statement">
-			<div class="statement col-7-10"> 
-				<p> Experience the best way to record workouts. </p>
-			</div>
-			<div class="statement-action col-3-10">
-				<p><%= link_to 'Get Started', signup_path, class: "get-started btn-new"  %> </p>
-			</div>
-		</div>
-		<div class="footer-media">
-			<div class="footer-social">
-				<%= link_to "Facebook", "https://www.facebook.com/Strengthify" %>
-				<%= link_to "Twitter", "https://www.twitter.com/Strengthify" %>
-			</div>
-			<div class="footer-nav">
-				
-			</div>
-		</div>
-
-	</div>
+	<%= render "layouts/footer" %>
 </footer>
 
 </body>

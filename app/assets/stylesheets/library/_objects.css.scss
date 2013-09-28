@@ -15,6 +15,17 @@
 	font-weight: bold;
 }
 
+.center {
+	text-align: center;
+}
+
+.active {
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	@include simple-vert-gradient(rgba(168,176,188,0.4), rgba(168,176,188,0.15));
+	@include inner-box-shadow(0px, 0px, 1px, 0px, rgba(114,125,150,0.4));
+	padding: 0px 0px;
+}
+
 .normal-link {
 	color: #0077cc;
 	text-decoration: none;
@@ -188,6 +199,19 @@
 
 .hilite2 {
 	color: orange;
+}
+
+.btn-to-link {
+	cursor: pointer;
+	font-weight: bold;
+	color: #444;
+	font-family: "AlteHaasGrotesk";
+	font-size: 0.96em;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background-color: transparent;
 }
 
 

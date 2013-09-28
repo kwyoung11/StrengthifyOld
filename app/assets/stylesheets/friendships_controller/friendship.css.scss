@@ -1,5 +1,4 @@
 #community {
-	border: 0px solid red;
 	width: 450px;
 	overflow: hidden;
 	margin: 0 auto;
@@ -54,7 +53,6 @@
 }
 
 #friends_list {
-	border: 0px solid black;
 	margin: 10px auto 0px 21px;
 	padding: 5px;
 	width: 90%;
@@ -65,7 +63,6 @@
 }
 
 .user_photo {
-	border: 0px solid red;
 	float: left;
 	padding-right: 5px;
 	margin-bottom: 5px;
@@ -75,7 +72,6 @@
 }
 
 #friend_requests {
-	border: 0px solid red;
 	padding: 5px;
 	margin: 10px;
 	list-style-type: none;
@@ -83,7 +79,6 @@
 }
 
 #friend_requests li {
-	border: 0px solid red;
 	padding: 5px;
 }
 
@@ -91,54 +86,4 @@
 	color: red;
 	float: right;
 	border: 0px solid blue;
-}
-
-
-/****************** 
- FIND FRIENDS LINK 
- ********************/
-
-.profile-nav-li-item {
-	position: relative;
-	list-style-type: none;
-	float: right;
-	padding: 4px 4px 4px 4px;
-	border-top: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	background: white;
-	margin: 0px 7px 0px 0px;
-	background-color: white;
-	&:hover { cursor: pointer;}
-}
-
-.find-friends-list {
-	top: 100%;
-	position: absolute;
-	display: none;
-	list-style-type: none;
-	right: -1px;
-	margin-left: 1px;
-	padding: 0;
-	z-index: 150;
-	li {
-		background-color: white;
-		border-bottom: 1px solid #ccc;
-		border-right: 1px solid #ccc;
-		border-left: 1px solid #ccc;
-		padding: 5px 9px 5px 9px;
-		color: #444;
-		&:hover { background-color: darken(white, 10%); }
-	}
-}
-
-.invite-friends {
-	margin: 0px 0px 0px 0px;
-	color: #444;
-}
-
-.search-community {
-	margin: 0px 0px 0px 0px;
-	color: #444;
 }
