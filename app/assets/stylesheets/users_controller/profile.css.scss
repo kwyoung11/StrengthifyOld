@@ -3,58 +3,60 @@
 * PROFILE PAGES
 *
 ******************************************/
-
-#photo img {
-	border: 0px solid white;
-	box-shadow: #444 0 0 5px;
-	margin-left: 0;
+#photo {
+	width: 177px;
+	position: relative;
 }
-
-.profile {
-	border: 0px solid blue;
-	overflow: hidden;
-}
-
-.profile-nav {
-	border: 0px solid red;
-	float: right;
-}
-
-.profile-nav-header {
-	height: auto;
-	width: 100%;
+.photo-edit {
+	padding: 2px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgba(240, 240, 240, 0.85);
+	position: absolute;
+	display: none;
+	width: 177px;
 	margin: 0 auto;
-	border-bottom: 0px solid black;
-	padding-left: 20px;
-	h2 {float: left;}
+	&:hover {
+		background-color: darken(rgba(240, 240, 240, 0.85), 10%);
+	}
+	a {
+		color: #555;
+		font-weight: bold;
+		text-decoration: none;
+	}
 }
+	#photo:hover .photo-edit {
+		opacity: 1.0;
+		display: block;
+	}
 
+.profile { overflow: hidden; }
 .profile-info {
 	margin: 0px auto;
 	width: 75%;
 }
-
-.invitation-text { text-align: right; }
-
+.profile-nav-header {
+	width: 100%;
+	margin: 0 auto;
+	h2 {float: left;}
+}
+.profile-nav { float: right; }
 .profile-main-content {
 	width: 100%;
 	border-top: 1px solid #ccc;
 	overflow: hidden;
 }
 
-.profile-header {
-	border: 0px solid black;
+.profile-header {	
 	float: left;
-	width: 25%;
-	padding: 0px 0px 0px 0px;
+	width: 18.3%;
 }
 
 .profile-data {
 	float: left;
-	width: 45%;
-	table {
-		border-collapse: collapse;
-	}
+	width: 48.25%;
+	padding-left: 35px;
+	table { border-collapse: collapse; }
 }
 
 .profile-data th {
@@ -62,55 +64,33 @@
 	font-style: italic;
 	font-weight: normal;
 	color: #A0A0A0;
-	padding-right: 15px;
+	padding-right: 25px;
 }
 
 .profile-data td {
 	white-space: nowrap;
 	text-align: left;
-	padding: 2px 5px 2px 0px;
+	padding: 2px 20px 2px 0px;
 }
 
-.profile-data tbody:first-child {
-	border-top: 5px solid transparent;
-}
-
-.profile-data tbody {
-	border-top: 13px solid transparent;
-}
-
-
-.italic {
-	display: inline-block;
-	font-style: italic;
-}
+.profile-data tbody:first-child { border-top: 5px solid transparent; }
+.profile-data tbody { border-top: 13px solid transparent; }
 
 .profile-about-me {
 	float: left;
-	width: 30%;
+	width: 33.25%;
 	text-align: left;
 	padding: 10px;
 	min-height: 200px;
 	background-color: #f8f8f8;
-	border-top: 1px solid #aaa;
-	border-bottom: 1px solid #eee;
-}
-
-#info {
-	border: 0px solid red;
-	margin: 50px 0px 0px 0px;
-	width: auto;
-	float: left;
 }
 
 .profile-workout-info {
 	width: 75%;
-	border: 0px solid pink;
 	margin: 0 auto;
 }
 
 .profile-workouts {
-	border: 3px solid #eee;
 	width: 50%;
 	float: left;
 	clear: both;
@@ -130,10 +110,9 @@
 }
 
 .profile-challenges {
-	padding: 10px 0px 0px 0px;
+	padding: 10px 0px 0px 30px;
 	float: left;
-	width: 45%;
-	border: 0px solid #eee;
+	width: 50%;
 }
 
 .glory-give {

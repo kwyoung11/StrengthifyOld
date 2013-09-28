@@ -1,18 +1,24 @@
 $(document).on('ready page:load', function() {
 
-  var togglePWord = function() {
+  $("#change-pword-link").on('click', function() {
+    togglePWord();
+  });
+
+  function togglePWord() {
     var wrap = $(".change-password"), link = $("#change-pword-link"), pword = "#user_password", pword_confirm = "#user_password_confirmation";
     if (wrap.css("opacity") == "1") {
       link.html("Change Password");
-      $(pword, pword_confirm).attr("disabled", "disabled");
+      $(pword).attr("disabled", "disabled");
+      $(pword_confirm).attr("disabled", "disabled");
       wrap.css("opacity", "0.4");
     } else {
       link.html("Undo");
-      $(pword, pword_confirm).removeAttr("disabled");
+      $(pword).prop("disabled", false);
+      $(pword_confirm).prop("disabled", false);
       $(pword).focus();
       wrap.css("opacity", "1");
     }
-};
+  }
 
 
   // Bind to all invalid elements in form
