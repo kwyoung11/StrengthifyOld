@@ -3,23 +3,28 @@
   <%= f.hidden_field :invitation_token %>
 	
   <div class="field">
+    <%= f.label "Name" %>
     <%= f.text_field :name, required: true, :size => "25", :placeholder => " name" %>
   </div>
  	
 	<div class="field">
+    <%= f.label "Email" %>
     <%= f.email_field :email, required: true, :size => "25", :placeholder => " email" %>
   </div>
 
 
 
 <% if params[:action] == "edit" %>
-  <a id="change-pword-link" href="javascript:void(0);" onclick="togglePWord();">Change Password</a>
+  <br /><br /><br />
+  <%= link_to "Change Password", "javascript:void(0)", id: "change-pword-link" %>
   <div class="change-password" style="opacity: 0.4;">
    <div class="field">
-      <%= f.password_field :password, :size => "25", :placeholder => " password", disabled: true%>
-    </div>
+    <%= f.label "Password" %>
+    <%= f.password_field :password, :size => "25", :placeholder => " password", disabled: true%>
+  </div>
    
    <div class="field">
+    <%= f.label "Confirm password" %>
       <%= f.password_field :password_confirmation, :size => "25", :placeholder => " confirm password", disabled: true %>
     </div>
   </div>
@@ -40,36 +45,43 @@
     </div>
   
     <div class="field">
+      <%= f.label "Birth date" %>
       <%= f.date_field :birthday, size: "34" %>
     </div>
   
     <div class="field">
+      <%= f.label "About me" %>
       <%= f.text_area :about_me, cols: "10", rows: "10", placeholder: "About me" %>
     </div>
   
     <div class="field">
-      <%= f.text_field :website, :size => "35", :placeholder => " mywebsite.com" %>
+      <%= f.label "Website" %>
+      <%= f.text_field :website, :size => "25", :placeholder => " http://mywebsite.com" %>
     </div>
   
     <div class="field">
+      <%= f.label "City" %>
       <%= f.text_field :city, size: "25", placeholder: "City" %>
     </div>
   
     <div class="field">
+      <%= f.label "State" %>
       <%= f.select(:state, User.states, {}, style: "height: 32px; width: 180px") %>
     </div>
   
     <div class="field">
+      <%= f.label "Country" %>
       <%= f.select(:country, User.countries, selected: "United States") %>
     </div>
   
      <div class="field">
+      <%= f.label "Gender" %>
       <%= f.select(:gender, [['Male'], ['Female']]) %>
     </div>
   <% end %>
   
 	<div class="actions">
-    <%= f.submit(params[:action] == "edit" ? 'Update' : 'Register') %>
+    <%= f.submit(params[:action] == "edit" ? 'Update' : 'Register', class: "btn-success") %>
   </div>
 
 <% end %>

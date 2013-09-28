@@ -123,3 +123,12 @@
 	border-bottom: $dimension solid transparent;
 	border-left: $dimension solid $color;
 }
+
+
+
+/* Classes */
+
+.italic {
+	display: inline-block;
+	font-style: italic;
+}

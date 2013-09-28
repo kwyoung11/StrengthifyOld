@@ -1,35 +1,17 @@
 <div class="profile">
-
 	<section class="profile-info">
-
 		<section class="profile-nav-header">
-				<% if @user.invitation_limit %>
-				<p class="invitation-text"> 
-					<%= link_to "Send Invitation", new_invitation_path %> (<%= @user.invitation_limit %> remaining)
-				</p>
-			<% end %>
-			<h2 class="name-header"> <%= @user.name %> </h2>
-	
-			<nav class="profile-nav">
-				<ul class="profile-nav-li">
-
-					<li class="profile-nav-li-item find-friends dd-prnt"> Friends
-						<ul class="find-friends-list dd-li"> 
-							<li class="search-community"> <%= link_to 'Search', find_users_path  %></li>
-							<li class="invite-friends"> <%= link_to 'Invite', new_invitation_path %> </li>
-						</ul> 
-					</li>
-					<li class="profile-nav-li-item"> <%= link_to "Prefs", user_defaults_path(user_id: current_user.id) %>
-					<li class="profile-nav-li-item"> <%= link_to "Edit", edit_user_path(current_user) %> </li>
-				</ul>
-			</nav>
+			<h2> <%= @user.name %> </h2>
 		</section>
 		<div style="clear: both"> </div>
 		<section class="profile-main-content">
 		
 			<div class="profile-header">
 				<div id="photo"> 
-					<%= image_tag @user.photo_url(:default).to_s %> 
+					<div class="photo-edit">
+						<%= link_to "Edit profile picture", edit_user_path(current_user) %>
+					</div>
+					<%= image_tag(@user.photo_url(:default).to_s) %> 
 				</div>
 					
 				<ul id="friends_list">
@@ -39,7 +21,7 @@
 				</ul>
 			
 				<% if Friendship.are_friends(current_user, @user) %>
-				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, data: {confirm: "Are you 	sure you want remove #{@user.name} from your friends?" } %>
+				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, data: {confirm: "Are you sure you want remove #{@user.name} from your friends?" } %>
 				<% end %>
 	
 			</div>
@@ -79,9 +61,6 @@
 		<%= render '/challenges/index' %>
 	</div>
 </section>
-
-
-
 
 </div>
 
