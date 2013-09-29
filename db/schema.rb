@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908014626) do
+ActiveRecord::Schema.define(version: 20130929064841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20130908014626) do
     t.integer  "invitation_id"
     t.integer  "invitation_limit"
     t.integer  "visited",                default: 0
+    t.string   "profiles_visited",       default: [], array: true
   end
 
   create_table "workouts", force: true do |t|

@@ -5,17 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def activity
-    user = User.find(params[:user_id])
-    user.last_seen = params[:time]
-
+    user = current_user
     unless user.last_seen.to_date == Date.today
       user.visited += 1
     end
+    user.last_seen = params[:time]
     user.save(validate: false)
 
-    respond_to do |format|
-      format.js
-    end
+    render text: "hello"
   end
 
   def create

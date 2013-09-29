@@ -3,14 +3,13 @@ $(document).on('ready page:load', function() {
 window.onclick = updateLastSeen;
 
 function updateLastSeen() {
-	var user_id = $(".workouts-graph").attr("data-user_id");
+	var user_id = $(".workouts-graph").data("user_id");
 	var time = new Date();
 	$.ajax({
   		type: "POST",
   		url: "/activity",
   		data: {time: time, user_id: user_id},
   		success: function(response) {
-
   		}
 	});
 }
