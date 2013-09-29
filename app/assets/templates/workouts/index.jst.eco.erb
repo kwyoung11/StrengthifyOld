@@ -1,0 +1,8 @@
+<h1> Workouts </h1>
+
+<ul>
+<%% for workout in @workouts.models: %>
+	<li> <%%= workout.get('name') %> </li>
+<%% end %>
+
+</ul>

@@ -34,14 +34,16 @@ Cs50xFinalProject::Application.routes.draw do
       end
       resources :challenges
     end
-  
-    resources :exercise_descriptions do
-      get 'build', on: :member
-      get 'clear', on: :collection
+    # API routes
+    namespace :api do 
+      resources :exercises
+      resources :workouts
     end
-    controller :exercise_descriptions do
-      get 'build_workout', to: 'exercise_descriptions#index', as: :build_workout
-    end 
+
+    resources :exercises do
+      get 'add', on: :member
+      get 'remove', on: :collection
+    end
       
     resources :baselines
     resources :activities 

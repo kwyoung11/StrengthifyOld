@@ -25,7 +25,7 @@
     </li>
 
   	<li>
-      <%= f.submit "Update"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(defaults: "true"), id: "re-apply-defaults" %>
+      <%= f.submit "Update"%> <%= link_to "Re-Apply", remove_exercises_path(defaults: "true"), id: "re-apply-defaults" %>
     </li>
 
   	<% end %>
@@ -55,7 +55,7 @@
     </li>
 
   	<li>
-        <%= f.submit "Create"%> <%= link_to "Re-Apply", clear_exercise_descriptions_path(	defaults: "true"), id: "re-apply-defaults" %>
+        <%= f.submit "Create"%> <%= link_to "Re-Apply", remove_exercises_path(	defaults: "true"), id: "re-apply-defaults" %>
     </li>
 
  	 	<% end %>

@@ -1,5 +1,5 @@
 <div id="search_exercises_wrapper">
-<%= form_tag exercise_descriptions_path, method: :get do %>
+<%= form_tag exercises_path, method: :get do %>
 	<%= label_tag :db_of_exercises, "" %>
 	<%= search_field_tag :search, params[:search], placeholder: "Search by exercise, category" %>
 	<%= link_to_submit('<i class="icon-search"></i>'.html_safe, "search_submit_button") %>

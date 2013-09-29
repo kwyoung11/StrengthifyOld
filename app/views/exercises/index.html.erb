@@ -16,10 +16,10 @@
 					<div class="ex-descriptions-header meta-info grid"> 
 						<div class="ex-card-buttons">
 							<%= tooltip_for("Add to Workout") do %>
-							 <div class="add-ex-link"><%= link_to 'Add', 	build_exercise_description_path(e.id), remote: true, class: "add-ex" %></div>
+							 <div class="add-ex-link"><%= link_to 'Add', 	add_exercise_path(e.id), remote: true, class: "add-ex" %></div>
 							<% end %>
 						</div>
-						<span class="ex-name"> <%= link_to "#{e.name}", e %> </span>
+						<span class="ex-name"> <%= link_to "#{e.name}", exercises_path %> </span>
 						
 					</div>
 			

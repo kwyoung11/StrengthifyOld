@@ -1,7 +1,7 @@
 <%= render 'search_form' %>
 <p class="filter-message"> NARROW YOUR CHOICES </p>
 
-<%= form_tag exercise_descriptions_path, method: :get, id: "filter_exercises_by_category" do %>
+<%= form_tag exercises_path, method: :get, id: "filter_exercises_by_category" do %>
 		
 	<ul class="faceted-navigation-list">
 
@@ -66,12 +66,12 @@
 		<ul class="faceted-navigation-list__sub-list">
 		<li> 
 				<%= tooltip_for("View All Filters") do %>
-					<%= link_to "Select All", exercise_descriptions_path(show_filters: "t"), id: "show_all_filters" %>
+					<%= link_to "Select All", exercises_path(show_filters: "t"), id: "show_all_filters" %>
 				<% end %> 
 		</li>
 		<li> 
 			<%= tooltip_for("Reset Selected Filters") do %> 
-				<%= link_to 'Deselect All', exercise_descriptions_path(clear_filters: "t"), id: "clear_all_filters" %>
+				<%= link_to 'Deselect All', exercises_path(clear_filters: "t"), id: "clear_all_filters" %>
 			<% end %>
 		</li>
 	</ul>

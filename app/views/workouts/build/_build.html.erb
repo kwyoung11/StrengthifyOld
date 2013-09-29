@@ -1,4 +1,4 @@
-<p class="workout-link-wrapper"> <%= link_to "#{@workout.name.blank? ? "Your Workout" : @workout.name} (<span class='hilite2'>#{@exercise_ids.count}</span> exercises)".html_safe, "javascript:void(0)", id: "workout-link" %> </p>
+<!-- <p class="workout-link-wrapper"> <%= link_to "#{@workout.name.blank? ? "Your Workout" : @workout.name} (<span class='hilite2'>#{@exercise_ids.count}</span> exercises)".html_safe, "javascript:void(0)", id: "workout-link" %> </p>
 <div class="workout <%= @workout_action %>" id="new-workout">
 <%= render '/workouts/defaults/defaults' %>
 <%= form_for [@user, @workout] do |f| %>
@@ -56,9 +56,9 @@
 		</div>
 		<div class="bar-options">
 			<%= link_to_submit('Create', "save-built-workout") %>
-			<%= link_to 'Clear', clear_exercise_descriptions_path(clear: "reset"), method: :get, class: "clear-exercises" %>
+			<%= link_to 'Clear', remove_exercises_path(clear: "reset"), method: :get, class: "clear-exercises" %>
 		</div>
 	</div>
 
 <% end %>
-</div>
+</div> -->

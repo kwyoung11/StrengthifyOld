@@ -38,7 +38,7 @@
 	
 	<li class="exercise-remove">
 		<%= f.hidden_field :_destroy %>
-		<span class="remove-exercise <%= "first" if f.options[:child_index] == 0 %>"> <%= link_to image_tag("icon-remove-16.svg"), clear_exercise_descriptions_path(clear: "remove-exercise", id: ""), remote: :true, class: "workout-remove-exercise-link javascript-link", id: "remove-exercise" %></span> 
+		<span class="remove-exercise <%= "first" if f.options[:child_index] == 0 %>"> <%= link_to image_tag("icon-remove-16.svg"), remove_exercises_path(clear: "remove-exercise", id: ""), remote: :true, class: "workout-remove-exercise-link javascript-link", id: "remove-exercise" %></span> 
 	</li>
 </div>
 

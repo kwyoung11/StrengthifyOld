@@ -1,0 +1,107 @@
+
+<div class="workout build" id="new-workout">
+
+<form accept-charset="UTF-8" action="/users/1/workouts" class="new_workout" id="new_workout" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="nsKRc/+k5KqakZUbptX+q4sGWdJXEe4ZFK9sBL+Ej5I=" /></div>
+
+	<input id="workout_snagged" name="workout[snagged]" type="hidden" value="false" />
+	<input id="workout_planned" name="workout[planned]" type="hidden" value="true" />
+	
+	<div class="build-sets-exercises" data-num_sets="0" data-ex_num="1"> 
+		<div class="sets-box">
+			<label for="workout_Total Sets:">Total sets:</label>
+			<input id="workout_sets" name="workout[sets]" size="1" type="text" value="0" />
+		</div>
+		<div class="name-box">
+			<label for="workout_Workout Name:">Workout name:</label>
+			<input id="workout_name" name="workout[name]" type="text" />
+		</div>
+		<div class="defaults">
+			<a href="javascript:void(0)" id="default-link">Defaults</a> 
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="grid">
+			<div class="col-10-10">
+				<ol class="form-field-list exercise-list">
+						
+							<div class="exercise">
+	<input id="workout_exercises_attributes_0_exercise_id" name="workout[exercises_attributes][0][exercise_id]" type="hidden" value="1" />
+	<li class="ex-name">
+		<label for="exercise_name">Exercise Name</label>
+		<input class="exercise_name ui-autocomplete-	input" id="exercise_name" name="workout[name]" placeholder=" exercise" required="required" size="5" style="width: 150px;" type="text" value="" />
+	</li>
+	
+	<li class="ex-weight">
+		<label for="workout_exercises_attributes_0_weight">Weight</label>
+		<input class="exercise_weight" id="workout_exercises_attributes_0_weight" name="workout[exercises_attributes][0][weight]" placeholder=" weight" size="5" type="text" value="20" /> 
+		<select id="workout_exercises_attributes_0_weight_type" name="workout[exercises_attributes][0][weight_type]"><option value="LBS">LBS</option>
+<option value="KG">KG</option>
+<option value="BW">BW</option></select>
+	</li>
+	
+	<li class="ex-reps"> 
+		<label for="workout_exercises_attributes_0_reps">Reps</label>
+		<input class="exercise_reps" id="workout_exercises_attributes_0_reps" name="workout[exercises_attributes][0][reps]" placeholder=" reps" size="5" type="text" value="30" /> or </li>
+
+	<li class="ex-time">
+		<input class="wrkt-hrs" id="workout_exercises_attributes_0_hours" name="workout[exercises_attributes][0][hours]" style="width: 33px; height: 26px;" type="number" />
+		<input class="wrkt-mins" id="workout_exercises_attributes_0_minutes" name="workout[exercises_attributes][0][minutes]" style="width: 37px; height: 26px;" type="number" />
+		<label for="workout_exercises_attributes_0_Time">Time</label>
+		<input class="wrkt-sec" id="workout_exercises_attributes_0_seconds" name="workout[exercises_attributes][0][seconds]" size="2" type="text" />
+		<select id="workout_exercises_attributes_0_time_option" name="workout[exercises_attributes][0][time_option]"><option value="Sec">Sec</option>
+<option value="Mins">Mins</option>
+<option value="Hrs">Hrs</option></select>
+	</li>
+	
+	<li class="workout-rest">
+		
+			<input id="workout_exercises_attributes_0_rest_period_attributes_id" name="workout[exercises_attributes][0][rest_period_attributes][id]" type="hidden" />
+			<label for="workout_exercises_attributes_0_rest_period_attributes_Rest period (s)">Rest period (s)</label>
+			<input class="exercise__rest-period" id="workout_exercises_attributes_0_rest_period_attributes_seconds" name="workout[exercises_attributes][0][rest_period_attributes][seconds]" size="1" type="text" value="30" />
+		<div id="rp-unit"> </div>
+		<div class="slider-wrapper">
+			<div id="slider1" class="slider"></div>
+		</div>
+	</li>
+	
+	<li class="exercise-add">
+		<input type="submit" value="Add" />
+	</li>
+</div>
+
+
+ 
+				</ol>
+			</div>
+		</div>
+
+
+			<div class="build-wrkt-details">
+				<div class="form-row wrkt-completed">
+						<label for="workout_completed">Have you done this workout already?</label>
+						<label for="workout_Yes">Yes</label>
+						<input id="workout_completed_true" name="workout[completed]" type="radio" value="true" />
+						<label for="workout_No">No</label>
+						<input checked="checked" id="workout_completed_false" name="workout[completed]" type="radio" value="false" /> 
+				</div>
+				<div class="detail-link-wrapper">
+					<a href="javascript:void(0)" id="build-wrkt-details">More Details</a>
+				</div>
+				<div style="clear: both;"> </div>
+			<div class="form-row wrkt-build-details">
+				<label for="workout_description">How did it go?</label>
+				<textarea id="workout_description" name="workout[description]" style="width: 100%;">
+</textarea>
+				<a class="javascript-link" href="#" id="workout_created_at_link">Today (change date)</a>
+				<input class="jquery-ui-date" id="workout_created_at" name="workout[created_at]" placeholder="date" type="text" />
+			</div>
+		</div>
+		<div class="bar-options">
+			<a href="#" id="save-built-workout" onclick="$(this).closest(&#39;form&#39;).submit(); return false;">Create</a>
+			<a class="clear-exercises" data-method="get" href="/exercises/remove?clear=reset">Clear</a>
+		</div>
+	</div>
+
+</form>
+</div>
