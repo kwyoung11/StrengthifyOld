@@ -24,7 +24,8 @@
 .header-nav { 
 	float: right;
 	position: relative; 
-	margin: -3px 0px 0px 0px;
+	margin: -.35em 0px 0px 0px;
+	font-weight: bold;
 }
 
 .header-nav-list { 
@@ -34,47 +35,51 @@
 		margin-right: 4px;
 		border-radius: 4px;
 	}
+	li { 
+		padding: 0px 20px 8px 10px;
+		font-size: .94em;
+		position: relative; 
+		color: #666;
+	}
+	.li-divider {
+		padding: 0px 8px 1px 0px;
+	}
 	.nav-profile-li {
 		border: 1px solid rgba(245, 245, 245, 0.85); // Make this the same as the background color
 		&:after {
 			@include triangle-down(#aaa, 5px);
-			margin: -11px 0px 0px 113px;
-			opacity: 0.9;
+			margin: -11px 0px 0px 123px;
 		}
 	}
 	.profile-link {
 		border-radius: 5px;
+		padding: 3px 7px;
 		a {
-			color: #666; 
 			text-decoration: none;
-			&:hover { color: #222; } 
+			&:hover { color: #111; } 
 		}
-		text-align: center;
-		padding: 3px 10px 1px 10px;
-		margin-right: 5px;
-	}
-	li { 
-		padding: 0px 20px 8px 5px;
-		font-family: "AlteHaasGrotesk";
-		font-size: 1.1em;
-		position: relative; 
-		color: #666;
 	}
 	li.showing {
+		z-index: 10000;
 		margin-top: -5px;
-		padding: 5px 20px 8px 5px;
+		padding: 5px 20px 8px 10px;
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
 		background-color: #fff;
 		border: 1px solid #aaa;
 	}
+	.sign-out {
+		font-weight: bold;
+		color: #666;
+	}
 }
 
 .divider {
+	z-index: 100;
 	position: absolute;
 	padding-left: 8px;
 	height: 25px;
-	border-right: 1px solid #aaa;
+	border-right: 1px solid #d1d1d1;
 	width: 1px;
 }
 
@@ -131,8 +136,8 @@ li.li-border {
 	position: fixed;
 	left: 37%;
 	float: none;
-	width: 330px;
-	margin: -5px auto;
+	width: 360px;
+	margin: -.35em auto;
 	z-index: 10;
 }
 
@@ -140,8 +145,9 @@ li.li-border {
 	@extend %hr-list;
 	li {
 		padding: 3px;
-		border-radius: 15px;
-		color: #666;
+		border-radius: 5px;
+		font-weight: bold;
+		font-size: 0.9em;
 	}
 	a {
 		color: #666;
@@ -150,7 +156,7 @@ li.li-border {
 		width: 100%; 
 		height: 100%;
 		&:hover {
-			color: #222;
+			color: #111;
 		}
 	}
 }
@@ -235,7 +241,7 @@ NOTIFICATIONS
 .notifications-dropdown {
 	padding: 0;
 	left: 0;
-	margin-top: 13px;
+	margin-top: 10px;
 	margin-left: -94px;
 	list-style-type: none;
 	display: none;
@@ -248,7 +254,7 @@ NOTIFICATIONS
 	&:before {
 		position: relative;
 		z-index: 10000;
-		@include triangle-up(#ccc, 10px);
+		@include triangle-up(#fff, 10px);
 		left: 50%;
 		top: -17%;
 	}
@@ -257,6 +263,7 @@ NOTIFICATIONS
 .notifications-dropdown-li-item {
 	width: 200px;
 	padding: 5px;
+	font-weight: normal;
 	border-bottom: 1px solid #ccc;
 }
 
