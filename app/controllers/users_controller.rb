@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user_workouts = @user.workouts.order("created_at desc").paginate(:per_page => 10, :page => params[:page]).where(completed: true)
-    @user_challenges = current_user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
+    @user_challenges = @user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
     current_user.profiles_visited << @user.id
     @user.profile_views += 1 unless @user == current_user || current_user.profiles_visited.include?(@user.id) 
     @user.save(validate: false)
