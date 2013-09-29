@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  before_action :password_resets_params
+
   def new
   end
   
@@ -25,5 +27,10 @@ class PasswordResetsController < ApplicationController
        render "edit"
     end
   end
+
+  private
+    def password_resets_params
+      params.permit!
+    end
   
 end
