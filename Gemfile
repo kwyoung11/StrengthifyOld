@@ -33,6 +33,7 @@ group :test do
   gem 'launchy'
 end
 
+gem 'figaro'
 gem 'htmlentities'
 gem 'debugger'
 gem 'will_paginate', '~> 3.0'
