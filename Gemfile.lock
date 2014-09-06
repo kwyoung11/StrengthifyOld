@@ -74,12 +74,6 @@ GEM
     faker (1.2.0)
       i18n (~> 0.5)
     ffi (1.9.0)
-<<<<<<< HEAD
-    figaro (0.7.0)
-      bundler (~> 1.0)
-      rails (>= 3, < 5)
-=======
->>>>>>> d48afe59a6bc11997c6869a0f0c721d3e37687c6
     fog (1.15.0)
       builder
       excon (~> 0.25.0)
@@ -234,7 +228,6 @@ DEPENDENCIES
   debugger
   factory_girl_rails
   faker
-  figaro
   fog
   guard-livereload
   guard-rspec
