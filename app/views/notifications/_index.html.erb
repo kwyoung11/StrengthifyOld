@@ -2,14 +2,18 @@
   <% current_user.notifications.each do |note| %>
     <li class="notifications-dropdown-li-item" data-notification_id="<%= note.id %>" data-seen="<%= note.seen %>">
 
-      <% if note.action == "create" %>
+      <% if note.action == "create" && note.notifiable_type == "Friendship" %>
       <%= note.notifiable_type.constantize.requester(note.notifiable_id).name %> requested to be friends
       <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note.notifiable_type.constantize.find(note.notifiable_id)) %>
-      <% elsif note.action == "accept" %>
-      <% if note.notifiable_type.constantize.exists?(note.notifiable_id) %>
-        You are now friends with <%= link_to "#{note.notifiable_type.constantize.accepter(note.notifiable_id).name}", note.notifiable_type.constantize.accepter(note.notifiable_id) %> 
-        <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note.notifiable_type.constantize.find(note.notifiable_id)) %>
+      <% elsif note.action == "accept" && note.notifiable_type == "Friendship" %>
+        <% if note.notifiable_type.constantize.exists?(note.notifiable_id) %>
+          You are now friends with <%= link_to "#{note.notifiable_type.constantize.accepter(note.notifiable_id).name}", note. notifiable_type.constantize.accepter(note.notifiable_id) %> 
+          <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note. notifiable_type.constantize.find(note.notifiable_id)) %>
         <% end %>
+      <% elsif note.notifiable_type == "Invitation" %>
+          <%= User.find(note.notifiable.sender_id).name %> invited you to a scheduled workout. 
+          <%= link_to 'Accept', accept_invitation_path(id: note.notifiable.id) %>
+          <%= link_to 'Deny', reject_invitation_path(id: note.notifiable.id) %>
       <% end %>
     </li>
   <% end %>

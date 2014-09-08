@@ -24,6 +24,7 @@ group :development, :test do
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'rb-fsevent',       require: false
+  gem 'binding_of_caller'
 end
 
 group :test do

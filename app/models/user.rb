@@ -8,11 +8,18 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :notifications
   has_many :workouts, :dependent => :destroy
+  has_one :default
+  
+  # friendships
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
-  has_one :default
+  
+
+  # scheduled workouts
+  has_many :scheduled_workout_participations
+  has_many :scheduled_workouts, through: :scheduled_workout_participations
   
   # Validations 
   # has_secure_password set to false to allow omniauth login
@@ -21,8 +28,12 @@ class User < ActiveRecord::Base
   has_secure_password(validations: false) 
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password, :allow_blank => true
-  validates_presence_of :invitation_id, message: "is required", on: :create
-  validates_uniqueness_of :invitation_id, on: :create
+
+  # invitations
+  if !Rails.env == "development"
+    validates_presence_of :invitation_id, message: "is required", on: :create
+    validates_uniqueness_of :invitation_id, on: :create
+  end
   
   # Creates identificiation cookie for new users
   before_create { generate_token(:auth_token) }

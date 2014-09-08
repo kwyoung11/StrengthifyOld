@@ -3,6 +3,7 @@ class Workout < ActiveRecord::Base
   has_many :glory_pts, as: :glorifiable, class_name: "Glory"
   has_one :activity, as: :trackable, dependent: :destroy
   belongs_to :user
+  has_many :scheduled_workouts
 
   accepts_nested_attributes_for :exercises, :allow_destroy => true 
 

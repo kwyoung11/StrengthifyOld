@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Hi <%= @user.name %>,</p>
+    <p>
+      Yesterday you had a workout <%= @scheduled_workout.scheduled_date.strftime(%l%p) %> scheduled for <%= @scheduled_workout.scheduled_date.strftime(%l%p) %> at the <%= @scheduled_workout.location %>. Please confirm (or deny) that you completed the workout.
+    </p>
+	<p> Have a great workout! <br/><br /> Kevin Young<br/> Founder, Strengthify</p>
+  </body>
+</html>

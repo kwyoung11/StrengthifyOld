@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929064841) do
+ActiveRecord::Schema.define(version: 20140907224036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,9 @@ ActiveRecord::Schema.define(version: 20130929064841) do
     t.string   "recipient_email"
     t.integer  "invitable_id"
     t.string   "invitable_type"
+    t.string   "status"
+    t.string   "action"
+    t.integer  "recipient_id"
   end
 
   add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id", using: :btree
@@ -141,6 +144,21 @@ ActiveRecord::Schema.define(version: 20130929064841) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "exercise_id"
+  end
+
+  create_table "scheduled_workout_participations", force: true do |t|
+    t.integer  "scheduled_workout_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scheduled_workouts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "scheduled_date"
+    t.integer  "workout_id"
+    t.string   "location"
   end
 
   create_table "users", force: true do |t|

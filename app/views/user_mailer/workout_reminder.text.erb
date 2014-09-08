@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Hi <%= @user.name %>,</p>
+    <p>
+      Here is your workout for <%= @scheduled_workout.scheduled_date.strftime(%l%p) %> today at the <%= @scheduled_workout.location %>:
+
+      <table>
+          <th> Exercise </th>
+          <th> Weight </th>
+          <th> Reps </th>
+          <% @scheduled_workout.workout.exercises.each do |e| %>
+            <tr>
+              <td> <%= e.name %> </td>
+              <td> <%= e.weight %> </td>
+              <td> <%= e.reps %> </td>
+            </tr>
+          <% end %>
+        </table>
+    </p>
+	<p> Have a great workout! <br/><br /> Kevin Young<br/> Founder, Strengthify</p>
+  </body>
+</html>

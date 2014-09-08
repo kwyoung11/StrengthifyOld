@@ -76,5 +76,9 @@ module ApplicationHelper
   def meta_description
     "Strengthify -- The easiest way to jumpstart your strength training."
   end
+
+  def link_to_strengthify(text)
+    Rails.env == "development" ? (link_to "#{text}", "http://localhost:3000") : (link_to "#{text}", "http://strengthify.com")
+  end
     
 end

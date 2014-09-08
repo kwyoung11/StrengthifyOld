@@ -1,10 +1,10 @@
 Cs50xFinalProject::Application.routes.draw do
+
     require File.expand_path("../../config/initializers/logged_in_constraint", __FILE__)
 
     # Root URL
     root to: 'home#index', as: :unauthenticated_root
     root to: 'users#index', :constraints => LoggedInConstraint.new
-    
     
     # Signup path
     controller :users do
@@ -42,10 +42,11 @@ Cs50xFinalProject::Application.routes.draw do
     controller :exercise_descriptions do
       get 'build_workout', to: 'exercise_descriptions#index', as: :build_workout
     end 
-      
+    
+    resources :scheduled_workouts
     resources :baselines
     resources :activities 
-    resources :invitations
+    
     resources :password_resets
     resources :sessions
     resources :exercises
@@ -59,7 +60,12 @@ Cs50xFinalProject::Application.routes.draw do
       get 'accept', on: :member
       get 'reject', on: :member    
     end
-    
+
+    resources :invitations do
+      get 'accept', on: :member
+      get 'reject', on: :member
+    end
+     
     patch '/admin/exercises', to: 'admin/exercises#add_exercise_to_db'
     post '/give', to: 'glories#give'
   

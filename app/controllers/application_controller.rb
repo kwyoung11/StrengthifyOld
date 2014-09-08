@@ -62,5 +62,5 @@ class ApplicationController < ActionController::Base
   def send_notification(user, notifiable, action = nil)
     user.notifications.create! action: action, notifiable: notifiable.first
   end
-  
+
 end

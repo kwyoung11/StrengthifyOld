@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Hi <%= @invitee.name %>,</p>
+    <p>
+      <%= @user.name %> has invited you to join <%= @user.gender == "Male" ? "him" : @user.gender == "Female" ? "her" : "them" %> for the workout "<%= @scheduled_workout.workout.name %>" listed below. The workout is scheduled for <b> <%= @scheduled_workout.scheduled_date.strftime("%A, %B %d, %Y at %l%p") %> </b> at the <%= @scheduled_workout.location %>.
+    </p>
+    <p>
+      Click <%= link_to 'here', 'http://localhost:3000' %> to confirm or deny your invitation. 
+    </p>
+    <p>
+      If you are not yet a member of Strengthify, you can <%= link_to 'sign up here', 'http://localhost:3000' %>.
+    </p>
+
+        <table>
+          <th> Exercise </th>
+          <th> Weight </th>
+          <th> Reps </th>
+          <% @scheduled_workout.workout.exercises.each do |e| %>
+            <tr>
+              <td> <%= e.name %> </td>
+              <td> <%= e.weight %> </td>
+              <td> <%= e.reps %> </td>
+            </tr>
+          <% end %>
+        </table>
+    </p>
+  <p> Have a great day! <br/><br /> Kevin Young<br/> Founder, Strengthify</p>
+  </body>
+</html>

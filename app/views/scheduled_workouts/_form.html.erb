@@ -1,0 +1,33 @@
+<%= form_for(@scheduled_workout) do |f| %>
+  <% if @scheduled_workout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scheduled_workout.errors.count, "error") %> prohibited this scheduled_workout from being saved:</h2>
+
+      <ul>
+      <% @scheduled_workout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.datetime_select :scheduled_date, start_year: 2014, end_year: 2014, ampm: true, :minute_step => 15 %>
+  </div>
+
+  <div class="field">
+    <%= f.select :workout_id, current_user.workouts.collect { |w| [w.name, w.id] } %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.select :invitations, current_user.friends.collect { |f| [f.name, f.id] }, {}, { multiple: true } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
