@@ -3,14 +3,14 @@ ruby "2.0.0"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.1.5'
 
 gem 'pg'
 
 
 # Gems used only for assets and not required
 # in production environments by default.
-  gem 'sass-rails',   '~> 4.0.0'
+  gem 'sass-rails',   '~> 4.0.2'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'uglifier', '>= 2.1.2'	
   gem 'jquery-rails'

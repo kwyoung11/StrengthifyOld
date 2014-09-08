@@ -13,10 +13,7 @@
 //= require jquery_ujs
 //= require jquery.flippy
 //= require jquery.icheck
-//= require jquery.ui.position
-//= require jquery.ui.datepicker
-//= require jquery.ui.autocomplete
-//= require jquery.ui.slider
+//= require jquery-ui
 //= require jquery-color
 //= require jquery.cookie
 //= require webshims/extras/modernizr-custom
