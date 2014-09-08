@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rack-livereload'
   gem 'rb-fsevent',       require: false
   gem 'binding_of_caller'
+  gem 'debugger'
 end
 
 group :test do
@@ -35,7 +36,6 @@ group :test do
 end
 
 gem 'htmlentities'
-gem 'debugger'
 gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'carrierwave'
