@@ -35,7 +35,6 @@ group :test do
   gem 'launchy'
 end
 
-gem 'rails_12factor'
 gem 'htmlentities'
 gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
