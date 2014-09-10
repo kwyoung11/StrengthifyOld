@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
       search = search.capitalize
       where('name LIKE ?', "%#{search}%")
     else
-      scoped
+      where(nil)
     end
   end
 

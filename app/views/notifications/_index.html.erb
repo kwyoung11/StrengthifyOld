@@ -11,9 +11,15 @@
           <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note. notifiable_type.constantize.find(note.notifiable_id)) %>
         <% end %>
       <% elsif note.notifiable_type == "Invitation" %>
-          <%= User.find(note.notifiable.sender_id).name %> invited you to a scheduled workout. 
-          <%= link_to 'Accept', accept_invitation_path(id: note.notifiable.id) %>
-          <%= link_to 'Deny', reject_invitation_path(id: note.notifiable.id) %>
+        <% if note.action == "create" %>
+          <%= User.find(note.notifiable.sender_id).name %> invited you to a scheduled workout.
+          <% if note.notifiable.status != "accepted" %> 
+            <%= link_to 'Accept', accept_invitation_path(id: note.notifiable.id) %>
+            <%= link_to 'Deny', reject_invitation_path(id: note.notifiable.id) %>
+          <% end %>
+        <% elsif note.action == "invitation_accepted" %>
+           You have accepted the invitation from <%= User.find(note.notifiable.sender_id).name %>
+        <% end %>
       <% end %>
     </li>
   <% end %>
