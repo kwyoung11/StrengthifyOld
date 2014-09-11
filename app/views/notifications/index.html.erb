@@ -1,7 +1,8 @@
+<h2> Your notifications </h2>
 <% unless current_user.nil? %>
   <% current_user.notifications.order(created_at: :desc).each do |note| %>
-    <li class="notifications-dropdown-li-item" data-notification_id="<%= note.id %>" data-seen="<%= note.seen %>">
-
+    <li data-notification_id="<%= note.id %>" data-seen="<%= note.seen %>">
+		 <h4> <%= note.created_at.strftime('%B %d') %> </h4>
       <% if note.action == "create" && note.notifiable_type == "Friendship" %>
       <%= note.notifiable_type.constantize.requester(note.notifiable_id).name %> requested to be friends
       <%= friendship_status(note.notifiable_type.constantize.requester(note.notifiable_id).id, current_user.id, note.notifiable_type.constantize.find(note.notifiable_id)) %>
@@ -21,6 +22,7 @@
            Your invitation to <%= note.notifiable.invitable.workout.name %> has been accepted by <%= User.find(note.notifiable.recipient_id).name %>
         <% end %>
       <% end %>
+
     </li>
   <% end %>
 <% end %>

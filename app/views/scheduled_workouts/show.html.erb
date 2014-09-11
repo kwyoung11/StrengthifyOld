@@ -2,5 +2,5 @@
 
 <p> <%= @scheduled_workout.scheduled_date %> </p>
 
-<%= link_to 'Edit', edit_scheduled_workout_path(@scheduled_workout) %> |
-<%= link_to 'Back', scheduled_workouts_path %>
+<%= link_to 'Edit', edit_user_scheduled_workout_path(current_user, @scheduled_workout) %> |
+<%= link_to 'Back', user_scheduled_workouts_path %>

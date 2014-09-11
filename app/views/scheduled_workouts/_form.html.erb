@@ -1,4 +1,4 @@
-<%= form_for(@scheduled_workout) do |f| %>
+<%= form_for [current_user, @scheduled_workout] do |f| %>
   <% if @scheduled_workout.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@scheduled_workout.errors.count, "error") %> prohibited this scheduled_workout from being saved:</h2>

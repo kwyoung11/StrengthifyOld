@@ -1,22 +1,36 @@
-<h1>Listing scheduled_workouts</h1>
+<h1>Your Scheduled Workouts</h1>
 
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th> Date </th>
+      <th> Workout </th>
+      <th> Status </th>
+      <th> Other Participants </th>
     </tr>
   </thead>
 
   <tbody>
-    <% @scheduled_workouts.each do |scheduled_workout| %>
+    <% @scheduled_workouts.order(scheduled_date: :desc).each do |scheduled_workout| %>
       <tr>
-        <td> <%= scheduled_workout.scheduled_date %> </td>
-        <td> <%=  %> </td>
-        <td><%= link_to 'Show', scheduled_workout %></td>
-        <td><%= link_to 'Edit', edit_scheduled_workout_path(scheduled_workout) %></td>
-        <td><%= link_to 'Destroy', scheduled_workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <%= scheduled_workout.scheduled_date.strftime('%B %d at %l%p') %> </td>
+        <td> <%= link_to "#{scheduled_workout.workout.name}", user_workout_path(current_user, scheduled_workout.workout) %> </td>
+        <td> <% if scheduled_workout.users.first != current_user %>
+                Invited
+             <% else %>
+                Created
+             <% end %>
+        </td>
+        <td> 
+          <% invites = Invitation.where(invitable_id: scheduled_workout.id) %>
+          <% count = invites.count %>
+          <% invites.each_with_index do |inv, i| %>
+            <%= link_to "#{User.find(inv.recipient_id).name}", user_path(User.find(inv.recipient_id)) %><%= i != count - 1 ? "," : "" %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', user_scheduled_workout_path(id: scheduled_workout.id) %></td>
+        <td><%= link_to 'Edit', edit_user_scheduled_workout_path(current_user, scheduled_workout) %></td>
+        <td><%= link_to 'Destroy', user_scheduled_workout_path(id: scheduled_workout.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Scheduled workout', new_scheduled_workout_path %>
+<%= link_to 'New Scheduled workout', new_user_scheduled_workout_path %>

@@ -15,6 +15,7 @@
 				<li class="notifications dd-prnt"> <%= notifications if logged_in? %> 
 					<ul class="notifications-dropdown dd-li"> 
 						<%= render "notifications/index" %>
+						<%= link_to "See All", notifications_path %>
 					</ul>
 				</li>
 			</ul>

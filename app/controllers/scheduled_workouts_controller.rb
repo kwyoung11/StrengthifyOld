@@ -4,7 +4,7 @@ class ScheduledWorkoutsController < ApplicationController
   # GET /scheduled_workouts
   # GET /scheduled_workouts.json
   def index
-    @scheduled_workouts = ScheduledWorkout.all
+    @scheduled_workouts = ScheduledWorkout.joins(:scheduled_workout_participations).joins(:invitations).where("scheduled_workout_participations.user_id = ? OR (invitations.recipient_id = ? AND invitations.status = 'accepted')", params[:user_id], params[:user_id]).uniq
   end
 
   # GET /scheduled_workouts/1
@@ -42,7 +42,7 @@ class ScheduledWorkoutsController < ApplicationController
           end
         end
         @scheduled_workout.scheduled_workout_participations.create(scheduled_workout_id: @scheduled_workout.id, user_id: current_user.id)
-        format.html { redirect_to @scheduled_workout, notice: 'Scheduled workout was successfully created.' }
+        format.html { redirect_to [current_user, @scheduled_workout], notice: 'Scheduled workout was successfully created.' }
         format.json { render action: 'show', status: :created, location: @scheduled_workout }
       else
         format.html { render action: 'new' }
@@ -78,7 +78,7 @@ class ScheduledWorkoutsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduled_workout
-      @scheduled_workout = ScheduledWorkout.find(params[:id])
+      @scheduled_workout = ScheduledWorkout.where(user_id: params[:user_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

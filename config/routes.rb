@@ -33,6 +33,7 @@ Cs50xFinalProject::Application.routes.draw do
           get 'perform', on: :member
       end
       resources :challenges
+      resources :scheduled_workouts
     end
   
     resources :exercise_descriptions do
@@ -43,7 +44,7 @@ Cs50xFinalProject::Application.routes.draw do
       get 'build_workout', to: 'exercise_descriptions#index', as: :build_workout
     end 
     
-    resources :scheduled_workouts
+    
     resources :baselines
     resources :activities 
     
