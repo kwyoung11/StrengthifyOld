@@ -99,6 +99,20 @@ class User < ActiveRecord::Base
     self.invitation = Invitation.find_by(token: token)
   end
 
+  def get_gender
+    if self.gender
+      if self.gender == "Male"
+        "his"
+      elsif self.gender == "Female"
+        "her"
+      else
+        "their"
+      end 
+    else
+      "their"
+    end
+  end
+
   STATES = %w[
     DC MD VA AL AK AZ AR CA CO CT DE
     FL GA HI ID IL IN IA KS KY

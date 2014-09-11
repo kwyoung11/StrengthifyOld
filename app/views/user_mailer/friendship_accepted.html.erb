@@ -1,1 +1,1 @@
-<%= @friend.name %> has accepted your friendship on Strengthify. <%= link_to "Visit Strengthify to view his profile", @friend %>.
+<%= @friend.name %> has accepted your friendship on Strengthify. <%= link_to "Visit Strengthify to view #{@friend.gender} profile", user_path(@friend) %>.

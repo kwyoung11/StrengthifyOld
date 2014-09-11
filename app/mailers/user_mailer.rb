@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
 
   def friendship_accepted(user, friend)
     @friend = friend
-    mail :to => user.email, :subject => "#{user.name} has accepted your friend request"
+    mail :to => user.email, :subject => "#{friend.name} has accepted your friend request"
   end
 
   def invitation_accepted(user, friend, invitation)

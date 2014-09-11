@@ -18,7 +18,7 @@
             <%= link_to 'Deny', reject_invitation_path(id: note.notifiable.id) %>
           <% end %>
         <% elsif note.action == "invitation_accepted" %>
-           You have accepted the invitation from <%= User.find(note.notifiable.sender_id).name %>
+           Your invitation to <%= note.notifiable.name %> has been accepted by <%= User.find(note.notifiable.recipient_id).name %>
         <% end %>
       <% end %>
     </li>
