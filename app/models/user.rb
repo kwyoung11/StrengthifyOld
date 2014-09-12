@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :workouts, :dependent => :destroy
   has_one :default
+  has_many :integrations
   
   # friendships
   has_many :friendships

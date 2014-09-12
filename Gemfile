@@ -43,6 +43,8 @@ gem 'webshims-rails'
 gem 'rmagick'
 gem 'mail_form', '~> 1.5.0rc'
 gem "fog"
+gem "oauth2"
+gem "omniauth-moves"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
