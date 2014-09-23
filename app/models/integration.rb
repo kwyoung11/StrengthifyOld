@@ -13,10 +13,9 @@ class Integration < ActiveRecord::Base
 			@integration_activity.date = data["date"]
 			@integration_activity.save
 		end
-
 	end
 
-	def self.enabled?(integration_provider)
-		return Integration.find_by(provider: integration_provider)
+	def self.enabled?(integration_provider, user)
+		return user.integrations.find_by(provider: integration_provider)
 	end
 end

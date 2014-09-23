@@ -8,7 +8,7 @@
 				<% end %>
 				<ul class="integrations-dd-li dd-li">
 					<li> 
-						<% if !Integration.enabled?("moves") %>
+						<% if !Integration.enabled?("moves", current_user) %>
 							<%= link_to "Moves", "/auth/moves" %>
 						<% else %>
 							<%= HTMLEntities.new.decode "&#10003; Moves" %> 

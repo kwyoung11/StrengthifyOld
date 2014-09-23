@@ -79,13 +79,13 @@ Cs50xFinalProject::Application.routes.draw do
       end
     end
 
+    get '/auth/moves/callback', to: 'integrations#authenticate'
+
     # if 3rd-party API auth fails
     get '/auth/failure' do
       flash[:notice] = "Authentication failed" 
       redirect '/'
     end
-
-    get '/auth/moves/callback', to: 'integrations#authenticate'
     
     controller :home do 
       get 'admin' => :index

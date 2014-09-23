@@ -5,6 +5,7 @@ class IntegrationsController < ApplicationController
 	def authenticate
 		# raise env['omniauth.auth'].to_yaml
 		info = env['omniauth.auth']
+		puts "IM AUTHENTICATING!!!!!!!!!!!!!!!"
 		@integration = Integration.new
 		@integration.provider = info["provider"]
 		@integration.uid = info["uid"]
