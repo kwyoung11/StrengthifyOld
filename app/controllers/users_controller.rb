@@ -20,8 +20,13 @@ class UsersController < ApplicationController
     @user_challenges = @user.challenges.order("created_at desc").paginate(:per_page => 10, :page => params[:page])
     current_user.profiles_visited << @user.id
     @user.profile_views += 1 unless @user == current_user || current_user.profiles_visited.include?(@user.id) 
+    @integration = Integration.find_by(user_id: current_user.id)
+    @integrated_activities = @integration.integration_activities.order(date: :desc).where(date: 2.weeks.ago..Time.now)
+    @walking = @integrated_activities.where(activity_type: 'walking')
+    @cycling = @integrated_activities.where(activity_type: "cycling")
+    @running = @integrated_activities.where(activity_type: "running")
+    @transport = @integrated_activities.where(activity_type: "transport")
     @user.save(validate: false)
-
   end
 
   # GET /users/new 

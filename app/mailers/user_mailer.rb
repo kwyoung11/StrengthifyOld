@@ -45,6 +45,11 @@ class UserMailer < ActionMailer::Base
     mail :to => user.email, :subject => "Let us know if you completed the workout #{scheduled_workout.workout.name} yesterday"
   end
 
+  def new_feature_email(user, feature)
+    @user = user
+    mail :to => user.email, :subject => "New Feature: " + feature
+  end
+
   def deliver_invitation(user, invitation)
     if user == "Strengthify"
       user_name = "Strengthify"

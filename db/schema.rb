@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912050147) do
+ActiveRecord::Schema.define(version: 20140912231434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,18 @@ ActiveRecord::Schema.define(version: 20140912050147) do
     t.string   "glorifiable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "integration_activities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "integration_id"
+    t.string   "activity_type"
+    t.integer  "distance"
+    t.integer  "duration"
+    t.integer  "steps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "date"
   end
 
   create_table "integrations", force: true do |t|

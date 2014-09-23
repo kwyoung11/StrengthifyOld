@@ -16,13 +16,11 @@ function updateLastSeen() {
 
 	// show settings dropdown	
 	$(".dd-prnt, .find-friends, .notifications").on('click', function(e) { 
-		console.log("hellooo");
 		e.stopPropagation();
 		dd = $(this).find("ul");
-		console.log(dd);
 	  dd.css('display') == 'none' ? dd.show() : dd.hide();
 	  dd.parent('.dd-prnt').addClass("showing");
-	  dd.parent('.dd-prnt').children("span").addClass("dd-prnt-style");
+	  // dd.parent('.dd-prnt').children("span").addClass("dd-prnt-style");
 	  dd.find("li").addClass("dd-li-style");
 	});  
 	// hide settings/notifications/find friends dd menus

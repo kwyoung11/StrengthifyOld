@@ -1,6 +1,9 @@
+require 'open-uri'
+require 'date'
+
 class IntegrationsController < ApplicationController
 	def authenticate
-		raise env['omniauth.auth'].to_yaml
+		# raise env['omniauth.auth'].to_yaml
 		info = env['omniauth.auth']
 		@integration = Integration.new
 		@integration.provider = info["provider"]
@@ -11,13 +14,19 @@ class IntegrationsController < ApplicationController
 		@integration.refresh_token = info["credentials"]["refresh_token"]
 		@integration.first_date = info["info"]["firstDate"]
 
-		populate_activities(@integration)
-
 		respond_to do |format|
-			if @integration.save
+			if !Integration.find_by(user_id: current_user.id, provider: info["provider"]) && @integration.save
+
+				# then populate the integrated activities
+				(0..7).each do |i|
+					date = ((Time.now - 7.days).to_date + i).strftime('%Y%m%d')
+					data = JSON.parse(open("https://api.moves-app.com/api/1.1/user/summary/daily/" + date + "?access_token=#{info['credentials']['token']}").read)
+					Integration.add_integration_activity(current_user, @integration, data[0])
+				end
+
 				format.html { redirect_to current_user, notice: "The #{info["provider"].capitalize} integration was succesfully enabled." }
       else
-        format.html { redirect_to current_user, notice: "The #{info["provider"].capitalize} integration was unsuccesful." }
+        format.html { redirect_to current_user, notice: "The #{info["provider"].capitalize} integration was unsuccesful. You may have already enabled that integration or another error may have happened." }
       end
     end
 	end
@@ -34,11 +43,6 @@ class IntegrationsController < ApplicationController
 	end
 
 	def expired?
-
-	end
-
-	def population_activities(integration)
-		
 
 	end
 

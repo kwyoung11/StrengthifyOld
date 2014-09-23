@@ -2,7 +2,21 @@
 	<section class="profile-info">
 		<section class="profile-nav-header">
 			<h2> <%= @user.name %> </h2>
-			<%= link_to "Enable Moves Integration", "/auth/moves" %>
+			<li class="integrations-li dd-prnt">
+				<%= tooltip_for("Enable integrations") do %>
+					<span class="icon-cog"></span>
+				<% end %>
+				<ul class="integrations-dd-li dd-li">
+					<li> 
+						<% if !Integration.enabled?("moves") %>
+							<%= link_to "Moves", "/auth/moves" %>
+						<% else %>
+							<%= HTMLEntities.new.decode "&#10003; Moves" %> 
+						<% end %>
+					</li>
+				</ul>
+			</li>
+			
 		</section>
 		<div style="clear: both"> </div>
 		<section class="profile-main-content">
@@ -22,7 +36,7 @@
 				</ul>
 			
 				<% if Friendship.are_friends(current_user, @user) %>
-				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, data: {confirm: "Are you sure you want remove #{@user.name} from your friends?" } %>
+				<%= link_to 'Remove Friend', friendship_path(destroyer: current_user, destroyed: @user), method: :delete, data: {confirm: "Are you sure you want to remove #{@user.name} from your friends?" } %>
 				<% end %>
 	
 			</div>
@@ -33,6 +47,35 @@
 	
 			<div class="profile-about-me">
 				<%= @user.about_me %>
+				<div id="integration_activities">
+					<!-- user integration activities -->
+					<div class="integration_activity" id="walking">
+						<h4> Walk </h4> <br />
+						<%= @walking.sum(:distance) / 1600 %> mi <br />
+						<%= Time.at(@walking.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+					</div>
+	
+					<div class="integration_activity" id="cycling">
+						<h4> Cycle </h4> <br />
+						<%= @cycling.sum(:distance) / 1600 %> mi <br />
+						<%= Time.at(@cycling.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+					</div>
+					<% if @running.size != 0 %>
+						<div class="integration_activity" id="running">
+							<h4> Running </h4> <br />
+							<%= @running.sum(:distance) / 1600 %> mi <br />
+							<%= Time.at(@running.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+						</div>
+					<% end %>
+
+				</div>
+				<!-- user tranportation below -->
+				
+				<div class="integration_activity" id="transport">
+					<h4> Transport </h4> <br />
+						<%= @transport.sum(:distance) / 1600 %> mi <br />
+						<%= Time.at(@transport.sum(:duration)).utc.strftime("%H:%M") %> hrs
+				</div> 
 			</div>
 
 		</section>
