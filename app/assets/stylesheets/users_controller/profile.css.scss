@@ -188,12 +188,27 @@
 }
 
 .integrations-dd-li {
-	float: left;
+	// z-index: 1000;
+	// list-style: none;
+	// width: 100%; 
+	// margin: 0;
+	// padding: 0;	
+	// left: 0;
+	// position: absolute;
+	// li {
+	// 	text-align: left;	
+	// }	
+	// display: none;
+	// margin-top: 5px; 
+	// > li {
+	// }
+
+
 	width: 70px;
 	border: 1px solid #999;
 	list-style-type: none;
 	left: inherit;
-	right: 50px;
+	right: 0;
 	li {
 		text-align: right;
 	}

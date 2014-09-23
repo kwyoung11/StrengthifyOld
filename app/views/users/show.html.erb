@@ -47,35 +47,37 @@
 	
 			<div class="profile-about-me">
 				<%= @user.about_me %>
-				<div id="integration_activities">
-					<!-- user integration activities -->
-					<div class="integration_activity" id="walking">
-						<h4> Walk </h4> <br />
-						<%= @walking.sum(:distance) / 1600 %> mi <br />
-						<%= Time.at(@walking.sum(:duration)).utc.strftime("%H:%M") %> hrs 
-					</div>
-	
-					<div class="integration_activity" id="cycling">
-						<h4> Cycle </h4> <br />
-						<%= @cycling.sum(:distance) / 1600 %> mi <br />
-						<%= Time.at(@cycling.sum(:duration)).utc.strftime("%H:%M") %> hrs 
-					</div>
-
-					<% if @running.size != 0 %>
-						<div class="integration_activity" id="running">
-							<h4> Running </h4> <br />
-							<%= @running.sum(:distance) / 1600 %> mi <br />
-							<%= Time.at(@running.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+				<% if @integration %>
+					<div id="integration_activities">
+						<!-- user integration activities -->
+						<div class="integration_activity" id="walking">
+							<h4> Walk </h4> <br />
+							<%= @walking.sum(:distance) / 1600 %> mi <br />
+							<%= Time.at(@walking.sum(:duration)).utc.strftime("%H:%M") %> hrs 
 						</div>
-					<% end %>
-
-				</div>
-				<!-- user tranportation below -->
-				<div class="integration_activity" id="transport">
-					<h4> Transport </h4> <br />
-						<%= @transport.sum(:distance) / 1600 %> mi <br />
-						<%= Time.at(@transport.sum(:duration)).utc.strftime("%H:%M") %> hrs
-				</div> 
+		
+						<div class="integration_activity" id="cycling">
+							<h4> Cycle </h4> <br />
+							<%= @cycling.sum(:distance) / 1600 %> mi <br />
+							<%= Time.at(@cycling.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+						</div>
+	
+						<% if @running.size != 0 %>
+							<div class="integration_activity" id="running">
+								<h4> Running </h4> <br />
+								<%= @running.sum(:distance) / 1600 %> mi <br />
+								<%= Time.at(@running.sum(:duration)).utc.strftime("%H:%M") %> hrs 
+							</div>
+						<% end %>
+	
+					</div>
+					<!-- user tranportation below -->
+					<div class="integration_activity" id="transport">
+						<h4> Transport </h4> <br />
+							<%= @transport.sum(:distance) / 1600 %> mi <br />
+							<%= Time.at(@transport.sum(:duration)).utc.strftime("%H:%M") %> hrs
+					</div> 
+				<% end %>
 			</div>
 
 		</section>
