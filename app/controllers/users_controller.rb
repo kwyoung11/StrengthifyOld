@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @cycling = @integrated_activities.where(activity_type: "cycling")
     @running = @integrated_activities.where(activity_type: "running")
     @transport = @integrated_activities.where(activity_type: "transport")
-    @user.save(validate: false)
+    # @user.save(validate: false)
   end
 
   # GET /users/new 

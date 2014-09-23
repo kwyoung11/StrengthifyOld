@@ -40,7 +40,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'newrelic_rpm'
 gem 'carrierwave'
 gem 'webshims-rails'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'mail_form', '~> 1.5.0rc'
 gem "fog"
 gem "oauth2"
