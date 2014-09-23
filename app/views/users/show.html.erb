@@ -60,6 +60,7 @@
 						<%= @cycling.sum(:distance) / 1600 %> mi <br />
 						<%= Time.at(@cycling.sum(:duration)).utc.strftime("%H:%M") %> hrs 
 					</div>
+
 					<% if @running.size != 0 %>
 						<div class="integration_activity" id="running">
 							<h4> Running </h4> <br />
@@ -70,7 +71,6 @@
 
 				</div>
 				<!-- user tranportation below -->
-				
 				<div class="integration_activity" id="transport">
 					<h4> Transport </h4> <br />
 						<%= @transport.sum(:distance) / 1600 %> mi <br />
